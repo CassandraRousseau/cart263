@@ -1,7 +1,7 @@
 class SausageDog extends Animal {
   //Creating the second cutscene of Chapter Five
-  constructor(x, y, width, height, image) {
-    super(x, y, width, height, image);
+  constructor(x, y, image) {
+    super(x, y, image);
 
     this.found = false;
     this.rotationSpeed = 0.25;
