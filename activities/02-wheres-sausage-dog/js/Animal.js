@@ -3,13 +3,9 @@ class Animal {
   constructor(x, y, image) {
     this.x = x;
     this.y = y;
-    this.angle = 0;
     this.image = image;
-  }
 
-  //Preloading necessary images for the second cutscene of Chapter Five
-  preload() {
-    this.image.preload();
+    this.angle = 0;
   }
 
   //Setting the second cutscene of Chapter Five
@@ -21,9 +17,9 @@ class Animal {
   display() {
     push();
     imageMode(CENTER);
-    translate();
+    translate(this.x, this.y);
     rotate(this.angle);
-    image(this.image, this.x, this.y, this.w, this.h);
+    image(this.image, 0, 0);
     pop();
   }
 }
