@@ -1,11 +1,11 @@
-class Instructions1 extends State {
+class Instructions extends State {
   //Creating instructions screen for the first level
   constructor() {
     super();
 
     //Creating the text of instructions 1
     this.intro =
-      "Find and catch the magic petal through the wind.\n\nClick with your mouse to catch the petal.\n\nCollect the magic petal before it's too late!";
+      "Excuse me, could you help me to find my sausage dog?.\n\nI think I lost it in the dog park but there's so many of them that I lost my sight on it.\n\nClick on the sausage dog to bring it back to me!\n\nMake it quick before it definitely run away!";
   }
 
   //Setting instructions screen for the first level
@@ -17,10 +17,9 @@ class Instructions1 extends State {
   //Displaying instructions screen for the first level
   display() {
     push();
-    background(255);
-    textSize(60);
+    textSize(40);
     textAlign(LEFT, TOP);
-    text(this.intro, 10, 50, windowWidth, windowHeight);
+    text(this.intro, 10, 50, width / 2, height / 2);
     pop();
   }
 
@@ -30,7 +29,7 @@ class Instructions1 extends State {
 
     //Changes state by pressing enter key
     if (keyCode === 13) {
-      currentState = new Level1();
+      currentState = new Level();
     }
   }
 }

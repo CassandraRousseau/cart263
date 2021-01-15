@@ -6,16 +6,18 @@ one of which will be a sausage dog. The player has to click on the sausage dog
 to win the game. When clicked successfully, the sausage dog will start spinning.
 **************************************************/
 "use strict";
-
-const LOADING_SAUSAGE_DOG = "assets/images/sausage-dog.png";
-const NUM_ANIMALS_IMAGES = 10;
-const NUM_ANIMALS_DISPLAY = 100;
+let currentState;
+let gravityForce = 0.0025;
+let timer;
 
 let animalImage = [];
 let animalObject = [];
+const LOADING_SAUSAGE_DOG = "assets/images/sausage-dog.png";
+const NUM_ANIMALS_IMAGES = 10;
+const NUM_ANIMALS_DISPLAY = 100;
 let dogImage;
-let sausageDog;
 
+// Setting all the preloaded images
 function preload() {
   for (let i = 0; i < NUM_ANIMALS_IMAGES; i++) {
     let loadedImage = loadImage(`assets/images/animal${i}.png`);
@@ -24,46 +26,18 @@ function preload() {
   dogImage = loadImage(LOADING_SAUSAGE_DOG);
 }
 
+//Setting all the setups for each state.
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  createAnimals();
-  createSausageDog();
+  currentState = new Title();
 }
 
-function createAnimals() {
-  for (let i = 0; i < NUM_ANIMALS_DISPLAY; i++) {
-    randomAnimals();
-  }
-}
-
-function createSausageDog() {
-  let x = random(0, width);
-  let y = random(0, height);
-  sausageDog = new SausageDog(x, y, dogImage);
-}
-function randomAnimals() {
-  let x = random(0, width);
-  let y = random(0, height);
-  let loadedImage = random(animalImage);
-  let animal = new Animal(x, y, loadedImage);
-  animalObject.push(animal);
-}
+// Setting the draw function for each state.
 function draw() {
-  background(255);
-  updateAnimals();
-  updateSausageDog();
+  currentState.draw();
 }
 
-function updateAnimals() {
-  for (let i = 0; i < animalObject.length; i++) {
-    animalObject[i].update();
-  }
-}
-
-function updateSausageDog() {
-  sausageDog.update();
-}
-
-function mousePressed() {
-  sausageDog.mousePressed();
+//Setting all key functions for each state.
+function keyPressed() {
+  currentState.keyPressed();
 }
