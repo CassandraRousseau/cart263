@@ -5,39 +5,42 @@ Cassandra Rousseau
 Here is a description of this template p5 project.
 **************************************************/
 "use strict";
-let phrase = "Hello,world!";
-let saying = "";
+let face = ":-|";
 // setup()
 //
 // Description of setup() goes here.
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 500);
+  if (annyang) {
+    // Let's define our first command. First the text we expect, and then the function it should call
+    let commands = {
+      "I love you": love,
+      "I hate you": hate,
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+    annyang.start();
+  }
 }
 
 // draw()
 //
 // Description of draw() goes here.
 function draw() {
-  background(255);
-
+  background(0);
   push();
-  textSize(32);
-  textAlign(CENTER);
-  text(saying, width / 2, height / 2);
+  translate(width / 2, height / 2);
+  rotate(PI / 2);
+  textSize(400);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  text(face, 0, 0);
   pop();
 }
-function mousePressed() {
-  responsiveVoice.speak(phrase, "UK English Male", {
-    onstart: showSpeaking,
-    onend: hideSpeaking,
-    pitch: 0.5,
-    rate: 0.5,
-    volume: 1,
-  });
+function love() {
+  face = ":-)";
 }
-function showSpeaking() {
-  saying = phrase;
-}
-function hideSpeaking() {
-  saying = "";
+function hate() {
+  face = ":-(";
 }
