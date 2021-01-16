@@ -15,9 +15,7 @@ class GameOver extends State {
   //Displaying bad ending(all soccer balls are falling)screen
   display() {
     push();
-    textSize(65);
-    fill(255);
-    textFont("Lemonada");
+    textSize(30);
     textAlign(LEFT, TOP);
     text(this.ranAway, width / 2, height);
     push();
@@ -32,7 +30,7 @@ class GameOver extends State {
     super.keyPressed();
 
     if (keyCode === 13) {
-      location.reload();
+      currentState = new Title();
     }
   }
 }

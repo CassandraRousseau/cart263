@@ -6,18 +6,15 @@ class Level extends State {
     this.animalObject = [];
 
     this.sausageDog;
+
+    createAnimals();
+    createSausageDog();
   }
 
   preload() {
     super.preload();
     this.animalImage.preload();
     this.sausageDog.preload();
-  }
-
-  setup() {
-    createCanvas(windowWidth, windowHeight);
-    createAnimals();
-    createSausageDog();
   }
 
   createAnimals() {

@@ -15,11 +15,9 @@ class GameAchieved extends State {
   //Displaying good ending screen
   display() {
     push();
-    textSize(65);
-    fill(255);
-    textFont("Lemonada");
+    textSize(30);
     textAlign(LEFT, TOP);
-    text(this.catchTheDog, 20, height / 3, windowWidth, windowHeight);
+    text(this.catchTheDog, width / 2, height);
     push();
     textSize(45);
     text("Press Enter to restart", width / 2, (3 * height) / 4);
@@ -32,7 +30,7 @@ class GameAchieved extends State {
     super.keyPressed();
 
     if (keyCode === 13) {
-      location.reload();
+      currentState = new Title();
     }
   }
 }

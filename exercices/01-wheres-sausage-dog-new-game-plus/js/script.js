@@ -7,14 +7,13 @@ to win the game. When clicked successfully, the sausage dog will start spinning.
 **************************************************/
 "use strict";
 let currentState;
-let gravityForce = 0.0025;
-let timer;
 
 let animalImage = [];
 let animalObject = [];
 const LOADING_SAUSAGE_DOG = "assets/images/sausage-dog.png";
 const NUM_ANIMALS_IMAGES = 10;
 const NUM_ANIMALS_DISPLAY = 100;
+let sausageDog;
 let dogImage;
 
 // Setting all the preloaded images
