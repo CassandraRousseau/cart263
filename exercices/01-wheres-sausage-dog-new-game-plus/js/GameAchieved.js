@@ -1,9 +1,9 @@
-class GoodEnding extends State {
+class GameAchieved extends State {
   //Creating good ending screen
   constructor() {
     super();
 
-    this.goodJob = "Good Job!\nSee you tomorrow player for another practice!";
+    this.catchTheDog = "Yay! Thank you for finding my dog!";
   }
 
   //Setting good ending screen
@@ -19,7 +19,7 @@ class GoodEnding extends State {
     fill(255);
     textFont("Lemonada");
     textAlign(LEFT, TOP);
-    text(this.goodJob, 20, height / 3, windowWidth, windowHeight);
+    text(this.catchTheDog, 20, height / 3, windowWidth, windowHeight);
     push();
     textSize(45);
     text("Press Enter to restart", width / 2, (3 * height) / 4);
