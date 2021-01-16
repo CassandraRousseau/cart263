@@ -5,8 +5,6 @@ class Title extends State {
 
     this.x = 0;
     this.y = 0;
-    this.width = w;
-    this.height = h;
     this.titleString = "Find my Dog!";
   }
 
@@ -19,13 +17,15 @@ class Title extends State {
   //Displaying the title screen
   display() {
     push();
-    textSize(175);
+    textSize(125);
     textAlign(CENTER, CENTER);
+
     text(this.titleString, width / 2, height / 2);
 
     //Adding how user changes the state
     push();
-    textSize(50);
+    let size = map(mouseY, 0, height, 10, 60);
+    textSize(size);
     text("Press Enter to start", width / 2, (5 * height) / 6);
     pop();
   }

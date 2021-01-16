@@ -17,9 +17,9 @@ class Instructions extends State {
   //Displaying instructions screen for the first level
   display() {
     push();
-    textSize(40);
+    textSize(30);
     textAlign(LEFT, TOP);
-    text(this.intro, 10, 50, width / 2, height / 2);
+    text(this.intro, 10, 50, width / 2, height);
     pop();
   }
 
