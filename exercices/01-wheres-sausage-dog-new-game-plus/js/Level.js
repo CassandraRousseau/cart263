@@ -7,8 +7,17 @@ class Level extends State {
 
     this.sausageDog;
 
-    createAnimals();
-    createSausageDog();
+    for (let i = 0; i < NUM_ANIMALS_DISPLAY; i++) {
+      let x = random(0, width);
+      let y = random(0, height);
+      let loadedImage = random(this.animalImage);
+      let animal = new Animal(x, y, loadedImage);
+      this.animalObject.push(animal);
+    }
+
+    let x = random(0, width);
+    let y = random(0, height);
+    this.sausageDog = new SausageDog(x, y, dogImage);
   }
 
   preload() {
@@ -17,40 +26,17 @@ class Level extends State {
     this.sausageDog.preload();
   }
 
-  createAnimals() {
-    for (let i = 0; i < NUM_ANIMALS_DISPLAY; i++) {
-      randomAnimals();
-    }
-  }
-
-  createSausageDog() {
-    let x = random(0, width);
-    let y = random(0, height);
-    this.sausageDog = new SausageDog(x, y, dogImage);
-  }
-  randomAnimals() {
-    let x = random(0, width);
-    let y = random(0, height);
-    let loadedImage = random(this.animalImage);
-    let animal = new Animal(x, y, loadedImage);
-    this.animalObject.push(animal);
-  }
   draw() {
-    updateAnimals();
-    updateSausageDog();
-  }
-
-  updateAnimals() {
     for (let i = 0; i < this.animalObject.length; i++) {
+      this.animalObject[i].move();
+      this.animalObject[i].overlap();
       this.animalObject[i].update();
     }
-  }
 
-  updateSausageDog() {
-    sausageDog.update();
+    this.sausageDog.update();
   }
 
   mousePressed() {
-    sausageDog.mousePressed();
+    this.sausageDog.mousePressed();
   }
 }
