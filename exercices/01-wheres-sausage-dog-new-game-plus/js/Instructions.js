@@ -29,7 +29,11 @@ class Instructions extends State {
 
     //Changes state by pressing enter key
     if (keyCode === 13) {
-      currentState = new Level();
+      currentState = new Level(
+        animalImage,
+        sausageDogImage,
+        NUM_ANIMALS_DISPLAY
+      );
     }
   }
 }

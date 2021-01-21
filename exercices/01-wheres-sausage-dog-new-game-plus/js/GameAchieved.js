@@ -9,7 +9,9 @@ class GameAchieved extends State {
   //Setting good ending screen
   draw() {
     super.draw();
+    push();
     this.display();
+    pop();
   }
 
   //Displaying good ending screen

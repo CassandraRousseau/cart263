@@ -1,41 +1,68 @@
 class Level extends State {
-  constructor() {
+  constructor(animalImage, sausageDogImage, numAnimals) {
     super();
-
-    this.animalImage = [];
+    this.name = "Level";
+    this.setTimeout = setTimeout("Level", 100000);
+    this.timer = new Timer();
+    this.animalImage = animalImage;
+    this.sausageDogImage = sausageDogImage;
+    this.numAnimals = numAnimals;
     this.animalObject = [];
+    this.createAnimals();
+    this.createSausageDog();
+  }
 
-    this.sausageDog;
-
-    for (let i = 0; i < NUM_ANIMALS_DISPLAY; i++) {
-      let x = random(0, width);
-      let y = random(0, height);
-      let loadedImage = random(this.animalImage);
-      let animal = new Animal(x, y, loadedImage);
-      this.animalObject.push(animal);
+  createAnimals() {
+    for (let i = 0; i < this.numAnimals; i++) {
+      this.randomAnimals();
     }
+  }
 
+  createSausageDog() {
     let x = random(0, width);
     let y = random(0, height);
-    this.sausageDog = new SausageDog(x, y, dogImage);
+    this.sausageDog = new SausageDog(x, y, this.sausageDogImage);
   }
 
-  preload() {
-    super.preload();
-    this.animalImage.preload();
-    this.sausageDog.preload();
+  randomAnimals() {
+    let x = random(0, width);
+    let y = random(0, height);
+    let loadedImage = random(this.animalImage);
+    let animal = new Animal(x, y, loadedImage);
+    this.animalObject.push(animal);
   }
-
   draw() {
+    super.draw();
+    push();
+    this.stopTimer();
+    this.updateAnimals();
+    this.updateSausageDog();
+    pop();
+  }
+  stopTimer() {
+    let timerResult = this.timer.timeCheck(
+      "Level",
+      this.sausageDog,
+      this.setTimeout
+    );
+
+    //Setting which states come after the level
+    //**Assistance from the instructor Pippin to know how to call at a specific state the common good ending for each level
+    if (timerResult === "GameOver") {
+      currentState = new GameOver();
+    } else if (timerResult === "GameAchieved") {
+      currentState = new GameAchieved();
+    }
+  }
+  updateAnimals() {
     for (let i = 0; i < this.animalObject.length; i++) {
-      this.animalObject[i].move();
-      this.animalObject[i].overlap();
       this.animalObject[i].update();
     }
-
-    this.sausageDog.update();
   }
 
+  updateSausageDog() {
+    this.sausageDog.update();
+  }
   mousePressed() {
     this.sausageDog.mousePressed();
   }

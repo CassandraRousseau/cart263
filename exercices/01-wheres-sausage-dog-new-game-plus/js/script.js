@@ -14,7 +14,7 @@ const LOADING_SAUSAGE_DOG = "assets/images/sausage-dog.png";
 const NUM_ANIMALS_IMAGES = 10;
 const NUM_ANIMALS_DISPLAY = 100;
 let sausageDog;
-let dogImage;
+let sausageDogImage;
 
 // Setting all the preloaded images
 function preload() {
@@ -22,12 +22,13 @@ function preload() {
     let loadedImage = loadImage(`assets/images/animal${i}.png`);
     animalImage.push(loadedImage);
   }
-  dogImage = loadImage(LOADING_SAUSAGE_DOG);
+  sausageDogImage = loadImage(LOADING_SAUSAGE_DOG);
 }
 
 //Setting all the setups for each state.
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
   currentState = new Title();
 }
 
@@ -35,7 +36,10 @@ function setup() {
 function draw() {
   currentState.draw();
 }
-
+//Setting all key functions for each state.
+function mousePressed() {
+  currentState.mousePressed();
+}
 //Setting all key functions for each state.
 function keyPressed() {
   currentState.keyPressed();

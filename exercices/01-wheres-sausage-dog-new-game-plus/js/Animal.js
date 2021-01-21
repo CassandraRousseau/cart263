@@ -3,6 +3,8 @@ class Animal {
   constructor(x, y, image) {
     this.x = x;
     this.y = y;
+    this.w = 128;
+    this.h = 128;
     this.image = image;
 
     this.angle = 0;
@@ -13,6 +15,7 @@ class Animal {
 
   //Setting the second cutscene of Chapter Five
   update() {
+    this.move();
     this.display();
   }
   //Setting flowers movements
@@ -26,13 +29,14 @@ class Animal {
     this.x = constrain(this.x, 0, width);
     this.y = constrain(this.y, 0, height);
   }
+
   //Displaying the second cutscene of Chapter Five
   display() {
     push();
     imageMode(CENTER);
     translate(this.x, this.y);
     rotate(this.angle);
-    image(this.image, 0, 0);
+    image(this.image, 0, 0, 128, 128);
     pop();
   }
   overlap(x, y) {

@@ -9,7 +9,9 @@ class GameOver extends State {
   //Setting bad ending(all soccer balls are falling)screen
   draw() {
     super.draw();
+    push();
     this.display();
+    pop();
   }
 
   //Displaying bad ending(all soccer balls are falling)screen
