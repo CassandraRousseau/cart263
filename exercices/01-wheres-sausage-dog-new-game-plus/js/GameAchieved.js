@@ -17,12 +17,12 @@ class GameAchieved extends State {
   //Displaying good ending screen
   display() {
     push();
-    textSize(30);
+    textSize(50);
     textAlign(LEFT, TOP);
-    text(this.catchTheDog, width / 2, height);
+    text(this.catchTheDog, 10, 50);
     push();
-    textSize(45);
-    text("Press Enter to restart", width / 2, (3 * height) / 4);
+    textSize(20);
+    text("Press Enter to restart", 10, (3 * height) / 4);
     pop();
     pop();
   }

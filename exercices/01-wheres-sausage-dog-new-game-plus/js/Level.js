@@ -2,7 +2,6 @@ class Level extends State {
   constructor(animalImage, sausageDogImage, numAnimals) {
     super();
     this.name = "Level";
-    this.setTimeout = setTimeout("Level", 100000);
     this.timer = new Timer();
     this.animalImage = animalImage;
     this.sausageDogImage = sausageDogImage;
@@ -40,11 +39,7 @@ class Level extends State {
     pop();
   }
   stopTimer() {
-    let timerResult = this.timer.timeCheck(
-      "Level",
-      this.sausageDog,
-      this.setTimeout
-    );
+    let timerResult = this.timer.timeCheck("Level", this.sausageDog);
 
     //Setting which states come after the level
     //**Assistance from the instructor Pippin to know how to call at a specific state the common good ending for each level
