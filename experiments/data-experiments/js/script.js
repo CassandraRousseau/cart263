@@ -1,20 +1,23 @@
-/**************************************************
-Template p5 project
-Pippin Barr
-
-Here is a description of this template p5 project.
-**************************************************/
-
-// setup()
-//
-// Description of setup() goes here.
-function setup() {
-
+"use strict";
+let jokeText = "";
+let jokeData;
+function preload() {
+  jokeData = loadJSON(
+    "https://official-joke-api.appspot.com/jokes/programming/random"
+  );
 }
-
-// draw()
-//
-// Description of draw() goes here.
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  let joke = jokeData[0];
+  jokeText = `${joke.setup}\n\n${joke.punchline}`;
+}
 function draw() {
-
+  background(0);
+  push();
+  fill(255, 255, 0);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  rectMode(CENTER);
+  text(jokeText, width / 2, height / 2, width / 2, height / 2);
+  pop();
 }
