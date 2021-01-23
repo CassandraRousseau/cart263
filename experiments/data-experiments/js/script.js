@@ -1,23 +1,27 @@
 "use strict";
-let jokeText = "";
-let jokeData;
-function preload() {
-  jokeData = loadJSON(
-    "https://official-joke-api.appspot.com/jokes/programming/random"
-  );
-}
+let userData = {
+  name: `stranger`,
+};
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let joke = jokeData[0];
-  jokeText = `${joke.setup}\n\n${joke.punchline}`;
+  let data = JSON.parse(
+    localStorage.getItem(`web-storage-example-personalization`)
+  );
+  if (data !== null) {
+    userData.name = data.name;
+  } else {
+    userData.name = prompt(`What's ya name?`);
+    localStorage.setItem(
+      `web-storage-example-personalization`,
+      JSON.stringify(userData)
+    );
+  }
 }
 function draw() {
-  background(0);
+  background(255);
   push();
-  fill(255, 255, 0);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  rectMode(CENTER);
-  text(jokeText, width / 2, height / 2, width / 2, height / 2);
+  textSize(64);
+  textAlign(CENTER);
+  text(`Howdy,${userData.name}!`, width / 2, height / 2);
   pop();
 }
