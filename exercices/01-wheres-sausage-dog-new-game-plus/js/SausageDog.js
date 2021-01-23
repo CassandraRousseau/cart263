@@ -5,13 +5,9 @@ class SausageDog extends Animal {
 
     this.found = false;
     this.rotationSpeed = 0.25;
-
-    this.growthWidth = 5;
-    this.growthHeight = 5;
-    this.minWidth = 128;
-    this.maxWidth = 128;
-    this.minHeight = 1000;
-    this.maxHeight = 1000;
+    this.growth = 20;
+    this.maxWidth = 500;
+    this.maxHeight = 500;
   }
 
   //Setting the second cutscene of Chapter Five
@@ -19,16 +15,19 @@ class SausageDog extends Animal {
     super.update();
 
     if (this.found) {
-      this.angle += this.rotationSpeed;
+      this.w += this.growth;
+      this.h += this.growth;
+      console.log(this.growth);
+      console.log(this.w);
+      console.log(this.h);
     }
-    this.w = constrain(this.w, this.minWidth, this.maxWidth);
-    this.h = constrain(this.h, this.minHeight, this.maxHeight);
+    this.size = constrain(this.w, 128, this.maxWidth);
+    this.size = constrain(this.h, 128, this.maxHeight);
   }
 
   mousePressed() {
     if (this.overlap(mouseX, mouseY)) {
       this.found = true;
-      this.image.resize(5000, 5000);
     }
   }
 }

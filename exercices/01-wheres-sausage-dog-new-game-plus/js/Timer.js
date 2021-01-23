@@ -1,12 +1,24 @@
 class Timer {
   constructor() {
-    this.timeout = setTimeout("Level", 100000);
+    this.gamelength = 1500;
   }
-  timeCheck(state, sausageDog) {
-    if (!sausageDog.found && frameCount > this.timeout) {
+  timeCheck(state, sausageDog, framecountSim) {
+    if (!sausageDog.found && frameCount >= framecountSim + this.gamelength) {
       return "GameOver";
-    } else if (sausageDog.found && frameCount > this.timeout) {
+    } else if (
+      sausageDog.found &&
+      frameCount >= framecountSim + this.gamelength
+    ) {
       return "GameAchieved";
     }
+  }
+  display() {
+    push();
+    textSize(110);
+    textStyle(BOLD);
+    textAlign(LEFT, TOP);
+    fill(250);
+    text(this.gamelength - frameCount, 10, 0, width / 2, height);
+    pop();
   }
 }

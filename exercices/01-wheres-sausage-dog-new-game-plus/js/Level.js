@@ -2,6 +2,7 @@ class Level extends State {
   constructor(animalImage, sausageDogImage, numAnimals) {
     super();
     this.name = "Level";
+    this.framecountSim = frameCount;
     this.timer = new Timer();
     this.animalImage = animalImage;
     this.sausageDogImage = sausageDogImage;
@@ -36,17 +37,22 @@ class Level extends State {
     this.stopTimer();
     this.updateAnimals();
     this.updateSausageDog();
+    this.timer.display();
     pop();
   }
   stopTimer() {
-    let timerResult = this.timer.timeCheck("Level", this.sausageDog);
+    let timerResult = this.timer.timeCheck(
+      "Level",
+      this.sausageDog,
+      this.framecountSim
+    );
 
     //Setting which states come after the level
     //**Assistance from the instructor Pippin to know how to call at a specific state the common good ending for each level
     if (timerResult === "GameOver") {
-      currentState = new GameOver();
+      currentState = new GameOver(sadImage);
     } else if (timerResult === "GameAchieved") {
-      currentState = new GameAchieved();
+      currentState = new GameAchieved(happyImage);
     }
   }
   updateAnimals() {

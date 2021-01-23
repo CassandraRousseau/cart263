@@ -17,5 +17,10 @@ class State {
   mousePressed() {}
 
   //Setting keyPressed method for each state
-  keyPressed() {}
+  keyPressed() {
+    if (keyCode === 13 && !music.isPlaying()) {
+      music.play();
+      music.rate(1.5);
+    }
+  }
 }
