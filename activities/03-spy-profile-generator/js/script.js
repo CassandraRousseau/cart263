@@ -34,11 +34,15 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   let data = JSON.parse(localStorage.getItem(`spy-profile-data`));
+
   if (data !== null) {
-    spyProfile.name = data.name;
-    spyProfile.alias = data.alias;
-    spyProfile.secretWeapon = data.secretWeapon;
-    spyProfile.password = data.password;
+    let password = prompt(`What is your password?`);
+    if (password === data.password) {
+      spyProfile.name = data.name;
+      spyProfile.alias = data.alias;
+      spyProfile.secretWeapon = data.secretWeapon;
+      spyProfile.password = data.password;
+    }
   } else {
     generateSpyProfile();
   }
