@@ -7,20 +7,42 @@ When the user first loads our program it will ask for their name in a text promp
    When the user comes back later, they will need to enter their generated password
     to view their profile again.
 **************************************************/
+
 let spyProfile = {
   name: "REDACTED",
   alias: "REDACTED",
   secretWeapon: "REDACTED",
   password: "REDACTED",
 };
+let tarotData;
+let objectData;
+let instrumentData;
+function preload() {
+  tarotData = loadJSON(
+    `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`
+  );
+  objectData = loadJSON(
+    `https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`
+  );
+  instrumentData = loadJSON(
+    `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`
+  );
+}
 // setup()
 //
 // Description of setup() goes here.
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  spyProfile.name = prompt(`What's your name?`, ``);
+  generateSpyProfile();
 }
-
+function generateSpyProfile() {
+  spyProfile.name = prompt(`What's your name?`, ``);
+  let instrument = random(instrumentData.instruments);
+  spyProfile.alias = `The ${instrument}`;
+  spyProfile.secretWeapon = random(objectData.objects);
+  let card = random(tarotData.tarot_interpretations);
+  spyProfile.password = random(card.keywords);
+}
 // draw()
 //
 // Description of draw() goes here.
