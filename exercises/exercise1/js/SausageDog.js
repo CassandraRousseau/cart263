@@ -16,7 +16,11 @@ class SausageDog extends Animal {
     super.update();
 
     //The sausage dog starts to grow if its found
-    if (this.found) {
+    if (
+      this.found &&
+      this.image.width < this.maxWidth &&
+      this.image.height < this.maxHeight
+    ) {
       this.image.width += this.growth;
       this.image.height += this.growth;
     }
@@ -27,15 +31,6 @@ class SausageDog extends Animal {
     console.log(this.size);
   }
 
-  growth() {
-    //Setting when the sausage dog stops growing
-    if (this.image.width === width && this.image.height === height) {
-      this.growth = 0;
-      this.vx = 0;
-      this.vy = 0;
-      console.log(this.growth);
-    }
-  }
   //User has to pressed his mouse to declare that the sausage dog is found
   mousePressed() {
     if (this.overlap(mouseX, mouseY)) {
