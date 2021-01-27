@@ -1,5 +1,5 @@
 class GameAchieved extends State {
-  //Creating good ending screen
+  //Creating game achieved parameters
   constructor(happyImage) {
     super(happyImage);
     this.x = (3 * width) / 7;
@@ -8,7 +8,7 @@ class GameAchieved extends State {
     this.catchTheDog = "Yay! Thank you for finding my dog!";
   }
 
-  //Setting good ending screen
+  //Setting game achieved screen
   draw() {
     super.draw();
     push();
@@ -16,13 +16,15 @@ class GameAchieved extends State {
     pop();
   }
 
-  //Displaying good ending screen
+  //Displaying game achieved screen
   display() {
     push();
     image(happyImage, this.x, this.y);
     textSize(75);
     textAlign(LEFT, TOP);
     text(this.catchTheDog, 10, 50);
+
+    //Adding "how to change the state" text
     push();
     textSize(30);
     text("Press Enter to restart", 10, (3 * height) / 4);
@@ -30,7 +32,7 @@ class GameAchieved extends State {
     pop();
   }
 
-  //Setting keyPressed after good ending screen
+  //The game restart after "Enter" key is pressed
   keyPressed() {
     super.keyPressed();
 

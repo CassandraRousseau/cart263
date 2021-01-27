@@ -7,7 +7,7 @@ class State {
 
   //Setting draw method for each state
   draw() {
-    //Setting common parameters for text in each state
+    //Setting common text parameters for each state
     background(100, 200, 205);
     fill(255);
     textFont("Hachi Maru Pop");

@@ -1,5 +1,5 @@
 class GameOver extends State {
-  //Creating bad ending(all soccer balls are falling)screen
+  //Creating game over parameters
   constructor(sadImage) {
     super(sadImage);
     this.x = (3 * width) / 7;
@@ -8,7 +8,7 @@ class GameOver extends State {
     this.ranAway = "Oh no! My dog ran away!";
   }
 
-  //Setting bad ending(all soccer balls are falling)screen
+  //Setting game over screen
   draw() {
     super.draw();
     push();
@@ -16,13 +16,15 @@ class GameOver extends State {
     pop();
   }
 
-  //Displaying bad ending(all soccer balls are falling)screen
+  //Displaying game over screen
   display() {
     push();
     image(sadImage, this.x, this.y);
     textSize(75);
     textAlign(LEFT, TOP);
     text(this.ranAway, 10, 50);
+
+    //Adding "how to change the state" text
     push();
     textSize(30);
     text("Press Enter to restart", 10, (3 * height) / 4);
@@ -30,7 +32,7 @@ class GameOver extends State {
     pop();
   }
 
-  //Setting keyPressed action after bad ending(all soccer balls are falling)screen
+  //The game restart after "Enter" key is pressed
   keyPressed() {
     super.keyPressed();
 

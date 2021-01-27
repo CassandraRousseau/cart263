@@ -22,7 +22,7 @@ class Title extends State {
 
     text(this.titleString, width / 2, height / 2);
 
-    //Adding how user changes the state
+    //Adding "how to change the state" text
     push();
     let size = map(mouseY, 0, height, 10, 60);
     textSize(size);
@@ -34,7 +34,7 @@ class Title extends State {
   keyPressed() {
     super.keyPressed();
 
-    //Changes state by pressing enter key
+    //Changes state by pressing "Enter" key
     if (keyCode === 13) {
       currentState = new Instructions();
     }

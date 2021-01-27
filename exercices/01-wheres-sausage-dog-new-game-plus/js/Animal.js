@@ -1,10 +1,8 @@
 class Animal {
-  //Creating the second cutscene of Chapter Five
+  //Creating animals parameters
   constructor(x, y, image) {
     this.x = x;
     this.y = y;
-    this.w = 128;
-    this.h = 128;
     this.image = image;
 
     this.angle = 0;
@@ -13,12 +11,12 @@ class Animal {
     this.speed = 4;
   }
 
-  //Setting the second cutscene of Chapter Five
+  //Setting the animals in the level
   update() {
     this.move();
     this.display();
   }
-  //Setting flowers movements
+  //Setting animals random movements
   move() {
     this.vx = random(-this.speed, this.speed);
     this.vy = random(-this.speed, this.speed);
@@ -30,15 +28,16 @@ class Animal {
     this.y = constrain(this.y, 0, height);
   }
 
-  //Displaying the second cutscene of Chapter Five
+  //Displaying the animals in the level
   display() {
     push();
     imageMode(CENTER);
     translate(this.x, this.y);
     rotate(this.angle);
-    image(this.image, 0, 0, 128, 128);
+    image(this.image, 0, 0, this.image.width, this.image.height);
     pop();
   }
+  //Setting how to recognize that the sausage dog was found
   overlap(x, y) {
     if (
       x > this.x - this.image.width / 2 &&
