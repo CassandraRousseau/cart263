@@ -3,7 +3,7 @@ class Level extends State {
   constructor(animalImage, sausageDogImage, numAnimals) {
     super();
     this.gamelength = 30000;
-    setTimeout(time, this.gamelength);
+    timer = setTimeout(time, this.gamelength);
     console.log(time);
     this.framecountSim = frameCount;
     this.animalImage = animalImage;
@@ -40,11 +40,19 @@ class Level extends State {
     //If the user hasn't found the sausage dog
     if (!this.sausageDog.found) {
       currentState = new GameOver(sadImage);
+      resetLevel();
     }
     //If the user found the sausage dog
     else if (this.sausageDog.found) {
       currentState = new GameAchieved(happyImage);
+      resetLevel();
     }
+  }
+  resetLevel() {
+    clearTimeout(timer);
+    this.sausageDog.found = false;
+    this.sausageDog.image.width = 128;
+    this.sausageDog.image.height = 128;
   }
   //Setting the level elements
   draw() {
