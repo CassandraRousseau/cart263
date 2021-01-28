@@ -2,8 +2,9 @@ class Level extends State {
   //Creating level parameters
   constructor({ animalImage, sausageDogImage, numAnimals }) {
     super({ animalImage, sausageDogImage, numAnimals });
-    this.gamelength = 15000;
-    this.timer = setTimeout(this.time.bind(this), this.gamelength);
+    this.gamelength = 60 * 15;
+    this.gameOverTimer = 0;
+
     this.animalImage = animalImage;
     this.sausageDogImage = sausageDogImage;
     this.numAnimals = numAnimals;
@@ -34,7 +35,24 @@ class Level extends State {
     let animal = new Animal(x, y, loadedImage);
     this.animalObject.push(animal);
   }
-  time() {
+
+  //Setting the level elements
+  draw() {
+    super.draw();
+    push();
+    this.gameOverTimer++;
+
+    if (this.gameOverTimer >= this.gamelength) {
+      this.gameEnding();
+    }
+
+    this.updateAnimals();
+    this.updateSausageDog();
+    this.displayTimer();
+    pop();
+  }
+
+  gameEnding() {
     //If the user hasn't found the sausage dog
     if (!this.sausageDog.found) {
       currentState = new GameOver(sadImage);
@@ -48,21 +66,12 @@ class Level extends State {
   }
   //Resets the level once it ends
   resetLevel() {
-    clearTimeout(this.timer);
+    this.gamelength = 60 * 15;
+    this.gameOverTimer = 0;
     this.sausageDog.found = false;
     this.sausageDog.image.width = 128;
     this.sausageDog.image.height = 128;
   }
-  //Setting the level elements
-  draw() {
-    super.draw();
-    push();
-    this.updateAnimals();
-    this.updateSausageDog();
-    this.displayTimer();
-    pop();
-  }
-
   displayTimer() {
     //Display the timer
     push();
@@ -70,13 +79,7 @@ class Level extends State {
     textStyle(BOLD);
     textAlign(LEFT, TOP);
     fill(250);
-    text(
-      round(this.timer - frameCount / frameRate()),
-      10,
-      0,
-      width / 2,
-      height
-    );
+    text(this.gamelength - this.gameOverTimer, 10, 0, width / 2, height);
     pop();
   }
   //Setting animals' updated elements
