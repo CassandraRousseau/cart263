@@ -7,6 +7,8 @@ The player has to click on the sausage dog to win the game. When clicked success
 the sausage dog will start growing and the woman will be happy that the user find her dog.
 If the dog wasn't found within the delay, the woman will be sad. :'(
 **************************************************/
+//**Music source:Reed Mathis,"My Dog Is Happy," uploaded November 2019,YouTube Studio,
+//2019,Internet,https://studio.youtube.com/channel/UCFFgeleuT_ixFKXDmENZSRA/music.**
 "use strict";
 //Declared current state
 let currentState;

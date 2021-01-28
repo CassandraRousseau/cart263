@@ -22,7 +22,7 @@ class GameAchieved extends State {
     image(happyImage, this.x, this.y);
     textSize(75);
     textAlign(LEFT, TOP);
-    text(this.catchTheDog, 10, 50);
+    text(this.catchTheDog, 10, 50, width, height);
 
     //Adding "how to change the state" text
     push();
