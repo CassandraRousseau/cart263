@@ -1,11 +1,9 @@
 class Level extends State {
   //Creating level parameters
-  constructor(animalImage, sausageDogImage, numAnimals) {
-    super();
-    this.gamelength = 30000;
-    timer = setTimeout(time, this.gamelength);
-    console.log(time);
-    this.framecountSim = frameCount;
+  constructor({ animalImage, sausageDogImage, numAnimals }) {
+    super({ animalImage, sausageDogImage, numAnimals });
+    this.gamelength = 15000;
+    this.timer = setTimeout(this.time.bind(this), this.gamelength);
     this.animalImage = animalImage;
     this.sausageDogImage = sausageDogImage;
     this.numAnimals = numAnimals;
@@ -40,16 +38,17 @@ class Level extends State {
     //If the user hasn't found the sausage dog
     if (!this.sausageDog.found) {
       currentState = new GameOver(sadImage);
-      resetLevel();
+      this.resetLevel();
     }
     //If the user found the sausage dog
     else if (this.sausageDog.found) {
       currentState = new GameAchieved(happyImage);
-      resetLevel();
+      this.resetLevel();
     }
   }
+  //Resets the level once it ends
   resetLevel() {
-    clearTimeout(timer);
+    clearTimeout(this.timer);
     this.sausageDog.found = false;
     this.sausageDog.image.width = 128;
     this.sausageDog.image.height = 128;
@@ -58,10 +57,9 @@ class Level extends State {
   draw() {
     super.draw();
     push();
-    this.displayTimer();
     this.updateAnimals();
     this.updateSausageDog();
-    this.timer.display();
+    this.displayTimer();
     pop();
   }
 
@@ -72,7 +70,13 @@ class Level extends State {
     textStyle(BOLD);
     textAlign(LEFT, TOP);
     fill(250);
-    text(this.gamelength, 10, 0, width / 2, height);
+    text(
+      round(this.timer - frameCount / frameRate()),
+      10,
+      0,
+      width / 2,
+      height
+    );
     pop();
   }
   //Setting animals' updated elements
@@ -87,6 +91,7 @@ class Level extends State {
   }
   //Setting mousePressed method
   mousePressed() {
+    super.mousePressed();
     this.sausageDog.mousePressed();
   }
 }

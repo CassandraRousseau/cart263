@@ -42,11 +42,11 @@ class Instructions extends State {
 
     //Changes state by pressing "Enter" key
     if (keyCode === 13) {
-      currentState = new Level(
-        animalImage,
-        sausageDogImage,
-        NUM_ANIMALS_DISPLAY
-      );
+      currentState = new Level({
+        animalImage: animalImage,
+        sausageDogImage: sausageDogImage,
+        numAnimals: NUM_ANIMALS_DISPLAY,
+      });
     }
   }
 }

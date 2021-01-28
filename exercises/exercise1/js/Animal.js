@@ -5,7 +5,6 @@ class Animal {
     this.y = y;
     this.image = image;
 
-    this.angle = 0;
     this.vx = 0;
     this.vy = 0;
     this.speed = 4;
@@ -33,7 +32,6 @@ class Animal {
     push();
     imageMode(CENTER);
     translate(this.x, this.y);
-    rotate(this.angle);
     image(this.image, 0, 0, this.image.width, this.image.height);
     pop();
   }

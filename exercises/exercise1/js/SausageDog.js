@@ -28,7 +28,6 @@ class SausageDog extends Animal {
     //The size constrain when the image reach the window width and height
     this.size = constrain(this.image.width, this.image.width, this.maxWidth);
     this.size = constrain(this.image.height, this.image.height, this.maxHeight);
-    console.log(this.size);
   }
 
   //User has to pressed his mouse to declare that the sausage dog is found
