@@ -8,6 +8,12 @@ class GameAchieved extends State {
     this.catchTheDog = "Yay! Thank you for finding my dog!";
   }
 
+  //Prelod the woman character image for Game Achieved
+  preload() {
+    super.preload();
+    this.happyImage.preload();
+  }
+
   //Setting game achieved screen
   draw() {
     super.draw();

@@ -8,6 +8,12 @@ class GameOver extends State {
     this.ranAway = "Oh no! My dog ran away!";
   }
 
+  //Prelod the woman character image for Game Over
+  preload() {
+    super.preload();
+    this.sadImage.preload();
+  }
+
   //Setting game over screen
   draw() {
     super.draw();

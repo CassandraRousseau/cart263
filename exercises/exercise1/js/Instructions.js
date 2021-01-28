@@ -9,11 +9,13 @@ class Instructions extends State {
     this.intro =
       "Excuse me, could you help me to find my sausage dog?\n\nI think I lost it near the zoo but there's so many animals that I lost my sight on it.\n\nClick on the sausage dog and bring it back to me!\n\nMake it quick before it definitely run away!";
   }
+
   //Prelod the woman character image for the instructions
   preload() {
     super.preload();
     this.askingImage.preload();
   }
+
   //Setting instructions screen
   draw() {
     super.draw();

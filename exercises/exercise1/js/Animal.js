@@ -15,6 +15,7 @@ class Animal {
     this.move();
     this.display();
   }
+
   //Setting animals random movements
   move() {
     this.vx = random(-this.speed, this.speed);
@@ -35,6 +36,7 @@ class Animal {
     image(this.image, 0, 0, this.image.width, this.image.height);
     pop();
   }
+
   //Setting how to recognize that the sausage dog was found
   overlap(x, y) {
     if (
