@@ -2,7 +2,6 @@ class Level extends State {
   //Creating level parameters
   constructor(animalImage, sausageDogImage, numAnimals) {
     super();
-    this.name = "Level";
     this.gamelength = 30000;
     setTimeout(time, this.gamelength);
     console.log(time);
