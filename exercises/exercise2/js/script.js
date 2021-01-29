@@ -143,7 +143,7 @@ const animals = [
   "yak",
   "zebra",
 ];
-
+let synth;
 let currentAnimal = "";
 let currentAnswer = "";
 // setup()
@@ -151,6 +151,7 @@ let currentAnswer = "";
 // Description of setup() goes here.
 function setup() {
   createCanvas(500, 500);
+  synth = new p5.PolySynth();
   if (annyang) {
     // Let's define our first command. First the text we expect, and then the function it should call
     let commands = {
@@ -194,8 +195,10 @@ function reverseString(string) {
 function displayAnswer() {
   if (currentAnswer === currentAnimal) {
     fill(0, 255, 0);
+    synth.play(`A8`, 1, 0, 1);
   } else {
     fill(255, 0, 0);
+    synth.play(`C4`, 1, 0, 1);
   }
   text(currentAnswer, width / 2, height / 2);
 }
