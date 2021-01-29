@@ -195,7 +195,7 @@ function reverseString(string) {
 function displayAnswer() {
   if (currentAnswer === currentAnimal) {
     fill(0, 255, 0);
-    synth.play(`A8`, 1, 0, 1);
+    synth.play(`A4`, 1, 0, 1);
   } else {
     fill(255, 0, 0);
     synth.play(`C4`, 1, 0, 1);
