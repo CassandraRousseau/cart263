@@ -4,9 +4,13 @@ Pippin Barr
 
 Here is a description of this template p5 project.
 **************************************************/
-let grass;
+let grassPurple;
+let grassPink;
+let grassBlue;
 function preload() {
-  grass = loadImage(`assets/images/grass.jpg`);
+  grassPurple = loadImage(`assets/images/grassPurple.png`);
+  grassPink = loadImage(`assets/images/grassPink.png`);
+  grassBlue = loadImage(`assets/images/grassBlue.png`);
 }
 function setup() {
   // Using WEBGL in createCanvas to specify 3D graphics
@@ -14,40 +18,55 @@ function setup() {
 }
 
 function draw() {
-  background(225, 175, 255);
-  lights();
+  background(200);
+
   // Translate to the center (not really needed, but just for completeness)
 
   // Looks nicer
   noStroke();
   push();
-  // Our central cube is white
-  translate(-width / 2, 75, -150);
-  fill(150, 155, 255);
-  texture(grass);
-  ellipsoid(300, 230);
-  pop();
-  push();
-  // Our central cube is white
-  translate(width / 35, 100, -550);
-  fill(115, 175, 255);
-  texture(grass);
-  ellipsoid(600, 230);
-  pop();
-  push();
-  // Our central cube is white
-  translate(width / 2, 75, -150);
-  fill(150, 175, 255);
-  push();
-  texture(grass);
-  ellipsoid(300, 230);
-  pop();
-  pop();
-  push();
   // A red bar passing through the box
   translate(0, 250, 0);
   fill(100, 185, 225);
-  texture(grass);
-  box(windowWidth, 175, 300);
+
+  box(windowWidth, 100, 3000);
+  pop();
+  push();
+
+  // Our central cube is white
+  translate(-width / 3, 75, -500);
+  fill(245, 255, 175);
+  box(300, windowHeight);
+  pop();
+
+  push();
+
+  // Our central cube is white
+  translate(-width / 4, 75, -500);
+  fill(245, 255, 175);
+  box(100, 700);
+  pop();
+
+  push();
+
+  // Our central cube is white
+  translate(-width / 2, 100, -600);
+  fill(245, 255, 175);
+  box(300, 900);
+  pop();
+
+  push();
+
+  // Our central cube is white
+  translate(width / 4, 75, -500);
+  fill(245, 255, 175);
+  box(100, 700);
+  pop();
+  push();
+
+  // Our central cube is white
+  translate(width / 2, 0, -400);
+  fill(150);
+  box(200, 500, -10);
   pop();
 }
