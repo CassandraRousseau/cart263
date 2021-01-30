@@ -7,145 +7,164 @@ have to say (with their voice) what they think it is in the form “I think it i
  it wrong, their guess will be displayed in red.
 **************************************************/
 "use strict";
-const animals = [
-  "aardvark",
-  "alligator",
-  "alpaca",
-  "antelope",
-  "ape",
-  "armadillo",
-  "baboon",
-  "badger",
-  "bat",
-  "bear",
-  "beaver",
-  "bison",
-  "boar",
-  "buffalo",
-  "bull",
-  "camel",
-  "canary",
-  "capybara",
-  "cat",
-  "chameleon",
-  "cheetah",
-  "chimpanzee",
-  "chinchilla",
-  "chipmunk",
-  "cougar",
-  "cow",
-  "coyote",
-  "crocodile",
-  "crow",
-  "deer",
-  "dingo",
-  "dog",
-  "donkey",
-  "dromedary",
-  "elephant",
-  "elk",
-  "ewe",
-  "ferret",
-  "finch",
-  "fish",
-  "fox",
-  "frog",
-  "gazelle",
-  "gila monster",
-  "giraffe",
-  "gnu",
-  "goat",
-  "gopher",
-  "gorilla",
-  "grizzly bear",
-  "ground hog",
-  "guinea pig",
-  "hamster",
-  "hedgehog",
-  "hippopotamus",
-  "hog",
-  "horse",
-  "hyena",
-  "ibex",
-  "iguana",
-  "impala",
-  "jackal",
-  "jaguar",
-  "kangaroo",
-  "koala",
-  "lamb",
-  "lemur",
-  "leopard",
-  "lion",
-  "lizard",
-  "llama",
-  "lynx",
-  "mandrill",
-  "marmoset",
-  "mink",
-  "mole",
-  "mongoose",
-  "monkey",
-  "moose",
-  "mountain goat",
-  "mouse",
-  "mule",
-  "muskrat",
-  "mustang",
-  "mynah bird",
-  "newt",
-  "ocelot",
-  "opossum",
-  "orangutan",
-  "oryx",
-  "otter",
-  "ox",
-  "panda",
-  "panther",
-  "parakeet",
-  "parrot",
-  "pig",
-  "platypus",
-  "polar bear",
-  "porcupine",
-  "porpoise",
-  "prairie dog",
-  "puma",
-  "rabbit",
-  "raccoon",
-  "ram",
-  "rat",
-  "reindeer",
-  "reptile",
-  "rhinoceros",
-  "salamander",
-  "seal",
-  "sheep",
-  "shrew",
-  "silver fox",
-  "skunk",
-  "sloth",
-  "snake",
-  "squirrel",
-  "tapir",
-  "tiger",
-  "toad",
-  "turtle",
-  "walrus",
-  "warthog",
-  "weasel",
-  "whale",
-  "wildcat",
-  "wolf",
-  "wolverine",
-  "wombat",
-  "woodchuck",
-  "yak",
-  "zebra",
+const LOAD_HAPPY_GIRL = `assets/images/happyGirl.jpg`;
+const LOAD_ASKING_GIRL = `assets/images/askingGirl.jpg`;
+const LOAD_SHOCKED_GIRL = `assets/images/shockedGirl.jpg`;
+const artMovements = [
+  "abstract expressionism",
+  "academic",
+  "action painting",
+  "aestheticism",
+  "art deco",
+  "art nouveau",
+  "avant-garde",
+  "barbizon school",
+  "baroque",
+  "bauhaus",
+  "biedermeier",
+  "caravaggisti",
+  "carolingian",
+  "classicism",
+  "cloisonnism",
+  "cobra",
+  "color field painting",
+  "conceptual art",
+  "cubism",
+  "cubo-futurism",
+  "dada",
+  "dadaism",
+  "de stijl",
+  "deformalism",
+  "der blaue reiter",
+  "die brücke",
+  "divisionism",
+  "eclecticism",
+  "ego-futurism",
+  "existentialism",
+  "expressionism",
+  "fauvism",
+  "fluxus",
+  "formalism",
+  "futurism",
+  "geometric abstraction",
+  "gothic art",
+  "gründerzeit",
+  "hard-edge painting",
+  "historicism",
+  "hudson river school",
+  "humanism",
+  "hyperrealism",
+  "idealism",
+  "illusionism",
+  "immagine&poesia",
+  "impressionism",
+  "incoherents",
+  "installation art",
+  "international gothic",
+  "intervention art",
+  "jugendstil",
+  "kinetic art",
+  "land art",
+  "les nabis",
+  "lettrism",
+  "lowbrow",
+  "luminism",
+  "lyrical abstraction",
+  "mail art",
+  "manierism",
+  "mannerism",
+  "maximalism",
+  "merovingian",
+  "metaphysical art ",
+  "minimalism",
+  "modern art",
+  "modernism",
+  "monumentalism",
+  "multiculturalism",
+  "naturalism",
+  "neo-classicism",
+  "neo-dada",
+  "neo-expressionism",
+  "neo-fauvism",
+  "neo-geo",
+  "neo-impressionism",
+  "neo-minimalism",
+  "neoclassicism",
+  "neoism",
+  "neue slowenische kunst",
+  "new media art",
+  "new objectivity",
+  "nonconformism",
+  "nouveau realisme",
+  "op art",
+  "orphism",
+  "ottonian",
+  "outsider art",
+  "performance art",
+  "perspectivism",
+  "photorealism",
+  "pointilism",
+  "pop art",
+  "post-conceptualism",
+  "post-impressionism",
+  "post-minimalism",
+  "post-painterly abstraction",
+  "post-structuralism",
+  "postminimalism",
+  "postmodern art",
+  "postmodernism",
+  "pre-raphaelites",
+  "precisionism",
+  "primitivism",
+  "purism",
+  "rayonism",
+  "realism",
+  "relational art",
+  "remodernism",
+  "renaissance",
+  "rococo",
+  "romanesque",
+  "romanticism",
+  "russian futurism",
+  "russian symbolism",
+  "scuola romana",
+  "secularism",
+  "situationist international",
+  "social realism",
+  "socialist realism",
+  "sound art",
+  "street art",
+  "structuralism",
+  "stuckism international",
+  "stuckism",
+  "superflat",
+  "superstroke",
+  "suprematism",
+  "surrealism",
+  "symbolism",
+  "synchromism",
+  "synthetism",
+  "systems art",
+  "tachism",
+  "tachisme",
+  "tonalism",
+  "video art",
+  "video game art",
+  "vorticism",
+  "young british artists",
 ];
+
 let synth;
-let currentAnimal = "";
+let currentMovement = "";
 let currentAnswer = "";
+let happyGirl;
+let askingGirl;
+let shockedGirl;
+function preload() {
+  happyGirl = loadImage(LOAD_HAPPY_GIRL);
+  askingGirl = loadImage(LOAD_ASKING_GIRL);
+  shockedGirl = loadImage(LOAD_SHOCKED_GIRL);
+}
 // setup()
 //
 // Description of setup() goes here.
@@ -155,7 +174,7 @@ function setup() {
   if (annyang) {
     // Let's define our first command. First the text we expect, and then the function it should call
     let commands = {
-      "I think it is *animal": guessedAnimal,
+      "I think it is *artMovement": guessedArt,
     };
 
     // Add our commands to annyang
@@ -179,8 +198,8 @@ function mousePressed() {
   nextQuestion();
 }
 
-function guessedAnimal(animal) {
-  currentAnswer = animal.toLowerCase();
+function guessedArt(artMovement) {
+  currentAnswer = artMovement.toLowerCase();
 }
 function reverseString(string) {
   // Split the string into an array of characters
@@ -193,17 +212,19 @@ function reverseString(string) {
   return result;
 }
 function displayAnswer() {
-  if (currentAnswer === currentAnimal) {
+  if (currentAnswer === currentMovement) {
     fill(0, 255, 0);
-    synth.play(`A4`, 1, 0, 1);
+    //synth.noteAttack(`A4`, 1, 0.7);
   } else {
     fill(255, 0, 0);
-    synth.play(`C4`, 1, 0, 1);
+    //synth.noteAttack(`C4`, 1, 0.7);
   }
   text(currentAnswer, width / 2, height / 2);
 }
 function nextQuestion() {
-  let currentAnimal = random(animals);
-  let reverseAnimal = reverseString(currentAnimal);
-  responsiveVoice.speak(reverseAnimal);
+  let currentMovement = random(artMovements);
+  let reverseArt = reverseString(currentMovement);
+  fill(255);
+  text(reverseArt, width / 2, height / 2);
+  responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
 }
