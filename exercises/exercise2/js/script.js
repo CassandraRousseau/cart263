@@ -7,9 +7,9 @@ have to say (with their voice) what they think it is in the form “I think it i
  it wrong, their guess will be displayed in red.
 **************************************************/
 "use strict";
-const LOAD_HAPPY_GIRL = `assets/images/happyGirl.jpg`;
-const LOAD_ASKING_GIRL = `assets/images/askingGirl.jpg`;
-const LOAD_SHOCKED_GIRL = `assets/images/shockedGirl.jpg`;
+const LOAD_HAPPY_ARTIST = `assets/images/happyArtist.png`;
+const LOAD_ASKING_ARTIST = `assets/images/askingArtist.png`;
+const LOAD_SHOCKED_ARTIST = `assets/images/shockedArtist.png`;
 const artMovements = [
   "abstract expressionism",
   "academic",
@@ -157,13 +157,13 @@ const artMovements = [
 let synth;
 let currentMovement = "";
 let currentAnswer = "";
-let happyGirl;
-let askingGirl;
-let shockedGirl;
+let happyArtist;
+let askingArtist;
+let shockedArtist;
 function preload() {
-  happyGirl = loadImage(LOAD_HAPPY_GIRL);
-  askingGirl = loadImage(LOAD_ASKING_GIRL);
-  shockedGirl = loadImage(LOAD_SHOCKED_GIRL);
+  happyArtist = loadImage(LOAD_HAPPY_ARTIST);
+  askingArtist = loadImage(LOAD_ASKING_ARTIST);
+  shockedArtist = loadImage(LOAD_SHOCKED_ARTIST);
 }
 // setup()
 //
@@ -213,18 +213,27 @@ function reverseString(string) {
 }
 function displayAnswer() {
   if (currentAnswer === currentMovement) {
+    push();
+    image(happyArtist, width / 4, (2 * height) / 3);
     fill(0, 255, 0);
     //synth.noteAttack(`A4`, 1, 0.7);
+    pop();
   } else {
+    push();
+    image(shockedArtist, width / 4, (2 * height) / 3);
     fill(255, 0, 0);
     //synth.noteAttack(`C4`, 1, 0.7);
+    pop();
   }
   text(currentAnswer, width / 2, height / 2);
 }
 function nextQuestion() {
+  push();
+  image(askingArtist, width / 4, (2 * height) / 3);
   let currentMovement = random(artMovements);
   let reverseArt = reverseString(currentMovement);
   fill(255);
   text(reverseArt, width / 2, height / 2);
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
+  pop();
 }
