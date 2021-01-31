@@ -154,7 +154,11 @@ const artMovements = [
   "young british artists",
 ];
 
+let state = "title";
 let synth;
+let saying = ``;
+let instruction =
+  "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)...' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
 let currentMovement = "";
 let currentAnswer = "";
 let happyArtist;
@@ -169,7 +173,7 @@ function preload() {
 //
 // Description of setup() goes here.
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(windowWidth, windowHeight);
   synth = new p5.PolySynth();
   if (annyang) {
     // Let's define our first command. First the text we expect, and then the function it should call
@@ -191,9 +195,62 @@ function setup() {
 //
 // Description of draw() goes here.
 function draw() {
-  background(0);
-  displayAnswer();
+  background(100, 150, 200);
+
+  if (state === "title") {
+    title();
+  } else if (state === "instructions") {
+    instructions();
+  } else if (state === "simulation") {
+    simulation();
+  }
 }
+
+//Setting the title screen
+function title() {
+  push();
+  !mousePressed;
+  textSize(105);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text("Do You Know Art?", width / 2, height / 2);
+  push();
+  textSize(35);
+  text("Press Enter to start", width / 2, (2 * height) / 3);
+  pop();
+  pop();
+}
+
+//Setting instruction screen
+function instructions() {
+  push();
+  !mousePressed;
+  image(askingArtist, (2 * width) / 5, 10);
+  textSize(30);
+  fill(255);
+  textAlign(LEFT, TOP);
+  text(instruction, 10, 0, width / 2, height);
+  responsiveVoice.speak(instruction, "UK English Female", {
+    pitch: 5,
+    onstart: showSpeaking,
+    onend: hideSpeaking,
+  });
+  pop();
+}
+function showSpeaking() {
+  saying = instruction;
+}
+function hideSpeaking() {
+  saying = ``;
+}
+//Setting simulation
+function simulation() {
+  push();
+  mousePressed;
+  displayAnswer();
+  pop();
+}
+
 function mousePressed() {
   nextQuestion();
 }
@@ -214,13 +271,13 @@ function reverseString(string) {
 function displayAnswer() {
   if (currentAnswer === currentMovement) {
     push();
-    image(happyArtist, width / 4, (2 * height) / 3);
+    image(happyArtist, (2 * width) / 5, 10);
     fill(0, 255, 0);
     //synth.noteAttack(`A4`, 1, 0.7);
     pop();
   } else {
     push();
-    image(shockedArtist, width / 4, (2 * height) / 3);
+    image(shockedArtist, (2 * width) / 5, 10);
     fill(255, 0, 0);
     //synth.noteAttack(`C4`, 1, 0.7);
     pop();
@@ -229,11 +286,20 @@ function displayAnswer() {
 }
 function nextQuestion() {
   push();
-  image(askingArtist, width / 4, (2 * height) / 3);
+  image(askingArtist, (2 * width) / 5, 10);
   let currentMovement = random(artMovements);
   let reverseArt = reverseString(currentMovement);
   fill(255);
   text(reverseArt, width / 2, height / 2);
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
   pop();
+}
+function keyPressed() {
+  if (keyCode === 13) {
+    if (state === "title") {
+      state = "instructions";
+    } else if (state === "instructions") {
+      state = "simulation";
+    }
+  }
 }
