@@ -7,10 +7,12 @@ have to say (with their voice) what they think it is in the form “I think it i
  it wrong, their guess will be displayed in red.
 **************************************************/
 "use strict";
+
 //Images constants
 const LOAD_HAPPY_ARTIST = `assets/images/happyArtist.png`;
 const LOAD_ASKING_ARTIST = `assets/images/askingArtist.png`;
 const LOAD_SHOCKED_ARTIST = `assets/images/shockedArtist.png`;
+
 //art movements array
 const artMovements = [
   "abstract expressionism",
@@ -155,6 +157,7 @@ const artMovements = [
   "vorticism",
   "young british artists",
 ];
+
 //encouragements strings array for right answers
 let encouragements = [
   `Good Job!`,
@@ -168,6 +171,7 @@ let encouragements = [
   `Are you sure you're not an encyclopedia? Because you really do know everything!`,
   `I wish I could be as great as you!`,
 ];
+
 //reactions strings array for wrong answers
 let reactions = [
   `Hum...`,
@@ -181,30 +185,37 @@ let reactions = [
   `Nope.`,
   `OH GAWD NO!`,
 ];
+
 //texts
 let state = "title";
 let instruction =
   "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)...' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
+
 //emptay strings for arrays
 let saying = ``;
 let currentMovement = "";
 let currentAnswer = "";
+
 //declared random reactions and encouragaments
 let chosenReaction;
 let chosenEncouragement;
+
 //declared images
 let happyArtist;
 let askingArtist;
 let shockedArtist;
+
 //preloaded images
 function preload() {
   happyArtist = loadImage(LOAD_HAPPY_ARTIST);
   askingArtist = loadImage(LOAD_ASKING_ARTIST);
   shockedArtist = loadImage(LOAD_SHOCKED_ARTIST);
 }
+
 //Setting the game
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
   //adding annyang! library
   if (annyang) {
     let commands = {
@@ -214,6 +225,7 @@ function setup() {
     // Adding commands to annyang
     annyang.addCommands(commands);
     annyang.start();
+
     //adding text style
     textStyle(BOLD);
     console.log(annyang);
@@ -301,6 +313,7 @@ function displayAnswer() {
     wrongAnswer();
   }
 }
+
 //Setting the right answer
 function rightAnswer() {
   push();
@@ -315,6 +328,7 @@ function rightAnswer() {
   });
   pop();
 }
+
 //Setting the wrong answer
 function wrongAnswer() {
   push();
@@ -344,6 +358,7 @@ function nextQuestion() {
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
   pop();
 }
+
 //Setting the keyPressed function
 function keyPressed() {
   if (keyCode === 13) {
