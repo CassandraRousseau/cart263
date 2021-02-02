@@ -280,15 +280,23 @@ function instructions() {
   text(instruction, 10, 0, width / 2, height);
 
   //added the responsiveVoice that is reading the the instructions
-  responsiveVoice.speak(instruction, "UK English Female", {
-    pitch: 5,
-  });
+
+  setTimeout(
+    responsiveVoice.speak(instruction, "UK English Female", {
+      pitch: 5,
+    }),
+    1000
+  );
+
   pop();
 }
 
 //Setting simulation
 function simulation() {
   push();
+  responsiveVoice.cancel(instruction, "UK English Female", {
+    pitch: 5,
+  });
   displayAnswer();
   pop();
 }
@@ -343,7 +351,7 @@ function rightAnswer() {
   textAlign(CENTER, CENTER);
   fill(0, 255, 0);
   text(currentAnswer, width / 2, height / 2);
-
+  console.log(currentAnswer);
   //Added the artist response to the right answer
   chosenEncouragement = random(encouragements);
   responsiveVoice.speak(chosenEncouragement, "UK English Female", {
@@ -388,8 +396,9 @@ function nextQuestion() {
   textAlign(CENTER, CENTER);
   fill(255);
   text(reverseArt, width / 2, height / 2);
+  console.log(reverseArt);
 
-  //Added the resposiveVoice that is asking the question
+  //Added the resposiveVoice  asking the question
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
   pop();
 }
