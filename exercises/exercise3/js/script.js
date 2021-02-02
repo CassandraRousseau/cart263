@@ -9,7 +9,7 @@ When the user first loads our program it will ask for their name in a text promp
 **************************************************/
 const JSON_TAROT = `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`;
 const JSON_DESCRIPTIONS = `https://raw.githubusercontent.com/dariusk/corpora/master/data/humans/descriptions.json`;
-const JSON_SPELL=`https://raw.githubusercontent.com/dariusk/corpora/master/data/words/spells.json`
+const JSON_SPELL = `https://raw.githubusercontent.com/dariusk/corpora/master/data/words/spells.json`;
 const JSON_OBJECT = `https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`;
 const JSON_INSTRUMENT = `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`;
 const KEY_PROFILE_DATA = `spy-profile-data`;
@@ -24,7 +24,7 @@ let spyProfile = {
 let tarotData;
 let objectData;
 let descriptionData;
-let
+let spellData;
 let instrumentData;
 function preload() {
   tarotData = loadJSON(JSON_TAROT);
