@@ -1,10 +1,13 @@
 /**************************************************
-Activity 02:Slamina
+Exercise 02:Do you know Art?
 Cassandra Rousseau
-The program will speak the name of a common animal backwards and the user will
+
+At the beginning of the game, an artist will challenge the user by testing his art
+knowledge. The artist will speak the name of an art movement backwards and the user will
 have to say (with their voice) what they think it is in the form “I think it is
  x.” If they get it right, their guess will be displayed in green, if they get
- it wrong, their guess will be displayed in red.
+ it wrong, their guess will be displayed in red.The artist will either encourage
+ the user or be disappointed depending on the user's answers.
 **************************************************/
 "use strict";
 
@@ -248,11 +251,14 @@ function draw() {
 //Setting the title screen
 function title() {
   push();
-  !mousePressed;
+
+  //Adding title string
   textSize(105);
   fill(255);
   textAlign(CENTER, CENTER);
   text("Do You Know Art?", width / 2, height / 2);
+
+  //adding how to change the state
   push();
   textSize(35);
   text("Press Enter to start", width / 2, (2 * height) / 3);
@@ -263,12 +269,17 @@ function title() {
 //Setting instruction screen
 function instructions() {
   push();
-  !mousePressed;
+
+  //Added the artist image
   image(askingArtist, (2 * width) / 5, 10);
+
+  //added the instructions text
   textSize(30);
   fill(255);
   textAlign(LEFT, TOP);
   text(instruction, 10, 0, width / 2, height);
+
+  //added the responsiveVoice that is reading the the instructions
   responsiveVoice.speak(instruction, "UK English Female", {
     pitch: 5,
   });
@@ -297,18 +308,24 @@ function guessedArt(artMovement) {
 function reverseString(string) {
   // Split the string into an array of characters
   let characters = string.split("");
+
   // Reverse the array of characters
   let reverseCharacters = characters.reverse();
+
   // Join the array of characters back into a string
   let result = reverseCharacters.join("");
+
   // Return the result
   return result;
 }
 
 //Setting what happens when the answer is right or worng
 function displayAnswer() {
+  //if the answer is right
   if (currentAnswer === currentMovement) {
     rightAnswer();
+
+    //if the answer is wrong
   } else if (currentAnswer !== currentMovement) {
     wrongAnswer();
   }
@@ -317,11 +334,17 @@ function displayAnswer() {
 //Setting the right answer
 function rightAnswer() {
   push();
+
+  //Added artist image
   image(happyArtist, (2 * width) / 5, 10);
+
+  //Added the current answer
   textSize(50);
   textAlign(CENTER, CENTER);
   fill(0, 255, 0);
   text(currentAnswer, width / 2, height / 2);
+
+  //Added the artist response to the right answer
   chosenEncouragement = random(encouragements);
   responsiveVoice.speak(chosenEncouragement, "UK English Female", {
     pitch: 5,
@@ -332,11 +355,17 @@ function rightAnswer() {
 //Setting the wrong answer
 function wrongAnswer() {
   push();
+
+  //Added artist image
   image(shockedArtist, (2 * width) / 5, 10);
+
+  //Added the current answer
   textSize(50);
   textAlign(CENTER, CENTER);
   fill(255, 0, 0);
   text(currentAnswer, width / 2, height / 2);
+
+  //Added the artist response to the wrong answer
   chosenReaction = random(reactions);
   responsiveVoice.speak(chosenReaction, "UK English Female", {
     pitch: 5,
@@ -348,19 +377,26 @@ function wrongAnswer() {
 //Setting the questions
 function nextQuestion() {
   push();
+
+  //Added artist image
   image(askingArtist, (2 * width) / 5, 10);
+
+  //Added the asked movement
   let currentMovement = random(artMovements);
   let reverseArt = reverseString(currentMovement);
   textSize(50);
   textAlign(CENTER, CENTER);
   fill(255);
   text(reverseArt, width / 2, height / 2);
+
+  //Added the resposiveVoice that is asking the question
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
   pop();
 }
 
 //Setting the keyPressed function
 function keyPressed() {
+  //'Enter' key for changing states
   if (keyCode === 13) {
     if (state === "title") {
       state = "instructions";
