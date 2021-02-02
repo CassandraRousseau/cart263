@@ -231,7 +231,6 @@ function setup() {
 
     //adding text style
     textStyle(BOLD);
-    console.log(annyang);
   }
 }
 
@@ -396,10 +395,10 @@ function nextQuestion() {
   textAlign(CENTER, CENTER);
   fill(255);
   text(reverseArt, width / 2, height / 2);
-  console.log(reverseArt);
 
   //Added the resposiveVoice  asking the question
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
+  console.log(reverseArt);
   pop();
 }
 
