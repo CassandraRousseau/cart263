@@ -7,9 +7,11 @@ have to say (with their voice) what they think it is in the form “I think it i
  it wrong, their guess will be displayed in red.
 **************************************************/
 "use strict";
+//Images constants
 const LOAD_HAPPY_ARTIST = `assets/images/happyArtist.png`;
 const LOAD_ASKING_ARTIST = `assets/images/askingArtist.png`;
 const LOAD_SHOCKED_ARTIST = `assets/images/shockedArtist.png`;
+//art movements array
 const artMovements = [
   "abstract expressionism",
   "academic",
@@ -153,6 +155,7 @@ const artMovements = [
   "vorticism",
   "young british artists",
 ];
+//encouragements strings array for right answers
 let encouragements = [
   `Good Job!`,
   `You're doing great!`,
@@ -165,6 +168,7 @@ let encouragements = [
   `Are you sure you're not an encyclopedia? Because you really do know everything!`,
   `I wish I could be as great as you!`,
 ];
+//reactions strings array for wrong answers
 let reactions = [
   `Hum...`,
   `Okay...`,
@@ -177,44 +181,46 @@ let reactions = [
   `Nope.`,
   `OH GAWD NO!`,
 ];
+//texts
 let state = "title";
-let saying = ``;
 let instruction =
   "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)...' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
+//emptay strings for arrays
+let saying = ``;
 let currentMovement = "";
 let currentAnswer = "";
+//declared random reactions and encouragaments
 let chosenReaction;
 let chosenEncouragement;
+//declared images
 let happyArtist;
 let askingArtist;
 let shockedArtist;
+//preloaded images
 function preload() {
   happyArtist = loadImage(LOAD_HAPPY_ARTIST);
   askingArtist = loadImage(LOAD_ASKING_ARTIST);
   shockedArtist = loadImage(LOAD_SHOCKED_ARTIST);
 }
-// setup()
-//
-// Description of setup() goes here.
+//Setting the game
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  //adding annyang! library
   if (annyang) {
-    // Let's define our first command. First the text we expect, and then the function it should call
     let commands = {
       "I think it is *artMovement": guessedArt,
     };
 
-    // Add our commands to annyang
+    // Adding commands to annyang
     annyang.addCommands(commands);
     annyang.start();
+    //adding text style
     textStyle(BOLD);
     console.log(annyang);
   }
 }
 
-// draw()
-//
-// Description of draw() goes here.
+//Creating the game states
 function draw() {
   background(100, 150, 200);
 
@@ -264,14 +270,18 @@ function simulation() {
   pop();
 }
 
+//Setting mousePressed function
 function mousePressed() {
   nextQuestion();
 }
 
+//Setting how to define if the guessed answer is right or wrong
 function guessedArt(artMovement) {
   currentAnswer = artMovement.toLowerCase();
   displayAnswer();
 }
+
+//Setting the reversed words
 function reverseString(string) {
   // Split the string into an array of characters
   let characters = string.split("");
@@ -282,6 +292,8 @@ function reverseString(string) {
   // Return the result
   return result;
 }
+
+//Setting what happens when the answer is right or worng
 function displayAnswer() {
   if (currentAnswer === currentMovement) {
     rightAnswer();
@@ -289,6 +301,7 @@ function displayAnswer() {
     wrongAnswer();
   }
 }
+//Setting the right answer
 function rightAnswer() {
   push();
   image(happyArtist, (2 * width) / 5, 10);
@@ -302,6 +315,7 @@ function rightAnswer() {
   });
   pop();
 }
+//Setting the wrong answer
 function wrongAnswer() {
   push();
   image(shockedArtist, (2 * width) / 5, 10);
@@ -316,6 +330,8 @@ function wrongAnswer() {
 
   pop();
 }
+
+//Setting the questions
 function nextQuestion() {
   push();
   image(askingArtist, (2 * width) / 5, 10);
@@ -328,6 +344,7 @@ function nextQuestion() {
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
   pop();
 }
+//Setting the keyPressed function
 function keyPressed() {
   if (keyCode === 13) {
     if (state === "title") {
