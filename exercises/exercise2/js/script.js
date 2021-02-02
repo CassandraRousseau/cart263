@@ -257,7 +257,6 @@ function instructions() {
 //Setting simulation
 function simulation() {
   push();
-  mousePressed;
   displayAnswer();
   pop();
 }
