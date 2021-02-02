@@ -206,6 +206,7 @@ function setup() {
     annyang.addCommands(commands);
     annyang.start();
     textStyle(BOLD);
+    console.log(annyang);
   }
 }
 
@@ -280,32 +281,37 @@ function reverseString(string) {
 }
 function displayAnswer() {
   if (currentAnswer === currentMovement) {
-    push();
-    image(happyArtist, (2 * width) / 5, 10);
-    textSize(50);
-    textAlign(CENTER, CENTER);
-    fill(0, 255, 0);
-    text(reverseArt, 10, 0, width / 2, height);
-    chosenEncouragement = random(encouragements);
-    responsiveVoice.speak(chosenEncouragement, "UK English Female", {
-      pitch: 5,
-    });
-    pop();
-  } else {
-    push();
-    image(shockedArtist, (2 * width) / 5, 10);
-    textSize(50);
-    textAlign(CENTER, CENTER);
-    fill(255, 0, 0);
-    text(reverseArt, 10, 0, width / 2, height);
-    chosenReaction = random(reactions);
-    responsiveVoice.speak(chosenReaction, "UK English Female", {
-      pitch: 5,
-    });
-
-    pop();
+    rightAnswer();
+  } else if (currentAnswer !== currentMovement) {
+    wrongAnswer();
   }
+}
+function rightAnswer() {
+  push();
+  image(happyArtist, (2 * width) / 5, 10);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  fill(0, 255, 0);
   text(currentAnswer, width / 2, height / 2);
+  chosenEncouragement = random(encouragements);
+  responsiveVoice.speak(chosenEncouragement, "UK English Female", {
+    pitch: 5,
+  });
+  pop();
+}
+function wrongAnswer() {
+  push();
+  image(shockedArtist, (2 * width) / 5, 10);
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  fill(255, 0, 0);
+  text(currentAnswer, width / 2, height / 2);
+  chosenReaction = random(reactions);
+  responsiveVoice.speak(chosenReaction, "UK English Female", {
+    pitch: 5,
+  });
+
+  pop();
 }
 function nextQuestion() {
   push();
