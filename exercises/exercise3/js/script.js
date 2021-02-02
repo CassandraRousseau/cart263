@@ -28,6 +28,8 @@ let spellData;
 let instrumentData;
 function preload() {
   tarotData = loadJSON(JSON_TAROT);
+  descriptionData = loadJSON(JSON_DESCRIPTIONS);
+  spellData = loadJSON(JSON_SPELL);
   objectData = loadJSON(JSON_OBJECT);
   instrumentData = loadJSON(JSON_INSTRUMENT);
 }
@@ -50,6 +52,8 @@ function setup() {
 function setSpyData(spyProfile, data) {
   spyProfile.name = data.name;
   spyProfile.alias = data.alias;
+  spyProfile.characteristics = data.characteristics;
+  spyProfile.power = data.power;
   spyProfile.secretWeapon = data.secretWeapon;
   spyProfile.password = data.password;
 }
@@ -57,6 +61,9 @@ function generateSpyProfile() {
   spyProfile.name = prompt(`What's your name?`, ``);
   let instrument = random(instrumentData.instruments);
   spyProfile.alias = `The ${instrument}`;
+  let spell = random(spellData.spells);
+  spyProfile.power = random(spell.effect);
+  spyProfile.characteristics = random(descriptionData.descriptions);
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
@@ -71,6 +78,8 @@ function draw() {
   let profile = `**CONFIDENTIAL SPY PROFILE**;
   Name:${spyProfile.name}
   Alias:${spyProfile.alias}
+  Characteristics:${spyProfile.characteristics}
+  Power:${spyProfile.power}
   Secret Weapon:${spyProfile.secretWeapon}
   Password:${spyProfile.password}`;
   push();
