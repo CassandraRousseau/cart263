@@ -153,9 +153,31 @@ const artMovements = [
   "vorticism",
   "young british artists",
 ];
-
+let encouragements = [
+  `Good Job!`,
+  `You're doing great!`,
+  `You have a pretty good art knowledge!`,
+  `What an amazing artist you are!`,
+  `Great!`,
+  `Awesome!`,
+  `Good!`,
+  `Very good!`,
+  `Are you sure you're not an encyclopedia? Because you really do know everything!`,
+  `I wish I could be as great as you!`,
+];
+let reactions = [
+  `Hum...`,
+  `Okay...`,
+  `Are you an artist?`,
+  `Do you really like art? Because I have doubts about it.`,
+  `I think you need to learn a bit more about the art movements.`,
+  `You should revise art history next time.`,
+  `I strongly recommand you to stop playing and take a few minutes to revise your art stuff.`,
+  `Wrong!`,
+  `Nope.`,
+  `OH GAWD NO!`,
+];
 let state = "title";
-let synth;
 let saying = ``;
 let instruction =
   "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)...' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
@@ -174,7 +196,6 @@ function preload() {
 // Description of setup() goes here.
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  synth = new p5.PolySynth();
   if (annyang) {
     // Let's define our first command. First the text we expect, and then the function it should call
     let commands = {
@@ -184,10 +205,7 @@ function setup() {
     // Add our commands to annyang
     annyang.addCommands(commands);
     annyang.start();
-
-    textSize(50);
     textStyle(BOLD);
-    textAlign(CENTER, CENTER);
   }
 }
 
@@ -232,17 +250,10 @@ function instructions() {
   text(instruction, 10, 0, width / 2, height);
   responsiveVoice.speak(instruction, "UK English Female", {
     pitch: 5,
-    onstart: showSpeaking,
-    onend: hideSpeaking,
   });
   pop();
 }
-function showSpeaking() {
-  saying = instruction;
-}
-function hideSpeaking() {
-  saying = ``;
-}
+
 //Setting simulation
 function simulation() {
   push();
@@ -272,14 +283,27 @@ function displayAnswer() {
   if (currentAnswer === currentMovement) {
     push();
     image(happyArtist, (2 * width) / 5, 10);
+    textSize(50);
+    textAlign(CENTER, CENTER);
     fill(0, 255, 0);
-    //synth.noteAttack(`A4`, 1, 0.7);
+    text(reverseArt, 10, 0, width / 2, height);
+    chosenEncouragement = random(encouragements);
+    responsiveVoice.speak(chosenEncouragement, "UK English Female", {
+      pitch: 5,
+    });
     pop();
   } else {
     push();
     image(shockedArtist, (2 * width) / 5, 10);
+    textSize(50);
+    textAlign(CENTER, CENTER);
     fill(255, 0, 0);
-    //synth.noteAttack(`C4`, 1, 0.7);
+    text(reverseArt, 10, 0, width / 2, height);
+    chosenReaction = random(reactions);
+    responsiveVoice.speak(chosenReaction, "UK English Female", {
+      pitch: 5,
+    });
+
     pop();
   }
   text(currentAnswer, width / 2, height / 2);
@@ -289,6 +313,8 @@ function nextQuestion() {
   image(askingArtist, (2 * width) / 5, 10);
   let currentMovement = random(artMovements);
   let reverseArt = reverseString(currentMovement);
+  textSize(50);
+  textAlign(CENTER, CENTER);
   fill(255);
   text(reverseArt, width / 2, height / 2);
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
