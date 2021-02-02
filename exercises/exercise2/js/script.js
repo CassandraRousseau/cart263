@@ -183,6 +183,8 @@ let instruction =
   "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)...' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
 let currentMovement = "";
 let currentAnswer = "";
+let chosenReaction;
+let chosenEncouragement;
 let happyArtist;
 let askingArtist;
 let shockedArtist;
@@ -268,6 +270,7 @@ function mousePressed() {
 
 function guessedArt(artMovement) {
   currentAnswer = artMovement.toLowerCase();
+  displayAnswer();
 }
 function reverseString(string) {
   // Split the string into an array of characters
