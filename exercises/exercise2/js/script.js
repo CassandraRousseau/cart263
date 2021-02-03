@@ -192,7 +192,7 @@ let reactions = [
 //texts
 let state = "title";
 let instruction =
-  "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)...' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
+  "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
 
 //emptay strings for arrays
 let saying = ``;
@@ -250,6 +250,7 @@ function draw() {
 //Setting the title screen
 function title() {
   push();
+  responsiveVoice.pause();
 
   //Adding title string
   textSize(105);
@@ -268,7 +269,7 @@ function title() {
 //Setting instruction screen
 function instructions() {
   push();
-
+  responsiveVoice.pause();
   //Added the artist image
   image(askingArtist, (2 * width) / 5, 10);
 
@@ -286,7 +287,7 @@ function instructions() {
     }),
     1000
   );
-
+  console.log(responsiveVoice);
   pop();
 }
 
@@ -397,7 +398,7 @@ function nextQuestion() {
   text(reverseArt, width / 2, height / 2);
 
   //Added the resposiveVoice  asking the question
-  responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
+  responsiveVoice.resume(reverseArt, "UK English Female", { pitch: 5 });
   console.log(reverseArt);
   pop();
 }
