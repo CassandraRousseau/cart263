@@ -250,7 +250,6 @@ function draw() {
 //Setting the title screen
 function title() {
   push();
-  responsiveVoice.pause();
 
   //Adding title string
   textSize(105);
@@ -269,7 +268,7 @@ function title() {
 //Setting instruction screen
 function instructions() {
   push();
-  responsiveVoice.pause();
+
   //Added the artist image
   image(askingArtist, (2 * width) / 5, 10);
 
@@ -281,22 +280,13 @@ function instructions() {
 
   //added the responsiveVoice that is reading the the instructions
 
-  setTimeout(
-    responsiveVoice.speak(instruction, "UK English Female", {
-      pitch: 5,
-    }),
-    1000
-  );
-  console.log(responsiveVoice);
   pop();
 }
 
 //Setting simulation
 function simulation() {
   push();
-  responsiveVoice.cancel(instruction, "UK English Female", {
-    pitch: 5,
-  });
+
   displayAnswer();
   pop();
 }
@@ -354,9 +344,9 @@ function rightAnswer() {
   console.log(currentAnswer);
   //Added the artist response to the right answer
   chosenEncouragement = random(encouragements);
-  responsiveVoice.speak(chosenEncouragement, "UK English Female", {
-    pitch: 5,
-  });
+  //responsiveVoice.speak(chosenEncouragement, "UK English Female", {
+  //pitch: 5,
+  //});
   pop();
 }
 
@@ -375,9 +365,9 @@ function wrongAnswer() {
 
   //Added the artist response to the wrong answer
   chosenReaction = random(reactions);
-  responsiveVoice.speak(chosenReaction, "UK English Female", {
-    pitch: 5,
-  });
+  //responsiveVoice.speak(chosenReaction, "UK English Female", {
+  //  pitch: 5,
+  //  });
 
   pop();
 }
@@ -398,7 +388,7 @@ function nextQuestion() {
   text(reverseArt, width / 2, height / 2);
 
   //Added the resposiveVoice  asking the question
-  responsiveVoice.resume(reverseArt, "UK English Female", { pitch: 5 });
+  //responsiveVoice.resume(reverseArt, "UK English Female", { pitch: 5 });
   console.log(reverseArt);
   pop();
 }
@@ -409,6 +399,10 @@ function keyPressed() {
   if (keyCode === 13) {
     if (state === "title") {
       state = "instructions";
+
+      responsiveVoice.speak(instruction, "UK English Female", {
+        pitch: 2,
+      });
     } else if (state === "instructions") {
       state = "simulation";
     }
