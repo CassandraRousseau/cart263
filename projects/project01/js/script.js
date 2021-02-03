@@ -35,7 +35,7 @@ function draw() {
 
   // Our central cube is white
   translate(-width / 3, 75, -500);
-  fill(245, 255, 175);
+  fill(150);
   box(300, windowHeight);
   pop();
 
@@ -43,7 +43,7 @@ function draw() {
 
   // Our central cube is white
   translate(-width / 4, 75, -500);
-  fill(245, 255, 175);
+  fill(150);
   box(100, 700);
   pop();
 
@@ -51,7 +51,7 @@ function draw() {
 
   // Our central cube is white
   translate(-width / 2, 100, -600);
-  fill(245, 255, 175);
+  fill(150);
   box(300, 900);
   pop();
 
@@ -59,7 +59,7 @@ function draw() {
 
   // Our central cube is white
   translate(width / 4, 75, -500);
-  fill(245, 255, 175);
+  fill(150);
   box(100, 700);
   pop();
   push();
