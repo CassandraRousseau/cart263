@@ -7,7 +7,9 @@ Here is a description of this template p5 project.
 let grassPurple;
 let grassPink;
 let grassBlue;
+let windows;
 function preload() {
+  windows = loadImage(`assets/images/windows.jpg`);
   grassPurple = loadImage(`assets/images/grassPurple.png`);
   grassPink = loadImage(`assets/images/grassPink.png`);
   grassBlue = loadImage(`assets/images/grassBlue.png`);
@@ -36,6 +38,7 @@ function draw() {
   // Our central cube is white
   translate(-width / 3, 75, -500);
   fill(150);
+  texture(windows);
   box(300, windowHeight);
   pop();
 
@@ -44,6 +47,7 @@ function draw() {
   // Our central cube is white
   translate(-width / 4, 75, -500);
   fill(150);
+  texture(windows);
   box(100, 700);
   pop();
 
@@ -52,6 +56,7 @@ function draw() {
   // Our central cube is white
   translate(-width / 2, 100, -600);
   fill(150);
+  texture(windows);
   box(300, 900);
   pop();
 
@@ -60,6 +65,7 @@ function draw() {
   // Our central cube is white
   translate(width / 4, 75, -500);
   fill(150);
+  texture(windows);
   box(100, 700);
   pop();
   push();
@@ -67,6 +73,7 @@ function draw() {
   // Our central cube is white
   translate(width / 2, 0, -400);
   fill(150);
+  texture(windows);
   box(200, 500, -10);
   pop();
 }
