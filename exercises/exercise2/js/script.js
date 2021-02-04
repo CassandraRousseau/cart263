@@ -202,7 +202,7 @@ let currentAnswer = "";
 //declared random reactions and encouragaments
 let chosenReaction;
 let chosenEncouragement;
-
+let artMovement;
 //declared images
 let happyArtist;
 let askingArtist;
@@ -297,14 +297,37 @@ function mousePressed() {
   } else if (state === "instructions") {
     state = "simulation";
   } else if (state == "simulation") {
+    nextQuestion();
     guessedArt(artMovement);
+
+    displayAnswer();
   }
 }
-console.log(mousePressed);
+
 //Setting how to define if the guessed answer is right or wrong
 function guessedArt(artMovement) {
-  nextQuestion();
   currentAnswer = artMovement.toLowerCase();
+
+  //displayAnswer();
+}
+
+console.log(artMovement);
+
+//Setting the reversed words
+function reverseString(string) {
+  // Split the string into an array of characters
+  let characters = string.split("");
+
+  // Reverse the array of characters
+  let reverseCharacters = characters.reverse();
+
+  // Join the array of characters back into a string
+  let result = reverseCharacters.join("");
+
+  // Return the result
+  return result;
+}
+function displayAnswer() {
   //if the answer is right
   if (currentAnswer === currentMovement) {
     //Added the artist response to the right answer
@@ -322,23 +345,6 @@ function guessedArt(artMovement) {
     });
     wrongAnswer();
   }
-
-  //displayAnswer();
-}
-
-//Setting the reversed words
-function reverseString(string) {
-  // Split the string into an array of characters
-  let characters = string.split("");
-
-  // Reverse the array of characters
-  let reverseCharacters = characters.reverse();
-
-  // Join the array of characters back into a string
-  let result = reverseCharacters.join("");
-
-  // Return the result
-  return result;
 }
 
 //Setting the right answer
