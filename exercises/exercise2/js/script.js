@@ -192,7 +192,7 @@ let reactions = [
 //texts
 let state = "title";
 let instruction =
-  "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press Enter to start)";
+  "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press your mouse to start)";
 
 //emptay strings for arrays
 let saying = ``;
@@ -260,7 +260,7 @@ function title() {
   //adding how to change the state
   push();
   textSize(35);
-  text("Press Enter to start", width / 2, (2 * height) / 3);
+  text("Press your mouse to start", width / 2, (2 * height) / 3);
   pop();
   pop();
 }
@@ -284,22 +284,46 @@ function instructions() {
 }
 
 //Setting simulation
-function simulation() {
-  push();
-
-  displayAnswer();
-  pop();
-}
+function simulation() {}
 
 //Setting mousePressed function
 function mousePressed() {
-  nextQuestion();
-}
+  if (state === "title") {
+    state = "instructions";
 
+    responsiveVoice.speak(instruction, "UK English Female", {
+      pitch: 2,
+    });
+  } else if (state === "instructions") {
+    state = "simulation";
+  } else if (state == "simulation") {
+    guessedArt(artMovement);
+  }
+}
+console.log(mousePressed);
 //Setting how to define if the guessed answer is right or wrong
 function guessedArt(artMovement) {
+  nextQuestion();
   currentAnswer = artMovement.toLowerCase();
-  displayAnswer();
+  //if the answer is right
+  if (currentAnswer === currentMovement) {
+    //Added the artist response to the right answer
+    chosenEncouragement = random(encouragements);
+    responsiveVoice.speak(chosenEncouragement, "UK English Female", {
+      pitch: 5,
+    });
+    rightAnswer();
+    //if the answer is wrong
+  } else if (currentAnswer !== currentMovement) {
+    //Added the artist response to the wrong answer
+    chosenReaction = random(reactions);
+    responsiveVoice.speak(chosenReaction, "UK English Female", {
+      pitch: 5,
+    });
+    wrongAnswer();
+  }
+
+  //displayAnswer();
 }
 
 //Setting the reversed words
@@ -317,18 +341,6 @@ function reverseString(string) {
   return result;
 }
 
-//Setting what happens when the answer is right or worng
-function displayAnswer() {
-  //if the answer is right
-  if (currentAnswer === currentMovement) {
-    rightAnswer();
-
-    //if the answer is wrong
-  } else if (currentAnswer !== currentMovement) {
-    wrongAnswer();
-  }
-}
-
 //Setting the right answer
 function rightAnswer() {
   push();
@@ -342,11 +354,7 @@ function rightAnswer() {
   fill(0, 255, 0);
   text(currentAnswer, width / 2, height / 2);
   console.log(currentAnswer);
-  //Added the artist response to the right answer
-  chosenEncouragement = random(encouragements);
-  //responsiveVoice.speak(chosenEncouragement, "UK English Female", {
-  //pitch: 5,
-  //});
+
   pop();
 }
 
@@ -363,22 +371,14 @@ function wrongAnswer() {
   fill(255, 0, 0);
   text(currentAnswer, width / 2, height / 2);
 
-  //Added the artist response to the wrong answer
-  chosenReaction = random(reactions);
-  //responsiveVoice.speak(chosenReaction, "UK English Female", {
-  //  pitch: 5,
-  //  });
-
   pop();
 }
 
 //Setting the questions
 function nextQuestion() {
   push();
-
   //Added artist image
   image(askingArtist, (2 * width) / 5, 10);
-
   //Added the asked movement
   let currentMovement = random(artMovements);
   let reverseArt = reverseString(currentMovement);
@@ -386,25 +386,7 @@ function nextQuestion() {
   textAlign(CENTER, CENTER);
   fill(255);
   text(reverseArt, width / 2, height / 2);
-
   //Added the resposiveVoice  asking the question
-  //responsiveVoice.resume(reverseArt, "UK English Female", { pitch: 5 });
-  console.log(reverseArt);
+  responsiveVoice.resume(reverseArt, "UK English Female", { pitch: 5 });
   pop();
-}
-
-//Setting the keyPressed function
-function keyPressed() {
-  //'Enter' key for changing states
-  if (keyCode === 13) {
-    if (state === "title") {
-      state = "instructions";
-
-      responsiveVoice.speak(instruction, "UK English Female", {
-        pitch: 2,
-      });
-    } else if (state === "instructions") {
-      state = "simulation";
-    }
-  }
 }
