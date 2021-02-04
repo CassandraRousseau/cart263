@@ -203,6 +203,7 @@ let currentAnswer = "";
 let chosenReaction;
 let chosenEncouragement;
 let artMovement;
+let reverseArt;
 //declared images
 let happyArtist;
 let askingArtist;
@@ -244,6 +245,10 @@ function draw() {
     instructions();
   } else if (state === "simulation") {
     simulation();
+  } else if (state === "correct") {
+    rightAnswer();
+  } else if (state === "wrong") {
+    wrongAnswer();
   }
 }
 
@@ -284,7 +289,19 @@ function instructions() {
 }
 
 //Setting simulation
-function simulation() {}
+function simulation() {
+  push();
+
+  //Added artist image
+  image(askingArtist, (2 * width) / 5, 10);
+
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  text(reverseArt, width / 2, height / 2);
+
+  pop();
+}
 
 //Setting mousePressed function
 function mousePressed() {
@@ -298,20 +315,34 @@ function mousePressed() {
     state = "simulation";
   } else if (state == "simulation") {
     nextQuestion();
-    guessedArt(artMovement);
-
-    displayAnswer();
+  } else if (state === "correct" || state == "wrong") {
+    state = "simulation";
+    nextQuestion();
   }
 }
 
 //Setting how to define if the guessed answer is right or wrong
 function guessedArt(artMovement) {
   currentAnswer = artMovement.toLowerCase();
-
-  //displayAnswer();
+  console.log(currentAnswer, currentMovement);
+  //if the answer is right
+  if (currentAnswer === currentMovement) {
+    //Added the artist response to the right answer
+    chosenEncouragement = random(encouragements);
+    responsiveVoice.speak(chosenEncouragement, "UK English Female", {
+      pitch: 5,
+    });
+    state = "correct";
+    //if the answer is wrong
+  } else if (currentAnswer !== currentMovement) {
+    //Added the artist response to the wrong answer
+    chosenReaction = random(reactions);
+    responsiveVoice.speak(chosenReaction, "UK English Female", {
+      pitch: 5,
+    });
+    state = "wrong";
+  }
 }
-
-console.log(artMovement);
 
 //Setting the reversed words
 function reverseString(string) {
@@ -382,17 +413,9 @@ function wrongAnswer() {
 
 //Setting the questions
 function nextQuestion() {
-  push();
-  //Added artist image
-  image(askingArtist, (2 * width) / 5, 10);
   //Added the asked movement
-  let currentMovement = random(artMovements);
-  let reverseArt = reverseString(currentMovement);
-  textSize(50);
-  textAlign(CENTER, CENTER);
-  fill(255);
-  text(reverseArt, width / 2, height / 2);
+  currentMovement = random(artMovements);
+  reverseArt = reverseString(currentMovement);
   //Added the resposiveVoice  asking the question
-  responsiveVoice.resume(reverseArt, "UK English Female", { pitch: 5 });
-  pop();
+  responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
 }
