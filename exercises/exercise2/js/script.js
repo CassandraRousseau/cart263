@@ -183,7 +183,7 @@ let reactions = [
   `Do you really like art? Because I have doubts about it.`,
   `I think you need to learn a bit more about the art movements.`,
   `You should revise art history next time.`,
-  `I strongly recommand you to stop playing and take a few minutes to revise your art stuff.`,
+  `I strongly recommend you to stop playing and take a few minutes to revise your art stuff.`,
   `Wrong!`,
   `Nope.`,
   `OH GAWD NO!`,
@@ -191,8 +191,8 @@ let reactions = [
 
 //texts
 let state = "title";
-let instruction =
-  "Let's test you art knowledge! I want to know if you know really well the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)' to give your answer!\nPay attention! Because I will mention the art movements in reverse!\nGood Luck and Enjoy!(Press your mouse to start)";
+const instruction =
+  "Let's test you art knowledge! I want to know if you know the art movements!\nPress your mouse to hear the specific art mouvement and say 'I think it is (the guessed art movement)' to give your answer!\nPay attention! I will mention the art movements backwards!\nGood Luck and Enjoy!(Press your mouse to start)";
 
 //emptay strings for arrays
 let saying = ``;
@@ -283,8 +283,6 @@ function instructions() {
   textAlign(LEFT, TOP);
   text(instruction, 10, 0, width / 2, height);
 
-  //added the responsiveVoice that is reading the the instructions
-
   pop();
 }
 
@@ -295,6 +293,7 @@ function simulation() {
   //Added artist image
   image(askingArtist, (2 * width) / 5, 10);
 
+  //added text
   textSize(50);
   textAlign(CENTER, CENTER);
   fill(255);
@@ -308,23 +307,29 @@ function mousePressed() {
   if (state === "title") {
     state = "instructions";
 
+    //added the responsiveVoice that is reading the the instructions
     responsiveVoice.speak(instruction, "UK English Female", {
       pitch: 2,
     });
   } else if (state === "instructions") {
     state = "simulation";
   } else if (state == "simulation") {
+    //added how to display the question function
     nextQuestion();
   } else if (state === "correct" || state == "wrong") {
+    //added how to reset the simulation
     state = "simulation";
+
+    //added how to display the question function
     nextQuestion();
   }
 }
 
 //Setting how to define if the guessed answer is right or wrong
 function guessedArt(artMovement) {
+  //edit the art movements' names in lower cases
   currentAnswer = artMovement.toLowerCase();
-  console.log(currentAnswer, currentMovement);
+
   //if the answer is right
   if (currentAnswer === currentMovement) {
     //Added the artist response to the right answer
@@ -333,6 +338,7 @@ function guessedArt(artMovement) {
       pitch: 5,
     });
     state = "correct";
+
     //if the answer is wrong
   } else if (currentAnswer !== currentMovement) {
     //Added the artist response to the wrong answer
@@ -358,25 +364,6 @@ function reverseString(string) {
   // Return the result
   return result;
 }
-function displayAnswer() {
-  //if the answer is right
-  if (currentAnswer === currentMovement) {
-    //Added the artist response to the right answer
-    chosenEncouragement = random(encouragements);
-    responsiveVoice.speak(chosenEncouragement, "UK English Female", {
-      pitch: 5,
-    });
-    rightAnswer();
-    //if the answer is wrong
-  } else if (currentAnswer !== currentMovement) {
-    //Added the artist response to the wrong answer
-    chosenReaction = random(reactions);
-    responsiveVoice.speak(chosenReaction, "UK English Female", {
-      pitch: 5,
-    });
-    wrongAnswer();
-  }
-}
 
 //Setting the right answer
 function rightAnswer() {
@@ -385,12 +372,11 @@ function rightAnswer() {
   //Added artist image
   image(happyArtist, (2 * width) / 5, 10);
 
-  //Added the current answer
+  //Added the current answer text
   textSize(50);
   textAlign(CENTER, CENTER);
   fill(0, 255, 0);
   text(currentAnswer, width / 2, height / 2);
-  console.log(currentAnswer);
 
   pop();
 }
@@ -402,7 +388,7 @@ function wrongAnswer() {
   //Added artist image
   image(shockedArtist, (2 * width) / 5, 10);
 
-  //Added the current answer
+  //Added the current answer text
   textSize(50);
   textAlign(CENTER, CENTER);
   fill(255, 0, 0);
@@ -416,6 +402,7 @@ function nextQuestion() {
   //Added the asked movement
   currentMovement = random(artMovements);
   reverseArt = reverseString(currentMovement);
+
   //Added the resposiveVoice  asking the question
   responsiveVoice.speak(reverseArt, "UK English Female", { pitch: 5 });
 }
