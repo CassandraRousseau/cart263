@@ -7,8 +7,8 @@ Here is a description of this template p5 project.
 "use strict";
 let state = `loading`;
 let video;
-let modelName = `CocoSsd`;
-let cocossd;
+let modelName = `Handpose`;
+let handpose;
 let predictions = [];
 
 // setup()
@@ -19,18 +19,12 @@ function setup() {
 
   video = createCapture(VIDEO);
   video.hide();
-  cocossd = ml5.objectDetector("cocossd", {}, function () {
-    cocossd.detect(video, gotResults);
+  handpose = ml5.handpose(video, {}, function () {
     state = `running`;
   });
-}
-function gotResults(err, results) {
-  if (err) {
-    console.error(err);
-  } else {
+  handpose.on(`predict`, function (results) {
     predictions = results;
-  }
-  cocossd.detect(video, gotResults);
+  });
 }
 // draw()
 //
@@ -42,6 +36,7 @@ function draw() {
     running();
   }
 }
+
 function loading() {
   background(255);
   push();
@@ -53,26 +48,20 @@ function loading() {
 }
 function running() {
   image(video, 0, 0, width, height);
-  if (predictions) {
+  if (predictions.length > 0) {
     for (let i = 0; i < predictions.length; i++) {
-      let object = predictions[i];
-      highlightObject(object);
+      let hand = predictions[i];
+      highlightHand(hand);
     }
   }
 }
-function highlightObject(object) {
+function highlightHand(hand) {
+  let index = hand.annotations.indexFinger[3];
+  let indexX = index[0];
+  let indexY = index[1];
   push();
-  noFill();
-  stroke(255, 255, 0);
-  rect(object.x, object.y, object.width, object.height);
-  pop();
-  push();
-  textSize(18);
   fill(255, 255, 0);
-  textAlign(CENTER, CENTER);
-  text(
-    `${object.label},${object.confidence.toFixed(2)}`,
-    object.x + object.width / 2,
-    object.y + object.height / 2
-  );
+  noStroke();
+  ellipse(indexX, indexY, 50);
+  pop();
 }
