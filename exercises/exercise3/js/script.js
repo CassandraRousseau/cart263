@@ -41,14 +41,23 @@ function setup() {
   let data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
 
   if (data !== null) {
-    let password = prompt(`What is your password?`);
-    if (password === data.password) {
-      setSpyData(spyProfile, data);
-    }
+    //localStorage.removeItem(KEY_PROFILE_DATA);
+    spyProfile.name = data.name;
+    spyProfile.alias = data.alias;
+    spyProfile.characteristics = data.characteristics;
+    spyProfile.power = data.power;
+    spyProfile.secretWeapon = data.secretWeapon;
+    spyProfile.password = data.password;
   } else {
     generateSpyProfile();
   }
+  // let name = prompt(`What's your name?`);
+  // let password = prompt(`What is your password?`);
+  // if (name === data.name && password === data.password) {
+  //   setSpyData(spyProfile, data);
 }
+// } else if (name === `I don't remember` || password === `I don't remember`) {
+
 function setSpyData(spyProfile, data) {
   spyProfile.name = data.name;
   spyProfile.alias = data.alias;
@@ -58,11 +67,11 @@ function setSpyData(spyProfile, data) {
   spyProfile.password = data.password;
 }
 function generateSpyProfile() {
-  spyProfile.name = prompt(`What's your name?`, ``);
+  spyProfile.name;
   let instrument = random(instrumentData.instruments);
   spyProfile.alias = `The ${instrument}`;
-  let spell = random(spellData.spells);
-  spyProfile.power = random(spell.effect);
+  let spell = random(spellData.spells[1]);
+  spyProfile.power = random(spell.spells);
   spyProfile.characteristics = random(descriptionData.descriptions);
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
