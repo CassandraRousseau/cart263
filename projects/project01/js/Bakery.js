@@ -1,6 +1,5 @@
 function draw() {
   background(255);
-  background(255);
 
   // Translate to the center (not really needed, but just for completeness)
 
