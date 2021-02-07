@@ -1,5 +1,6 @@
 function draw() {
   background(255);
+  background(255);
 
   // Translate to the center (not really needed, but just for completeness)
 
@@ -35,5 +36,13 @@ function draw() {
   fill(255, 255, 150);
 
   box(250, 100, 400);
+  pop();
+  push();
+  rotateX(angle);
+  rotateY(angle);
+  rotateZ(angle);
+  translate(100, 100, 100);
+  model(cake);
+  model(pizza);
   pop();
 }
