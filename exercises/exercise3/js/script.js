@@ -21,6 +21,49 @@ let spyProfile = {
   secretWeapon: "REDACTED",
   password: "REDACTED",
 };
+const disappointed = [
+  `How dare you!!!`,
+  `Forgetting your agent name and/or your password?!?`,
+  `I'm disppointed...`,
+  `Really...`,
+  `US!!!!`,
+  `THE AGENTS!!!`,
+  `WE RISK OUR LIVES AT THE FRONT LINE!!!`,
+  `Well, secretly,`,
+  `TO PROTECT OUR COUNTRY!!!`,
+  `FROM THE EVIL IN THIS WORLD!!!`,
+  `AND YOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU`,
+  `UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU`,
+  `UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU.`,
+  `ARE.NOT.ABLE.TO.REMEMBER.YOUR.OWN.PERSONAL.INFORMATIONS.`,
+  `UNBELIEVABLE.`,
+  `REALLY.`,
+  `HOW CAN I TRUST YOU TO REMEMBER,KEEP,MONITOR HIGHLY CONFIDENTIAL,IMPORTANT,SECRET,SUPERVISED INFORMATIONS???`,
+  `HUH?!?`,
+  `Unless...`,
+  `?`,
+  `!!!`,
+  `NO WAY!!!`,
+  `ARE YOU AN ENEMY?`,
+  `OR A TREATOR?`,
+  `A MOLE?!?!`,
+  `!!!!!!!!`,
+  `*Agents, code 345, please search for the IP and all the required informations*`,
+  `DON'T SEARCH FOR ANY ACCESS IN OUR SYSTEM NOR YOUR ACCOUNT`,
+  `YOU HOPELESS,USELESS TREATOR!`,
+  `NO MATTER WHO YOU ARE, WHERE YOU ARE FROM...`,
+  `YOU'RE FIRED.`,
+  `FIREEEEEEEDDDDDDDDD`,
+  `FIRED!FIRED!FIRED!FIRED!`,
+  `FIREEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD`,
+  `DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD`,
+  `DDDDDDDDDDDDDDDDDDDDDDDD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
+  `!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
+  `...`,
+  `....aaaaaaaAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
+  `HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
+  `HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
+];
 let tarotData;
 let objectData;
 let descriptionData;
@@ -55,6 +98,7 @@ function setup() {
   // let password = prompt(`What is your password?`);
   // if (name === data.name && password === data.password) {
   //   setSpyData(spyProfile, data);
+  // state==`disappointment`;
 }
 // } else if (name === `I don't remember` || password === `I don't remember`) {
 
@@ -99,3 +143,4 @@ function draw() {
   text(profile, 50, 50);
   pop();
 }
+function disappointment() {}
