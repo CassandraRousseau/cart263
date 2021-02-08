@@ -56,7 +56,7 @@ function setup() {
     );
     spotlights.push(light);
   }
-  title = new Title();
+  title = new Title(cake);
   currentState = title;
 }
 function draw() {
