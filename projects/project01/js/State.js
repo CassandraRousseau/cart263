@@ -13,5 +13,5 @@ class State {
   //Setting mousePressed method for each state
   mousePressed() {}
 }
-width / 4,
--width / 4,
+// width / 4,
+// -width / 4,

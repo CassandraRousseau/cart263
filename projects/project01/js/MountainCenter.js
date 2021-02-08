@@ -1,11 +1,14 @@
 class MountainCenter {
   constructor(grassPink) {
-    this.translateX = width / 35;
+    this.translateX = width / 300;
     this.translateY = 100;
-    this.translateZ = -550;
+    this.translateZ = -700;
     this.texture = grassPink;
-    this.radiusX = 600;
+    this.radiusX = 550;
     this.radiusY = 230;
+  }
+  preload() {
+    this.texture.preload();
   }
   display() {
     push();

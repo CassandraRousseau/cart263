@@ -6,7 +6,10 @@ class GroundTitle {
     this.texture = grassBlue;
     this.x = width;
     this.y = 175;
-    this.z = 300;
+    this.z = 800;
+  }
+  preload() {
+    this.texture.preload();
   }
   display() {
     // A red bar passing through the box

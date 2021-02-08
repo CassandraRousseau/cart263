@@ -1,11 +1,14 @@
 class MountainRight {
   constructor(grassPurple) {
-    this.translateX = width / 2;
+    this.translateX = width / 3;
     this.translateY = 75;
-    this.translateZ = -150;
+    this.translateZ = -700;
     this.texture = grassPurple;
-    this.radiusX = 300;
+    this.radiusX = 550;
     this.radiusY = 230;
+  }
+  preload() {
+    this.texture.preload();
   }
   display() {
     push();
