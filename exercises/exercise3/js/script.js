@@ -1,5 +1,5 @@
 /**************************************************
-Activity 03: Spy Profile Generator
+Exercise 03: Spy Profile Generator
 Cassandra Rousseau
 When the user first loads our program it will ask for their name in a text prompt.
  Once provided, the program will generate and save the user’s super secret spy
@@ -84,6 +84,7 @@ function setup() {
   let data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
 
   if (data !== null) {
+    state = `file`;
     //localStorage.removeItem(KEY_PROFILE_DATA);
     spyProfile.name = data.name;
     spyProfile.alias = data.alias;
@@ -100,7 +101,7 @@ function setup() {
   //   setSpyData(spyProfile, data);
   // state==`disappointment`;
 }
-// } else if (name === `I don't remember` || password === `I don't remember`) {
+// } else if (name === `I don't remember` || password === `I don't remember`) {state=`disppointment`}
 
 function setSpyData(spyProfile, data) {
   spyProfile.name = data.name;
@@ -128,6 +129,9 @@ function generateSpyProfile() {
 // Description of draw() goes here.
 function draw() {
   background(0);
+}
+function file() {
+  state = `file`;
   let profile = `**CONFIDENTIAL SPY PROFILE**;
   Name:${spyProfile.name}
   Alias:${spyProfile.alias}
@@ -143,4 +147,13 @@ function draw() {
   text(profile, 50, 50);
   pop();
 }
-function disappointment() {}
+function disappointment() {
+  state = `disappointment`;
+  push();
+  textFont(`Courier, monospace`);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  fill(255);
+  text(disappointed, 0, 0);
+  pop();
+}
