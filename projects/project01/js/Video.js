@@ -6,8 +6,11 @@ class Video {
     this.texture = video;
     this.x = 0;
     this.y = 0;
-    this.width = 600;
-    this.height = 400;
+    this.width = 400;
+    this.height = 200;
+  }
+  preload() {
+    this.texture.preload();
   }
   display() {
     push();

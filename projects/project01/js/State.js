@@ -8,10 +8,10 @@ class State {
   //Setting draw method for each state
   draw() {
     noStroke();
+    fill(0);
+    textFont(font);
   }
 
   //Setting mousePressed method for each state
   mousePressed() {}
 }
-// width / 4,
-// -width / 4,

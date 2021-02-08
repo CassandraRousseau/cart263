@@ -3,8 +3,8 @@ class CinemaScreen {
     this.translateX = 25;
     this.translateY = -200;
     this.translateZ = -300;
-    this.width = 600;
-    this.height = 400;
+    this.width = 400;
+    this.height = 200;
     this.fill = 0;
   }
   display() {

@@ -9,6 +9,7 @@ The goal of the user will be to explore the universe of the Great Before and to 
 spark of the soul!
 **************************************************/
 "use strict";
+let font;
 let currentState;
 let grassPurple;
 let grassPink;
@@ -18,6 +19,7 @@ let floor;
 let cam;
 let title;
 let video;
+let desk;
 let cake;
 let pizza;
 let angle = 45;
@@ -25,12 +27,14 @@ let curtains;
 let spotlights = [];
 let numSpotlights = 20;
 function preload() {
+  font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
   windows = loadImage(`assets/images/windows.jpg`);
   grassPurple = loadImage(`assets/images/grassPurple.png`);
   grassPink = loadImage(`assets/images/grassPink.png`);
   grassBlue = loadImage(`assets/images/grassBlue.png`);
   floor = loadImage(`assets/images/floor.jpg`);
   curtains = loadImage(`assets/images/curtains.jpg`);
+  desk = loadModel(`assets/obj/desk.obj`);
   cake = loadModel(`assets/obj/cake.obj`);
   pizza = loadModel(`assets/obj/PIZZA.obj`);
 }
@@ -56,7 +60,7 @@ function setup() {
     );
     spotlights.push(light);
   }
-  title = new Title(cake);
+  title = new Office();
   currentState = title;
 }
 function draw() {

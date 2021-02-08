@@ -48,6 +48,7 @@ class Title extends State {
   }
   mousePressed() {
     super.mousePressed();
+    console.log(`Auditorium`);
     if (currentState === `title`) {
       currentState = new Auditorium();
     }
