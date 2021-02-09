@@ -69,6 +69,8 @@ let objectData;
 let descriptionData;
 let spellData;
 let instrumentData;
+let currentLine = 0;
+let state = ``;
 function preload() {
   tarotData = loadJSON(JSON_TAROT);
   descriptionData = loadJSON(JSON_DESCRIPTIONS);
@@ -84,24 +86,23 @@ function setup() {
   let data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
 
   if (data !== null) {
-    state = `file`;
-    //localStorage.removeItem(KEY_PROFILE_DATA);
-    spyProfile.name = data.name;
-    spyProfile.alias = data.alias;
-    spyProfile.characteristics = data.characteristics;
-    spyProfile.power = data.power;
-    spyProfile.secretWeapon = data.secretWeapon;
-    spyProfile.password = data.password;
+    spyProfile.name = prompt(`What's your name?`);
+    let password = prompt(`What is your password?`);
+    if (name === data.name && password === data.password) {
+      console.log(`file`);
+      state = `file`;
+      currentLine = 0;
+      setSpyData(spyProfile, data);
+    } else if (name !== data.name || password !== data.password) {
+      state == `disappointment`;
+      currentLine = 0;
+    }
   } else {
+    state = "file";
+    currentLine = 0;
     generateSpyProfile();
   }
-  // let name = prompt(`What's your name?`);
-  // let password = prompt(`What is your password?`);
-  // if (name === data.name && password === data.password) {
-  //   setSpyData(spyProfile, data);
-  // state==`disappointment`;
 }
-// } else if (name === `I don't remember` || password === `I don't remember`) {state=`disppointment`}
 
 function setSpyData(spyProfile, data) {
   spyProfile.name = data.name;
@@ -110,13 +111,13 @@ function setSpyData(spyProfile, data) {
   spyProfile.power = data.power;
   spyProfile.secretWeapon = data.secretWeapon;
   spyProfile.password = data.password;
+  file();
 }
 function generateSpyProfile() {
-  spyProfile.name;
   let instrument = random(instrumentData.instruments);
   spyProfile.alias = `The ${instrument}`;
-  let spell = random(spellData.spells[1]);
-  spyProfile.power = random(spell.spells);
+  let spell = random(spellData.spells);
+  spyProfile.power = random(spell.effect);
   spyProfile.characteristics = random(descriptionData.descriptions);
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
@@ -129,9 +130,16 @@ function generateSpyProfile() {
 // Description of draw() goes here.
 function draw() {
   background(0);
+  if (state === "file") {
+    file();
+
+    console.log(file);
+  } else if (state === "disappointment") {
+    disappointment();
+    console.log(disappointment);
+  }
 }
 function file() {
-  state = `file`;
   let profile = `**CONFIDENTIAL SPY PROFILE**;
   Name:${spyProfile.name}
   Alias:${spyProfile.alias}
@@ -149,6 +157,7 @@ function file() {
 }
 function disappointment() {
   state = `disappointment`;
+
   push();
   textFont(`Courier, monospace`);
   textSize(32);
@@ -156,4 +165,11 @@ function disappointment() {
   fill(255);
   text(disappointed, 0, 0);
   pop();
+}
+function mousePressed() {
+  currentLine = currentLine + 1;
+
+  if (currentLine === disappointed.length && state === "disappointment") {
+    currentLine = disappointed.length - 1;
+  }
 }
