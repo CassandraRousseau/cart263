@@ -1,11 +1,11 @@
 /**************************************************
 Exercise 03: Spy Profile Generator
 Cassandra Rousseau
-When the user first loads our program it will ask for their name in a text prompt.
+When the user first loads our program it will ask for their name and password in a text prompt.
  Once provided, the program will generate and save the user’s super secret spy
   profile using random JSON data to determine an alias, secret weapon, and password.
-   When the user comes back later, they will need to enter their generated password
-    to view their profile again.
+   When the user comes back later, they will need to enter their name and generated password
+    to view their profile again.If they fail to enter them correctly, an agent will
 **************************************************/
 "use strict";
 //Added JSON data
@@ -30,7 +30,7 @@ let spyProfile = {
 const disappointed = [
   `How dare you!!!`,
   `Forgetting your agent name and/or your password?!?`,
-  `I'm disppointed...`,
+  `I'm disappointed...`,
   `Really...`,
   `US!!!!`,
   `THE AGENTS!!!`,
@@ -51,24 +51,25 @@ const disappointed = [
   `!!!`,
   `NO WAY!!!`,
   `ARE YOU AN ENEMY?`,
-  `OR A TREATOR?`,
+  `A SPY?`,
   `A MOLE?!?!`,
   `!!!!!!!!`,
   `*Agents, code 345, please search for the IP and all the required informations*`,
-  `DON'T SEARCH FOR ANY ACCESS IN OUR SYSTEM NOR YOUR ACCOUNT`,
-  `YOU HOPELESS,USELESS TREATOR!`,
+  `DON'T SEARCH FOR ANY ACCESS IN OUR SYSTEM NOR THE ACCOUNT`,
+  `YOU HOPELESS,USELESS IMPOSTOR!`,
   `NO MATTER WHO YOU ARE, WHERE YOU ARE FROM...`,
-  `YOU'RE FIRED.`,
-  `FIREEEEEEEDDDDDDDDD`,
-  `FIRED!FIRED!FIRED!FIRED!`,
-  `FIREEEEEEEEEEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD`,
-  `DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD`,
-  `DDDDDDDDDDDDDDDDDDDDDDDD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
+  `GET OUT.`,
+  `GET OUTTTTTTTT!!!`,
+  `GET OUT! GET OUT! GET OUT! GET OUT!`,
+  `GET OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT`,
+  `TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT`,
+  `TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
   `!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
   `...`,
   `....aaaaaaaAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
   `HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
   `HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
+  `The End :)`,
 ];
 
 //Added data variables
@@ -80,6 +81,7 @@ let instrumentData;
 
 //Added current line in dialogs
 let currentLine = 0;
+let dialog;
 
 //Added state variable
 let state = ``;
@@ -95,7 +97,7 @@ function preload() {
 
 //Setting the program
 function setup() {
-  console.log(state);
+  console.log(file);
 
   //Setting Canvas
   createCanvas(windowWidth, windowHeight);
@@ -108,27 +110,26 @@ function setup() {
     //Asking name and password
     spyProfile.name = prompt(`What's your name?`);
     let password = prompt(`What is your password?`);
-
+    spyProfile.name = data.name.toLowerCase();
+    password = data.password.toLowerCase();
     //Setting spy data if name and password are right
-    if (name === data.name && password === data.password) {
+    if (spyProfile.name === data.name && password === data.password) {
       console.log(`file`);
       state = `file`;
       currentLine = 0;
-      setSpyData(spyProfile, data);
     }
 
     //Setting disappointment state if name or password is wrong
-    else if (name !== data.name || password !== data.password) {
-      state == `disappointment`;
+    else if (spyProfile.name !== data.name || password !== data.password) {
+      state = `disappointment`;
       currentLine = 0;
     }
   }
 
   //Generate a spy profile of there's no data
   else {
-    state = "file";
+    state = "newAgent";
     currentLine = 0;
-    generateSpyProfile();
   }
 }
 
@@ -163,14 +164,21 @@ function draw() {
 
   //Calls file if state = file
   if (state === "file") {
+    setSpyData(spyProfile, data);
     file();
 
-    console.log(file);
+    console.log(setSpyData);
   }
 
   //Calls disppointment if state = disappointment
   else if (state === "disappointment") {
     disappointment();
+    console.log(disappointment);
+  }
+  //Calls disppointment if state = disappointment
+  else if (state === "newAgent") {
+    generateSpyProfile();
+    file();
     console.log(disappointment);
   }
 }
@@ -198,13 +206,14 @@ function file() {
 
 //Created disappointment state
 function disappointment() {
+  dialog = disappointed[currentLine];
   //Added text
   push();
   textFont(`Courier, monospace`);
   textSize(32);
   textAlign(CENTER, CENTER);
   fill(255);
-  text(disappointed, 0, 0);
+  text(dialog, 10, 10, width, height / 2);
   pop();
 }
 
@@ -212,7 +221,7 @@ function disappointment() {
 function mousePressed() {
   currentLine = currentLine + 1;
 
-  if (currentLine === disappointed.length && state === "disappointment") {
-    currentLine = disappointed.length - 1;
+  if (currentLine === dialog.length && state === "disappointment") {
+    currentLine = dialog.length - 1;
   }
 }
