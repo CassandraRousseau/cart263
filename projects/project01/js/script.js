@@ -25,7 +25,17 @@ let pizza;
 let angle = 45;
 let curtains;
 let spotlights = [];
+let numCounters = 1;
 let numSpotlights = 20;
+let numCurtainLeft = 1;
+let numCurtainRight = 1;
+let numSeatsLeftFirstRow = 1;
+let numSeatsRightFirstRow = 1;
+let numSeatsLeftSecondRow = 1;
+let numSeatsRightSecondRow = 1;
+let numSeatsLeftThirdRow = 1;
+let numSeatsRightThirdRow = 1;
+let numBuildings = 1;
 function preload() {
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
   windows = loadImage(`assets/images/windows.jpg`);
@@ -60,7 +70,7 @@ function setup() {
     );
     spotlights.push(light);
   }
-  title = new Office();
+  title = new Bakery();
   currentState = title;
 }
 function draw() {

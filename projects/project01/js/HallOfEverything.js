@@ -1,54 +1,51 @@
-function draw() {
-  background(225, 175, 255);
-  directionalLight(220, width / 2, 90, -10000);
-  // Translate to the center (not really needed, but just for completeness)
+class HallOfEverything {
+  constructor() {
+    this.ground = new GroundHallOfEverything(grassBlue);
+    this.wings = [];
+    for (let i = 0; i < numCurtainRight; i++) {
+      this.mainHallBuilding = new MainHallBuilding();
 
-  // Looks nicer
-  noStroke();
-  push();
-  specularMaterial(100, 100);
-  // Our central cube is white
-  translate(-width / 5, 75, -500);
-  fill(245, 255, 175);
-  box(300, windowHeight);
-  pop();
+      this.wings.push(this.mainHallBuilding);
+    }
 
-  push();
-  specularMaterial(100, 100);
-  // Our central cube is white
-  translate(-width / 7, 75, -500);
-  fill(245, 255, 175);
-  box(100, 700);
-  pop();
+    //Creating the left side thorn
+    for (let i = 0; i < numCurtainLeft; i++) {
+      this.LeftWingHallBuilding = new LeftWingHallBuilding();
 
-  push();
-  specularMaterial(150, 150);
-  // Our central cube is white
-  translate(-width / 150, 100, -600);
-  fill(245, 255, 175);
-  box(300, 900);
-  pop();
+      this.wings.push(this.LeftWingHallBuilding);
+    }
+    for (let i = 0; i < numCurtainRight; i++) {
+      this.rightWingHallBuilding = new RightWingHallBuilding();
 
-  push();
-  specularMaterial(100, 100);
-  // Our central cube is white
-  translate(width / 7, 75, -500);
-  fill(245, 255, 175);
-  box(100, 700);
-  pop();
-  push();
-  specularMaterial(100, 100);
-  // Our central cube is white
-  translate(width / 5, 75, -500);
-  fill(245, 255, 175);
-  box(300, windowHeight);
-  pop();
+      this.wings.push(this.rightWingHallBuilding);
+    }
 
-  push();
-  // A red bar passing through the box
-  translate(0, 250, 0);
-  fill(100, 185, 225);
-  texture(grassBlue);
-  box(windowWidth, 175, 300);
-  pop();
+    //Creating the left side thorn
+    for (let i = 0; i < numCurtainLeft; i++) {
+      this.centerRightWingHallBuilding = new CenterRightWingHallBuilding();
+
+      this.wings.push(this.centerRightWingHallBuilding);
+    }
+    for (let i = 0; i < numCurtainRight; i++) {
+      this.centerLeftWingHallBuilding = new CenterLeftWingHallBuilding();
+
+      this.wings.push(this.centerLeftWingHallBuilding);
+    }
+  }
+  draw() {
+    background(225, 175, 255);
+    directionalLight(220, width / 2, 90, -10000);
+
+    noStroke();
+    push();
+    this.ground.display();
+    push();
+    for (let i = 0; i < this.wings.length; i++) {
+      let wingsObject = this.wings[i];
+
+      wingsObject.display();
+    }
+    pop();
+    pop();
+  }
 }

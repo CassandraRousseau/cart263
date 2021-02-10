@@ -1,10 +1,10 @@
 class CinemaScreen {
   constructor() {
-    this.translateX = 25;
-    this.translateY = -200;
-    this.translateZ = -300;
-    this.width = 400;
-    this.height = 200;
+    this.translateX = 0;
+    this.translateY = -175;
+    this.translateZ = -400;
+    this.width = 700;
+    this.height = 400;
     this.fill = 0;
   }
   display() {

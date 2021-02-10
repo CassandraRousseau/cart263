@@ -1,11 +1,11 @@
 class Stage {
   constructor() {
     this.translateX = 0;
-    this.translateY = -100;
-    this.translateZ = -150;
+    this.translateY = 150;
+    this.translateZ = -350;
     this.fill = 250;
-    this.radiusX = 650;
-    this.radiusY = 100;
+    this.radiusX = 500;
+    this.radiusY = 70;
   }
   display() {
     push();
