@@ -82,6 +82,7 @@ function preload() {
 //
 // Description of setup() goes here.
 function setup() {
+  console.log(state);
   createCanvas(windowWidth, windowHeight);
   let data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
 
