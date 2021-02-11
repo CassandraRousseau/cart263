@@ -78,6 +78,8 @@ let objectData;
 let descriptionData;
 let spellData;
 let instrumentData;
+let password;
+let data;
 
 //Added current line in dialogs
 let currentLine = 0;
@@ -103,20 +105,23 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   //Setting saved JSON data
-  let data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
+  data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
 
   //setting what happens with data
   if (data !== null) {
     //Asking name and password
     spyProfile.name = prompt(`What's your name?`);
-    let password = prompt(`What is your password?`);
-    spyProfile.name = data.name.toLowerCase();
+    password = prompt(`What is your password?`);
+    // spyProfile.name = data.name.toLowerCase();
     password = data.password.toLowerCase();
     //Setting spy data if name and password are right
     if (spyProfile.name === data.name && password === data.password) {
       console.log(`file`);
       state = `file`;
       currentLine = 0;
+      setSpyData(spyProfile, data);
+
+      console.log(setSpyData);
     }
 
     //Setting disappointment state if name or password is wrong
@@ -164,10 +169,7 @@ function draw() {
 
   //Calls file if state = file
   if (state === "file") {
-    setSpyData(spyProfile, data);
     file();
-
-    console.log(setSpyData);
   }
 
   //Calls disppointment if state = disappointment
