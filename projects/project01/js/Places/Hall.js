@@ -35,6 +35,7 @@ class Hall extends State {
     }
   }
   preload() {
+    super.preload();
     this.floor.preload();
     this.building01.preload();
     this.building02.preload();

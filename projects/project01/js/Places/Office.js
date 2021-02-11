@@ -3,8 +3,7 @@ class Office extends State {
     super();
   }
   display() {
-    // super.display();
-    // background(0);
+    super.draw(); // background(0);
     // push();
     // fill(0);
     // model(desk);

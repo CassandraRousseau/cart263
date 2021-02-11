@@ -1,5 +1,6 @@
-class HallOfEverything {
+class HallOfEverything extends State {
   constructor() {
+    super();
     this.ground = new GroundHallOfEverything(grassBlue);
     this.wings = [];
     for (let i = 0; i < numCurtainRight; i++) {
@@ -33,6 +34,7 @@ class HallOfEverything {
     }
   }
   draw() {
+    super.draw();
     background(225, 175, 255);
     directionalLight(220, width / 2, 90, -10000);
 
