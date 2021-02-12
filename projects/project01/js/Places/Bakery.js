@@ -1,10 +1,10 @@
 class Bakery extends State {
-  constructor(cake) {
-    super(cake);
+  constructor(pizza) {
+    super(pizza);
     this.background = new BakeryBackground(windows);
     this.floor = new FloorBakery();
     this.counters = [];
-    this.cake = cake;
+    this.cake = pizza;
     //Creating the right side rock
     for (let i = 0; i < numCounters; i++) {
       this.counterRight = new CounterRight();
@@ -20,7 +20,7 @@ class Bakery extends State {
   }
   preload() {
     super.preload();
-    this.background.preload();
+    // this.background.preload();
     this.cake.preload();
   }
   draw() {
@@ -31,8 +31,8 @@ class Bakery extends State {
     // Looks nicer
     noStroke();
     push();
-    this.background.display();
-    this.floor.display();
+    // this.background.display();
+    // this.floor.display();
     push();
     for (let i = 0; i < this.counters.length; i++) {
       let countersObject = this.counters[i];
@@ -45,7 +45,7 @@ class Bakery extends State {
     // rotateX(angle);
     // rotateY(angle);
     // rotateZ(angle);
-    translate(100, 100, 100);
+    translate(0, 0, 0);
     model(this.cake);
     // model(pizza);
     pop();

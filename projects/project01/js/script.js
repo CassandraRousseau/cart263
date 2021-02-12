@@ -70,7 +70,7 @@ function setup() {
     );
     spotlights.push(light);
   }
-  title = new Bakery();
+  title = new Bakery(pizza);
   currentState = title;
 }
 function draw() {

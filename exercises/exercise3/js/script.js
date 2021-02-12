@@ -1,13 +1,19 @@
 /**************************************************
 Exercise 03: Spy Profile Generator
 Cassandra Rousseau
-When the user first loads our program it will ask for their name and password in a text prompt.
+When the user first loads our program it will ask for their name in a text prompt.
  Once provided, the program will generate and save the user’s super secret spy
-  profile using random JSON data to determine an alias, secret weapon, and password.
+  profile using random JSON data to determine an alias,characteristic, power,secret weapon, and password.
    When the user comes back later, they will need to enter their name and generated password
-    to view their profile again.If they fail to enter them correctly, an agent will
+    to view their profile again.If they fail to enter them correctly, an agent will share his disappointment about you.
 **************************************************/
+
+//Sources: sound: Jevil, “Papyrus Talking,” YouTube, 2020, video, 0:15, https://www.youtube.com/watch?v=ivc-5ZlOpd8&ab_channel=Jevil.
+//alarm: "Alarm Clock," uploaded June 2014,YouTube, online recording,https://studio.youtube.com/channel/UCFFgeleuT_ixFKXDmENZSRA/music.
+//video:gregstee, “Mind blown/Mind explosion,” YouTube, 2012, video, 0:23, https://www.youtube.com/watch?v=9CS7j5I6aOc&ab_channel=gregstee.
+
 "use strict";
+
 //Added JSON data
 const JSON_TAROT = `https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`;
 const JSON_DESCRIPTIONS = `https://raw.githubusercontent.com/dariusk/corpora/master/data/humans/descriptions.json`;
@@ -16,6 +22,9 @@ const JSON_OBJECT = `https://raw.githubusercontent.com/dariusk/corpora/master/da
 const JSON_INSTRUMENT = `https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`;
 const KEY_PROFILE_DATA = `spy-profile-data`;
 
+//Added sound effects
+const SOUND_TYPEWRITING = `assets/sounds/writing.mp3`;
+const ALARM_URGENCE = `assets/sounds/Alarm Clock.mp3`;
 //Added spy profile
 let spyProfile = {
   name: "REDACTED",
@@ -67,9 +76,8 @@ const disappointed = [
   `!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
   `...`,
   `....aaaaaaaAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
-  `HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
   `HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`,
-  `The End :)`,
+  ``,
 ];
 
 //Added data variables
@@ -81,9 +89,19 @@ let instrumentData;
 let password;
 let data;
 
-//Added current line in dialogs
+//Added typewriting effect
+let typewriter;
+
+//Added sound variables
+let sound;
+let alarm;
+
+//Added current line in dialogs and dialog variable
 let currentLine = 0;
 let dialog;
+
+//Added video variable
+let video;
 
 //Added state variable
 let state = ``;
@@ -95,45 +113,56 @@ function preload() {
   spellData = loadJSON(JSON_SPELL);
   objectData = loadJSON(JSON_OBJECT);
   instrumentData = loadJSON(JSON_INSTRUMENT);
+
+  //Preloading sound effects
+  sound = loadSound(SOUND_TYPEWRITING);
+  alarm = loadSound(ALARM_URGENCE);
+
+  //Preloading video
+  video = createVideo(`assets/videos/Explosion.mp4`);
 }
 
 //Setting the program
 function setup() {
-  console.log(file);
-
   //Setting Canvas
   createCanvas(windowWidth, windowHeight);
+
+  //Adding video size and hiding it
+  video.size(600, 400);
+  video.hide();
 
   //Setting saved JSON data
   data = JSON.parse(localStorage.getItem(KEY_PROFILE_DATA));
 
-  //setting what happens with data
+  //Asking name and password
+  spyProfile.name = prompt(`What's your name?`);
+
   if (data !== null) {
-    //Asking name and password
-    spyProfile.name = prompt(`What's your name?`);
     password = prompt(`What is your password?`);
-    // spyProfile.name = data.name.toLowerCase();
-    password = data.password.toLowerCase();
+    password = password.toLowerCase();
+
+    //setting what happens with data
     //Setting spy data if name and password are right
     if (spyProfile.name === data.name && password === data.password) {
-      console.log(`file`);
       state = `file`;
       currentLine = 0;
       setSpyData(spyProfile, data);
-
-      console.log(setSpyData);
     }
 
     //Setting disappointment state if name or password is wrong
-    else if (spyProfile.name !== data.name || password !== data.password) {
+    else {
       state = `disappointment`;
+
+      //Adding typewriter effect in text display
+      typewriter = new Typewriter();
       currentLine = 0;
     }
   }
 
   //Generate a spy profile of there's no data
   else {
-    state = "newAgent";
+    generateSpyProfile();
+    state = "file";
     currentLine = 0;
   }
 }
@@ -153,7 +182,7 @@ function generateSpyProfile() {
   let instrument = random(instrumentData.instruments);
   spyProfile.alias = `The ${instrument}`;
   let spell = random(spellData.spells);
-  spyProfile.power = random(spell.effect);
+  spyProfile.power = spell.effect;
   spyProfile.characteristics = random(descriptionData.descriptions);
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
@@ -166,26 +195,31 @@ function generateSpyProfile() {
 //Creating states
 function draw() {
   background(0);
-
   //Calls file if state = file
   if (state === "file") {
     file();
   }
 
-  //Calls disppointment if state = disappointment
+  //Calls disappointment if state = disappointment
   else if (state === "disappointment") {
+    console.log(video);
     disappointment();
-    console.log(disappointment);
-  }
-  //Calls disppointment if state = disappointment
-  else if (state === "newAgent") {
-    generateSpyProfile();
-    file();
-    console.log(disappointment);
+
+    //Adding video in disappointment state
+    translate(width / 4, height / 5);
+    image(video, 0, 0, 600, 400);
+
+    //Video starts at the end of the dialog
+    if (currentLine === 41) {
+      push();
+      video.show();
+      video.play();
+      pop();
+    }
   }
 }
 
-//Creating file dispaly
+//Creating file display
 function file() {
   //Display spy profile
   let profile = `**CONFIDENTIAL SPY PROFILE**;
@@ -203,27 +237,39 @@ function file() {
   textAlign(LEFT, TOP);
   fill(255);
   text(profile, 50, 50);
+
   pop();
 }
 
 //Created disappointment state
 function disappointment() {
   dialog = disappointed[currentLine];
-  //Added text
-  push();
-  textFont(`Courier, monospace`);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  fill(255);
-  text(dialog, 10, 10, width, height / 2);
-  pop();
+  typewriter.display();
 }
 
-//Change the line in the dialog thorugh mousePressed
+//Setting mousePressed function
 function mousePressed() {
+  //Change the line in the dialog
   currentLine = currentLine + 1;
 
+  //Adding typewriter effect
+  typewriter.typewrite(dialog, 0, height / 4);
   if (currentLine === dialog.length && state === "disappointment") {
     currentLine = dialog.length - 1;
+  }
+
+  //Adding typewriting sound effect
+  if (!sound.isPlaying()) {
+    sound.play();
+  }
+
+  //Adding alarm sound effect
+  if (currentLine === 27 && !alarm.isPlaying()) {
+    alarm.play();
+  }
+
+  //Typewriting sound stops when video starts
+  if (currentLine === 41 && sound.isPlaying()) {
+    sound.stop();
   }
 }
