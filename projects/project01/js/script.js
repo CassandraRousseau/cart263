@@ -17,11 +17,21 @@ let grassBlue;
 let windows;
 let floor;
 let cam;
+let crust;
 let title;
 let video;
 let desk;
-let cake;
+let chocolateCake;
+let appleStrudel;
+let crustStrudel;
 let pizza;
+let doughnut;
+let doughnutTexture;
+let frosting;
+let pie;
+let bun;
+let pepperoni;
+let cinnamonBun;
 let angle = 45;
 let curtains;
 let spotlights = [];
@@ -42,11 +52,21 @@ function preload() {
   grassPurple = loadImage(`assets/images/grassPurple.png`);
   grassPink = loadImage(`assets/images/grassPink.png`);
   grassBlue = loadImage(`assets/images/grassBlue.png`);
+  crust = loadImage(`assets/images/pie_texture.jpg`);
+  frosting = loadImage(`assets/images/frosting.jpg`);
   floor = loadImage(`assets/images/floor.jpg`);
   curtains = loadImage(`assets/images/curtains.jpg`);
+  cinnamonBun = loadImage(`assets/images/cinnamon_bun_texture.jpg`);
   desk = loadModel(`assets/obj/desk.obj`);
-  cake = loadModel(`assets/obj/cake.obj`);
+  appleStrudel = loadModel(`assets/obj/AppleStrudel.obj`);
+  crustStrudel = loadImage(`assets/images/strudel_crust.jpg`);
   pizza = loadModel(`assets/obj/PIZZA.obj`);
+  chocolateCake = loadModel(`assets/obj/Chocolate Cake.obj`);
+  pie = loadModel(`assets/obj/PieLowPoly.obj`);
+  bun = loadModel(`assets/obj/sweet_bun.obj`);
+  pepperoni = loadImage("assets/images/pepperoni_pizza.jpg");
+  doughnutTexture = loadImage("assets/images/doughnut_texture.jpg");
+  doughnut = loadModel(`assets/obj/Donut1.obj`);
 }
 function setup() {
   // Using WEBGL in createCanvas to specify 3D graphics
@@ -54,6 +74,7 @@ function setup() {
   cam = createCamera();
   video = createVideo(`assets/videos/Intro.mp4`);
   video.size(600, 400);
+  video.hide();
   for (let i = 0; i < numSpotlights; i++) {
     let light = spotLight(
       255,
@@ -70,7 +91,20 @@ function setup() {
     );
     spotlights.push(light);
   }
-  title = new Bakery(pizza);
+  title = new Bakery(
+    chocolateCake,
+    pie,
+    crust,
+    frosting,
+    appleStrudel,
+    crustStrudel,
+    bun,
+    cinnamonBun,
+    pizza,
+    pepperoni,
+    doughnut,
+    doughnutTexture
+  );
   currentState = title;
 }
 function draw() {
