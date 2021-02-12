@@ -119,14 +119,13 @@ function preload() {
   alarm = loadSound(ALARM_URGENCE);
 
   //Preloading video
-  video = createVideo(`assets/videos/Explosion.mp4`);
 }
 
 //Setting the program
 function setup() {
   //Setting Canvas
   createCanvas(windowWidth, windowHeight);
-
+  video = createVideo(`assets/videos/Explosion.mp4`);
   //Adding video size and hiding it
   video.size(600, 400);
   video.hide();
@@ -139,7 +138,6 @@ function setup() {
 
   if (data !== null) {
     password = prompt(`What is your password?`);
-    password = password.toLowerCase();
 
     //setting what happens with data
     //Setting spy data if name and password are right
@@ -202,20 +200,11 @@ function draw() {
 
   //Calls disappointment if state = disappointment
   else if (state === "disappointment") {
-    console.log(video);
     disappointment();
 
     //Adding video in disappointment state
     translate(width / 4, height / 5);
     image(video, 0, 0, 600, 400);
-
-    //Video starts at the end of the dialog
-    if (currentLine === 41) {
-      push();
-      video.show();
-      video.play();
-      pop();
-    }
   }
 }
 
@@ -271,5 +260,12 @@ function mousePressed() {
   //Typewriting sound stops when video starts
   if (currentLine === 41 && sound.isPlaying()) {
     sound.stop();
+  }
+  //Video starts at the end of the dialog
+  if (currentLine === 41) {
+    push();
+    video.show();
+    video.play();
+    pop();
   }
 }
