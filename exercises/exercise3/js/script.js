@@ -29,7 +29,7 @@ const ALARM_URGENCE = `assets/sounds/Alarm Clock.mp3`;
 let spyProfile = {
   name: "REDACTED",
   alias: "REDACTED",
-  characteristics: "REDACTED",
+  characteristic: "REDACTED",
   power: "REDACTED",
   secretWeapon: "REDACTED",
   password: "REDACTED",
@@ -43,7 +43,7 @@ const disappointed = [
   `Really...`,
   `US!!!!`,
   `THE AGENTS!!!`,
-  `WE RISK OUR LIVES AT THE FRONT LINE!!!`,
+  `WE RISK OUR LIVES ON THE FRONT LINE!!!`,
   `Well, secretly,`,
   `TO PROTECT OUR COUNTRY!!!`,
   `FROM THE EVIL IN THIS WORLD!!!`,
@@ -63,7 +63,7 @@ const disappointed = [
   `A SPY?`,
   `A MOLE?!?!`,
   `!!!!!!!!`,
-  `*Agents, code 345, please search for the IP and all the required informations*`,
+  `*Agents, code 345, please search for the IP and all required informations*`,
   `DON'T SEARCH FOR ANY ACCESS IN OUR SYSTEM NOR THE ACCOUNT`,
   `YOU HOPELESS,USELESS IMPOSTOR!`,
   `NO MATTER WHO YOU ARE, WHERE YOU ARE FROM...`,
@@ -169,7 +169,7 @@ function setup() {
 function setSpyData(spyProfile, data) {
   spyProfile.name = data.name;
   spyProfile.alias = data.alias;
-  spyProfile.characteristics = data.characteristics;
+  spyProfile.characteristic = data.characteristic;
   spyProfile.power = data.power;
   spyProfile.secretWeapon = data.secretWeapon;
   spyProfile.password = data.password;
@@ -181,7 +181,7 @@ function generateSpyProfile() {
   spyProfile.alias = `The ${instrument}`;
   let spell = random(spellData.spells);
   spyProfile.power = spell.effect;
-  spyProfile.characteristics = random(descriptionData.descriptions);
+  spyProfile.characteristic = random(descriptionData.descriptions);
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
@@ -214,7 +214,7 @@ function file() {
   let profile = `**CONFIDENTIAL SPY PROFILE**;
   Name:${spyProfile.name}
   Alias:${spyProfile.alias}
-  Characteristics:${spyProfile.characteristics}
+  Characteristic:${spyProfile.characteristic}
   Power:${spyProfile.power}
   Secret Weapon:${spyProfile.secretWeapon}
   Password:${spyProfile.password}`;
