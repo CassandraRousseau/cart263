@@ -21,6 +21,7 @@ let crust;
 let title;
 let video;
 let desk;
+let legalPad;
 let chocolateCake;
 let appleStrudel;
 let crustStrudel;
@@ -30,6 +31,8 @@ let doughnutTexture;
 let frosting;
 let pie;
 let bun;
+let wood;
+let rocketship;
 let pepperoni;
 let cinnamonBun;
 let angle = 45;
@@ -64,9 +67,12 @@ function preload() {
   chocolateCake = loadModel(`assets/obj/Chocolate Cake.obj`);
   pie = loadModel(`assets/obj/PieLowPoly.obj`);
   bun = loadModel(`assets/obj/sweet_bun.obj`);
+  legalPad = loadModel(`assets/obj/LegalPad.obj`);
   pepperoni = loadImage("assets/images/pepperoni_pizza.jpg");
   doughnutTexture = loadImage("assets/images/doughnut_texture.jpg");
   doughnut = loadModel(`assets/obj/Donut1.obj`);
+  rocketship = loadModel(`assets/obj/Toy Rocketship G.obj`);
+  wood = loadImage("assets/images/wood.jpg");
 }
 function setup() {
   // Using WEBGL in createCanvas to specify 3D graphics
@@ -91,20 +97,7 @@ function setup() {
     );
     spotlights.push(light);
   }
-  title = new Bakery(
-    chocolateCake,
-    pie,
-    crust,
-    frosting,
-    appleStrudel,
-    crustStrudel,
-    bun,
-    cinnamonBun,
-    pizza,
-    pepperoni,
-    doughnut,
-    doughnutTexture
-  );
+  title = new Title();
   currentState = title;
 }
 function draw() {
