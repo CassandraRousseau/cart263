@@ -82,6 +82,16 @@ let pinkAbstractArt;
 let whiteAbstractArt;
 let tissue;
 let brushes;
+let room;
+let career;
+let currentAnswer = "";
+let chosenLocation = "";
+let chosenCareer = "";
+let cursor;
+let state = `running`;
+let modelName = `Handpose`;
+let handpose;
+let predictions = [];
 function preload() {
   careers = loadJSON(`assets/data/occupations.json`);
   room = loadJSON(`assets/data/rooms.json`);
@@ -144,23 +154,38 @@ function setup() {
   // Using WEBGL in createCanvas to specify 3D graphics
   createCanvas(windowWidth, windowHeight, WEBGL);
   cam = createCamera();
+  cursor = createCapture(VIDEO);
+  cursor.hide();
+  handpose = ml5.handpose(
+    video,
+    {
+      flipHorizontal: true,
+    },
+    function () {
+      state = `running`;
+    }
+  );
+
+  handpose.on(`predict`, function (results) {
+    predictions = results;
+  });
+
   video = createVideo(`assets/videos/Intro.mp4`);
   video.size(600, 400);
   video.hide();
-  // if (annyang) {
-  //   let destination = {
-  //     "Go to *room": chosenDestination,
-  //   };
-  //   let choice = {
-  //     "I want to be *career": chosenCareer,
-  //   };
-  //   // Adding commands to annyang
-  //   annyang.addCommands(destination, choice);
-  //   annyang.start();
-  //
-  //   //adding text style
-  //   textStyle(BOLD);
-  // }
+  if (annyang) {
+    let destination = {
+      "Go to *room": chosenDestination,
+    };
+    let choice = {
+      "I want to be *career": chosenCareer,
+    };
+
+    annyang.addCommands(destination, choice);
+    annyang.start();
+
+    textStyle(BOLD);
+  }
 
   for (let i = 0; i < numSpotlights; i++) {
     let light = spotLight(
