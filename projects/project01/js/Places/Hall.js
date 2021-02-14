@@ -1,7 +1,18 @@
 class Hall extends State {
-  constructor() {
-    super();
+  constructor(
+    floor,
+    windows,
+    house,
+    houseTexture,
+    hotAirBalloon,
+    balloonTexture
+  ) {
+    super(floor, windows, house, houseTexture, hotAirBalloon, balloonTexture);
     this.floor = new FloorHall(floor);
+    this.house = house;
+    this.houseTexture = houseTexture;
+    this.hotAirBalloon = hotAirBalloon;
+    this.balloonTexture = balloonTexture;
     this.buildings = [];
     //Creating the right side rock
     for (let i = 0; i < numBuildings; i++) {
@@ -42,10 +53,15 @@ class Hall extends State {
     this.building03.preload();
     this.building04.preload();
     this.building05.preload();
+    this.house.preload();
+    this.houseTexture.preload();
+    this.hotAirBalloon.preload();
+    this.balloonTexture.preload();
   }
   draw() {
     super.draw();
     background(255);
+    angleMode(DEGREES);
     this.floor.display();
     push();
     for (let i = 0; i < this.buildings.length; i++) {
@@ -54,5 +70,31 @@ class Hall extends State {
       buildingsObject.display();
     }
     pop();
+    push();
+    translate(width / 6, height / 12, 0);
+    rotateX(0);
+    rotateY(-140);
+    rotateZ(180);
+    scale(3, 3, 3);
+    texture(this.houseTexture);
+    model(this.house);
+    pop();
+    push();
+    translate(-width / 4, height / 5, 100);
+    rotateX(0);
+    rotateY(-140);
+    rotateZ(180);
+    scale(5, 5, 5);
+    texture(this.balloonTexture);
+    model(this.hotAirBalloon);
+    pop();
   }
 }
+// new Hall(
+//  floor,
+//  windows,
+//  house,
+//  houseTexture,
+//  hotAirBalloon,
+//  balloonTexture
+// );

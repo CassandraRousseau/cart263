@@ -1,20 +1,18 @@
 // class SpaceCenter extends State {
 //   constructor(rocketship) {
 //     super(rocketship);
-//     this.floor = new FloorHall(floor);
+//
 //     this.rocket = rocketship;
 //   }
 //   preload() {
 //     super.preload();
-//     this.floor.preload();
+//
 //     this.rocket.preload();
 //   }
 //   draw() {
 //     super.draw();
 //     background(255);
-//     // push();
-//     // this.floor.display();
-//     // pop();
+//
 //
 //     push();
 //     translate(-width / 15, height / 30, 435);
