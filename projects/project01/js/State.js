@@ -80,14 +80,33 @@ class State {
       });
     }
   }
+  running() {
+    // Check if there currently predictions to display
+    if (predictions.length > 0) {
+      // Technically there will only be ONE because it only detects ONE hand
+      // Get the hand predicted
+      let hand = predictions[0];
+      // Highlight it on the canvas
+      highlightHand(hand);
+    }
+  }
+  cameraCursor() {
+    if (predictions.length > 0) {
+      // Technically there will only be ONE because it only detects ONE hand
+      // Get the hand predicted
+      let hand = predictions[0];
+      // Highlight it on the canvas
+      highlightHand(hand);
+    }
+  }
+
   highlightHand(hand) {
     let index = hand.annotations.indexFinger[3];
     let indexX = index[0];
     let indexY = index[1];
     push();
-    fill(255, 255, 0);
-    noStroke();
-    ellipse(indexX, indexY, 50);
+
+    camera(indexX, indexY, 0, 0, 0, 0, 0, 0, 0);
     pop();
   }
 }

@@ -157,7 +157,7 @@ function setup() {
   cursor = createCapture(VIDEO);
   cursor.hide();
   handpose = ml5.handpose(
-    video,
+    cursor,
     {
       flipHorizontal: true,
     },
