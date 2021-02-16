@@ -221,19 +221,6 @@ function timer() {
   //The game ends once the timer is over
   if (gameOverTimer >= gamelength) {
     state = "ending";
-    //  gameEnding() {
-    //   //If the user hasn't found the sausage dog
-    //   if (!this.sausageDog.found) {
-    //     currentState = new GameOver(sadImage);
-    //     this.resetLevel();
-    //   }
-    //
-    //   //If the user found the sausage dog
-    //   else if (this.sausageDog.found) {
-    //     currentState = new GameAchieved(happyImage);
-    //     this.resetLevel();
-    //   }
-    // }
   }
 }
 
