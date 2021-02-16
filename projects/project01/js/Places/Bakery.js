@@ -1,4 +1,5 @@
 class Bakery extends State {
+  //Setting bakery parameters
   constructor(
     chocolateCake,
     pie,
@@ -55,6 +56,8 @@ class Bakery extends State {
       this.counters.push(this.counterLeft);
     }
   }
+
+  //Preloading images and obj files
   preload() {
     super.preload();
     // this.background.preload();
@@ -71,6 +74,8 @@ class Bakery extends State {
     this.texturePizza.preload();
     this.doughnut.preload();
   }
+
+  //Setting the location
   draw() {
     super.draw();
     background(255);
@@ -80,8 +85,14 @@ class Bakery extends State {
     // Looks nicer
     noStroke();
     push();
+
+    //Creating background
     this.background.display();
+
+    //Creating floor
     this.floor.display();
+
+    //Creating counters
     push();
     for (let i = 0; i < this.counters.length; i++) {
       let countersObject = this.counters[i];
@@ -90,6 +101,7 @@ class Bakery extends State {
     }
     pop();
 
+    //Creating pie
     push();
     translate(-width / 10, height / 50, 350);
     rotateX(100);
@@ -98,10 +110,10 @@ class Bakery extends State {
     scale(20, 20, 20);
     texture(this.texturePie);
     model(this.pie);
-
     pop();
-    push();
 
+    //Creating cake
+    push();
     translate(width / 20, height / 30, 450);
     rotateX(175);
     rotateY(360);
@@ -110,18 +122,23 @@ class Bakery extends State {
     texture(this.textureCake);
     model(this.chocolateCake);
     pop();
+
+    //Creating strudel
     push();
     translate(width / 20, height / 50, 425);
     texture(this.textureStrudel);
     scale(50, 50, 50);
     model(this.strudel);
     pop();
+
+    //Creating bun
     push();
     translate(-width / 15, height / 50, 425);
     texture(this.textureBun);
     model(this.bun);
     pop();
-    pop();
+
+    //Creating pizza
     push();
     translate(width / 25, height / 100, 425);
     rotateX(175);
@@ -131,6 +148,8 @@ class Bakery extends State {
     scale(75, 75, 75);
     model(this.pizza);
     pop();
+
+    //Creating doughnut
     push();
     translate(-width / 15, height / 30, 435);
     rotateX(175);

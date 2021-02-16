@@ -1,4 +1,5 @@
 class Office extends State {
+  //Creating office parameters
   constructor(
     desk,
     floor,
@@ -31,6 +32,8 @@ class Office extends State {
     this.pencilHolder = pencilHolder;
     this.floor = new FloorHall(floor);
   }
+
+  //Preloading images and obj files
   preload() {
     super.preload();
     this.floor.preload();
@@ -43,10 +46,14 @@ class Office extends State {
     this.legalPad.preload();
     this.metal.preload();
   }
+
+  //Setting the location
   draw() {
     super.draw();
     background(255);
     angleMode(DEGREES);
+
+    //Creating floor
     push();
     this.floor.display();
     pop();
@@ -57,16 +64,18 @@ class Office extends State {
     rotateZ(0);
     scale(25, 25, 25);
     texture(this.wood);
-
     model(this.desk);
     pop();
+
+    //Creating legal pad
     push();
     translate(0, -18, -10);
-
     scale(25, 25, 25);
     fill(200, 203, 10);
     model(this.legalPad);
     pop();
+
+    //Creating paper punch
     push();
     translate(width / 1.5, -18, -1000);
     rotateX(180);
@@ -78,6 +87,7 @@ class Office extends State {
     model(this.paperPunch);
     pop();
 
+    //Creating pen
     push();
     translate(-width / 6, -21, -100);
     rotateX(180);
@@ -87,6 +97,8 @@ class Office extends State {
     fill(0);
     model(this.pen);
     pop();
+
+    //Creating pencil holder
     push();
     translate(-width / 3, -50, -100);
     rotateX(180);

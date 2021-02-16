@@ -127,3 +127,16 @@ class HallOfYou extends State {
 //   box(windowWidth, 100, 600);
 // //   pop();
 // }
+// new HallOfYou(
+//   doughnut,
+//   doughnut2,
+//   doughnut3,
+//   doughnut4,
+//   doughnut5,
+//   doughnut6,
+//   doughnut7,
+//   doughnut8,
+//   doughnutTexture
+// );
+// currentState = title;
+// }

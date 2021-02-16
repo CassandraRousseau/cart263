@@ -1,6 +1,6 @@
 class Title extends State {
-  constructor() {
-    super();
+  constructor(grassBlue, grassPurple, grassPink) {
+    super(grassBlue, grassPurple, grassPink);
     this.name = `title`;
     this.titleString = "Find Your Spark!";
     this.subheader = `Press your Mouse to Start`;
@@ -54,3 +54,21 @@ class Title extends State {
     }
   }
 }
+//   chosenLocation() {
+//     super.chosenLocation();
+//   }
+//   chosenCareer() {
+//     super.chosenCareer();
+//   }
+// }
+//   running() {
+//     super.running();
+//   }
+//   cameraCursor() {
+//     super.cameraCursor();
+//   }
+//
+//   highlightHand(hand) {
+//     super.hightlight();
+//   }
+// }
