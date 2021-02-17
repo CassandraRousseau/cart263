@@ -173,7 +173,7 @@ function instructions() {
     //Changing to simulation state
     state = "simulation";
     //Resets the bubble
-    bubble.resetGame();
+    bubbleIntro.resetGame();
 
     if (!music.isPlaying()) {
       music.play();
@@ -193,6 +193,7 @@ function simulation() {
   //Setting bubbles
   for (let i = 0; i < bubbles.length; i++) {
     let bubblesGame = bubbles[i];
+
     bubbleGame(bubblesGame);
 
     // //Adding bubbles if there's no more bubbles in the simulation
@@ -235,6 +236,7 @@ function timer() {
   }
 }
 
+//Setting popping game in title
 function bubbleGameTitle() {
   //Setting handpose positions on hand
   if (predictions.length > 0) {
@@ -264,6 +266,7 @@ function bubbleGameTitle() {
   bubbleTitle.display();
 }
 
+//Setting popping game in instructions
 function bubbleGameIntro() {
   //Setting handpose positions on hand
   if (predictions.length > 0) {
@@ -275,7 +278,7 @@ function bubbleGameIntro() {
     tipY = tip[1];
     baseX = base[0];
     baseY = base[1];
-
+    // console.log(poppingBubble);
     //Setting how to pop the bubble in the state
     bubbleIntro.poppingBubble(tipX, tipY);
 
@@ -293,6 +296,7 @@ function bubbleGameIntro() {
   bubbleIntro.display();
 }
 
+//Setting popping game in simulation
 function bubbleGame(bubblesGame) {
   //Setting handpose positions on hand
   if (predictions.length > 0) {
@@ -304,9 +308,10 @@ function bubbleGame(bubblesGame) {
     tipY = tip[1];
     baseX = base[0];
     baseY = base[1];
-    //Setting how to pop the bubbles in the state
-    bubblesGame.poppingBubble(tipX, tipY);
 
+    //Setting how to pop the bubbles in the state
+    bubble.poppingBubble(tipX, tipY);
+    // console.log(poppingBubble);
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
