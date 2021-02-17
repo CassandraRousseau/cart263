@@ -1,4 +1,5 @@
 class Hall extends State {
+  //Setting the parameters
   constructor(
     floor,
     windows,
@@ -45,6 +46,8 @@ class Hall extends State {
       this.buildings.push(this.building05);
     }
   }
+
+  //Preloading images and obj files
   preload() {
     super.preload();
     this.floor.preload();
@@ -58,11 +61,18 @@ class Hall extends State {
     this.hotAirBalloon.preload();
     this.balloonTexture.preload();
   }
+
+  //Setting the environment
   draw() {
     super.draw();
     background(255);
     angleMode(DEGREES);
+
+    //Displaying the floor
+    push();
     this.floor.display();
+
+    //Displaying the buildings
     push();
     for (let i = 0; i < this.buildings.length; i++) {
       let buildingsObject = this.buildings[i];
@@ -70,6 +80,8 @@ class Hall extends State {
       buildingsObject.display();
     }
     pop();
+
+    //Displaying the house
     push();
     translate(width / 6, height / 12, 0);
     rotateX(0);
@@ -79,6 +91,8 @@ class Hall extends State {
     texture(this.houseTexture);
     model(this.house);
     pop();
+
+    //Displaying the hot air balloon
     push();
     translate(-width / 4, height / 5, 100);
     rotateX(0);
@@ -87,6 +101,7 @@ class Hall extends State {
     scale(5, 5, 5);
     texture(this.balloonTexture);
     model(this.hotAirBalloon);
+    pop();
     pop();
   }
 }

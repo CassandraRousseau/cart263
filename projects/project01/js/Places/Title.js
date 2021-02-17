@@ -1,4 +1,5 @@
 class Title extends State {
+  //Added title screen parameters
   constructor(grassBlue, grassPurple, grassPink) {
     super(grassBlue, grassPurple, grassPink);
     this.name = `title`;
@@ -11,6 +12,7 @@ class Title extends State {
     this.mountainLeft = new MountainLeft(grassPurple);
     this.mountainCenter = new MountainCenter(grassPink);
   }
+
   //Preloading necessary images for title screen
   preload() {
     super.preload();
@@ -20,21 +22,31 @@ class Title extends State {
     this.ground.preload();
   }
 
+  //Displaying the elements in draw
   draw() {
     super.draw();
     background(225, 175, 255);
     push();
 
+    //Displaying the ground
     this.ground.display();
+
+    //Displaying the right side moutain
     push();
     this.mountainRight.display();
     pop();
+
+    //Displaying the left side mountain
     push();
     this.mountainLeft.display();
     pop();
+
+    //Displaying the centered mountain
     push();
     this.mountainCenter.display();
     pop();
+
+    //Display the title
     textSize(175);
     textAlign(CENTER, CENTER);
     text(this.titleString, width / 2, height / 2);
@@ -46,6 +58,8 @@ class Title extends State {
     pop();
     pop();
   }
+
+  //Setting mousePressed method
   mousePressed() {
     super.mousePressed();
     console.log(`Auditorium`);

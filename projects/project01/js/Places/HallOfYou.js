@@ -1,4 +1,5 @@
 class HallOfYou extends State {
+  //Setting the parameters
   constructor(
     doughnut,
     doughnut2,
@@ -32,6 +33,8 @@ class HallOfYou extends State {
     this.doughnut8 = doughnut8;
     this.doughnutTexture = doughnutTexture;
   }
+
+  //Preloading images and obj files
   preload() {
     super.preload();
     this.floor.preload();
@@ -45,10 +48,14 @@ class HallOfYou extends State {
     this.doughnut8.preload();
     this.doughnutTexture.preload();
   }
+
+  //Setting the environment
   draw() {
     super.draw();
     background(255);
     angleMode(DEGREES);
+
+    //Displaying the doughnuts
     push();
     translate(width / 2, 0, 0);
     rotateX(0);

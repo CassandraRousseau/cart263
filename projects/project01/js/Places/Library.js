@@ -1,4 +1,5 @@
 class Library extends State {
+  //Setting the parameters
   constructor(
     floor,
     wood,
@@ -19,6 +20,8 @@ class Library extends State {
     this.bookRow = bookRow;
     this.booksTexture = booksTexture;
   }
+
+  //Preloading images and obj files
   preload() {
     super.preload();
     this.floor.preload();
@@ -30,13 +33,19 @@ class Library extends State {
     this.bookRow.preload();
     this.booksTexture.preload();
   }
+
+  //Setting the environment
   draw() {
     super.draw();
     background(255);
     angleMode(DEGREES);
+
+    //Dispaying the floor
     push();
     this.floor.display();
     pop();
+
+    //Displaying bookcases
     push();
     translate(0, height / 2, -1500);
     rotateX(0);
@@ -70,6 +79,8 @@ class Library extends State {
 
     model(this.bookcase);
     pop();
+
+    //Displaying shelves
     push();
     translate(-1.5 * width, height, -1000);
     rotateX(0);
@@ -92,6 +103,8 @@ class Library extends State {
 
     model(this.shelf);
     pop();
+
+    //Displaying book rows
     push();
     translate(1.5 * width, height / 1.25, -1000);
     rotateX(0);

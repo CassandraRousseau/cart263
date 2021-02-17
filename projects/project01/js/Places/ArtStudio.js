@@ -1,4 +1,5 @@
 class ArtStudio extends State {
+  //Setting art studio parameters
   constructor(
     tissue,
     canvas,
@@ -22,6 +23,8 @@ class ArtStudio extends State {
     this.whiteAbstractArt = whiteAbstractArt;
     this.brushes = brushes;
   }
+
+  //Preloading obj files and images
   preload() {
     super.preload();
     this.floor.preload();
@@ -31,13 +34,19 @@ class ArtStudio extends State {
     this.whiteAbstractArt.preload();
     this.brushes.preload();
   }
+
+  //Setting the environment
   draw() {
     super.draw();
     background(0);
     angleMode(DEGREES);
+
+    //Displaying the floor
     push();
     this.floor.display();
     pop();
+
+    //Displaying the abstract blue painting
     push();
     translate(-width / 4, height / 5, 100);
     rotateX(0);
@@ -47,6 +56,8 @@ class ArtStudio extends State {
     texture(this.blueAbstractArt);
     model(this.canvas);
     pop();
+
+    //Displaying the abstract pink painting
     push();
     translate(0, -height / 2, -1000);
     rotateX(90);
@@ -56,6 +67,8 @@ class ArtStudio extends State {
     texture(this.pinkAbstractArt);
     model(this.canvas);
     pop();
+
+    //Displaying the abstract white painting
     push();
     translate(width, -height / 2, -1000);
     rotateX(-360);

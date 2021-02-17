@@ -80,9 +80,7 @@ class Bakery extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
-    // Translate to the center (not really needed, but just for completeness)
 
-    // Looks nicer
     noStroke();
     push();
 
