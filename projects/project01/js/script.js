@@ -260,13 +260,13 @@ function setup() {
 
   //Creating camera
   cam = createCamera();
-  cursor = createCapture(VIDEO);
-  cursor.hide();
-  handpose = ml5.handpose(cursor, { flipHorizontal: true }, function () {});
-  handpose.on(`predict`, function (results) {
-    console.log(results);
-    predictions = results;
-  });
+  // cursor = createCapture(VIDEO);
+  // cursor.hide();
+  // handpose = ml5.handpose(cursor, { flipHorizontal: true }, function () {});
+  // handpose.on(`predict`, function (results) {
+  //   console.log(results);
+  //   predictions = results;
+  // });
 
   //Creaing video paramaeters
   //Uploading video
@@ -321,34 +321,34 @@ function setup() {
   //Setting draw
   function draw() {
     currentState.draw();
-    cameraCursor();
+    // cameraCursor();
   }
   //Setting all mouse inputs for each states
   function mousePressed() {
     currentState.mousePressed();
   }
 
-  function cameraCursor() {
-    if (predictions.length > 0) {
-      // Technically there will only be ONE because it only detects ONE hand
-      // Get the hand predicted
-      hand = predictions[0];
-      index = hand.annotations.indexFinger[3];
-      indexX = index[0];
-      indexY = index[1];
-      // Highlight it on the canvas
-      highlightHand(hand);
-    }
-  }
-
-  function highlightHand(hand) {
-    // let tipX
-    // let tipY
-    push();
-
-    camera(indexX, indexY);
-    fill(0);
-    ellipse(indexX, indexY, 100);
-    pop();
-  }
+  // function cameraCursor() {
+  //   if (predictions.length > 0) {
+  //     // Technically there will only be ONE because it only detects ONE hand
+  //     // Get the hand predicted
+  //     hand = predictions[0];
+  //     index = hand.annotations.indexFinger[3];
+  //     indexX = index[0];
+  //     indexY = index[1];
+  //     // Highlight it on the canvas
+  //     highlightHand(hand);
+  //   }
+  // }
+  //
+  // function highlightHand(hand) {
+  //   push();
+  //   let indexX = map(mouseX, 0, width, -200, 0);
+  //   let indexY = mouseY;
+  //   let x = indexX;
+  //
+  //   camera(x, indexY);
+  //
+  //   pop();
+  // }
 }

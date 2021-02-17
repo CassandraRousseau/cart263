@@ -38,17 +38,17 @@ let bubbleTitle;
 let bubbleIntro;
 let bubble;
 let bubbleImage;
-let numBubbles = 10;
+let numBubbles = 500;
 
 //Created instructions text variable
 let intro = `Pop most bubbles as possible with your hand! Enjoy!`;
 
 //Created background variable
 let ocean;
-
+let frameCount;
 //Created time parameters
-let gamelength = 60 * 15;
-let gameOverTimer = 0;
+let framecountSim = frameCount;
+let gamelength = 10000;
 
 //Created localStorage variable
 let gameData = {
@@ -98,6 +98,7 @@ function setup() {
 
 // Drawing the states
 function draw() {
+  console.log(frameCount);
   //Adding background
   background(ocean);
 
@@ -152,7 +153,7 @@ function title() {
 }
 
 //Setting instructions state
-function instructions() {
+function instructions(gameOverTimer) {
   push();
 
   //Adding instructions
@@ -188,8 +189,15 @@ function instructions() {
 //Setting the simulation state
 function simulation() {
   //Adding timer
-  timer();
+  // timer("simulation", framecountSim, gamelength);
 
+  //Bad ending when the user didn't catch the magic petal
+  if (frameCount > framecountSim + gamelength) {
+    return "ending";
+    if (!music.isPlaying()) {
+      music.play();
+    }
+  }
   //Setting bubbles
   for (let i = 0; i < bubbles.length; i++) {
     let bubblesGame = bubbles[i];
@@ -197,7 +205,7 @@ function simulation() {
     bubbleGame(bubblesGame);
 
     // //Adding bubbles if there's no more bubbles in the simulation
-    // addingBubbles(bubblesGame);
+    //addingBubbles(bubblesGame);
 
     //Saving score based on how many bubbles the user popped
     if (!bubblesGame.active > gameData.highScore) {
@@ -223,15 +231,17 @@ function ending() {
 }
 
 //Setting the timer
-function timer() {
-  //Adding the time left
-  gameOverTimer++;
+function timer(state, framecountSim, gamelength) {
+  // //Adding the time left
 
   //The game ends once the timer is over
-  if (gameOverTimer >= gamelength) {
-    state = "ending";
-    if (!music.isPlaying()) {
-      music.play();
+  if (state === "simulation ") {
+    //Bad ending when the user didn't catch the magic petal
+    if (frameCount > framecountSim + gamelength) {
+      return "ending";
+      if (!music.isPlaying()) {
+        music.play();
+      }
     }
   }
 }
@@ -255,15 +265,16 @@ function bubbleGameTitle() {
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
+  if (bubbleTitle.active) {
+    //Creating bubble movements
+    bubbleTitle.move();
 
-  //Creating bubble movements
-  bubbleTitle.move();
+    //Sets how the bubble come back to the canvas
+    bubbleTitle.resetBubble();
 
-  //Sets how the bubble come back to the canvas
-  bubbleTitle.resetBubble();
-
-  //Display the bubble
-  bubbleTitle.display();
+    //Display the bubble
+    bubbleTitle.display();
+  }
 }
 
 //Setting popping game in instructions
@@ -285,15 +296,16 @@ function bubbleGameIntro() {
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
+  if (bubbleIntro.active) {
+    //Creating bubble movements
+    bubbleIntro.move();
 
-  //Creating bubble movements
-  bubbleIntro.move();
+    //Sets how the bubble come back to the canvas
+    bubbleIntro.resetBubble();
 
-  //Sets how the bubble come back to the canvas
-  bubbleIntro.resetBubble();
-
-  //Display the bubble
-  bubbleIntro.display();
+    //Display the bubble
+    bubbleIntro.display();
+  }
 }
 
 //Setting popping game in simulation
@@ -310,20 +322,22 @@ function bubbleGame(bubblesGame) {
     baseY = base[1];
 
     //Setting how to pop the bubbles in the state
-    bubble.poppingBubble(tipX, tipY);
+    bubblesGame.poppingBubble(tipX, tipY);
     // console.log(poppingBubble);
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
 
-  //Creating bubbles movements
-  bubblesGame.move();
+  if (bubblesGame.active) {
+    //Creating bubbles movements
+    bubblesGame.move();
 
-  //Sets how the bubble come back to the canvas
-  bubblesGame.resetBubble();
+    //Sets how the bubble come back to the canvas
+    bubblesGame.resetBubble();
 
-  //Display the bubbles
-  bubblesGame.display();
+    //Display the bubbles
+    bubblesGame.display();
+  }
 }
 
 //Creating the pin

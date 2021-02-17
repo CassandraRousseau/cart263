@@ -10,60 +10,65 @@ class State {
     noStroke();
     fill(0);
     textFont(font);
-    cameraCursor();
+    // cameraCursor();
+    chosenCareer();
+    chosenLocation(room);
+    let x = map(mouseX, 0, width, -200, 0);
+    camera(x, 0, 0);
   }
 
   //Setting mousePressed method for each state
   mousePressed() {}
+  chosenLocation(room) {
+    //edit the art movements' names in lower cases
+    currentAnswer = room.toLowerCase();
+
+    //if the answer is right
+    if (currentAnswer === "auditorium") {
+      currentState = new Auditorium();
+
+      //if the answer is wrong
+      // } else if (currentAnswer !== currentMovement) {
+      //   //Added the artist response to the wrong answer
+      //   chosenReaction = random(reactions);
+      //   responsiveVoice.speak(chosenReaction, "UK English Female", {
+      //     pitch: 5,
+      //   });
+      //   state = "wrong";
+    } else if (currentAnswer === "library") {
+      currentState = new Library();
+
+      //if the answer is wrong
+    } else if (currentAnswer === "basketball field") {
+      currentState = new BasketballField();
+
+      //if the answer is wrong
+    } else if (currentAnswer === "art studio") {
+      currentState = new ArtStudio();
+
+      //if the answer is wrong
+    } else if (currentAnswer === "photo studio") {
+      currentState = new PhotoStudio();
+
+      //if the answer is wrong
+    } else if (currentAnswer === "hall") {
+      currentState = new Hall();
+
+      //if the answer is wrong
+    } else if (currentAnswer === "bakery") {
+      currentState = new Bakery();
+    }
+  }
+  chosenCareer() {
+    currentAnswer = career.toLowerCase();
+    if (currentAnswer === chosenCareer) {
+      currentState = new Ending();
+    }
+  }
+  // if the answer is wrong
+  // } else if (currentAnswer !== chosenCareer) {
+  //   responsiveVoice.speak("I can't hear you...", "UK English Female", {
+  //     pitch: 3,
+  //   });
+  // }
 }
-// chosenLocation(room) {
-//   //edit the art movements' names in lower cases
-//   currentAnswer = room.toLowerCase();
-//
-//   //if the answer is right
-//   if (currentAnswer === "auditorium") {
-//     currentState = new Auditorium();
-//
-//     //if the answer is wrong
-//     // } else if (currentAnswer !== currentMovement) {
-//     //   //Added the artist response to the wrong answer
-//     //   chosenReaction = random(reactions);
-//     //   responsiveVoice.speak(chosenReaction, "UK English Female", {
-//     //     pitch: 5,
-//     //   });
-//     //   state = "wrong";
-//   } else if (currentAnswer === "library") {
-//     currentState = new Library();
-//
-//     //if the answer is wrong
-//   } else if (currentAnswer === "basketball field") {
-//     currentState = new BasketballField();
-//
-//     //if the answer is wrong
-//   } else if (currentAnswer === "art studio") {
-//     currentState = new ArtStudio();
-//
-//     //if the answer is wrong
-//   } else if (currentAnswer === "photo studio") {
-//     currentState = new PhotoStudio();
-//
-//     //if the answer is wrong
-//   } else if (currentAnswer === "hall") {
-//     currentState = new Hall();
-//
-//     //if the answer is wrong
-//   } else if (currentAnswer === "bakery") {
-//     currentState = new Bakery();
-//   }
-// }
-// chosenCareer() {
-//   currentAnswer = career.toLowerCase();
-//   if (currentAnswer === chosenCareer) {
-//     currentState = new Ending();
-//   }
-//if the answer is wrong
-// } else if (currentAnswer !== chosenCareer) {
-//   responsiveVoice.speak("I can't hear you...", "UK English Female", {
-//     pitch: 3,
-//   });
-// }
