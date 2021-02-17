@@ -185,10 +185,10 @@ function simulation() {
   //Setting bubbles
   for (let i = 0; i < bubbles.length; i++) {
     let bubblesGame = bubbles[i];
-    bubbleGame();
+    bubbleGame(bubblesGame);
 
-    //Adding bubbles if there's no more bubbles in the simulation
-    addingBubbles(bubblesGame);
+    // //Adding bubbles if there's no more bubbles in the simulation
+    // addingBubbles(bubblesGame);
 
     //Saving score based on how many bubbles the user popped
     if (!bubblesGame.active > gameData.highScore) {
@@ -221,18 +221,7 @@ function timer() {
   //The game ends once the timer is over
   if (gameOverTimer >= gamelength) {
     state = "ending";
-  }
-}
-
-//Setting how bubbles are added in the simulation
-function addingBubbles(bubblesGame) {
-  //Adding new bubbles if there's none left in the simulation
-  if (!bubblesGame.active) {
-    for (let i = 0; i < numBubbles; i++) {
-      bubble = new Bubble(bubbleImage);
-
-      bubbles.push(bubble);
-    }
+    sGame;
   }
 }
 
@@ -294,11 +283,10 @@ function bubbleGameIntro() {
   bubbleIntro.display();
 }
 
-function bubbleGame() {
+function bubbleGame(bubblesGame) {
   //Setting handpose positions on hand
   if (predictions.length > 0) {
     hand = predictions[0];
-    z;
     index = hand.annotations.indexFinger;
     tip = index[3];
     base = index[0];
@@ -308,20 +296,20 @@ function bubbleGame() {
     baseY = base[1];
 
     //Setting how to pop the bubbles in the state
-    poppingBubbleGame(tipX, tipY);
+    bubblesGame.poppingBubble(tipX, tipY);
 
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
 
   //Creating bubbles movements
-  bubble.move();
+  bubblesGame.move();
 
   //Sets how the bubble come back to the canvas
-  bubble.resetBubble();
+  bubblesGame.resetBubble();
 
   //Display the bubbles
-  bubble.display();
+  bubblesGame.display();
 }
 
 //Creating how to pop the bubble in the title
@@ -343,11 +331,12 @@ function poppingBubbleIntro(tipX, tipY) {
 }
 
 //Creating how to pop bubbles in the simulation
-function poppingBubbleGame(tipX, tipY) {
+function poppingBubbleGame(tipX, tipY, bubblesGame) {
   //Pops the bubble once the pin and the bubble overlaps
-  let d = dist(tipX, tipY, bubble.x, bubble.y);
-  if (d < bubble.w / 2 && d < bubble.h / 2) {
-    bubble.active = false;
+  let d = dist(tipX, tipY, bubble.x, bubblesGame.y);
+  if (d < bubblesGame.w / 2 && d < bubblesGame.h / 2) {
+    bubblesGame.active = false;
+    bubbles.splice(i, 1);
   }
 }
 

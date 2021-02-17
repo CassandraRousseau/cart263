@@ -37,6 +37,14 @@ class Bubble {
     }
   }
 
+  //Creating how to pop bubbles in the simulation
+  poppingBubble(tipX, tipY) {
+    //Pops the bubble once the pin and the bubble overlaps
+    let d = dist(tipX, tipY, this.x, this.y);
+    if (d < this.w / 2 && d < this.h / 2) {
+      this.active = false;
+    }
+  }
   //Setting how the bubble is displayed
   display() {
     push();
