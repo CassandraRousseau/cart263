@@ -13,6 +13,8 @@ During the simulation, the user uses his hand to track the bubbles by using his 
 //Created state variable
 let state = "title";
 
+let music;
+
 //Created ml5.js variables
 let video = undefined;
 let modelName = `Handpose`;
@@ -57,6 +59,7 @@ let gameData = {
 function preload() {
   bubbleImage = loadImage(`assets/images/bubble.png`);
   ocean = loadImage(`assets/images/ocean.jpg`);
+  music = loadSound(`assets/sounds/Dolphin-esque.mp3`);
 }
 
 //Setting parameters
@@ -136,9 +139,11 @@ function title() {
   if (!bubbleTitle.active) {
     //Goes to instructions state
     state = "instructions";
-
     //Resets the bubble
     bubbleTitle.resetGame();
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
 
   //Display the bubble in the state
@@ -167,9 +172,12 @@ function instructions() {
   if (!bubbleIntro.active) {
     //Changing to simulation state
     state = "simulation";
-
     //Resets the bubble
     bubble.resetGame();
+
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
 
   //Disply the bubble
@@ -221,7 +229,9 @@ function timer() {
   //The game ends once the timer is over
   if (gameOverTimer >= gamelength) {
     state = "ending";
-    sGame;
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
 }
 
@@ -238,7 +248,7 @@ function bubbleGameTitle() {
     baseY = base[1];
 
     //Setting how to pop the bubble in the state
-    poppingBubbleTitle(tipX, tipY);
+    bubbleTitle.poppingBubble(tipX, tipY);
 
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
@@ -267,7 +277,7 @@ function bubbleGameIntro() {
     baseY = base[1];
 
     //Setting how to pop the bubble in the state
-    poppingBubbleIntro(tipX, tipY);
+    bubbleIntro.poppingBubble(tipX, tipY);
 
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
@@ -294,7 +304,6 @@ function bubbleGame(bubblesGame) {
     tipY = tip[1];
     baseX = base[0];
     baseY = base[1];
-
     //Setting how to pop the bubbles in the state
     bubblesGame.poppingBubble(tipX, tipY);
 
@@ -310,34 +319,6 @@ function bubbleGame(bubblesGame) {
 
   //Display the bubbles
   bubblesGame.display();
-}
-
-//Creating how to pop the bubble in the title
-function poppingBubbleTitle(tipX, tipY) {
-  //Pops the bubble once the pin and the bubble overlaps
-  let d = dist(tipX, tipY, bubbleTitle.x, bubbleTitle.y);
-  if (d < bubbleTitle.w / 2 && d < bubbleTitle.h / 2) {
-    bubbleTitle.active = false;
-  }
-}
-
-//Creating how to pop the bubble in the instructions
-function poppingBubbleIntro(tipX, tipY) {
-  //Pops the bubble once the pin and the bubble overlaps
-  let d = dist(tipX, tipY, bubbleIntro.x, bubbleIntro.y);
-  if (d < bubbleIntro.w / 2 && d < bubbleIntro.h / 2) {
-    bubbleIntro.active = false;
-  }
-}
-
-//Creating how to pop bubbles in the simulation
-function poppingBubbleGame(tipX, tipY, bubblesGame) {
-  //Pops the bubble once the pin and the bubble overlaps
-  let d = dist(tipX, tipY, bubble.x, bubblesGame.y);
-  if (d < bubblesGame.w / 2 && d < bubblesGame.h / 2) {
-    bubblesGame.active = false;
-    bubbles.splice(i, 1);
-  }
 }
 
 //Creating the pin
