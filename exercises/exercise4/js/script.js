@@ -45,10 +45,10 @@ let intro = `Pop most bubbles as possible with your hand! Enjoy!`;
 
 //Created background variable
 let ocean;
-let frameCount;
+
 //Created time parameters
-let framecountSim = frameCount;
-let gamelength = 10000;
+let framecountSim = 0;
+let gamelength = 1000;
 
 //Created localStorage variable
 let gameData = {
@@ -99,6 +99,7 @@ function setup() {
 // Drawing the states
 function draw() {
   console.log(frameCount);
+
   //Adding background
   background(ocean);
 
@@ -171,6 +172,7 @@ function instructions(gameOverTimer) {
   //Setting the bubble in the state
   bubbleGameIntro();
   if (!bubbleIntro.active) {
+    framecountSim = frameCount;
     //Changing to simulation state
     state = "simulation";
     //Resets the bubble
@@ -188,16 +190,11 @@ function instructions(gameOverTimer) {
 
 //Setting the simulation state
 function simulation() {
+  console.log(ending);
+  push();
   //Adding timer
-  // timer("simulation", framecountSim, gamelength);
+  timer("simulation", framecountSim, gamelength, frameCount);
 
-  //Bad ending when the user didn't catch the magic petal
-  if (frameCount > framecountSim + gamelength) {
-    return "ending";
-    if (!music.isPlaying()) {
-      music.play();
-    }
-  }
   //Setting bubbles
   for (let i = 0; i < bubbles.length; i++) {
     let bubblesGame = bubbles[i];
@@ -216,6 +213,7 @@ function simulation() {
       localStorage.setItem(`game-data`, JSON.stringify(gameData));
     }
   }
+  pop();
 }
 
 //Setting ending state
@@ -231,14 +229,15 @@ function ending() {
 }
 
 //Setting the timer
-function timer(state, framecountSim, gamelength) {
+function timer(state, framecountSim, gamelength, frameCount) {
   // //Adding the time left
 
   //The game ends once the timer is over
   if (state === "simulation ") {
     //Bad ending when the user didn't catch the magic petal
-    if (frameCount > framecountSim + gamelength) {
-      return "ending";
+    if (frameCount >= framecountSim + gamelength) {
+      console.log("ending");
+      state = "ending";
       if (!music.isPlaying()) {
         music.play();
       }
