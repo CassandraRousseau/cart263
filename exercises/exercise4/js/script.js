@@ -50,7 +50,7 @@ let ocean;
 //Created time parameters
 let framecountSim = 0;
 let gamelength = 500;
-
+let data;
 //Created localStorage variable
 let gameData = {
   highScore: 0, // Start the high score at 0 by default
@@ -69,7 +69,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   //Creating data parameters
-  let data = JSON.parse(localStorage.getItem(KEY_GAME_DATA));
+  data = JSON.parse(localStorage.getItem(KEY_GAME_DATA));
 
   // Check if there's saved data
   if (data !== null) {
