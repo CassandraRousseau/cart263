@@ -45,7 +45,7 @@ let bubbleImage;
 let numBubbles = 500;
 
 //Created instructions text variable
-let intro = `Pop most bubbles as possible with your hand! Enjoy!`;
+let intro = `Pop as many bubbles as possible with your hand! Enjoy!`;
 
 //Created background variable
 let ocean;
@@ -167,7 +167,7 @@ function instructions() {
   textSize(55);
   fill(255);
   textAlign(LEFT, TOP);
-  text(intro, 10, 10, width / 2, height / 2);
+  text(intro, 10, 10, width / 2, height);
 
   //adding how to change the state
   push();
@@ -253,8 +253,8 @@ function ending(gameData) {
   push();
   textSize(55);
   fill(255);
-  textAlign(LEFT, TOP);
-  text(`High score: ${gameData.highScore}`, 10, 10);
+  // textAlign(CENTER, CENTER);
+  text(`High score: ${gameData.highScore}`, width / 4, height / 2);
   pop();
 }
 
