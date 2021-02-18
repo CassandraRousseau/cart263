@@ -1,14 +1,14 @@
 class Auditorium extends State {
   //Setting auditorium parameters
-  constructor(video) {
-    super(video);
-    this.name = `Auditorium`;
+  constructor(video, curtains) {
+    super(video, curtains);
+    this.name = `auditorium`;
     this.curtains = [];
     this.seats = [];
     this.floor = new FloorAuditorium();
     this.screen = new CinemaScreen();
 
-    this.seats = new Seats();
+    // this.seats = new Seats();
     this.video = new Video(video);
     this.stage = new Stage();
 
@@ -96,9 +96,9 @@ class Auditorium extends State {
     pop();
 
     //Displaying the video
-    // push();
-    // this.video.display();
-    // pop();
+    push();
+    this.video.display();
+    pop();
 
     //Displaying the stage
     push();
@@ -115,12 +115,10 @@ class Auditorium extends State {
     pop();
     pop();
   }
-}
+  //Video starts when mouse pressed
+  mousePressed() {
+    super.mousePressed();
 
-//Video starts when mous pressed
-//   mousePressed() {
-//     super.mousePressed();
-//
-//     this.video.play();
-//   }
-// }
+    this.video.texture.play();
+  }
+}

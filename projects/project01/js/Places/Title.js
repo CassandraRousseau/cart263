@@ -47,14 +47,14 @@ class Title extends State {
     pop();
 
     //Display the title
-    textSize(175);
+    textSize(160);
     textAlign(CENTER, CENTER);
-    text(this.titleString, width / 2, height / 2);
+    text(this.titleString, 0, -height / 4);
 
     //Adding how user changes the state
     push();
     textSize(50);
-    text(this.subheader, width / 2, (5 * height) / 6);
+    text(this.subheader, 0, -height / 50);
     pop();
     pop();
   }
@@ -62,9 +62,11 @@ class Title extends State {
   //Setting mousePressed method
   mousePressed() {
     super.mousePressed();
-    console.log(`Auditorium`);
-    if (currentState === `title`) {
-      currentState = new Auditorium();
+    console.log("auditorium");
+    if (currentState.name === `title`) {
+      currentState = new Auditorium(video, curtains);
+
+      console.log(currentState);
     }
   }
 }

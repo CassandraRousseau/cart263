@@ -1,9 +1,9 @@
 class Curtains {
-  constructor(width, windows) {
+  constructor(width, curtains) {
     this.translateX = width;
     this.translateY = -200;
     this.translateZ = -550;
-    this.texture = windows;
+    this.texture = curtains;
     this.width = 1000;
     this.height = height;
   }

@@ -130,9 +130,6 @@ let hotAirBalloon;
 //Creating hot air balloon texture variable
 let balloonTexture;
 
-//Creating camera obj file variable for photo studio
-let camera;
-
 //Creating camera texture for photo studio
 let cameraTexture;
 
@@ -186,6 +183,8 @@ let hand;
 let index;
 let indexX;
 let indexY;
+//Creating camera obj file variable for photo studio
+// let camera;
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -246,7 +245,7 @@ function preload() {
   books = loadModel("assets/obj/BOOKS OBJ.obj");
   leather = loadImage("assets/images/leather_books.jpg");
   bookRow = loadModel("assets/obj/1book.obj");
-  camera = loadModel("assets/obj/camera.obj");
+  // camera = loadModel("assets/obj/camera.obj");
   house = loadModel("assets/obj/Farm_house.obj");
   hotAirBalloon = loadModel("assets/obj/hot_air_baloon_4.obj");
   canvas = loadModel("assets/obj/canvas.obj");
@@ -256,17 +255,16 @@ function preload() {
 //Setting parameters in simulation
 function setup() {
   //Creating WEBGL canvas
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  createCanvas(1000, 1000, WEBGL);
+  camera(0, 0, 20, 0, 0, 0, 0, 1, 0);
 
-  //Creating camera
-  cam = createCamera();
-  // cursor = createCapture(VIDEO);
-  // cursor.hide();
-  // handpose = ml5.handpose(cursor, { flipHorizontal: true }, function () {});
-  // handpose.on(`predict`, function (results) {
-  //   console.log(results);
-  //   predictions = results;
-  // });
+  cursor = createCapture(VIDEO);
+  cursor.hide();
+  handpose = ml5.handpose(cursor, { flipHorizontal: true }, function () {});
+  handpose.on(`predict`, function (results) {
+    // console.log(results);
+    predictions = results;
+  });
 
   //Creaing video paramaeters
   //Uploading video
@@ -276,79 +274,173 @@ function setup() {
   video.size(600, 400);
   video.hide();
 
-  //Creating annyang! parameters
+  // //Creating annyang! parameters
   if (annyang) {
     //Creating commands
     let commands = {
       //Setting location command
-      "Go to *room": function () {
-        chosenLocation;
-      },
-
-      //Setting career choice command
-      "I want to be *career": function () {
-        chosenCareer;
-      },
+      "Go to *room": places,
     };
+
+    //     //Setting career choice command
+    //     "I want to be *career":
+    //       chosenCareer;
+    //   ,
 
     annyang.addCommands(commands);
     annyang.start();
-
-    textStyle(BOLD);
-    title = new Title(grassBlue, grassPurple, grassPink);
-    currentState = title;
   }
+  textStyle(BOLD);
+  title = new Title(grassBlue, grassPurple, grassPink);
 
-  // for (let i = 0; i < numSpotlights; i++) {
-  //   let light = spotLight(
-  //     255,
-  //     255,
-  //     255,
-  //     random(0, width),
-  //     random(0, height),
-  //     random(),
-  //     70,
-  //     70,
-  //     70,
-  //     35,
-  //     100
-  //   );
-  //   spotlights.push(light);
-  // }
-
-  //Setting title state
-
-  //Setting draw
-  function draw() {
-    currentState.draw();
-    // cameraCursor();
-  }
-  //Setting all mouse inputs for each states
-  function mousePressed() {
-    currentState.mousePressed();
-  }
-
-  // function cameraCursor() {
-  //   if (predictions.length > 0) {
-  //     // Technically there will only be ONE because it only detects ONE hand
-  //     // Get the hand predicted
-  //     hand = predictions[0];
-  //     index = hand.annotations.indexFinger[3];
-  //     indexX = index[0];
-  //     indexY = index[1];
-  //     // Highlight it on the canvas
-  //     highlightHand(hand);
-  //   }
-  // }
-  //
-  // function highlightHand(hand) {
-  //   push();
-  //   let indexX = map(mouseX, 0, width, -200, 0);
-  //   let indexY = mouseY;
-  //   let x = indexX;
-  //
-  //   camera(x, indexY);
-  //
-  //   pop();
-  // }
+  currentState = title;
+  console.log(currentState);
 }
+
+// for (let i = 0; i < numSpotlights; i++) {
+//   let light = spotLight(
+//     255,
+//     255,
+//     255,
+//     random(0, width),
+//     random(0, height),
+//     random(),
+//     70,
+//     70,
+//     70,
+//     35,
+//     100
+//   );
+//   spotlights.push(light);
+// }
+
+//Setting title state
+
+//Setting draw
+function draw() {
+  currentState.draw();
+
+  //Creating camera
+  cameraCursor();
+  // chosenLocation();
+  // chosenCareer();
+}
+//Setting all mouse inputs for each states
+function mousePressed() {
+  currentState.mousePressed();
+}
+
+function cameraCursor() {
+  if (predictions.length > 0) {
+    // Get the hand predicted
+
+    hand = predictions[0];
+
+    index = hand.annotations.indexFinger[3];
+    indexX = index[0];
+    indexY = index[1];
+    // indexX = map(mouseX, 0, 500, 50, -50);
+    // indexY = map(mouseY, 0, 500, 50, -50);
+    // Highlight it on the canvas
+    camera(width / 20, 0, 450, indexX, indexY, 0, 0, width / 2, 0);
+  }
+}
+function places(room) {
+  //edit the art movements' names in lower cases
+  currentAnswer = room.toLowerCase();
+  console.log(currentAnswer);
+  //if the answer is right
+  // if (currentAnswer === "auditorium") {
+  //   currentState = new Auditorium();
+  //
+  //   //if the answer is wrong
+  //   // } else if (currentAnswer !== currentMovement) {
+  //   //   //Added the artist response to the wrong answer
+  //   //   chosenReaction = random(reactions);
+  //   //   responsiveVoice.speak(chosenReaction, "UK English Female", {
+  //   //     pitch: 5,
+  //   //   });
+  //   //   state = "wrong";
+  // } else
+  if (currentAnswer === "library") {
+    currentState = new Library(
+      floor,
+      wood,
+      shelf,
+      bookcase,
+      books,
+      leather,
+      bookRow,
+      booksTexture
+    );
+
+    //if the answer is wrong
+  } else if (currentAnswer === "basketball field") {
+    currentState = new BasketballField(floor, basketballRim, metal);
+
+    //if the answer is wrong
+  } else if (currentAnswer === "art studio") {
+    currentState = new ArtStudio(
+      tissue,
+      canvas,
+      blueAbstractArt,
+      pinkAbstractArt,
+      whiteAbstractArt,
+      brushes
+    );
+
+    //if the answer is wrong
+  } else if (currentAnswer === "photo studio") {
+    currentState = new PhotoStudio(
+      shelf,
+      floor,
+      whiteWood,
+      camera,
+      cameraTexture
+    );
+
+    //if the answer is wrong
+  } else if (currentAnswer === "hall") {
+    currentState = new Hall(
+      floor,
+      windows,
+      house,
+      houseTexture,
+      hotAirBalloon,
+      balloonTexture
+    );
+
+    //if the answer is wrong
+  } else if (currentAnswer === "bakery") {
+    currentState = new Bakery(
+      chocolateCake,
+      pie,
+      crust,
+      frosting,
+      appleStrudel,
+      crustStrudel,
+      bun,
+      cinnamonBun,
+      pizza,
+      pepperoni,
+      doughnut,
+      doughnutTexture
+    );
+  }
+}
+// function chosenCareer(career) {
+//   currentAnswer = career.toLowerCase();
+//   if (currentAnswer === chosenCareer) {
+//     currentState = new Ending();
+//   }
+// }
+
+// if the answer is wrong
+// } else if (currentAnswer !== chosenCareer) {
+//   responsiveVoice.speak("I can't hear you...", "UK English Female", {
+//     pitch: 3,
+//   });
+// }
+// function locations(){
+//   currentAnswer=
+// }

@@ -34,6 +34,7 @@ class Bubble {
     if (!this.active) {
       this.x = random(width);
       this.y = height;
+      this.active = true;
     }
   }
   delete(frameCount, framecountSim, gamelength) {
@@ -45,8 +46,9 @@ class Bubble {
   poppingBubble(tipX, tipY) {
     //Pops the bubble once the pin and the bubble overlaps
     let d = dist(tipX, tipY, this.x, this.y);
-    if (d < this.w / 2 && d < this.h / 2) {
+    if (d < this.w / 2 && d < this.h / 2 && this.active === true) {
       this.active = false;
+      score++;
     }
   }
   //Setting how the bubble is displayed

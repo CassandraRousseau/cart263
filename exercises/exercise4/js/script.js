@@ -55,7 +55,7 @@ let data;
 let gameData = {
   highScore: 0, // Start the high score at 0 by default
 };
-
+let score = 0;
 // Preloaded images
 function preload() {
   bubbleImage = loadImage(`assets/images/bubble.png`);
@@ -199,17 +199,15 @@ function simulation() {
     //Adding timer
     timer("simulation", framecountSim, gamelength, frameCount, bubblesGame);
     bubbleGame(bubblesGame);
+  }
+  // //Adding bubbles if there's no more bubbles in the simulation
+  //Saving score based on how many bubbles the user popped
+  if (score > gameData.highScore) {
+    // Set the new high score
+    gameData.highScore = score;
 
-    // //Adding bubbles if there's no more bubbles in the simulation
-
-    //Saving score based on how many bubbles the user popped
-    if (!bubblesGame.active > gameData.highScore) {
-      // Set the new high score
-      gameData.highScore = !bubblesGame.active;
-
-      // Save the game data
-      localStorage.setItem(KEY_GAME_DATA, JSON.stringify(gameData));
-    }
+    // Save the game data
+    localStorage.setItem(KEY_GAME_DATA, JSON.stringify(gameData));
   }
   pop();
 }
