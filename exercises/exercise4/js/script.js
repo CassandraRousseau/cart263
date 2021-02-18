@@ -10,10 +10,13 @@ During the simulation, the user uses his hand to track the bubbles by using his 
 **************************************************/
 "use strict";
 
+//Created constant for data
 const KEY_GAME_DATA = `game-data`;
+
 //Created state variable
 let state = "title";
 
+//Created a variable for background music
 let music;
 
 //Created ml5.js variables
@@ -50,13 +53,15 @@ let ocean;
 //Created time parameters
 let framecountSim = 0;
 let gamelength = 500;
+
+//Created localStorage variables
 let data;
-//Created localStorage variable
 let gameData = {
-  highScore: 0, // Start the high score at 0 by default
+  highScore: 0,
 };
 let score = 0;
-// Preloaded images
+
+// Preloaded images and music
 function preload() {
   bubbleImage = loadImage(`assets/images/bubble.png`);
   ocean = loadImage(`assets/images/ocean.jpg`);
@@ -71,7 +76,7 @@ function setup() {
   //Creating data parameters
   data = JSON.parse(localStorage.getItem(KEY_GAME_DATA));
 
-  // Check if there's saved data
+  // Check if there is saved data
   if (data !== null) {
     // Saving new data
     gameData = data;
@@ -99,8 +104,6 @@ function setup() {
 
 // Drawing the states
 function draw() {
-  console.log(frameCount);
-
   //Adding background
   background(ocean);
 
@@ -141,8 +144,11 @@ function title() {
   if (!bubbleTitle.active) {
     //Goes to instructions state
     state = "instructions";
+
     //Resets the bubble
     bubbleTitle.resetGame();
+
+    //Starts the music if it's not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -154,7 +160,7 @@ function title() {
 }
 
 //Setting instructions state
-function instructions(gameOverTimer) {
+function instructions() {
   push();
 
   //Adding instructions
@@ -171,36 +177,41 @@ function instructions(gameOverTimer) {
 
   //Setting the bubble in the state
   bubbleGameIntro();
+
+  //If the bubble popped
   if (!bubbleIntro.active) {
+    //framecountSim is based on game's frameCount
     framecountSim = frameCount;
+
     //Changing to simulation state
     state = "simulation";
+
     //Resets the bubble
     bubbleIntro.resetGame();
 
+    //Starts the music if it's not playing
     if (!music.isPlaying()) {
       music.play();
     }
   }
 
-  //Disply the bubble
+  //Display the bubble
   bubbleIntro.display();
   pop();
 }
 
 //Setting the simulation state
 function simulation() {
-  console.log(ending);
   push();
-
   //Setting bubbles
   for (let i = 0; i < bubbles.length; i++) {
     let bubblesGame = bubbles[i];
+
     //Adding timer
     timer("simulation", framecountSim, gamelength, frameCount, bubblesGame);
     bubbleGame(bubblesGame);
   }
-  // //Adding bubbles if there's no more bubbles in the simulation
+
   //Saving score based on how many bubbles the user popped
   if (score > gameData.highScore) {
     // Set the new high score
@@ -214,29 +225,32 @@ function simulation() {
 
 //Setting the timer
 function timer(state, framecountSim, gamelength, frameCount, bubblesGame) {
-  // //Adding the time left
+  //Adding the time left
 
   //The game ends once the timer is over
   if (state === "simulation") {
-    //Bad ending when the user didn't catch the magic petal
+    //Ending state appears once the timer is over
     if (frameCount >= framecountSim + gamelength) {
-      console.log("ending");
       state = "ending";
+
+      //Removes the displayed bubbles once the game is over
       bubblesGame.delete(frameCount, framecountSim, gamelength);
+
+      //Starts the music if it's not playing
       if (!music.isPlaying()) {
         music.play();
       }
+
+      //Display the ending state
       ending(gameData);
     }
   }
 }
+
 //Setting ending state
 function ending(gameData) {
   // Display high score
-  console.log(gameData);
   push();
-
-  //Adding instructions
   textSize(55);
   fill(255);
   textAlign(LEFT, TOP);
@@ -263,6 +277,8 @@ function bubbleGameTitle() {
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
+
+  //If the bubbles are active
   if (bubbleTitle.active) {
     //Creating bubble movements
     bubbleTitle.move();
@@ -287,13 +303,15 @@ function bubbleGameIntro() {
     tipY = tip[1];
     baseX = base[0];
     baseY = base[1];
-    // console.log(poppingBubble);
+
     //Setting how to pop the bubble in the state
     bubbleIntro.poppingBubble(tipX, tipY);
 
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
+
+  //If the bubbles are active
   if (bubbleIntro.active) {
     //Creating bubble movements
     bubbleIntro.move();
@@ -321,11 +339,12 @@ function bubbleGame(bubblesGame) {
 
     //Setting how to pop the bubbles in the state
     bubblesGame.poppingBubble(tipX, tipY);
-    // console.log(poppingBubble);
+
     //Display the pin in the state
     displayPin(baseX, baseY, tipX, tipY);
   }
 
+  //If the bubbles are active
   if (bubblesGame.active) {
     //Creating bubbles movements
     bubblesGame.move();

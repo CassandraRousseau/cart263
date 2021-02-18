@@ -17,8 +17,9 @@ class Bubble {
     this.y += this.vy;
   }
 
-  //Added how the bubble come back in the canvas/screen
+  //Added how the bubbles come back in the canvas/screen
   resetBubble() {
+    //If they go beyond the edges of the canvas,they return back to the canvas
     if (this.y < 0) {
       this.x = random(0, width);
       this.y = height;
@@ -37,11 +38,14 @@ class Bubble {
       this.active = true;
     }
   }
+
+  //How to remove completely the bubbles from the game after a timer
   delete(frameCount, framecountSim, gamelength) {
     if (frameCount >= framecountSim + gamelength) {
       this.active = false;
     }
   }
+
   //Creating how to pop bubbles in the simulation
   poppingBubble(tipX, tipY) {
     //Pops the bubble once the pin and the bubble overlaps
@@ -51,13 +55,12 @@ class Bubble {
       score++;
     }
   }
+
   //Setting how the bubble is displayed
   display() {
     push();
-
     noStroke();
     image(this.image, this.x, this.y, this.w, this.h);
-
     pop();
   }
 }
