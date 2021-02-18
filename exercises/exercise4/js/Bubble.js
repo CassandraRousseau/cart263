@@ -36,7 +36,11 @@ class Bubble {
       this.y = height;
     }
   }
-
+  delete(frameCount, framecountSim, gamelength) {
+    if (frameCount >= framecountSim + gamelength) {
+      this.active = false;
+    }
+  }
   //Creating how to pop bubbles in the simulation
   poppingBubble(tipX, tipY) {
     //Pops the bubble once the pin and the bubble overlaps

@@ -10,6 +10,7 @@ During the simulation, the user uses his hand to track the bubbles by using his 
 **************************************************/
 "use strict";
 
+const KEY_GAME_DATA = `game-data`;
 //Created state variable
 let state = "title";
 
@@ -48,7 +49,7 @@ let ocean;
 
 //Created time parameters
 let framecountSim = 0;
-let gamelength = 1000;
+let gamelength = 500;
 
 //Created localStorage variable
 let gameData = {
@@ -67,6 +68,15 @@ function setup() {
   //Creating canvas
   createCanvas(windowWidth, windowHeight);
 
+  //Creating data parameters
+  let data = JSON.parse(localStorage.getItem(KEY_GAME_DATA));
+
+  // Check if there's saved data
+  if (data !== null) {
+    // Saving new data
+    gameData = data;
+  }
+
   //Creating video parameters
   video = createCapture(VIDEO);
   video.hide();
@@ -84,15 +94,6 @@ function setup() {
     bubble = new Bubble(bubbleImage);
 
     bubbles.push(bubble);
-  }
-
-  //Creating data parameters
-  let data = JSON.parse(localStorage.getItem(`game-data`));
-
-  // Check if there's saved data
-  if (data !== null) {
-    // Saving new data
-    gameData = data;
   }
 }
 
@@ -114,7 +115,6 @@ function draw() {
   } else if (state === "simulation") {
     simulation();
   } else if (state === "ending") {
-    ending();
   }
 }
 
@@ -192,17 +192,15 @@ function instructions(gameOverTimer) {
 function simulation() {
   console.log(ending);
   push();
-  //Adding timer
-  timer("simulation", framecountSim, gamelength, frameCount);
 
   //Setting bubbles
   for (let i = 0; i < bubbles.length; i++) {
     let bubblesGame = bubbles[i];
-
+    //Adding timer
+    timer("simulation", framecountSim, gamelength, frameCount, bubblesGame);
     bubbleGame(bubblesGame);
 
     // //Adding bubbles if there's no more bubbles in the simulation
-    //addingBubbles(bubblesGame);
 
     //Saving score based on how many bubbles the user popped
     if (!bubblesGame.active > gameData.highScore) {
@@ -210,39 +208,42 @@ function simulation() {
       gameData.highScore = !bubblesGame.active;
 
       // Save the game data
-      localStorage.setItem(`game-data`, JSON.stringify(gameData));
+      localStorage.setItem(KEY_GAME_DATA, JSON.stringify(gameData));
     }
   }
-  pop();
-}
-
-//Setting ending state
-function ending() {
-  // Display high score
-  push();
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  textStyle(BOLD);
-  fill(255);
-  text(`High score: ${gameData.highScore}`, 0, 0);
   pop();
 }
 
 //Setting the timer
-function timer(state, framecountSim, gamelength, frameCount) {
+function timer(state, framecountSim, gamelength, frameCount, bubblesGame) {
   // //Adding the time left
 
   //The game ends once the timer is over
-  if (state === "simulation ") {
+  if (state === "simulation") {
     //Bad ending when the user didn't catch the magic petal
     if (frameCount >= framecountSim + gamelength) {
       console.log("ending");
       state = "ending";
+      bubblesGame.delete(frameCount, framecountSim, gamelength);
       if (!music.isPlaying()) {
         music.play();
       }
+      ending(gameData);
     }
   }
+}
+//Setting ending state
+function ending(gameData) {
+  // Display high score
+  console.log(gameData);
+  push();
+
+  //Adding instructions
+  textSize(55);
+  fill(255);
+  textAlign(LEFT, TOP);
+  text(`High score: ${gameData.highScore}`, 10, 10);
+  pop();
 }
 
 //Setting popping game in title
