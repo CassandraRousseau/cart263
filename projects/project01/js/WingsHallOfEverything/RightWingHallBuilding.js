@@ -5,12 +5,12 @@ class RightWingHallBuilding extends HallBuilding {
     this.translateY = 75;
     this.translateZ = -500;
     this.width = 300;
-    this.height = height;
+    this.height = 600;
   }
   display() {
     super.display();
     push();
-    specularMaterial(this.gray, this.alpha);
+    // specularMaterial(this.gray, this.alpha);
     // Our central cube is white
     translate(this.translateX, this.translateY, this.translateZ);
     fill(this.fill.r, this.fill.g, this.fill.b);

@@ -1,6 +1,6 @@
 class CounterRight extends Counters {
-  constructor() {
-    super();
+  constructor(wood) {
+    super(wood);
     this.translateX = width / 4;
   }
   display() {

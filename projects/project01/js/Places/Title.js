@@ -1,11 +1,11 @@
 class Title extends State {
   //Added title screen parameters
-  constructor(grassBlue, grassPurple, grassPink) {
-    super(grassBlue, grassPurple, grassPink);
+  constructor(grassBlue, grassPurple, grassPink, soulBackground) {
+    super(grassBlue, grassPurple, grassPink, soulBackground);
     this.name = `title`;
     this.titleString = "Find Your Spark!";
     this.subheader = `Press your Mouse to Start`;
-
+    this.texture = soulBackground;
     this.ground = new GroundTitle(grassBlue);
     // this.user = new User();
     this.mountainRight = new MountainRight(grassPurple);
@@ -19,6 +19,7 @@ class Title extends State {
     this.mountainRight.preload();
     this.mountainLeft.preload();
     this.mountainCenter.preload();
+    this.texture.preload();
     this.ground.preload();
   }
 
@@ -27,10 +28,17 @@ class Title extends State {
     super.draw();
     background(225, 175, 255);
     push();
+    // image(this.image, 0, 0, 1000, 1000);
+    texture(this.texture);
+    translate(0, 0, -800);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
 
+    push();
     //Displaying the ground
     this.ground.display();
-
+    pop();
     //Displaying the right side moutain
     push();
     this.mountainRight.display();

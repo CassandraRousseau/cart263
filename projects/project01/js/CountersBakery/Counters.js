@@ -1,7 +1,7 @@
 class Counters {
   constructor(translateWidth) {
     this.translateX = translateWidth;
-    this.translateY = 75;
+    this.translateY = 150;
     this.translateZ = 200;
 
     this.width = 250;

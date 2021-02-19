@@ -1,7 +1,7 @@
 class Seats {
   constructor(width, depth) {
     this.translateX = width;
-    this.translateY = 100;
+    this.translateY = 150;
     this.translateZ = depth;
     this.width = 300;
     this.height = 75;

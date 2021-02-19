@@ -6,7 +6,8 @@ class ArtStudio extends State {
     blueAbstractArt,
     pinkAbstractArt,
     whiteAbstractArt,
-    brushes
+    brushes,
+    studioWall
   ) {
     super(
       tissue,
@@ -14,7 +15,8 @@ class ArtStudio extends State {
       blueAbstractArt,
       pinkAbstractArt,
       whiteAbstractArt,
-      brushes
+      brushes,
+      studioWall
     );
     this.floor = new FloorHall(tissue);
     this.canvas = canvas;
@@ -22,6 +24,7 @@ class ArtStudio extends State {
     this.pinkAbstractArt = pinkAbstractArt;
     this.whiteAbstractArt = whiteAbstractArt;
     this.brushes = brushes;
+    this.texture = studioWall;
   }
 
   //Preloading obj files and images
@@ -33,6 +36,7 @@ class ArtStudio extends State {
     this.pinkAbstractArt.preload();
     this.whiteAbstractArt.preload();
     this.brushes.preload();
+    this.texture.preload();
   }
 
   //Setting the environment
@@ -40,7 +44,12 @@ class ArtStudio extends State {
     super.draw();
     background(0);
     angleMode(DEGREES);
-
+    push();
+    // image(this.image, 0, 0, 1000, 1000);
+    texture(this.texture);
+    translate(0, 0, -800);
+    plane(4 * width, 2 * height);
+    pop();
     //Displaying the floor
     push();
     this.floor.display();

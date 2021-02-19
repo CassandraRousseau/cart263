@@ -1,18 +1,17 @@
-class BasketballField extends State {
+class BasketballCourt extends State {
   //Setting the parameters
-  constructor(floor, basketballRim, metal) {
-    super(floor, basketballRim, metal);
+  constructor(floor, basketball) {
+    super(floor, basketball);
     this.floor = new FloorHall(floor);
-    this.basketballRim = basketballRim;
-    this.metal = metal;
+
+    this.basketball = basketball;
   }
 
   //Preloading images and obj files
   preload() {
     super.preload();
     this.floor.preload();
-    this.basketballRim.preload();
-    this.metal.preload();
+    this.basketball.preload();
   }
 
   //Setting the environment
@@ -29,14 +28,14 @@ class BasketballField extends State {
     //Displaying the basketball rim
     push();
     translate(0, -18, -1000);
-    rotateX(-180.65);
-    rotateY(0);
-    rotateZ(0);
+    // rotateX(-180.65);
+    // rotateY(0);
+    // rotateZ(0);
     // scale(15, 15, 15);
 
-    texture(this.metal);
+    texture(this.basketball);
 
-    model(this.basketballRim);
+    sphere(100);
     pop();
   }
 }

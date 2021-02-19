@@ -16,9 +16,6 @@ let font;
 //Creating state variable
 let currentState;
 
-//Creating camera variable
-let cam;
-
 //Creating title state variable
 let title;
 
@@ -148,43 +145,67 @@ let paperPunch;
 //Creating notebook variable for office
 let notebook;
 
-let career;
+//Creating title background
+let soulBackground;
 
+//Creating camera obj file variable for photo studio
+let cam;
+
+//Creating legal pad obj file for office
 let legalPad;
 
-//
+//Creating art studio background variable
+let studioWall;
+
+//Creating ml5.js handpose variables
+let cursor;
+let modelName = `Handpose`;
+let handpose;
+let predictions = [];
+let hand;
+
+//Creating finger parts variables
+let index;
+let indexX;
+let indexY;
+
+//Creating bakery background
+let bakeryShop;
+
+//Creating curtains texture for auditorium
+let curtains;
+
+//Creating pen obj file variable for office
 let pen;
+
+//Creating pencil holder obj file for office
 let pencilHolder;
 
+//Creating office background
+let ovalOffice;
+
+//Creating library background variable
+let libraryBackground;
+
+//Creating basketball texture
+let basketball;
+
 let bun;
-
 let metal;
-
+let career;
 let careers;
 let room;
 
 let angle = 45;
-let curtains;
+
 let spotlights = [];
 let numCounters = 1;
 let numSpotlights = 20;
 
 let numBuildings = 1;
-let basketballRim;
 
 let brushes;
 
-let cursor;
-
-let modelName = `Handpose`;
-let handpose;
-let predictions = [];
-let hand;
-let index;
-let indexX;
-let indexY;
-//Creating camera obj file variable for photo studio
-// let camera;
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -195,6 +216,7 @@ function preload() {
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
 
   //Preloading images
+  bakeryShop = loadImage(`assets/images/BakeryShop.jpg`);
   windows = loadImage(`assets/images/windows.jpg`);
   grassPurple = loadImage(`assets/images/grassPurple.png`);
   grassPink = loadImage(`assets/images/grassPink.png`);
@@ -217,8 +239,13 @@ function preload() {
   whiteWood = loadImage("assets/images/whiteWood.jpg");
   balloonTexture = loadImage("assets/images/hot_air_balloon_tissue.jpg");
   houseTexture = loadImage("assets/images/house_texture.jpg");
+  soulBackground = loadImage("assets/images/soulBackground.png");
+  studioWall = loadImage("assets/images/studioWall.jpg");
+  ovalOffice = loadImage("assets/images/ovalOffice.jpg");
+  libraryBackground = loadImage("assets/images/libraryBackground.jpg");
+  basketball = loadImage("assets/images/basketball.jpg");
 
-  //Preloading images
+  //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
   appleStrudel = loadModel(`assets/obj/AppleStrudel.obj`);
   crustStrudel = loadImage(`assets/images/strudel_crust.jpg`);
@@ -240,12 +267,11 @@ function preload() {
   notebook = loadModel(`assets/obj/notebook.obj`);
   shelf = loadModel("assets/obj/SHELF OBJ.obj");
   pencilHolder = loadModel("assets/obj/wacom.obj");
-  basketballRim = loadModel("assets/obj/basketball1.obj");
   bookcase = loadModel("assets/obj/Bibliotheque.obj");
   books = loadModel("assets/obj/BOOKS OBJ.obj");
   leather = loadImage("assets/images/leather_books.jpg");
   bookRow = loadModel("assets/obj/1book.obj");
-  // camera = loadModel("assets/obj/camera.obj");
+  cam = loadModel("assets/obj/cam.obj");
   house = loadModel("assets/obj/Farm_house.obj");
   hotAirBalloon = loadModel("assets/obj/hot_air_baloon_4.obj");
   canvas = loadModel("assets/obj/canvas.obj");
@@ -271,7 +297,7 @@ function setup() {
   video = createVideo(`assets/videos/Intro.mp4`);
 
   //Setting video size
-  video.size(600, 400);
+  video.size(700, 400);
   video.hide();
 
   // //Creating annyang! parameters
@@ -280,18 +306,15 @@ function setup() {
     let commands = {
       //Setting location command
       "Go to *room": places,
+      //Setting career choice command
+      "I want to be *career": dream,
     };
-
-    //     //Setting career choice command
-    //     "I want to be *career":
-    //       chosenCareer;
-    //   ,
 
     annyang.addCommands(commands);
     annyang.start();
   }
   textStyle(BOLD);
-  title = new Title(grassBlue, grassPurple, grassPink);
+  title = new Title(grassBlue, grassPurple, grassPink, soulBackground);
 
   currentState = title;
   console.log(currentState);
@@ -339,20 +362,17 @@ function cameraCursor() {
     index = hand.annotations.indexFinger[3];
     indexX = index[0];
     indexY = index[1];
-    // indexX = map(mouseX, 0, 500, 50, -50);
-    // indexY = map(mouseY, 0, 500, 50, -50);
+    // indexX = map(mouseX, 0, 1000, -50, 50);
+    // indexY = map(mouseY, 0, 1000, -50, 50);
     // Highlight it on the canvas
-    camera(width / 20, 0, 450, indexX, indexY, 0, 0, width / 2, 0);
+    camera(0, 0, 800, indexX, indexY, 0, 0, 10, 0);
   }
 }
 function places(room) {
   //edit the art movements' names in lower cases
   currentAnswer = room.toLowerCase();
   console.log(currentAnswer);
-  //if the answer is right
-  // if (currentAnswer === "auditorium") {
-  //   currentState = new Auditorium();
-  //
+
   //   //if the answer is wrong
   //   // } else if (currentAnswer !== currentMovement) {
   //   //   //Added the artist response to the wrong answer
@@ -361,7 +381,7 @@ function places(room) {
   //   //     pitch: 5,
   //   //   });
   //   //   state = "wrong";
-  // } else
+
   if (currentAnswer === "library") {
     currentState = new Library(
       floor,
@@ -371,12 +391,13 @@ function places(room) {
       books,
       leather,
       bookRow,
-      booksTexture
+      booksTexture,
+      libraryBackground
     );
 
     //if the answer is wrong
-  } else if (currentAnswer === "basketball field") {
-    currentState = new BasketballField(floor, basketballRim, metal);
+  } else if (currentAnswer === "basketball court") {
+    currentState = new BasketballCourt(floor, basketball);
 
     //if the answer is wrong
   } else if (currentAnswer === "art studio") {
@@ -386,17 +407,27 @@ function places(room) {
       blueAbstractArt,
       pinkAbstractArt,
       whiteAbstractArt,
-      brushes
+      brushes,
+      studioWall
     );
 
     //if the answer is wrong
   } else if (currentAnswer === "photo studio") {
-    currentState = new PhotoStudio(
-      shelf,
+    currentState = new PhotoStudio(shelf, floor, whiteWood, cam, cameraTexture);
+
+    //if the answer is wrong
+  } else if (currentAnswer === "office") {
+    currentState = new Office(
+      desk,
       floor,
-      whiteWood,
-      camera,
-      cameraTexture
+      wood,
+      legalPad,
+      paperPunch,
+      metal,
+      notebook,
+      pen,
+      pencilHolder,
+      ovalOffice
     );
 
     //if the answer is wrong
@@ -409,8 +440,8 @@ function places(room) {
       hotAirBalloon,
       balloonTexture
     );
-
-    //if the answer is wrong
+  } else if (currentAnswer === "hall of everything") {
+    currentState = new HallOfEverything(grassBlue, soulBackground);
   } else if (currentAnswer === "bakery") {
     currentState = new Bakery(
       chocolateCake,
@@ -424,23 +455,22 @@ function places(room) {
       pizza,
       pepperoni,
       doughnut,
-      doughnutTexture
+      doughnutTexture,
+      bakeryShop,
+      wood
     );
   }
 }
-// function chosenCareer(career) {
-//   currentAnswer = career.toLowerCase();
-//   if (currentAnswer === chosenCareer) {
-//     currentState = new Ending();
-//   }
-// }
+function dream(career) {
+  currentAnswer = career.toLowerCase();
+  if (currentAnswer === chosenCareer) {
+    currentState = new Ending();
+  }
+}
 
 // if the answer is wrong
 // } else if (currentAnswer !== chosenCareer) {
 //   responsiveVoice.speak("I can't hear you...", "UK English Female", {
 //     pitch: 3,
 //   });
-// }
-// function locations(){
-//   currentAnswer=
 // }

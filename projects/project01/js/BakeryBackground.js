@@ -1,9 +1,9 @@
 class BakeryBackground {
-  constructor(windows) {
+  constructor(bakeryShop) {
     this.translateX = 0;
     this.translateY = -115;
     this.translateZ = -600;
-    this.texture = windows;
+    this.texture = bakeryShop;
     this.width = 2000;
     this.height = height;
     this.depth = 800;

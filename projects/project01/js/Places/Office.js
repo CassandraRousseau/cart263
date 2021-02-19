@@ -9,7 +9,8 @@ class Office extends State {
     metal,
     notebook,
     pen,
-    pencilHolder
+    pencilHolder,
+    ovalOffice
   ) {
     super(
       desk,
@@ -20,7 +21,8 @@ class Office extends State {
       metal,
       notebook,
       pen,
-      pencilHolder
+      pencilHolder,
+      ovalOffice
     );
     this.desk = desk;
     this.wood = wood;
@@ -30,6 +32,7 @@ class Office extends State {
     this.paperPunch = paperPunch;
     this.notebook = notebook;
     this.pencilHolder = pencilHolder;
+    this.texture = ovalOffice;
     this.floor = new FloorHall(floor);
   }
 
@@ -45,6 +48,7 @@ class Office extends State {
     this.notebook.preload();
     this.legalPad.preload();
     this.metal.preload();
+    this.texture.preload();
   }
 
   //Setting the location
@@ -52,6 +56,14 @@ class Office extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
+
+    //Creating background
+    push();
+    // image(this.image, 0, 0, 1000, 1000);
+    texture(this.texture);
+    translate(0, 0, -800);
+    plane(4 * width, 2 * height);
+    pop();
 
     //Creating floor
     push();

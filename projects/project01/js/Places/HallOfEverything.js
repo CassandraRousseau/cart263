@@ -1,7 +1,8 @@
 class HallOfEverything extends State {
   //Setting the parameters
-  constructor() {
-    super();
+  constructor(grassBlue, soulBackground) {
+    super(grassBlue, soulBackground);
+    this.texture = soulBackground;
     this.ground = new GroundHallOfEverything(grassBlue);
     this.wings = [];
     for (let i = 0; i < numCurtainRight; i++) {
@@ -34,22 +35,30 @@ class HallOfEverything extends State {
       this.wings.push(this.centerLeftWingHallBuilding);
     }
   }
-
+  preload() {
+    this.texture.preload();
+    this.ground.preload();
+  }
   //Setting the environment
   draw() {
     super.draw();
     background(225, 175, 255);
-    directionalLight(220, width / 2, 90, -10000);
 
     //Displaying the ground
     push();
+    push();
+    // image(this.image, 0, 0, 1000, 1000);
+    texture(this.texture);
+    translate(0, 0, -800);
+    plane(4 * width, 2 * height);
+    pop();
     this.ground.display();
 
     //Displaying the building's wings
     push();
     for (let i = 0; i < this.wings.length; i++) {
       let wingsObject = this.wings[i];
-
+      directionalLight(220, width / 2, 90, -10000);
       wingsObject.display();
     }
     pop();

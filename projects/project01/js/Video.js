@@ -1,13 +1,13 @@
 class Video {
   constructor(video) {
-    this.translateX = -275;
-    this.translateY = -400;
+    this.translateX = -325;
+    this.translateY = -375;
     this.translateZ = -300;
     this.texture = video;
     this.x = 0;
     this.y = 0;
-    this.width = 400;
-    this.height = 200;
+    this.width = 700;
+    this.height = 400;
   }
   preload() {
     this.texture.preload();

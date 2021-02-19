@@ -8,9 +8,20 @@ class Library extends State {
     books,
     leather,
     bookRow,
-    booksTexture
+    booksTexture,
+    libraryBackground
   ) {
-    super(floor, wood, shelf, bookcase, books, leather, bookRow, booksTexture);
+    super(
+      floor,
+      wood,
+      shelf,
+      bookcase,
+      books,
+      leather,
+      bookRow,
+      booksTexture,
+      libraryBackground
+    );
     this.floor = new FloorHall(floor);
     this.shelf = shelf;
     this.bookcase = bookcase;
@@ -19,6 +30,7 @@ class Library extends State {
     this.leather = leather;
     this.bookRow = bookRow;
     this.booksTexture = booksTexture;
+    this.texture = libraryBackground;
   }
 
   //Preloading images and obj files
@@ -32,6 +44,7 @@ class Library extends State {
     this.leather.preload();
     this.bookRow.preload();
     this.booksTexture.preload();
+    this.texture.preload();
   }
 
   //Setting the environment
@@ -40,6 +53,12 @@ class Library extends State {
     background(255);
     angleMode(DEGREES);
 
+    push();
+    // image(this.image, 0, 0, 1000, 1000);
+    texture(this.texture);
+    translate(0, 0, -800);
+    plane(4 * width, 2 * height);
+    pop();
     //Dispaying the floor
     push();
     this.floor.display();

@@ -2,7 +2,7 @@ class Stage {
   constructor() {
     this.translateX = 0;
     this.translateY = 150;
-    this.translateZ = -350;
+    this.translateZ = -425;
     this.fill = 250;
     this.radiusX = 500;
     this.radiusY = 70;

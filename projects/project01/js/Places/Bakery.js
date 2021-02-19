@@ -12,7 +12,9 @@ class Bakery extends State {
     pizza,
     pepperoni,
     doughnut,
-    doughnutTexture
+    doughnutTexture,
+    bakeryShop,
+    wood
   ) {
     super(
       chocolateCake,
@@ -26,10 +28,12 @@ class Bakery extends State {
       pizza,
       pepperoni,
       doughnut,
-      doughnutTexture
+      doughnutTexture,
+      bakeryShop,
+      wood
     );
-    this.background = new BakeryBackground(windows);
-    this.floor = new FloorBakery();
+    this.background = new BakeryBackground(bakeryShop);
+    this.floor = new FloorBakery(wood);
     this.counters = [];
     this.texturePie = crust;
     this.textureCake = frosting;
@@ -60,7 +64,7 @@ class Bakery extends State {
   //Preloading images and obj files
   preload() {
     super.preload();
-    // this.background.preload();
+    this.background.preload();
     this.chocolateCake.preload();
     this.texturePie.preload();
     this.textureCake.preload();
@@ -73,6 +77,7 @@ class Bakery extends State {
     this.bun.preload();
     this.texturePizza.preload();
     this.doughnut.preload();
+    this.floor.preload();
   }
 
   //Setting the location
