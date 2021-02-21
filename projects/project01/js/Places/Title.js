@@ -7,7 +7,6 @@ class Title extends State {
     this.subheader = `Press your Mouse to Start`;
     this.texture = soulBackground;
     this.ground = new GroundTitle(grassBlue);
-    // this.user = new User();
     this.mountainRight = new MountainRight(grassPurple);
     this.mountainLeft = new MountainLeft(grassPurple);
     this.mountainCenter = new MountainCenter(grassPink);
@@ -28,7 +27,6 @@ class Title extends State {
     super.draw();
     background(225, 175, 255);
     push();
-    // image(this.image, 0, 0, 1000, 1000);
     texture(this.texture);
     translate(0, 0, -800);
     plane(4 * width, 2 * height);

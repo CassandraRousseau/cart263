@@ -1,11 +1,9 @@
 {
-  "description": "A list of occupations (jobs that people might have).",
+  "description": "This is the list of porposed careers.",
   "occupations": [
     "artist",
-
     "baker",
     "basketball player",
-
     "librarian",
     "photographer",
     "president"

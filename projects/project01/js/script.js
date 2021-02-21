@@ -10,6 +10,11 @@ spark of the soul!
 **************************************************/
 "use strict";
 
+//Creating game instructions
+let instructions = `Hello Soul J-3779, my name is Jerry and I will be your host today!\nLet's find your spark! Explore the Hall of Everything and discover your true nature!\nSay 'Go to...' and select the area you want to explore!\n Once you found your passion, say 'I want to be...' and the career according to your spark!\n If you don't remember something, refers to the manual by saying 'See manual'. Enjoy!`;
+
+//Creating ending text
+let farewell = `I'm really happy that you found your spark! I hope you the best in your new life! Enjoy your human life! `;
 //Creating font variable
 let font;
 
@@ -76,16 +81,10 @@ let booksTexture;
 let canvas;
 
 //Creating numbers of seats for arrays in auditorium
-let numSeatsLeftFirstRow = 1;
-let numSeatsRightFirstRow = 1;
-let numSeatsLeftSecondRow = 1;
-let numSeatsRightSecondRow = 1;
-let numSeatsLeftThirdRow = 1;
-let numSeatsRightThirdRow = 1;
+let numSeats = 1;
 
 //Creating numbers of curtains for arrays in auditorium
-let numCurtainLeft = 1;
-let numCurtainRight = 1;
+let numCurtains = 1;
 
 //Creating pizza obj file variable in bakery
 let pizza;
@@ -190,19 +189,34 @@ let libraryBackground;
 //Creating basketball texture
 let basketball;
 
+//Creating carpet texture variable for library
+let carpet;
+
+//Creating bun obj file variable for bakery
 let bun;
+
+//Creating metal texture variable for office
 let metal;
-let career;
-let careers;
+
+//Creating room variable for rooms JSON file
 let room;
 
-let angle = 45;
+//Creating variable fpr the number of counters in Bakery
+let numCounters = 1;
+
+//Creating variable for number of buildings in Hall and Hall of Everything
+let numBuildings = 1;
+
+//Creating variable for Jerry image(character in Soul movie)
+let jerry;
+let career;
+let careers;
+
+// let angle = 45;
 
 let spotlights = [];
-let numCounters = 1;
-let numSpotlights = 20;
 
-let numBuildings = 1;
+let numSpotlights = 20;
 
 let brushes;
 
@@ -244,6 +258,8 @@ function preload() {
   ovalOffice = loadImage("assets/images/ovalOffice.jpg");
   libraryBackground = loadImage("assets/images/libraryBackground.jpg");
   basketball = loadImage("assets/images/basketball.jpg");
+  carpet = loadImage("assets/images/carpet.jpg");
+  jerry = loadImage("assets/images/Jerry.png");
 
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
@@ -362,8 +378,8 @@ function cameraCursor() {
     index = hand.annotations.indexFinger[3];
     indexX = index[0];
     indexY = index[1];
-    // indexX = map(mouseX, 0, 1000, -50, 50);
-    // indexY = map(mouseY, 0, 1000, -50, 50);
+    indexX = map(mouseX, 0, 1000, -50, 50);
+    indexY = map(mouseY, 0, 1000, -50, 50);
     // Highlight it on the canvas
     camera(0, 0, 800, indexX, indexY, 0, 0, 10, 0);
   }
@@ -392,7 +408,8 @@ function places(room) {
       leather,
       bookRow,
       booksTexture,
-      libraryBackground
+      libraryBackground,
+      carpet
     );
 
     //if the answer is wrong
@@ -441,7 +458,12 @@ function places(room) {
       balloonTexture
     );
   } else if (currentAnswer === "hall of everything") {
-    currentState = new HallOfEverything(grassBlue, soulBackground);
+    currentState = new HallOfEverything(
+      grassBlue,
+      soulBackground,
+      instructions,
+      jerry
+    );
   } else if (currentAnswer === "bakery") {
     currentState = new Bakery(
       chocolateCake,

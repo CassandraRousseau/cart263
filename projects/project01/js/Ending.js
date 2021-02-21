@@ -1,0 +1,4 @@
+class Ending {
+  constructor() {}
+  display() {}
+}

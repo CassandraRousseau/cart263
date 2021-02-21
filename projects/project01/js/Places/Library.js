@@ -9,7 +9,8 @@ class Library extends State {
     leather,
     bookRow,
     booksTexture,
-    libraryBackground
+    libraryBackground,
+    carpet
   ) {
     super(
       floor,
@@ -20,9 +21,10 @@ class Library extends State {
       leather,
       bookRow,
       booksTexture,
-      libraryBackground
+      libraryBackground,
+      carpet
     );
-    this.floor = new FloorHall(floor);
+    this.floor = new FloorLibrary(carpet);
     this.shelf = shelf;
     this.bookcase = bookcase;
     this.wood = wood;

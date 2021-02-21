@@ -3,6 +3,7 @@ class Auditorium extends State {
   constructor(video, curtains) {
     super(video, curtains);
     this.name = `auditorium`;
+    this.subheader = `Press your Mouse to Start`;
     this.curtains = [];
     this.seats = [];
     this.floor = new FloorAuditorium();
@@ -12,49 +13,49 @@ class Auditorium extends State {
     this.video = new Video(video);
     this.stage = new Stage();
 
-    for (let i = 0; i < numCurtainRight; i++) {
+    for (let i = 0; i < numCurtains; i++) {
       this.curtainRight = new CurtainRight(curtains);
 
       this.curtains.push(this.curtainRight);
     }
 
-    for (let i = 0; i < numCurtainLeft; i++) {
+    for (let i = 0; i < numCurtains; i++) {
       this.curtainLeft = new CurtainLeft(curtains);
 
       this.curtains.push(this.curtainLeft);
     }
 
-    for (let i = 0; i < numSeatsLeftFirstRow; i++) {
+    for (let i = 0; i < numSeats; i++) {
       this.seatLeftFirstRow = new SeatLeftFirstRow();
 
       this.seats.push(this.seatLeftFirstRow);
     }
 
-    for (let i = 0; i < numSeatsLeftSecondRow; i++) {
+    for (let i = 0; i < numSeats; i++) {
       this.seatLeftSecondRow = new SeatLeftSecondRow();
 
       this.seats.push(this.seatLeftSecondRow);
     }
 
-    for (let i = 0; i < numSeatsLeftThirdRow; i++) {
+    for (let i = 0; i < numSeats; i++) {
       this.seatLeftThirdRow = new SeatLeftThirdRow();
 
       this.seats.push(this.seatLeftThirdRow);
     }
 
-    for (let i = 0; i < numCurtainLeft; i++) {
+    for (let i = 0; i < numSeats; i++) {
       this.seatRightFirstRow = new SeatRightFirstRow();
 
       this.seats.push(this.seatRightFirstRow);
     }
 
-    for (let i = 0; i < numCurtainLeft; i++) {
+    for (let i = 0; i < numSeats; i++) {
       this.seatRightSecondRow = new SeatRightSecondRow();
 
       this.seats.push(this.seatRightSecondRow);
     }
 
-    for (let i = 0; i < numCurtainLeft; i++) {
+    for (let i = 0; i < numSeats; i++) {
       this.seatRightThirdRow = new SeatRightThirdRow();
 
       this.seats.push(this.seatRightThirdRow);
@@ -112,6 +113,9 @@ class Auditorium extends State {
 
       seatsObject.display();
     }
+    pop();
+    textSize(50);
+    text(this.subheader, 0, -height / 50);
     pop();
     pop();
   }
