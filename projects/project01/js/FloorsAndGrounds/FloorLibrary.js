@@ -1,11 +1,11 @@
 class FloorLibrary {
   constructor(carpet) {
     this.translateX = 0;
-    this.translateY = 250;
+    this.translateY = 570;
     this.translateZ = 0;
     this.texture = carpet;
-    this.width = width;
-    this.height = 100;
+    this.width = 3 * width;
+    this.height = 175;
     this.depth = 3000;
   }
   preload() {

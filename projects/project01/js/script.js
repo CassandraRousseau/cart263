@@ -14,7 +14,7 @@ spark of the soul!
 let instructions = `Hello Soul J-3779, my name is Jerry and I will be your host today!\nLet's find your spark! Explore the Hall of Everything and discover your true nature!\nSay 'Go to...' and select the area you want to explore!\n Once you found your passion, say 'I want to be...' and the career according to your spark!\n If you don't remember something, refers to the manual by saying 'See manual'. Enjoy!`;
 
 //Creating ending text
-let farewell = `I'm really happy that you found your spark! I hope you the best in your new life! Enjoy your human life! `;
+let farewell = `I'm really happy that you found your spark! I hope you the best in your new life! Enjoy your human life!`;
 //Creating font variable
 let font;
 
@@ -209,6 +209,10 @@ let numBuildings = 1;
 
 //Creating variable for Jerry image(character in Soul movie)
 let jerry;
+
+//Creating variable for numbers of book rows in library
+let numRows = 1;
+
 let career;
 let careers;
 
@@ -330,7 +334,20 @@ function setup() {
     annyang.start();
   }
   textStyle(BOLD);
-  title = new Title(grassBlue, grassPurple, grassPink, soulBackground);
+  title = new Library(
+    floor,
+    wood,
+    shelf,
+    bookcase,
+    books,
+    leather,
+    bookRow,
+    booksTexture,
+    libraryBackground,
+    carpet
+  );
+  // new Auditorium(video, curtains);
+  // new Title(grassBlue, grassPurple, grassPink, soulBackground);
 
   currentState = title;
   console.log(currentState);

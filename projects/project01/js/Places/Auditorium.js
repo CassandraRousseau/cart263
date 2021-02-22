@@ -3,7 +3,7 @@ class Auditorium extends State {
   constructor(video, curtains) {
     super(video, curtains);
     this.name = `auditorium`;
-    this.subheader = `Press your Mouse to Start`;
+    this.subheader = `Press your Mouse to watch the video. Once it's done, say "Go to Hall of Everything"`;
     this.curtains = [];
     this.seats = [];
     this.floor = new FloorAuditorium();
@@ -115,7 +115,7 @@ class Auditorium extends State {
     }
     pop();
     textSize(50);
-    text(this.subheader, 0, -height / 50);
+    text(this.subheader, -width / 2, height / 25);
     pop();
     pop();
   }
