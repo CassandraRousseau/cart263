@@ -147,9 +147,9 @@ class Library extends State {
     // plane(4 * width, 2 * height);
     // pop();
     //Dispaying the floor
-    // push();
-    // this.floor.display();
-    // pop();
+    push();
+    this.floor.display();
+    pop();
 
     // //Displaying bookcases
     // push();

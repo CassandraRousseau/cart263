@@ -1,7 +1,7 @@
 class BookRow01 extends Books {
   constructor(booksTexture) {
     super(booksTexture);
-    this.translateX = width / 2;
+    this.translateX = 0;
     this.translateY = 0;
     this.booksTexture = booksTexture;
   }
@@ -16,7 +16,7 @@ class BookRow01 extends Books {
     scale(this.scale, this.scaleY, this.scaleZ);
 
     texture(this.booksTexture);
-
+    scale(1000, 1000, 1000);
     model(this.bookRow);
     pop();
   }

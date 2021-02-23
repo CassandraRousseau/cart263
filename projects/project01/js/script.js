@@ -264,11 +264,12 @@ function preload() {
   basketball = loadImage("assets/images/basketball.jpg");
   carpet = loadImage("assets/images/carpet.jpg");
   jerry = loadImage("assets/images/Jerry.png");
+  crustStrudel = loadImage(`assets/images/strudel_crust.jpg`);
+  leather = loadImage("assets/images/leather_books.jpg");
 
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
   appleStrudel = loadModel(`assets/obj/AppleStrudel.obj`);
-  crustStrudel = loadImage(`assets/images/strudel_crust.jpg`);
   pizza = loadModel(`assets/obj/PIZZA.obj`);
   chocolateCake = loadModel(`assets/obj/Chocolate Cake.obj`);
   pie = loadModel(`assets/obj/PieLowPoly.obj`);
@@ -289,7 +290,6 @@ function preload() {
   pencilHolder = loadModel("assets/obj/wacom.obj");
   bookcase = loadModel("assets/obj/Bibliotheque.obj");
   books = loadModel("assets/obj/BOOKS OBJ.obj");
-  leather = loadImage("assets/images/leather_books.jpg");
   bookRow = loadModel("assets/obj/1book.obj");
   cam = loadModel("assets/obj/cam.obj");
   house = loadModel("assets/obj/Farm_house.obj");
@@ -297,7 +297,7 @@ function preload() {
   canvas = loadModel("assets/obj/canvas.obj");
   brushes = loadModel("assets/obj/jar_with_brushes.obj");
 }
-
+// Farm_house
 //Setting parameters in simulation
 function setup() {
   //Creating WEBGL canvas
@@ -346,6 +346,15 @@ function setup() {
     libraryBackground,
     carpet
   );
+  // new Hall(
+  //   floor,
+  //   windows,
+  //   house,
+  //   houseTexture,
+  //   hotAirBalloon,
+  //   balloonTexture
+  // );
+
   // new Auditorium(video, curtains);
   // new Title(grassBlue, grassPurple, grassPink, soulBackground);
 
