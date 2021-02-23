@@ -13,7 +13,7 @@ class BookRow13 extends Books {
     push();
     translate(this.translateX, this.translateY, this.translateZ);
     rotateY(this.rotateY);
-    scale(this.scale, this.scaleY, this.scaleZ);
+    scale(this.scaleX, this.scaleY, this.scaleZ);
 
     texture(this.booksTexture);
 

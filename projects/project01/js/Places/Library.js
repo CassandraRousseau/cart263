@@ -25,11 +25,9 @@ class Library extends State {
       carpet
     );
     this.floor = new FloorLibrary(carpet);
-    this.shelf = shelf;
+
     this.bookcase = bookcase;
-    this.wood = wood;
-    this.books = books;
-    this.leather = leather;
+
     this.texture = libraryBackground;
     this.bookRows = [];
 
@@ -37,6 +35,8 @@ class Library extends State {
       this.bookRow01 = new BookRow01(bookRow, booksTexture);
 
       this.bookRows.push(this.bookRow01);
+      console.log(bookRow);
+      console.log(this.bookRow01);
     }
 
     for (let i = 0; i < numRows; i++) {
@@ -129,7 +129,21 @@ class Library extends State {
     this.wood.preload();
     this.books.preload();
     this.leather.preload();
-    this.bookRow.preload();
+    this.bookRow01.preload();
+    this.bookRow02.preload();
+    this.bookRow03.preload();
+    this.bookRow04.preload();
+    this.bookRow05.preload();
+    this.bookRow06.preload();
+    this.bookRow07.preload();
+    this.bookRow08.preload();
+    this.bookRow09.preload();
+    this.bookRow10.preload();
+    this.bookRow11.preload();
+    this.bookRow12.preload();
+    this.bookRow13.preload();
+    this.bookRow14.preload();
+    this.bookRow15.preload();
     this.booksTexture.preload();
     this.texture.preload();
   }
@@ -151,93 +165,20 @@ class Library extends State {
     this.floor.display();
     pop();
 
-    // //Displaying bookcases
-    // push();
-    // translate(0, height / 2, -1500);
-    // rotateX(0);
-    // rotateY(0);
-    // rotateZ(180);
-    // scale(7, 7, 7);
     //
-    // texture(this.wood);
-    //
-    // model(this.bookcase);
-    // pop();
-    // push();
-    // translate(width, height / 2, -1500);
-    // rotateX(0);
-    // rotateY(0);
-    // rotateZ(180);
-    // scale(7, 7, 7);
-    //
-    // texture(this.wood);
-    //
-    // model(this.bookcase);
-    // pop();
-    // push();
-    // translate(-width, height / 2, -1500);
-    // rotateX(0);
-    // rotateY(0);
-    // rotateZ(180);
-    // scale(7, 7, 7);
-    //
-    // texture(this.wood);
-    //
-    // model(this.bookcase);
-    // pop();
-    //
-    // //Displaying shelves
-    // push();
-    // translate(-1.5 * width, height, -1000);
-    // rotateX(0);
-    // rotateY(90);
-    // rotateZ(180);
-    // scale(7, 10, 7);
-    //
-    // texture(this.wood);
-    //
-    // model(this.shelf);
-    // pop();
-    // push();
-    // translate(1.5 * width, height, -1000);
-    // rotateX(0);
-    // rotateY(-90);
-    // rotateZ(180);
-    // scale(7, 10, 7);
-    //
-    // texture(this.wood);
-    //
-    // model(this.shelf);
-    // pop();
+    //Displaying shelves
+
     //
     // //Displaying book rows
-    // push();
-    // translate(1.5 * width, height / 1.25, -1000);
-    // rotateX(0);
-    // rotateY(-90);
-    // rotateZ(180);
-    // scale(7, 7, 7);
-    //
-    // texture(this.leather);
-    //
-    // model(this.books);
-    // pop();
-    // push();
-    // translate(-1.5 * width, height / 1.25, -1000);
-    // rotateX(0);
-    // rotateY(90);
-    // rotateZ(180);
-    // scale(7, 7, 7);
-    //
-    // texture(this.leather);
-    //
-    // model(this.books);
-    // pop();
-    for (let i = 0; i < this.books.length; i++) {
-      let booksObject = this.bookRows[i];
 
+    push();
+    for (let i = 0; i < this.bookRows.length; i++) {
+      let booksObject = this.bookRows[i];
+      console.log(booksObject);
       booksObject.display();
+      console.log(booksObject);
     }
+    pop();
     // push();
     // translate(0, 20, 150);
     //

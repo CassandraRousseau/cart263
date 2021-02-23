@@ -1,9 +1,10 @@
 class BookRow01 extends Books {
-  constructor(booksTexture) {
-    super(booksTexture);
-    this.translateX = 0;
-    this.translateY = 0;
+  constructor(bookRow, booksTexture) {
+    super(bookRow, booksTexture);
+    this.translateX = width / 2;
+    this.translateY = height / 2;
     this.booksTexture = booksTexture;
+    this.bookRow = bookRow;
   }
   preload() {
     super.preload();
@@ -13,10 +14,8 @@ class BookRow01 extends Books {
     push();
     translate(this.translateX, this.translateY, this.translateZ);
     rotateY(this.rotateY);
-    scale(this.scale, this.scaleY, this.scaleZ);
-
+    scale(this.scaleX, this.scaleY, this.scaleZ);
     texture(this.booksTexture);
-    scale(1000, 1000, 1000);
     model(this.bookRow);
     pop();
   }
