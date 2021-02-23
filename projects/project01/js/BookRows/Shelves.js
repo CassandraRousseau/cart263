@@ -40,3 +40,5 @@ texture(this.wood);
 
 model(this.shelf);
 pop();
+this.wood = wood;
+this.shelf = shelf;

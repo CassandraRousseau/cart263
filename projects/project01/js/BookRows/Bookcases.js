@@ -18,3 +18,38 @@ class Books {
   }
   display() {}
 }
+//Displaying bookcases
+push();
+translate(0, height / 2, -1500);
+rotateX(0);
+rotateY(0);
+rotateZ(180);
+scale(7, 7, 7);
+
+texture(this.wood);
+
+model(this.bookcase);
+pop();
+
+push();
+translate(width, height / 2, -1500);
+rotateX(0);
+rotateY(0);
+rotateZ(180);
+scale(7, 7, 7);
+
+texture(this.wood);
+
+model(this.bookcase);
+pop();
+push();
+translate(-width, height / 2, -1500);
+rotateX(0);
+rotateY(0);
+rotateZ(180);
+scale(7, 7, 7);
+
+texture(this.wood);
+
+model(this.bookcase);
+pop();

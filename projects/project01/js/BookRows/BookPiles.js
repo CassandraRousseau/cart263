@@ -18,3 +18,27 @@ class Books {
   }
   display() {}
 }
+push();
+translate(1.5 * width, height / 1.25, -1000);
+rotateX(0);
+rotateY(-90);
+rotateZ(180);
+scale(7, 7, 7);
+
+texture(this.leather);
+
+model(this.books);
+pop();
+push();
+translate(-1.5 * width, height / 1.25, -1000);
+rotateX(0);
+rotateY(90);
+rotateZ(180);
+scale(7, 7, 7);
+
+texture(this.leather);
+
+model(this.books);
+pop();
+this.books = books;
+this.leather = leather;
