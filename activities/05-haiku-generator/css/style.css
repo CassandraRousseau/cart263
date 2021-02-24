@@ -1,4 +1,15 @@
+#haiku {
+  font-family: fantasy;
+  font-size: 4rem;
+  font-weight: bold;
+  width: 10vw;
+  margin: auto;
+  color: white;
+}
+
 body {
+  background-color: rgb(100, 100, 220);
   padding: 0;
-  margin: 0;
+  width: 10vw;
+  margin: 15;
 }
