@@ -1,8 +1,6 @@
 class BookRow12 extends Books {
   constructor() {
     super();
-    this.translateX = -width / 10;
-    this.translateY = -165;
   }
   preload() {
     super.preload();

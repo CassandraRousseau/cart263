@@ -75,48 +75,42 @@ class Auditorium extends State {
     super.draw();
     background(0);
     lights();
-    push();
 
     //Displaying the floor
-    push();
+
     this.floor.display();
-    pop();
 
     //Displaying the curtains
-    push();
+
     for (let i = 0; i < this.curtains.length; i++) {
       let curtainsObject = this.curtains[i];
 
       curtainsObject.display();
     }
-    pop();
 
     //Displaying the screen
-    push();
+
     this.screen.display();
-    pop();
 
     //Displaying the video
-    push();
+
     this.video.display();
-    pop();
 
     //Displaying the stage
-    push();
+
     this.stage.display();
-    pop();
 
     //Displaying the seats
-    push();
+
     for (let i = 0; i < this.seats.length; i++) {
       let seatsObject = this.seats[i];
 
       seatsObject.display();
     }
-    pop();
+
+    push();
     textSize(50);
     text(this.subheader, -width / 2, height / 25);
-    pop();
     pop();
   }
   //Video starts when mouse pressed

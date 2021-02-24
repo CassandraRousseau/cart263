@@ -197,3 +197,22 @@ class Library extends State {
 //  bookRow,
 //  booksTexture
 // );
+// let bookData = [
+//   {
+//     title: "War and Peace",
+//     x: 100,
+//     y: 100
+//   },
+//   {
+//     title: "Moby Dick",
+//     x: 100,
+//     y: 200
+//   }
+// ];
+// let books = [];
+//
+// for (let i = 0; i < bookData.length; i++) {
+//   let data = bookData[i];
+//   let book = new Book(data.title, data.x, data.y);
+//   books.push(book);
+// }

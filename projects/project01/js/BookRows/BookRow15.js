@@ -1,8 +1,7 @@
 class BookRow15 extends Books {
   constructor(booksTexture) {
     super(booksTexture);
-    this.translateX = -width / 6;
-    this.translateY = -930;
+
     this.booksTexture = booksTexture;
   }
   preload() {

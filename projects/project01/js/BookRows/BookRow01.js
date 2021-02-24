@@ -1,8 +1,8 @@
 class BookRow01 extends Books {
   constructor(bookRow, booksTexture) {
     super(bookRow, booksTexture);
-    this.translateX = width / 2;
-    this.translateY = height / 2;
+    this.translateX =;
+    this.translateY = ;
     this.booksTexture = booksTexture;
     this.bookRow = bookRow;
   }

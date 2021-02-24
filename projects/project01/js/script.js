@@ -334,18 +334,7 @@ function setup() {
     annyang.start();
   }
   textStyle(BOLD);
-  title = new Library(
-    floor,
-    wood,
-    shelf,
-    bookcase,
-    books,
-    leather,
-    bookRow,
-    booksTexture,
-    libraryBackground,
-    carpet
-  );
+  title = new Title(grassBlue, grassPurple, grassPink, soulBackground);
   // new Hall(
   //   floor,
   //   windows,
@@ -354,9 +343,19 @@ function setup() {
   //   hotAirBalloon,
   //   balloonTexture
   // );
-
+  //  new Library(
+  //   floor,
+  //   wood,
+  //   shelf,
+  //   bookcase,
+  //   books,
+  //   leather,
+  //   bookRow,
+  //   booksTexture,
+  //   libraryBackground,
+  //   carpet
+  // );
   // new Auditorium(video, curtains);
-  // new Title(grassBlue, grassPurple, grassPink, soulBackground);
 
   currentState = title;
   console.log(currentState);
@@ -404,8 +403,8 @@ function cameraCursor() {
     index = hand.annotations.indexFinger[3];
     indexX = index[0];
     indexY = index[1];
-    indexX = map(mouseX, 0, 1000, -50, 50);
-    indexY = map(mouseY, 0, 1000, -50, 50);
+    indexX = map(indexX, 0, 1000, -50, 50);
+    indexY = map(indexY, 0, 1000, -50, 50);
     // Highlight it on the canvas
     camera(0, 0, 800, indexX, indexY, 0, 0, 10, 0);
   }
