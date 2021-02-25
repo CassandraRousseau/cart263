@@ -246,7 +246,7 @@ function preload() {
 
   //Preloading images
   bakeryShop = loadImage(`assets/images/BakeryShop.jpg`);
-  windows = loadImage(`assets/images/windows.jpg`);
+  windows = loadImage(`assets/images/windows.png`);
   grassPurple = loadImage(`assets/images/grassPurple.png`);
   grassPink = loadImage(`assets/images/grassPink.png`);
   grassBlue = loadImage(`assets/images/grassBlue.png`);
@@ -269,7 +269,7 @@ function preload() {
   balloonTexture = loadImage("assets/images/hot_air_balloon_tissue.jpg");
   houseTexture = loadImage("assets/images/house_texture.jpg");
   soulBackground = loadImage("assets/images/soulBackground.png");
-  studioWall = loadImage("assets/images/studioWall.jpg");
+  studioWall = loadImage("assets/images/studioWall.png");
   ovalOffice = loadImage("assets/images/ovalOffice.jpg");
   libraryBackground = loadImage("assets/images/libraryBackground.jpg");
   basketball = loadImage("assets/images/basketball.jpg");
@@ -417,8 +417,8 @@ function cameraCursor() {
     index = hand.annotations.indexFinger[3];
     indexX = index[0];
     indexY = index[1];
-    indexX = map(indexX, 0, 1000, -50, 50);
-    indexY = map(indexY, 0, 1000, -50, 50);
+    indexX = map(indexX, 0, cursor.elt.videoWidth, -500, 500);
+    indexY = map(indexY, 0, cursor.elt.videoHeight, -500, 500);
     // Highlight it on the canvas
     camera(0, 0, 800, indexX, indexY, 0, 0, 10, 0);
   }
