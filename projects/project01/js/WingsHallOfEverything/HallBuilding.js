@@ -1,12 +1,12 @@
 class HallBuilding {
-  constructor(translateWidth, translateHeight, translateDepth, width, height) {
+  constructor(x, y, z, w) {
     this.gray = 100;
     this.alpha = 100;
-    this.translateX = translateWidth;
-    this.translateY = translateHeight;
-    this.translateZ = translateDepth;
-    this.width = width;
-    this.height = 600;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.w = w;
+    this.h = 600;
     this.fill = {
       r: 245,
       g: 255,
@@ -17,9 +17,46 @@ class HallBuilding {
     push();
     // specularMaterial(this.gray, this.alpha);
     // Our central cube is white
-    translate(this.translateX, this.translateY, this.translateZ);
+    translate(this.x, this.y, this.z);
     fill(this.fill.r, this.fill.g, this.fill.b);
-    box(this.width, this.height);
+    box(this.w, this.h);
     pop();
   }
 }
+// -------
+//
+// let booksData;
+//
+// function preload() {
+//   booksData = loadJSON(`boooks.json`);
+// }
+//
+// class Library {
+//   constructor(booksData) {
+//     this.books = [];
+//     for (let i = 0; i < booksData.books.length; i++) {
+//       let data = booksData.books[i];
+//       let book = new Book(data.x, data.y);
+//     }
+//   }
+// }
+//
+// class Book {
+//   constructor(x, y) {
+//     this.x = x;
+//     this.y = y;
+//     this.model = bookRow;
+//     this.text = booksTexture;
+//     this.z = 0;
+//     this.scale = 500;
+//   }
+//
+//   display() {
+//     push();
+//     late(this.x, this.y, this.z);
+//     scale(this.scale);
+//     text(this.texture);
+//     model(this.model);
+//     pop();
+//   }
+// }

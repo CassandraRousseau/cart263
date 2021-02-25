@@ -48,6 +48,18 @@ let booksStacksData;
 //Creating JSON variable for buildings in hall
 let buildingData;
 
+//Creating JSON variable for counters in bakery
+let countersData;
+
+//Creating JSON variable for curtains in auditorium
+let curtainsData;
+
+//Creating JSON variable for wings of hall of everything in hall of everything
+let wingsData;
+
+//Creating JSON variable for seats in auditorium
+let seatsData;
+
 //Creating floor texture variable
 let floor;
 
@@ -241,6 +253,11 @@ function preload() {
   booksData = loadJSON(`assets/data/books.json`);
   buildingData = loadJSON(`assets/data/buildings.json`);
   booksStacksData = loadJSON(`assets/data/bookStacks.json`);
+  countersData = loadJSON(`assets/data/counters.json`);
+  curtainsData = loadJSON(`assets/data/curtains.json`);
+  wingsData = loadJSON(`assets/data/wingsBuilding.json`);
+  seatsData = loadJSON(`assets/data/seatsAuditorium.json`);
+
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
 
@@ -504,7 +521,8 @@ function places(room) {
       grassBlue,
       soulBackground,
       instructions,
-      jerry
+      jerry,
+      wingsData
     );
   } else if (currentAnswer === "bakery") {
     currentState = new Bakery(
@@ -521,7 +539,8 @@ function places(room) {
       doughnut,
       doughnutTexture,
       bakeryShop,
-      wood
+      wood,
+      countersData
     );
   }
 }

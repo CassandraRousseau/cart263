@@ -14,7 +14,8 @@ class Bakery extends State {
     doughnut,
     doughnutTexture,
     bakeryShop,
-    wood
+    wood,
+    countersData
   ) {
     super(
       chocolateCake,
@@ -30,7 +31,8 @@ class Bakery extends State {
       doughnut,
       doughnutTexture,
       bakeryShop,
-      wood
+      wood,
+      countersData
     );
     this.background = new BakeryBackground(bakeryShop);
     this.floor = new FloorBakery(wood);
@@ -50,7 +52,7 @@ class Bakery extends State {
     //Creating the right side rock
     for (let i = 0; i < countersData.counters.length; i++) {
       let data = countersData.counters[i];
-      this.counter = new Counters(data.x, data.y);
+      this.counter = new Counters(data.x);
     }
   }
 
@@ -90,8 +92,8 @@ class Bakery extends State {
 
     //Creating counters
     push();
-    for (let i = 0; i < this.counters.length; i++) {
-      let countersObject = this.counters[i];
+    for (let i = 0; i < countersData.counters.length; i++) {
+      let countersObject = countersData.counters[i];
 
       countersObject.display();
     }

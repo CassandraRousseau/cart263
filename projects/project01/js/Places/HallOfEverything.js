@@ -1,41 +1,16 @@
 class HallOfEverything extends State {
   //Setting the parameters
-  constructor(grassBlue, soulBackground, instructions, jerry) {
-    super(grassBlue, soulBackground, instructions, jerry);
+  constructor(grassBlue, soulBackground, instructions, jerry, wingsData) {
+    super(grassBlue, soulBackground, instructions, jerry, wingsData);
     this.texture = soulBackground;
     this.instructions = instructions;
     this.jerry = jerry;
     // this.subheader = `Press your Mouse to Start`;
     this.ground = new GroundHallOfEverything(grassBlue);
     this.wings = [];
-    for (let i = 0; i < numBuildings; i++) {
-      this.mainHallBuilding = new MainHallBuilding();
-
-      this.wings.push(this.mainHallBuilding);
-    }
-
-    //Creating the left side thorn
-    for (let i = 0; i < numBuildings; i++) {
-      this.LeftWingHallBuilding = new LeftWingHallBuilding();
-
-      this.wings.push(this.LeftWingHallBuilding);
-    }
-    for (let i = 0; i < numBuildings; i++) {
-      this.rightWingHallBuilding = new RightWingHallBuilding();
-
-      this.wings.push(this.rightWingHallBuilding);
-    }
-
-    //Creating the left side thorn
-    for (let i = 0; i < numBuildings; i++) {
-      this.centerRightWingHallBuilding = new CenterRightWingHallBuilding();
-
-      this.wings.push(this.centerRightWingHallBuilding);
-    }
-    for (let i = 0; i < numBuildings; i++) {
-      this.centerLeftWingHallBuilding = new CenterLeftWingHallBuilding();
-
-      this.wings.push(this.centerLeftWingHallBuilding);
+    for (let i = 0; i < wingsData.wings.length; i++) {
+      let data = wingsData.wings[i];
+      this.wing = new HallBuilding(data.x, data.y, data.z, data.w);
     }
   }
   preload() {
@@ -58,8 +33,8 @@ class HallOfEverything extends State {
 
     //Displaying the building's wings
     push();
-    for (let i = 0; i < this.wings.length; i++) {
-      let wingsObject = this.wings[i];
+    for (let i = 0; i < wingsData.wings.length; i++) {
+      let wingsObject = wingsData.wings[i];
       directionalLight(220, width / 2, 90, -10000);
       wingsObject.display();
     }

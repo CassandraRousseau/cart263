@@ -70,7 +70,7 @@ class Title extends State {
     super.mousePressed();
     console.log("auditorium");
     if (currentState.name === `title`) {
-      currentState = new Auditorium(video, curtains);
+      currentState = new Auditorium(video, curtainsData, curtains, seatsData);
 
       console.log(currentState);
     }
