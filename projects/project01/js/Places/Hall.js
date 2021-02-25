@@ -6,7 +6,8 @@ class Hall extends State {
     house,
     houseTexture,
     hotAirBalloon,
-    balloonTexture
+    balloonTexture,
+    buildingData
   ) {
     super(floor, windows, house, houseTexture, hotAirBalloon, balloonTexture);
     this.floor = new FloorHall(floor);
@@ -15,47 +16,24 @@ class Hall extends State {
     this.hotAirBalloon = hotAirBalloon;
     this.balloonTexture = balloonTexture;
     this.buildings = [];
-    //Creating the right side rock
-    for (let i = 0; i < numBuildings; i++) {
-      this.building01 = new Building01(windows);
-
-      this.buildings.push(this.building01);
-    }
-    //Creating the right side rock
-    for (let i = 0; i < numBuildings; i++) {
-      this.building02 = new Building02(windows);
-
-      this.buildings.push(this.building02);
-    }
-    //Creating the right side rock
-    for (let i = 0; i < numBuildings; i++) {
-      this.building03 = new Building03(windows);
-
-      this.buildings.push(this.building03);
-    }
-    //Creating the right side rock
-    for (let i = 0; i < numBuildings; i++) {
-      this.building04 = new Building04(windows);
-
-      this.buildings.push(this.building04);
-    }
-    //Creating the right side rock
-    for (let i = 0; i < numBuildings; i++) {
-      this.building05 = new Building05(windows);
-
-      this.buildings.push(this.building05);
+    for (let i = 0; i < buildingData.buildings.length; i++) {
+      let data = buildingData.buildings[i];
+      this.building = new Buildings(
+        buildingData.x,
+        buildingData.y,
+        buildingData.z,
+        buildingData.w,
+        buildingData.h,
+        buildingData.d,
+        windows
+      );
     }
   }
-
   //Preloading images and obj files
   preload() {
     super.preload();
     this.floor.preload();
-    this.building01.preload();
-    this.building02.preload();
-    this.building03.preload();
-    this.building04.preload();
-    this.building05.preload();
+    this.windows.preload();
     this.house.preload();
     this.houseTexture.preload();
     this.hotAirBalloon.preload();
@@ -74,8 +52,9 @@ class Hall extends State {
 
     //Displaying the buildings
     push();
-    for (let i = 0; i < this.buildings.length; i++) {
-      let buildingsObject = this.buildings[i];
+
+    for (let i = 0; i < buildingData.buildings.length; i++) {
+      let buildingsObject = buildingData.buildings[i];
 
       buildingsObject.display();
     }

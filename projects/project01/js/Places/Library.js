@@ -11,7 +11,8 @@ class Library extends State {
     booksTexture,
     libraryBackground,
     carpet,
-    booksData
+    booksData,
+    booksStacksData
   ) {
     super(
       floor,
@@ -24,7 +25,8 @@ class Library extends State {
       booksTexture,
       libraryBackground,
       carpet,
-      booksData
+      booksData,
+      booksStacksData
     );
     this.floor = new FloorLibrary(carpet);
 
@@ -32,11 +34,20 @@ class Library extends State {
 
     this.texture = libraryBackground;
     this.bookRows = [];
-
-    for (let i = 0; i < booksData.books.length; i++) {
-      let data = booksData.books[i];
+    this.bookStacks = [];
+    for (let i = 0; i < booksData.bookRows.length; i++) {
+      let data = booksData.bookRows[i];
       this.book = new Books(data.x, data.y, bookRow, booksTexture);
-      booksData.books.push(this.book);
+    }
+
+    for (let i = 0; i < booksStacksData.bookStacks.length; i++) {
+      let dataStack = booksStacksData.booksStacks[i];
+      this.bookStack = new BookStacks(
+        dataStack.x,
+        dataStack.rotateY,
+        books,
+        leather
+      );
     }
   }
 
@@ -78,9 +89,13 @@ class Library extends State {
     // //Displaying book rows
 
     push();
-    for (let i = 0; i < booksData.books.length; i++) {
-      this.book = booksData.books[i];
-      this.book.display();
+    for (let i = 0; i < booksData.bookRows.length; i++) {
+      let bookObject = booksData.bookRows[i];
+      bookObject.display();
+    }
+    for (let i = 0; i < booksData.bookStacks.length; i++) {
+      let bookStackObject = booksData.bookStacks[i];
+      bookStackObject.display();
     }
 
     pop();

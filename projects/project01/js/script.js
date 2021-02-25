@@ -42,6 +42,12 @@ let currentAnswer = "";
 //Creating JSON variable for row of books in library
 let booksData;
 
+//Creating JSON variable for stacks of books in library
+let booksStacksData;
+
+//Creating JSON variable for buildings in hall
+let buildingData;
+
 //Creating floor texture variable
 let floor;
 
@@ -233,7 +239,8 @@ function preload() {
   careers = loadJSON(`assets/data/occupations.json`);
   room = loadJSON(`assets/data/rooms.json`);
   booksData = loadJSON(`assets/data/books.json`);
-
+  buildingData = loadJSON(`assets/data/buildings.json`);
+  booksStacksData = loadJSON(`assets/data/bookStacks.json`);
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
 
@@ -349,7 +356,8 @@ function setup() {
     booksTexture,
     libraryBackground,
     carpet,
-    booksData
+    booksData,
+    booksStacksData
   );
   // new Title(grassBlue, grassPurple, grassPink, soulBackground);
   // new Hall(
@@ -440,7 +448,9 @@ function places(room) {
       bookRow,
       booksTexture,
       libraryBackground,
-      carpet
+      carpet,
+      booksData,
+      booksStacksData
     );
 
     //if the answer is wrong
@@ -486,7 +496,8 @@ function places(room) {
       house,
       houseTexture,
       hotAirBalloon,
-      balloonTexture
+      balloonTexture,
+      buildingData
     );
   } else if (currentAnswer === "hall of everything") {
     currentState = new HallOfEverything(

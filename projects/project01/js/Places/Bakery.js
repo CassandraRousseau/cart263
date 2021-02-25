@@ -48,16 +48,9 @@ class Bakery extends State {
     this.texturePizza = pepperoni;
     this.textureDoughnut = doughnutTexture;
     //Creating the right side rock
-    for (let i = 0; i < numCounters; i++) {
-      this.counterRight = new CounterRight();
-
-      this.counters.push(this.counterRight);
-    }
-    //Creating the right side rock
-    for (let i = 0; i < numCounters; i++) {
-      this.counterLeft = new CounterLeft();
-
-      this.counters.push(this.counterLeft);
+    for (let i = 0; i < countersData.counters.length; i++) {
+      let data = countersData.counters[i];
+      this.counter = new Counters(data.x, data.y);
     }
   }
 

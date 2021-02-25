@@ -1,20 +1,12 @@
 class Buildings {
-  constructor(
-    windows,
-    translateWidth,
-    translateHeight,
-    translateDepth,
-    width,
-    height,
-    depth
-  ) {
-    this.translateX = translateWidth;
-    this.translateY = translateHeight;
-    this.translateZ = translateDepth;
+  constructor(x, y, z, w, h, d, windows) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+    this.w = w;
+    this.h = h;
+    this.d = d;
     this.texture = windows;
-    this.width = width;
-    this.height = height;
-    this.depth = depth;
   }
   preload() {
     this.texture.preload();
@@ -23,10 +15,10 @@ class Buildings {
     push();
 
     // Our central cube is white
-    translate(this.translateX, this.translateY, this.translateZ);
+    translate(this.x, this.y, this.z);
 
     texture(this.texture);
-    box(this.width, this.height, this.depth);
+    box(this.w, this.h, this.d);
     pop();
   }
 }
