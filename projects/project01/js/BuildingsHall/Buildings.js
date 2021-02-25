@@ -19,5 +19,14 @@ class Buildings {
   preload() {
     this.texture.preload();
   }
-  display() {}
+  display() {
+    push();
+
+    // Our central cube is white
+    translate(this.translateX, this.translateY, this.translateZ);
+
+    texture(this.texture);
+    box(this.width, this.height, this.depth);
+    pop();
+  }
 }

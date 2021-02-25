@@ -10,5 +10,14 @@ class Curtains {
   preload() {
     this.texture.preload();
   }
-  display() {}
+  display() {
+    push();
+
+    // Our central cube is white
+    translate(this.translateX, this.translateY, this.translateZ);
+
+    texture(this.texture);
+    plane(this.width, this.height);
+    pop();
+  }
 }

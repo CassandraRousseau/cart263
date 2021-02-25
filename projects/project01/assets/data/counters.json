@@ -1,0 +1,11 @@
+{
+  "description": "Positions of counters",
+  "books": [
+    {
+      "x": 0.4
+    },
+    {
+      "x": -0.4
+    }
+  ]
+}

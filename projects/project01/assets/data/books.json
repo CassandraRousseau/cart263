@@ -1,75 +1,26 @@
-{   "description": "This is the list of porposed careers.",
-"Book_Rows":[
-  "bookRow" : bookRow,
-  "booksTexture": booksTexture,
-  "translateZ" : 0,
-  "rotateY":90,
-  "scaleX" : 500,
-  "scaleY" : 500,
-  "scaleZ" : 500
-  {
-    "translateX": width / 2,
-    "translateY":height / 2
-
-
-  }
-  {    "translateX": width,
-      "translateY":height / 10
-
-  }
-  {
-  "translateX" : -width,
-  "translateY" : height / 10,
-  }
 {
-  "translateX" : -1.2 * width,
-"translateY" : -165
-}
-{
-  "translateX" : -1.1 * width,
-"translateY" : -400
-}
-{
-"translateX" : -width,
-"translateY" : -650
-}
-{
-"translateX" : -1.2 * width,
-"translateY" : -930
-}
-{
-"translateX" : width / 1.15,
-"translateY" : -165
-}
-{
-"translateX" : width / 1.05,
-"translateY" : -400
-}
-{
-  "translateX" : width / 1.1,
-  "translateY" : -650
-
-}
-{
-"translateX" : width,
-  "translateY" : -925
-}
-{
-  "translateX" : -width / 10,
-  "translateY" : -165
-}
-{
-  "translateX" = width / 110,
-  "translateY" = -400
-}
-{
-"translateX" : -width / 5,
-"translateY" : -650
-}
-{
-  "translateX" : -width / 6,
-  "translateY" : -930
-}
-]
-
+  "description": "Positions of rows of books",
+  "books": [
+    {
+      "x": 0.5,
+      "y": 0.5
+    },
+    {
+      "x": 1.0,
+      "y": 0.1
+    },
+    { "x": 0.0, "y": 0.1 },
+    { "x": -1.2, "y": 0.0165 },
+    { "x": -1.1, "y": 0.4 },
+    { "x": 0.0, "y": 0.65 },
+    { "x": -1.2, "y": 0.1 },
+    { "x": 0.115, "y": 0.1 },
+    { "x": 0.105, "y": 0.4 },
+    { "x": 0.11, "y": 0.65 },
+    { "x": 1.0, "y": 0.925 },
+    { "x": -0.1, "y": 0.01 },
+    { "x": 0.11, "y": 0.04 },
+    { "x": -0.5, "y": 0.65 },
+    { "x": -0.6, "y": 0.93 }
+  ]
 }

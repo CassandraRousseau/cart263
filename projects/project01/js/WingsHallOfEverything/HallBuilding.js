@@ -6,12 +6,20 @@ class HallBuilding {
     this.translateY = translateHeight;
     this.translateZ = translateDepth;
     this.width = width;
-    this.height = height;
+    this.height = 600;
     this.fill = {
       r: 245,
       g: 255,
       b: 175,
     };
   }
-  display() {}
+  display() {
+    push();
+    // specularMaterial(this.gray, this.alpha);
+    // Our central cube is white
+    translate(this.translateX, this.translateY, this.translateZ);
+    fill(this.fill.r, this.fill.g, this.fill.b);
+    box(this.width, this.height);
+    pop();
+  }
 }

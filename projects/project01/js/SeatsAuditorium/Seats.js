@@ -1,8 +1,8 @@
 class Seats {
   constructor(width, depth) {
-    this.translateX = width;
-    this.translateY = 150;
-    this.translateZ = depth;
+    this.x = width;
+    this.y = 150;
+    this.z = depth;
     this.width = 300;
     this.height = 75;
     this.depth = 50;
@@ -13,5 +13,14 @@ class Seats {
     };
   }
 
-  display() {}
+  display() {
+    push();
+
+    // Our central cube is white
+    translate(this.x, this.y, this.z);
+    fill(this.fill.r, this.fill.g, this.fill.b);
+
+    box(this.width, this.height, this.depth);
+    pop();
+  }
 }

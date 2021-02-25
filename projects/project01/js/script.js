@@ -39,6 +39,9 @@ let chosenCareer = "";
 //Creating annyang! variable for user's answer
 let currentAnswer = "";
 
+//Creating JSON variable for row of books in library
+let booksData;
+
 //Creating floor texture variable
 let floor;
 
@@ -229,6 +232,7 @@ function preload() {
   //Preloading JSON files
   careers = loadJSON(`assets/data/occupations.json`);
   room = loadJSON(`assets/data/rooms.json`);
+  booksData = loadJSON(`assets/data/books.json`);
 
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
@@ -334,7 +338,20 @@ function setup() {
     annyang.start();
   }
   textStyle(BOLD);
-  title = new Title(grassBlue, grassPurple, grassPink, soulBackground);
+  title = new Library(
+    floor,
+    wood,
+    shelf,
+    bookcase,
+    books,
+    leather,
+    bookRow,
+    booksTexture,
+    libraryBackground,
+    carpet,
+    booksData
+  );
+  // new Title(grassBlue, grassPurple, grassPink, soulBackground);
   // new Hall(
   //   floor,
   //   windows,
@@ -343,18 +360,7 @@ function setup() {
   //   hotAirBalloon,
   //   balloonTexture
   // );
-  //  new Library(
-  //   floor,
-  //   wood,
-  //   shelf,
-  //   bookcase,
-  //   books,
-  //   leather,
-  //   bookRow,
-  //   booksTexture,
-  //   libraryBackground,
-  //   carpet
-  // );
+
   // new Auditorium(video, curtains);
 
   currentState = title;
