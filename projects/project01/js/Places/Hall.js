@@ -27,6 +27,7 @@ class Hall extends State {
         buildingData.d,
         windows
       );
+      this.buildings.push(this.building);
     }
   }
   //Preloading images and obj files
@@ -52,11 +53,8 @@ class Hall extends State {
 
     //Displaying the buildings
     push();
-
-    for (let i = 0; i < buildingData.buildings.length; i++) {
-      let buildingsObject = buildingData.buildings[i];
-
-      buildingsObject.display();
+    for (let i = 0; i < this.buildings.length; i++) {
+      this.buildings[i].display();
     }
     pop();
 

@@ -3,15 +3,13 @@ class BookStacks {
   constructor(x, rotateY, books, leather) {
     this.books = books;
     this.leather = leather;
-    this.x = x;
-    this.y = height / 1.25;
-    this.z = -1000;
+    this.x = x * width;
+    this.y = height / 1.62;
+    this.z = -700;
     this.rotateX = 0;
     this.rotateY = rotateY;
     this.rotateZ = 180;
-    this.scaleX = 7;
-    this.scaleY = 7;
-    this.scaleZ = 7;
+    this.scale = 7;
   }
   //Preloading obj model and textures of books
   preload() {
@@ -24,10 +22,8 @@ class BookStacks {
     rotateX(this.rotateX);
     rotateY(this.rotateY);
     rotateZ(this.rotateZ);
-    scale(this.scaleX, this.scaleY, this.scaleZ);
-
+    scale(this.scale);
     texture(this.leather);
-
     model(this.books);
     pop();
   }

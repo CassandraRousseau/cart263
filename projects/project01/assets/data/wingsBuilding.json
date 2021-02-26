@@ -1,6 +1,6 @@
 {
   "description": "Properties of Hall of Everything building",
-  "seats": [
+  "wings": [
     {
       "x": -0.7,
       "y": 0.075,

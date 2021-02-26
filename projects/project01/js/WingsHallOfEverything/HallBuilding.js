@@ -2,10 +2,10 @@ class HallBuilding {
   constructor(x, y, z, w) {
     this.gray = 100;
     this.alpha = 100;
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.w = w;
+    this.x = x * width;
+    this.y = y * height;
+    this.z = z * depth;
+    this.w = w * width;
     this.h = 600;
     this.fill = {
       r: 245,

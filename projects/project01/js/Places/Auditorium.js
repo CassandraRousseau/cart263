@@ -16,11 +16,13 @@ class Auditorium extends State {
     for (let i = 0; i < curtainsData.curtains.length; i++) {
       let data = curtainsData.curtains[i];
       this.curtain = new Curtains(data.x, curtains);
+      this.curtains.push(this.curtain);
     }
 
     for (let i = 0; i < seatsData.seats.length; i++) {
       let data = seatsData.seats[i];
       this.seat = new Seats(data.x, data.z);
+      this.seats.push(this.seat);
     }
   }
   //Preloading the video and images
@@ -42,11 +44,8 @@ class Auditorium extends State {
     this.floor.display();
 
     //Displaying the curtains
-
-    for (let i = 0; i < curtainsData.curtains.length; i++) {
-      let curtainsObject = curtainsData.curtains[i];
-
-      curtainsObject.display();
+    for (let i = 0; i < this.curtains.length; i++) {
+      this.curtains[i].display();
     }
 
     //Displaying the screen
@@ -62,13 +61,9 @@ class Auditorium extends State {
     this.stage.display();
 
     //Displaying the seats
-
-    for (let i = 0; i < seatsData.seats.length; i++) {
-      let seatsObject = seatsData.seats[i];
-
-      seatsObject.display();
+    for (let i = 0; i < this.seats.length; i++) {
+      this.seats[i].display();
     }
-
     push();
     textSize(50);
     text(this.subheader, -width / 2, height / 25);

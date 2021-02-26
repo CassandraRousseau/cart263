@@ -1,6 +1,6 @@
 class Curtains {
   constructor(x, curtains) {
-    this.x = x;
+    this.x = x * width;
     this.y = -200;
     this.z = -550;
     this.texture = curtains;

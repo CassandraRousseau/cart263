@@ -11,6 +11,7 @@ class HallOfEverything extends State {
     for (let i = 0; i < wingsData.wings.length; i++) {
       let data = wingsData.wings[i];
       this.wing = new HallBuilding(data.x, data.y, data.z, data.w);
+      this.wings.push(this.wing);
     }
   }
   preload() {
@@ -33,10 +34,8 @@ class HallOfEverything extends State {
 
     //Displaying the building's wings
     push();
-    for (let i = 0; i < wingsData.wings.length; i++) {
-      let wingsObject = wingsData.wings[i];
-      directionalLight(220, width / 2, 90, -10000);
-      wingsObject.display();
+    for (let i = 0; i < this.wings.length; i++) {
+      this.wings[i].display();
     }
 
     pop();

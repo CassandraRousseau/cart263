@@ -1,11 +1,11 @@
 class Buildings {
   constructor(x, y, z, w, h, d, windows) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.w = w;
-    this.h = h;
-    this.d = d;
+    this.x = x * width;
+    this.y = y * height;
+    this.z = z * depth;
+    this.w = w * width;
+    this.h = h * height;
+    this.d = d * depth;
     this.texture = windows;
   }
   preload() {

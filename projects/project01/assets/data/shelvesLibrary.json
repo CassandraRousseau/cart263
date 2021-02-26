@@ -1,6 +1,6 @@
 {
-  "description": "Positions of rows of books in bookcases",
-  "bookStacks": [
+  "description": "Positions of shelves in Library",
+  "shelves": [
     {
       "x": -1.5,
       "rotateY": 90

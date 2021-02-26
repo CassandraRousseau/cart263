@@ -60,6 +60,12 @@ let wingsData;
 //Creating JSON variable for seats in auditorium
 let seatsData;
 
+//Creating JSON variable for shelves in library
+let shelvesData;
+
+//Creating JSON variable for bookcases in library
+let bookcasesData;
+
 //Creating floor texture variable
 let floor;
 
@@ -245,6 +251,11 @@ let numSpotlights = 20;
 
 let brushes;
 
+// let curtains = [];
+// let seats = [];
+// let counters = [];
+// let buildings = [];
+// let wings = [];
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -257,6 +268,8 @@ function preload() {
   curtainsData = loadJSON(`assets/data/curtains.json`);
   wingsData = loadJSON(`assets/data/wingsBuilding.json`);
   seatsData = loadJSON(`assets/data/seatsAuditorium.json`);
+  shelvesData = loadJSON(`assets/data/shelvesLibrary.json`);
+  bookcasesData = loadJSON(`assets/data/bookcases.json`);
 
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
@@ -374,7 +387,9 @@ function setup() {
     libraryBackground,
     carpet,
     booksData,
-    booksStacksData
+    booksStacksData,
+    shelvesData,
+    bookcasesData
   );
   // new Title(grassBlue, grassPurple, grassPink, soulBackground);
   // new Hall(
@@ -467,7 +482,9 @@ function places(room) {
       libraryBackground,
       carpet,
       booksData,
-      booksStacksData
+      booksStacksData,
+      shelvesData,
+      bookcasesData
     );
 
     //if the answer is wrong

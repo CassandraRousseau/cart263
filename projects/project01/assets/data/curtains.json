@@ -1,6 +1,6 @@
 {
   "description": "Positions of curtains",
-  "books": [
+  "curtains": [
     {
       "x": 0.5
     },

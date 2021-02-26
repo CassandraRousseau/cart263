@@ -1,55 +1,33 @@
-class Books {
+class Bookcases {
   //Creating rows of books parameters
-  constructor(bookRow, booksTexture, translateX, translateY) {
-    this.bookRow = bookRow;
-    this.booksTexture = booksTexture;
-    this.translateX = translateX;
-    this.translateY = translateY;
-    this.translateZ = 0;
-    this.rotateY = 90;
-    this.scaleX = 500;
-    this.scaleY = 500;
-    this.scaleZ = 500;
+  constructor(x, bookcase, wood) {
+    this.wood = wood;
+    this.bookcase = bookcase;
+    this.x = x * width;
+    this.y = height / 2;
+    this.z = -1500;
+    this.rotateX = 0;
+    this.rotateY = 0;
+    this.rotateZ = 180;
+    this.scale = 7;
   }
   //Preloading obj model and textures of books
   preload() {
-    this.bookRow.preload();
-    this.booksTexture.preload();
+    this.bookcase.preload();
+    this.wood.preload();
   }
-  display() {}
+  display() {
+    //Displaying bookcases
+    push();
+    translate(this.x, this.y, this.z);
+    rotateX(this.rotateX);
+    rotateY(this.rotateY);
+    rotateZ(this.rotateZ);
+    scale(this.scale);
+
+    texture(this.wood);
+
+    model(this.bookcase);
+    pop();
+  }
 }
-//Displaying bookcases
-push();
-translate(0, height / 2, -1500);
-rotateX(0);
-rotateY(0);
-rotateZ(180);
-scale(7, 7, 7);
-
-texture(this.wood);
-
-model(this.bookcase);
-pop();
-
-push();
-translate(width, height / 2, -1500);
-rotateX(0);
-rotateY(0);
-rotateZ(180);
-scale(7, 7, 7);
-
-texture(this.wood);
-
-model(this.bookcase);
-pop();
-push();
-translate(-width, height / 2, -1500);
-rotateX(0);
-rotateY(0);
-rotateZ(180);
-scale(7, 7, 7);
-
-texture(this.wood);
-
-model(this.bookcase);
-pop();

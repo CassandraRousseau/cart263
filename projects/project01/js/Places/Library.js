@@ -12,7 +12,9 @@ class Library extends State {
     libraryBackground,
     carpet,
     booksData,
-    booksStacksData
+    booksStacksData,
+    shelvesData,
+    bookcasesData
   ) {
     super(
       floor,
@@ -26,28 +28,42 @@ class Library extends State {
       libraryBackground,
       carpet,
       booksData,
-      booksStacksData
+      booksStacksData,
+      shelvesData,
+      bookcasesData
     );
     this.floor = new FloorLibrary(carpet);
-
-    this.bookcase = bookcase;
-
+    this.wood = wood;
     this.texture = libraryBackground;
-    this.bookRows = [];
+    this.shelves = [];
+    this.bookSeries = [];
     this.bookStacks = [];
-    for (let i = 0; i < booksData.bookRows.length; i++) {
-      let data = booksData.bookRows[i];
+    this.bookcases = [];
+    for (let i = 0; i < shelvesData.shelves.length; i++) {
+      let dataShelves = shelvesData.shelves[i];
+      this.shelf = new Shelves(dataShelves.x, dataShelves.rotateY, wood, shelf);
+      this.shelves.push(this.shelf);
+    }
+    for (let i = 0; i < bookcasesData.bookcases.length; i++) {
+      let dataBookcases = bookcasesData.bookcases[i];
+      this.bookcase = new Bookcases(dataBookcases.x, bookcase, wood);
+      this.bookcases.push(this.bookcase);
+    }
+    for (let i = 0; i < booksData.bookSeries.length; i++) {
+      let data = booksData.bookSeries[i];
       this.book = new Books(data.x, data.y, bookRow, booksTexture);
+      this.bookSeries.push(this.book);
     }
 
     for (let i = 0; i < booksStacksData.bookStacks.length; i++) {
-      let dataStack = booksStacksData.booksStacks[i];
+      let dataStack = booksStacksData.bookStacks[i];
       this.bookStack = new BookStacks(
         dataStack.x,
         dataStack.rotateY,
         books,
         leather
       );
+      this.bookStacks.push(this.bookStack);
     }
   }
 
@@ -71,68 +87,37 @@ class Library extends State {
     background(65, 50, 50);
     angleMode(DEGREES);
 
-    // push();
-    //
-    // texture(this.texture);
-    // translate(0, -height / 4, -2500);
-    // plane(4 * width, 2 * height);
-    // pop();
-    //Dispaying the floor
+    push();
+
+    texture(this.texture);
+    translate(0, -height / 4, -2500);
+    plane(4 * width, 2 * height);
+    pop();
+    // Dispaying the floor
     push();
     this.floor.display();
     pop();
 
-    //
     //Displaying shelves
 
+    for (let i = 0; i < this.shelves.length; i++) {
+      this.shelves[i].display();
+    }
+    for (let i = 0; i < this.bookcases.length; i++) {
+      this.bookcases[i].display();
+    }
+    for (let i = 0; i < this.bookSeries.length; i++) {
+      this.bookSeries[i].display();
+    }
     //
-    // //Displaying book rows
-
+    for (let i = 0; i < this.bookStacks.length; i++) {
+      this.bookStacks[i].display();
+    }
     push();
-    for (let i = 0; i < booksData.bookRows.length; i++) {
-      let bookObject = booksData.bookRows[i];
-      bookObject.display();
-    }
-    for (let i = 0; i < booksData.bookStacks.length; i++) {
-      let bookStackObject = booksData.bookStacks[i];
-      bookStackObject.display();
-    }
+    translate(0, 100, 200);
 
+    texture(this.wood);
+    box(330, 110, 250);
     pop();
-    // push();
-    // translate(0, 20, 150);
-    //
-    // texture(this.wood);
-    // box(240, 70, 250);
-    // pop();
   }
 }
-// new Library(
-//  floor,
-//  wood,
-//  shelf,
-//  bookcase,
-//  books,
-//  leather,
-//  bookRow,
-//  booksTexture
-// );
-// let bookData = [
-//   {
-//     title: "War and Peace",
-//     x: 100,
-//     y: 100
-//   },
-//   {
-//     title: "Moby Dick",
-//     x: 100,
-//     y: 200
-//   }
-// ];
-// let books = [];
-//
-// for (let i = 0; i < bookData.length; i++) {
-//   let data = bookData[i];
-//   let book = new Book(data.title, data.x, data.y);
-//   books.push(book);
-// }

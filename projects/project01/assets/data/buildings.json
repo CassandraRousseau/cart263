@@ -1,6 +1,6 @@
 {
   "description": "Properties of Hall buildings",
-  "seats": [
+  "buildings": [
     {
       "x": -3.5,
       "y": 0.0,

@@ -1,6 +1,6 @@
 {
   "description": "Positions of counters",
-  "books": [
+  "counters": [
     {
       "x": 0.4
     },

@@ -1,6 +1,6 @@
 class Counters {
   constructor(x) {
-    this.x = x;
+    this.x = x * width;
     this.y = 150;
     this.z = 200;
 

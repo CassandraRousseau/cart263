@@ -3,9 +3,9 @@ class Books {
   constructor(x, y, bookRow, booksTexture) {
     this.bookRow = bookRow;
     this.booksTexture = booksTexture;
-    this.x = x;
-    this.y = y;
-    this.z = 0;
+    this.x = x * width;
+    this.y = y * height;
+    this.z = -1500;
     this.rotateY = 90;
     this.scale = 500;
   }

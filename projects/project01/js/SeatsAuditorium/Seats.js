@@ -1,6 +1,6 @@
 class Seats {
   constructor(x, z) {
-    this.x = x;
+    this.x = x * width;
     this.y = 150;
     this.z = z;
     this.width = 300;

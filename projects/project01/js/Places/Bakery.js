@@ -53,6 +53,7 @@ class Bakery extends State {
     for (let i = 0; i < countersData.counters.length; i++) {
       let data = countersData.counters[i];
       this.counter = new Counters(data.x);
+      this.counters.push(this.counter);
     }
   }
 
@@ -91,14 +92,9 @@ class Bakery extends State {
     this.floor.display();
 
     //Creating counters
-    push();
-    for (let i = 0; i < countersData.counters.length; i++) {
-      let countersObject = countersData.counters[i];
-
-      countersObject.display();
+    for (let i = 0; i < this.counters.length; i++) {
+      this.counters[i].display();
     }
-    pop();
-
     //Creating pie
     push();
     translate(-width / 10, height / 50, 350);
