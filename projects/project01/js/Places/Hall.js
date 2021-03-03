@@ -7,11 +7,22 @@ class Hall extends State {
     houseTexture,
     hotAirBalloon,
     balloonTexture,
-    buildingData
+    buildingData,
+    gradient
   ) {
-    super(floor, windows, house, houseTexture, hotAirBalloon, balloonTexture);
+    super(
+      floor,
+      windows,
+      house,
+      houseTexture,
+      hotAirBalloon,
+      balloonTexture,
+      buildingData,
+      gradient
+    );
     this.floor = new FloorHall(floor);
     this.house = house;
+    this.gradient = gradient;
     this.houseTexture = houseTexture;
     this.hotAirBalloon = hotAirBalloon;
     this.balloonTexture = balloonTexture;
@@ -19,12 +30,12 @@ class Hall extends State {
     for (let i = 0; i < buildingData.buildings.length; i++) {
       let data = buildingData.buildings[i];
       this.building = new Buildings(
-        buildingData.x,
-        buildingData.y,
-        buildingData.z,
-        buildingData.w,
-        buildingData.h,
-        buildingData.d,
+        data.x,
+        data.y,
+        data.z,
+        data.w,
+        data.h,
+        data.d,
         windows
       );
       this.buildings.push(this.building);
@@ -46,7 +57,33 @@ class Hall extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
+    push();
 
+    texture(this.gradient);
+    translate(2 * width, -height / 3, -2000);
+    rotateY(-90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.gradient);
+    translate(-2 * width, -height / 3, -2000);
+    rotateY(90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.gradient);
+    translate(-100, -height / 3.5, -2500);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.gradient);
+    translate(0, -height, -1000);
+    rotateX(90);
+    plane(4 * width, 2 * height);
+    pop();
     //Displaying the floor
     push();
     this.floor.display();
@@ -60,7 +97,7 @@ class Hall extends State {
 
     //Displaying the house
     push();
-    translate(width / 6, height / 12, 0);
+    translate(width / 8, height / 12, -100);
     rotateX(0);
     rotateY(-140);
     rotateZ(180);

@@ -20,8 +20,8 @@ class Auditorium extends State {
     }
 
     for (let i = 0; i < seatsData.seats.length; i++) {
-      let data = seatsData.seats[i];
-      this.seat = new Seats(data.x, data.z);
+      let seatData = seatsData.seats[i];
+      this.seat = new Seats(seatData.x, seatData.z);
       this.seats.push(this.seat);
     }
   }
@@ -39,7 +39,7 @@ class Auditorium extends State {
     background(0);
     lights();
 
-    //Displaying the floor
+    // Displaying the floor
 
     this.floor.display();
 

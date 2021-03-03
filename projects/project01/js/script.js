@@ -107,12 +107,6 @@ let booksTexture;
 //Creating canvas obj file for art studio
 let canvas;
 
-//Creating numbers of seats for arrays in auditorium
-let numSeats = 1;
-
-//Creating numbers of curtains for arrays in auditorium
-let numCurtains = 1;
-
 //Creating pizza obj file variable in bakery
 let pizza;
 
@@ -213,6 +207,9 @@ let ovalOffice;
 //Creating library background variable
 let libraryBackground;
 
+//Creating hall background variable
+let gradient;
+
 //Creating basketball texture
 let basketball;
 
@@ -231,18 +228,35 @@ let room;
 //Creating variable fpr the number of counters in Bakery
 let numCounters = 1;
 
-//Creating variable for number of buildings in Hall and Hall of Everything
-let numBuildings = 1;
-
 //Creating variable for Jerry image(character in Soul movie)
 let jerry;
 
-//Creating variable for numbers of book rows in library
-let numRows = 1;
+//Creating variable for ceiling image in Library
+let ceilingLibrary;
+
+//Creating variable for ceiling image in bakery
+let ceilingBakery;
 
 let career;
 let careers;
 
+//Creating variable for ceiling image in hall of everything
+let purpleGradient;
+
+//Creating variable for ceiling image in studio art
+let ceilingArt;
+
+//Creating variable for ceiling image in office
+let ceilingOffice;
+
+//Creating variable for carpet in office
+let blueCarpet;
+
+//Creating variable for fence in basketball court
+let fence;
+
+//Creating variable for sky in basketball court
+let sky;
 // let angle = 45;
 
 let spotlights = [];
@@ -307,6 +321,15 @@ function preload() {
   jerry = loadImage("assets/images/Jerry.png");
   crustStrudel = loadImage(`assets/images/strudel_crust.jpg`);
   leather = loadImage("assets/images/leather_books.jpg");
+  ceilingLibrary = loadImage("assets/images/ceiling_library.jpg");
+  ceilingBakery = loadImage("assets/images/ceiling_bakery.jpg");
+  gradient = loadImage("assets/images/gradient.jpg");
+  purpleGradient = loadImage("assets/images/purpleGradient.png");
+  ceilingArt = loadImage("assets/images/ceiling_art.jpg");
+  blueCarpet = loadImage("assets/images/blue_carpet.jpg");
+  ceilingOffice = loadImage("assets/images/ceiling_office.jpg");
+  fence = loadImage("assets/images/fence.png");
+  sky = loadImage("assets/images/sky.jpg");
 
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
@@ -375,33 +398,8 @@ function setup() {
     annyang.start();
   }
   textStyle(BOLD);
-  title = new Library(
-    floor,
-    wood,
-    shelf,
-    bookcase,
-    books,
-    leather,
-    bookRow,
-    booksTexture,
-    libraryBackground,
-    carpet,
-    booksData,
-    booksStacksData,
-    shelvesData,
-    bookcasesData
-  );
+  title = new BasketballCourt(floor, basketball, fence, sky);
   // new Title(grassBlue, grassPurple, grassPink, soulBackground);
-  // new Hall(
-  //   floor,
-  //   windows,
-  //   house,
-  //   houseTexture,
-  //   hotAirBalloon,
-  //   balloonTexture
-  // );
-
-  // new Auditorium(video, curtains);
 
   currentState = title;
   console.log(currentState);
@@ -484,7 +482,8 @@ function places(room) {
       booksData,
       booksStacksData,
       shelvesData,
-      bookcasesData
+      bookcasesData,
+      ceilingLibrary
     );
 
     //if the answer is wrong
@@ -500,7 +499,8 @@ function places(room) {
       pinkAbstractArt,
       whiteAbstractArt,
       brushes,
-      studioWall
+      studioWall,
+      ceilingArt
     );
 
     //if the answer is wrong
@@ -519,7 +519,9 @@ function places(room) {
       notebook,
       pen,
       pencilHolder,
-      ovalOffice
+      ovalOffice,
+      blueCarpet,
+      ceilingOffice
     );
 
     //if the answer is wrong
@@ -531,7 +533,8 @@ function places(room) {
       houseTexture,
       hotAirBalloon,
       balloonTexture,
-      buildingData
+      buildingData,
+      gradient
     );
   } else if (currentAnswer === "hall of everything") {
     currentState = new HallOfEverything(
@@ -539,7 +542,8 @@ function places(room) {
       soulBackground,
       instructions,
       jerry,
-      wingsData
+      wingsData,
+      purpleGradient
     );
   } else if (currentAnswer === "bakery") {
     currentState = new Bakery(
@@ -557,7 +561,8 @@ function places(room) {
       doughnutTexture,
       bakeryShop,
       wood,
-      countersData
+      countersData,
+      ceilingBakery
     );
   }
 }

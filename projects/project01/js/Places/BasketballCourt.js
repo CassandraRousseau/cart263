@@ -1,9 +1,10 @@
 class BasketballCourt extends State {
   //Setting the parameters
-  constructor(floor, basketball) {
-    super(floor, basketball);
+  constructor(floor, basketball, fence, sky) {
+    super(floor, basketball, fence, sky);
     this.floor = new FloorHall(floor);
-
+    this.fence = fence;
+    this.sky = sky;
     this.basketball = basketball;
   }
 
@@ -20,6 +21,34 @@ class BasketballCourt extends State {
     background(255);
     angleMode(DEGREES);
 
+    push();
+
+    texture(this.fence);
+    translate(1.5 * width, -height / 3, -1000);
+    rotateY(-90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.fence);
+    translate(-1.5 * width, -height / 3, -1000);
+    rotateY(90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.fence);
+    translate(0, -height / 3, -2500);
+    plane(4 * width, 2 * height);
+    pop();
+
+    push();
+
+    texture(this.sky);
+    translate(0, -height, -1000);
+    rotateX(90);
+    plane(4 * width, 2 * height);
+    pop();
     //Displaying the floor
     push();
     this.floor.display();
@@ -27,15 +56,10 @@ class BasketballCourt extends State {
 
     //Displaying the basketball rim
     push();
-    translate(0, -18, -1000);
-    // rotateX(-180.65);
-    // rotateY(0);
-    // rotateZ(0);
-    // scale(15, 15, 15);
-
+    translate(0, width / 8, -500);
     texture(this.basketball);
 
-    sphere(100);
+    sphere(50);
     pop();
   }
 }

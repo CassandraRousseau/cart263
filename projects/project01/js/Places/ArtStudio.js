@@ -7,7 +7,8 @@ class ArtStudio extends State {
     pinkAbstractArt,
     whiteAbstractArt,
     brushes,
-    studioWall
+    studioWall,
+    ceilingArt
   ) {
     super(
       tissue,
@@ -16,10 +17,12 @@ class ArtStudio extends State {
       pinkAbstractArt,
       whiteAbstractArt,
       brushes,
-      studioWall
+      studioWall,
+      ceilingArt
     );
     this.floor = new FloorHall(tissue);
     this.canvas = canvas;
+    this.ceiling = ceilingArt;
     this.blueAbstractArt = blueAbstractArt;
     this.pinkAbstractArt = pinkAbstractArt;
     this.whiteAbstractArt = whiteAbstractArt;
@@ -45,9 +48,29 @@ class ArtStudio extends State {
     background(0);
     angleMode(DEGREES);
     push();
+
+    texture(this.texture);
+    translate(2 * width, -100, -2000);
+    rotateY(-90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+    texture(this.texture);
+    translate(-2 * width, -100, -2000);
+    rotateY(90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
     // image(this.image, 0, 0, 1000, 1000);
     texture(this.texture);
-    translate(0, 0, -800);
+    translate(0, -100, -1000);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.ceiling);
+    translate(0, -height, -1000);
+    rotateX(90);
     plane(4 * width, 2 * height);
     pop();
     //Displaying the floor
@@ -79,7 +102,7 @@ class ArtStudio extends State {
 
     //Displaying the abstract white painting
     push();
-    translate(width, -height / 2, -1000);
+    translate(2 * width, -height / 2, -1000);
     rotateX(-360);
     rotateY(0);
     rotateZ(-270);

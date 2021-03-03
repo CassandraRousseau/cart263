@@ -1,10 +1,8 @@
 class HallBuilding {
   constructor(x, y, z, w) {
-    this.gray = 100;
-    this.alpha = 100;
     this.x = x * width;
     this.y = y * height;
-    this.z = z * depth;
+    this.z = z;
     this.w = w * width;
     this.h = 600;
     this.fill = {
@@ -14,8 +12,8 @@ class HallBuilding {
     };
   }
   display() {
+    directionalLight(200, 250, 100, 100, 200, -500);
     push();
-    // specularMaterial(this.gray, this.alpha);
     // Our central cube is white
     translate(this.x, this.y, this.z);
     fill(this.fill.r, this.fill.g, this.fill.b);

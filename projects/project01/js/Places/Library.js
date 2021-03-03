@@ -14,7 +14,8 @@ class Library extends State {
     booksData,
     booksStacksData,
     shelvesData,
-    bookcasesData
+    bookcasesData,
+    ceilingLibrary
   ) {
     super(
       floor,
@@ -30,11 +31,13 @@ class Library extends State {
       booksData,
       booksStacksData,
       shelvesData,
-      bookcasesData
+      bookcasesData,
+      ceilingLibrary
     );
     this.floor = new FloorLibrary(carpet);
     this.wood = wood;
     this.texture = libraryBackground;
+    this.ceiling = ceilingLibrary;
     this.shelves = [];
     this.bookSeries = [];
     this.bookStacks = [];
@@ -79,6 +82,7 @@ class Library extends State {
     this.bookRow.preload();
     this.booksTexture.preload();
     this.texture.preload();
+    this.ceiling.preload();
   }
 
   //Setting the environment
@@ -90,7 +94,28 @@ class Library extends State {
     push();
 
     texture(this.texture);
+    translate(2 * width, -height / 3, -2000);
+    rotateY(-90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.texture);
+    translate(-2 * width, -height / 3, -2000);
+    rotateY(90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.texture);
     translate(0, -height / 4, -2500);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.ceiling);
+    translate(0, -height, -1000);
+    rotateX(90);
     plane(4 * width, 2 * height);
     pop();
     // Dispaying the floor

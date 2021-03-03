@@ -15,7 +15,8 @@ class Bakery extends State {
     doughnutTexture,
     bakeryShop,
     wood,
-    countersData
+    countersData,
+    ceilingBakery
   ) {
     super(
       chocolateCake,
@@ -32,9 +33,10 @@ class Bakery extends State {
       doughnutTexture,
       bakeryShop,
       wood,
-      countersData
+      countersData,
+      ceilingBakery
     );
-    this.background = new BakeryBackground(bakeryShop);
+    this.background = bakeryShop;
     this.floor = new FloorBakery(wood);
     this.counters = [];
     this.texturePie = crust;
@@ -43,6 +45,7 @@ class Bakery extends State {
     this.chocolateCake = chocolateCake;
     this.pie = pie;
     this.strudel = appleStrudel;
+    this.ceiling = ceilingBakery;
     this.bun = bun;
     this.pizza = pizza;
     this.doughnut = doughnut;
@@ -52,7 +55,7 @@ class Bakery extends State {
     //Creating the right side rock
     for (let i = 0; i < countersData.counters.length; i++) {
       let data = countersData.counters[i];
-      this.counter = new Counters(data.x);
+      this.counter = new Counters(data.x, wood);
       this.counters.push(this.counter);
     }
   }
@@ -85,9 +88,33 @@ class Bakery extends State {
     noStroke();
     push();
 
-    //Creating background
-    this.background.display();
+    push();
 
+    texture(this.background);
+    translate(2 * width, -height / 3, -2000);
+    rotateY(-90);
+    plane(5 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.background);
+    translate(-2 * width, -height / 3, -2000);
+    rotateY(90);
+    plane(5 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.background);
+    translate(0, -height / 3, -2500);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.ceiling);
+    translate(0, -height, -1000);
+    rotateX(90);
+    plane(4 * width, 2 * height);
+    pop();
     //Creating floor
     this.floor.display();
 
@@ -97,7 +124,7 @@ class Bakery extends State {
     }
     //Creating pie
     push();
-    translate(-width / 10, height / 50, 350);
+    translate(-width / 7, height / 30, 510);
     rotateX(100);
     rotateY(360);
     rotateZ(-50);
@@ -108,7 +135,7 @@ class Bakery extends State {
 
     //Creating cake
     push();
-    translate(width / 20, height / 30, 450);
+    translate(width / 8, height / 30, 630);
     rotateX(175);
     rotateY(360);
     rotateZ(0);
@@ -119,7 +146,7 @@ class Bakery extends State {
 
     //Creating strudel
     push();
-    translate(width / 20, height / 50, 425);
+    translate(width / 10, height / 50, 650);
     texture(this.textureStrudel);
     scale(50, 50, 50);
     model(this.strudel);
@@ -127,14 +154,14 @@ class Bakery extends State {
 
     //Creating bun
     push();
-    translate(-width / 15, height / 50, 425);
+    translate(-width / 12, height / 49, 660);
     texture(this.textureBun);
     model(this.bun);
     pop();
 
     //Creating pizza
     push();
-    translate(width / 25, height / 100, 425);
+    translate(width / 9, height / 45, 620);
     rotateX(175);
     rotateY(360);
     rotateZ(0);
@@ -145,7 +172,7 @@ class Bakery extends State {
 
     //Creating doughnut
     push();
-    translate(-width / 15, height / 30, 435);
+    translate(-width / 7, height / 30, 600);
     rotateX(175);
     rotateY(360);
     rotateZ(0);
@@ -155,16 +182,3 @@ class Bakery extends State {
     pop();
   }
 }
-// new Bakery(
-//   chocolateCake,
-//   pie,
-//   crust,
-//   frosting,
-//   appleStrudel,
-//   crustStrudel,
-//   bun,
-//   cinnamonBun,
-//   pizza,
-//   pepperoni,
-//   doughnut,
-//   doughnutTexture

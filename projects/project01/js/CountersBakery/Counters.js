@@ -1,5 +1,5 @@
 class Counters {
-  constructor(x) {
+  constructor(x, wood) {
     this.x = x * width;
     this.y = 150;
     this.z = 200;
@@ -7,18 +7,14 @@ class Counters {
     this.width = 250;
     this.height = 100;
     this.depth = 400;
-    this.fill = {
-      r: 255,
-      g: 255,
-      b: 150,
-    };
+    this.texture = wood;
   }
   display() {
     push();
 
     // Our central cube is white
     translate(this.x, this.y, this.z);
-    fill(this.fill.r, this.fill.g, this.fill.b);
+    texture(this.texture);
     box(this.width, this.height, this.depth);
     pop();
   }

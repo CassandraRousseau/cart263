@@ -4,8 +4,8 @@ class FloorStudio {
     this.translateY = 250;
     this.translateZ = 0;
     this.texture = tissue;
-    this.width = width;
-    this.height = 100;
+    this.width = 2 * width;
+    this.height = 500;
     this.depth = 3000;
   }
   preload() {

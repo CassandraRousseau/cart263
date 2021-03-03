@@ -1,4 +1,4 @@
-class Buildings {
+class Fences {
   constructor(x, y, z, w, h, d, windows) {
     this.x = x * width;
     this.y = y * height;
@@ -6,7 +6,7 @@ class Buildings {
     this.w = w * width;
     this.h = h * height;
     this.d = d;
-    this.texture = windows;
+    this.texture = fence;
   }
   preload() {
     this.texture.preload();

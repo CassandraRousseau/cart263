@@ -4,9 +4,9 @@ class FloorAuditorium {
     this.translateY = 250;
     this.translateZ = 0;
     this.fill = 100;
-    this.width = width;
+    this.width = 2 * width;
     this.height = 100;
-    this.depth = 600;
+    this.depth = 1500;
   }
   display() {
     push();

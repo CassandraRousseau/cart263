@@ -4,7 +4,7 @@ class FloorHall {
     this.translateY = 250;
     this.translateZ = 0;
     this.texture = floor;
-    this.width = width;
+    this.width = 2 * width;
     this.height = 100;
     this.depth = 3000;
   }

@@ -1,10 +1,25 @@
 class HallOfEverything extends State {
   //Setting the parameters
-  constructor(grassBlue, soulBackground, instructions, jerry, wingsData) {
-    super(grassBlue, soulBackground, instructions, jerry, wingsData);
+  constructor(
+    grassBlue,
+    soulBackground,
+    instructions,
+    jerry,
+    wingsData,
+    purpleGradient
+  ) {
+    super(
+      grassBlue,
+      soulBackground,
+      instructions,
+      jerry,
+      wingsData,
+      purpleGradient
+    );
     this.texture = soulBackground;
     this.instructions = instructions;
     this.jerry = jerry;
+    this.gradient = purpleGradient;
     // this.subheader = `Press your Mouse to Start`;
     this.ground = new GroundHallOfEverything(grassBlue);
     this.wings = [];
@@ -25,11 +40,32 @@ class HallOfEverything extends State {
 
     //Displaying the ground
     push();
+
+    texture(this.texture);
+    translate(3 * width, -height / 1.4, -1000);
+    rotateY(-90);
+    plane(4 * width, 2.6 * height);
+    pop();
+    push();
+
+    texture(this.texture);
+    translate(-3 * width, -height / 1.4, -1000);
+    rotateY(90);
+    plane(4 * width, 2.6 * height);
+    pop();
     push();
     texture(this.texture);
-    translate(0, 0, -800);
+    translate(0, -height / 1.5, -800);
     plane(4 * width, 2 * height);
     pop();
+    push();
+
+    texture(this.gradient);
+    translate(0, -height, -1000);
+    rotateX(90);
+    plane(4 * width, 2 * height);
+    pop();
+
     this.ground.display();
 
     //Displaying the building's wings
@@ -40,14 +76,15 @@ class HallOfEverything extends State {
 
     pop();
     push();
+    translate(0, 0, 300);
     image(this.jerry, width / 12, -height / 7, 300, 300);
     pop();
     push();
     //Display the title
     textSize(30);
     textAlign(CENTER, CENTER);
+    translate(0, 0, 200);
     text(this.instructions, 0, -height / 3);
-    pop();
     pop();
   }
 }

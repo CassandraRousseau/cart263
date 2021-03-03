@@ -4,9 +4,9 @@ class GroundHallOfEverything {
     this.translateY = 250;
     this.translateZ = 0;
     this.texture = grassBlue;
-    this.x = width;
+    this.x = 3 * width;
     this.y = 175;
-    this.z = 300;
+    this.z = 2000;
   }
   preload() {
     this.texture.preload();
