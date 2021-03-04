@@ -1,0 +1,17 @@
+{
+  "description": "Positions of shelves in Photo Studio",
+  "whiteShelves": [
+    {
+      "x": 0.0,
+      "rotateY": 360
+    },
+    {
+      "x": -1.0,
+      "rotateY": -330
+    },
+    {
+      "x": 1.0,
+      "rotateY": 330
+    }
+  ]
+}

@@ -9,7 +9,12 @@ class HallOfYou extends State {
     doughnut6,
     doughnut7,
     doughnut8,
-    doughnutTexture
+    doughnutTexture,
+    doughnutTexture2,
+    doughnutTexture4,
+    doughnutTexture6,
+    doughnutTexture7,
+    comment
   ) {
     super(
       doughnut,
@@ -20,9 +25,14 @@ class HallOfYou extends State {
       doughnut6,
       doughnut7,
       doughnut8,
-      doughnutTexture
+      doughnutTexture,
+      doughnutTexture2,
+      doughnutTexture4,
+      doughnutTexture6,
+      doughnutTexture7,
+      comment
     );
-
+    this.comment = comment;
     this.doughnut = doughnut;
     this.doughnut2 = doughnut2;
     this.doughnut3 = doughnut3;
@@ -32,6 +42,10 @@ class HallOfYou extends State {
     this.doughnut7 = doughnut7;
     this.doughnut8 = doughnut8;
     this.doughnutTexture = doughnutTexture;
+    this.doughnutTexture2 = doughnutTexture2;
+    this.doughnutTexture4 = doughnutTexture4;
+    this.doughnutTexture6 = doughnutTexture6;
+    this.doughnutTexture7 = doughnutTexture7;
   }
 
   //Preloading images and obj files
@@ -47,103 +61,99 @@ class HallOfYou extends State {
     this.doughnut7.preload();
     this.doughnut8.preload();
     this.doughnutTexture.preload();
+    this.doughnutTexture2.preload();
+    this.doughnutTexture4.preload();
+    this.doughnutTexture6.preload();
+    this.doughnutTexture7.preload();
   }
 
   //Setting the environment
   draw() {
     super.draw();
-    background(255);
+    background(0);
     angleMode(DEGREES);
+    lights();
+    push();
 
+    // A red bar passing through the box
+    translate(0, height / 4, 0);
+
+    // texture(this.carpet);
+    fill(100);
+    box(3 * width, 100, 3000);
+
+    pop();
     //Displaying the doughnuts
     push();
-    translate(width / 2, 0, 0);
-    rotateX(0);
+    translate(width / 2, 40, 0);
+    rotateX(180);
     rotateY(0);
     rotateZ(0);
-    scale(5, 5, 5);
+    scale(20, 20, 20);
     texture(this.doughnutTexture);
     model(this.doughnut);
     pop();
     push();
-    translate(0, 0, 0);
+    translate(-width / 4, 60, 0);
     rotateX(180);
 
     scale(10, 10, 10);
-    texture(this.doughnutTexture);
+    texture(this.doughnutTexture2);
     model(this.doughnut2);
     pop();
     push();
-    translate(0, 0, 0);
-    rotateX(180);
+    translate(width / 3, 50, 350);
+    rotateX(-80);
 
-    scale(10, 10, 10);
-    texture(this.doughnutTexture);
+    scale(5, 5, 5);
+    texture(this.doughnutTexture2);
     model(this.doughnut3);
     pop();
     push();
-    translate(0, 0, 0);
+    translate(-width / 2, 50, 400);
 
-    scale(10, 10, 10);
-    texture(this.doughnutTexture);
+    scale(20, 20, 20);
+    texture(this.doughnutTexture4);
     model(this.doughnut4);
     pop();
     push();
-    translate(0, 0, 0);
+    translate(width / 2, 40, 450);
     rotateX(180);
 
-    scale(10, 10, 10);
-    texture(this.doughnutTexture);
+    scale(20, 20, 20);
+    texture(this.doughnutTexture4);
     model(this.doughnut5);
     pop();
     push();
-    translate(-width / 2, height / 2, -300);
+    translate(-width / 5, 120, -300);
     rotateX(180);
 
-    scale(10, 10, 10);
-    texture(this.doughnutTexture);
+    scale(12, 12, 12);
+    texture(this.doughnutTexture6);
     model(this.doughnut6);
     pop();
     push();
-    translate(0, 0, 0);
+    translate(-width / 2, height / 10, -100);
     rotateX(180);
 
-    scale(10, 10, 10);
-    texture(this.doughnutTexture);
+    scale(25, 25, 25);
+    texture(this.doughnutTexture7);
     model(this.doughnut7);
     pop();
     push();
-    translate(width / 2, 0, 0);
+    translate(width / 2, height / 8, 350);
     rotateX(180);
 
-    scale(10, 10, 10);
+    scale(5, 5, 5);
     texture(this.doughnutTexture);
     model(this.doughnut8);
     pop();
+    push();
+    //Display the title
+    textSize(30);
+    textAlign(CENTER, CENTER);
+    translate(0, 0, 200);
+    text(this.comment, 0, -height / 3);
+    pop();
   }
 }
-//
-// function draw() {
-//
-//   background(0);
-//   noStroke();
-//
-//   push();
-//   translate(0, 250, 0);
-//   fill(100);
-//   box(windowWidth, 100, 600);
-// //   pop();
-// }
-// new HallOfYou(
-//   doughnut,
-//   doughnut2,
-//   doughnut3,
-//   doughnut4,
-//   doughnut5,
-//   doughnut6,
-//   doughnut7,
-//   doughnut8,
-//   doughnutTexture
-// );
-// currentState = title;
-// }

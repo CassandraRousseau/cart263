@@ -1,12 +1,40 @@
 class PhotoStudio extends State {
   //Setting the parameters
-  constructor(shelf, floor, whiteWood, camera, cameraTexture) {
-    super(shelf, floor, whiteWood, camera, cameraTexture);
-    this.floor = new FloorHall(floor);
-    this.shelf = shelf;
-    this.whiteWood = whiteWood;
+  constructor(
+    shelf,
+    floor,
+    whiteWood,
+    camera,
+    cameraTexture,
+    photoBackground,
+    whiteShelvesData,
+    blackCarpet
+  ) {
+    super(
+      shelf,
+      floor,
+      whiteWood,
+      camera,
+      cameraTexture,
+      photoBackground,
+      whiteShelvesData,
+      blackCarpet
+    );
     this.camera = camera;
     this.cameraTexture = cameraTexture;
+    this.background = photoBackground;
+    this.carpet = blackCarpet;
+    this.whiteShelves = [];
+    for (let i = 0; i < whiteShelvesData.whiteShelves.length; i++) {
+      let dataWhiteShelves = whiteShelvesData.whiteShelves[i];
+      this.whiteshelf = new WhiteShelves(
+        dataWhiteShelves.x,
+        dataWhiteShelves.rotateY,
+        whiteWood,
+        shelf
+      );
+      this.whiteShelves.push(this.whiteshelf);
+    }
   }
 
   //Preloading obj files and images
@@ -24,47 +52,49 @@ class PhotoStudio extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
-
-    //Displaying the floor
     push();
-    this.floor.display();
+
+    texture(this.background);
+    translate(2 * width, -height / 3, -2000);
+    rotateY(-90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.background);
+    translate(-2 * width, -height / 3, -2000);
+    rotateY(90);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.background);
+    translate(0, -height / 4, -2500);
+    plane(4 * width, 2 * height);
+    pop();
+    push();
+
+    texture(this.background);
+    translate(0, -height, -1000);
+    rotateX(90);
+    plane(4 * width, 2 * height);
     pop();
 
+    //Creating floor
+    push();
+
+    // A red bar passing through the box
+    translate(0, height / 4, 0);
+
+    texture(this.carpet);
+    box(3 * width, 100, 3000);
+
+    pop();
     //Displaying the shelves
-    push();
-    translate(0, height / 1.2, -1500);
-    rotateX(0);
-    rotateY(360);
-    rotateZ(180);
-    scale(7, 10, 7);
 
-    texture(this.whiteWood);
-
-    model(this.shelf);
-    pop();
-    push();
-    translate(-width, height / 1.3, -1500);
-    rotateX(0);
-    rotateY(-330);
-    rotateZ(180);
-    scale(7, 10, 7);
-
-    texture(this.whiteWood);
-
-    model(this.shelf);
-    pop();
-    push();
-    translate(width, height / 1.3, -1500);
-    rotateX(0);
-    rotateY(330);
-    rotateZ(180);
-    scale(7, 10, 7);
-
-    texture(this.whiteWood);
-
-    model(this.shelf);
-    pop();
-
+    for (let i = 0; i < this.whiteShelves.length; i++) {
+      this.whiteShelves[i].display();
+    }
     //Dispalying the camera
     push();
     translate(width / 4, -250, -500);

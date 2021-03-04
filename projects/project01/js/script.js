@@ -15,6 +15,10 @@ let instructions = `Hello Soul J-3779, my name is Jerry and I will be your host 
 
 //Creating ending text
 let farewell = `I'm really happy that you found your spark! I hope you the best in your new life! Enjoy your human life!`;
+//Creating ending text
+let comment = `Yeah... I really liked donuts in my past life...(*And I still like them*)`;
+let listCareers = `artist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
+let listPlaces = `Art studio\nAuditorium\nBakery\nBasketball court\nHall\nHall of everything\nHall of you\nLibrary\nOffice\nPhoto studio`;
 //Creating font variable
 let font;
 
@@ -81,6 +85,10 @@ let doughnut8;
 
 //Creating doughnut textures variables
 let doughnutTexture;
+let doughnutTexture2;
+let doughnutTexture4;
+let doughnutTexture6;
+let doughnutTexture7;
 
 //Creating painting textures variables for art ArtStudio
 let blueAbstractArt;
@@ -257,19 +265,19 @@ let fence;
 
 //Creating variable for sky in basketball court
 let sky;
+
+//Creating variable for background in photo studio
+let photoBackground;
+
+//Creating variable for carpet in photo studio
+let blackCarpet;
 // let angle = 45;
-
-let spotlights = [];
-
-let numSpotlights = 20;
 
 let brushes;
 
-// let curtains = [];
-// let seats = [];
-// let counters = [];
-// let buildings = [];
-// let wings = [];
+let whiteShelvesData;
+let manual;
+
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -284,6 +292,7 @@ function preload() {
   seatsData = loadJSON(`assets/data/seatsAuditorium.json`);
   shelvesData = loadJSON(`assets/data/shelvesLibrary.json`);
   bookcasesData = loadJSON(`assets/data/bookcases.json`);
+  whiteShelvesData = loadJSON(`assets/data/shelvesPhotoStudio.json`);
 
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
@@ -305,6 +314,10 @@ function preload() {
   tissue = loadImage("assets/images/action_painting.jpg");
   pepperoni = loadImage("assets/images/pepperoni_pizza.jpg");
   doughnutTexture = loadImage("assets/images/doughnut_texture.jpg");
+  doughnutTexture2 = loadImage("assets/images/boston_donut.png");
+  doughnutTexture4 = loadImage("assets/images/chocolate_doughnut.jpg");
+  doughnutTexture6 = loadImage("assets/images/plain_donut.jpg");
+  doughnutTexture7 = loadImage("assets/images/sprinkle_donut.jpg");
   metal = loadImage("assets/images/metal.jpg");
   wood = loadImage("assets/images/wood.jpg");
   cameraTexture = loadImage("assets/images/camera_texture.jpg");
@@ -330,6 +343,8 @@ function preload() {
   ceilingOffice = loadImage("assets/images/ceiling_office.jpg");
   fence = loadImage("assets/images/fence.png");
   sky = loadImage("assets/images/sky.jpg");
+  photoBackground = loadImage("assets/images/photoBackground.jpg");
+  blackCarpet = loadImage("assets/images/blackCarpet.jpg");
 
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
@@ -392,35 +407,40 @@ function setup() {
       "Go to *room": places,
       //Setting career choice command
       "I want to be *career": dream,
+      "See manual": function (manual) {
+        manual = new Manual(listPlaces, listCareers);
+        console.log(manual);
+      },
+      "exit manual": function (manual) {
+        manual.active = false;
+      },
     };
-
     annyang.addCommands(commands);
     annyang.start();
   }
+
   textStyle(BOLD);
-  title = new BasketballCourt(floor, basketball, fence, sky);
+  title = new HallOfYou(
+    doughnut,
+    doughnut2,
+    doughnut3,
+    doughnut4,
+    doughnut5,
+    doughnut6,
+    doughnut7,
+    doughnut8,
+    doughnutTexture,
+    doughnutTexture2,
+    doughnutTexture4,
+    doughnutTexture6,
+    doughnutTexture7,
+    comment
+  );
   // new Title(grassBlue, grassPurple, grassPink, soulBackground);
 
   currentState = title;
   console.log(currentState);
 }
-
-// for (let i = 0; i < numSpotlights; i++) {
-//   let light = spotLight(
-//     255,
-//     255,
-//     255,
-//     random(0, width),
-//     random(0, height),
-//     random(),
-//     70,
-//     70,
-//     70,
-//     35,
-//     100
-//   );
-//   spotlights.push(light);
-// }
 
 //Setting title state
 
@@ -488,7 +508,7 @@ function places(room) {
 
     //if the answer is wrong
   } else if (currentAnswer === "basketball court") {
-    currentState = new BasketballCourt(floor, basketball);
+    currentState = new BasketballCourt(floor, basketball, fence, sky);
 
     //if the answer is wrong
   } else if (currentAnswer === "art studio") {
@@ -505,7 +525,16 @@ function places(room) {
 
     //if the answer is wrong
   } else if (currentAnswer === "photo studio") {
-    currentState = new PhotoStudio(shelf, floor, whiteWood, cam, cameraTexture);
+    currentState = new new PhotoStudio(
+      shelf,
+      floor,
+      whiteWood,
+      cam,
+      cameraTexture,
+      photoBackground,
+      whiteShelvesData,
+      blackCarpet
+    )();
 
     //if the answer is wrong
   } else if (currentAnswer === "office") {
@@ -563,6 +592,23 @@ function places(room) {
       wood,
       countersData,
       ceilingBakery
+    );
+  } else if (currentAnswer === "hall of you") {
+    currentState = new HallOfYou(
+      doughnut,
+      doughnut2,
+      doughnut3,
+      doughnut4,
+      doughnut5,
+      doughnut6,
+      doughnut7,
+      doughnut8,
+      doughnutTexture,
+      doughnutTexture2,
+      doughnutTexture4,
+      doughnutTexture6,
+      doughnutTexture7,
+      comment
     );
   }
 }
