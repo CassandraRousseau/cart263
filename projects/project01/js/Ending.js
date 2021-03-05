@@ -1,4 +1,5 @@
 class Ending extends State {
+  //Creating ending parameters
   constructor(soulBackground, purpleGradient, jerry, grassBlue, farewell) {
     super(soulBackground, purpleGradient, jerry, grassBlue, farewell);
     this.background = soulBackground;
@@ -7,6 +8,15 @@ class Ending extends State {
     this.farewell = farewell;
     this.ground = new GroundHallOfEverything(grassBlue);
   }
+  //Preloading textures and images
+  preload() {
+    super.preload();
+    this.gradient.preload();
+    this.background.preload();
+    this.jerry.prelod();
+    this.ground.preload();
+  }
+  //Displaying the ending
   display() {
     super.draw();
     background(225, 175, 255);

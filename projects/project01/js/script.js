@@ -637,6 +637,7 @@ function dream(career) {
       grassBlue,
       farewell
     );
+    console.log(ending);
   }
 }
 
