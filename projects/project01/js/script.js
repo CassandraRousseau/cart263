@@ -14,7 +14,7 @@ spark!
 let instructions = `Hello Soul J-3779, my name is Jerry and I will be your host today!\nLet's find your spark! Explore the Hall of Everything and discover your true nature!\nSay 'Go to...' and select the area you want to explore!\n Once you found your passion, say 'I want to be...' and the career according to your spark!\n If you don't remember something, refers to the manual by saying 'See manual'. Enjoy!`;
 
 //Creating ending text
-let farewell = `I'm really happy that you found your spark! I hope you the best in your new life! Enjoy your human life!`;
+let farewell = `I'm really happy that you found your spark!\n I wish you the best during your human life!\n Enjoy!`;
 //Creating ending text
 let comment = `Yeah... I really liked donuts in my past life...(*And I still like them*)`;
 let listCareers = `artist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
@@ -414,13 +414,8 @@ function setup() {
       "I want to be *career": dream,
 
       //Setting manual command
-      "See manual": function (manual) {
-        manual = new Manual(listPlaces, listCareers);
-        console.log(manual);
-      },
-      "exit manual": function (manual) {
-        manual.active = false;
-      },
+      "see manual": seeManual,
+      "exit manual": exitManual,
     };
     annyang.addCommands(commands);
     annyang.start();
@@ -428,23 +423,13 @@ function setup() {
 
   //Setting title state
   textStyle(BOLD);
-  title = new HallOfYou(
-    doughnut,
-    doughnut2,
-    doughnut3,
-    doughnut4,
-    doughnut5,
-    doughnut6,
-    doughnut7,
-    doughnut8,
-    doughnutTexture,
-    doughnutTexture2,
-    doughnutTexture4,
-    doughnutTexture6,
-    doughnutTexture7,
-    comment
+  title = new Title(
+    grassBlue,
+    grassPurple,
+    grassPink,
+    soulBackground,
+    purpleGradient
   );
-  // new Title(grassBlue, grassPurple, grassPink, soulBackground);
 
   currentState = title;
   console.log(currentState);
@@ -458,8 +443,6 @@ function draw() {
 
   //Creating camera
   cameraCursor();
-  // chosenLocation();
-  // chosenCareer();
 }
 //Setting all mouse inputs for each states
 function mousePressed() {
@@ -670,6 +653,37 @@ function dream(career) {
 //Checking if the named career is correctly pronounced
 function checkCareer(career) {
   if (currentAnswer === chosenCareer) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//Setting manual display
+function seeManual(manual, listPlaces, listCareers) {
+  if (checkManual) {
+    manual = new Manual(listPlaces, listCareers);
+  }
+}
+//Setting how to exit the manual
+function exitManual(manual) {
+  if (checkExit) {
+    manual.active = false;
+  }
+}
+//Checking if the command was called properly
+function checkManual(manual) {
+  if (currentAnswer === `see manual`) {
+    console.log(currentAnswer);
+    return true;
+  } else {
+    return false;
+  }
+}
+//Checking if the command was called properly
+function checkExit(manual) {
+  if (currentAnswer === `exit manual`) {
+    console.log(currentAnswer);
     return true;
   } else {
     return false;

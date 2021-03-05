@@ -1,7 +1,7 @@
-class Manual extends State {
+class Manual {
   //Setting manual parameters
   constructor(listPlaces, listCareers) {
-    super(listPlaces, listCareers);
+    // super(listPlaces, listCareers);
     this.listPlaces = listPlaces;
     this.listCareers = listCareers;
     // this.listPlaces = room.rooms;
@@ -18,11 +18,12 @@ class Manual extends State {
 
   //Display lists
   display() {
-    super.display();
-    background(0);
+    // super.display();
+    // background(0);
     push();
     //Display list of places
     textSize(30);
+    fill(255);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);
     text(this.listPlaces, 0, -height / 3);
@@ -30,6 +31,7 @@ class Manual extends State {
     push();
     //Display list of careers
     textSize(30);
+    fill(255);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);
     text(this.listCareers, 0, -height / 3);
@@ -37,6 +39,7 @@ class Manual extends State {
     push();
     //Display how to quit
     textSize(30);
+    fill(255);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);
     text(this.quit, 0, -height / 3);

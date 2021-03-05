@@ -1,12 +1,19 @@
 class Title extends State {
   //Creating title screen parameters
-  constructor(grassBlue, grassPurple, grassPink, soulBackground) {
-    super(grassBlue, grassPurple, grassPink, soulBackground);
+  constructor(
+    grassBlue,
+    grassPurple,
+    grassPink,
+    soulBackground,
+    purpleGradient
+  ) {
+    super(grassBlue, grassPurple, grassPink, soulBackground, purpleGradient);
     this.name = `title`;
     this.titleString = "Find Your Spark!";
-    this.subheader = `Press your Mouse to Start`;
-    this.texture = soulBackground;
-    this.ground = new GroundTitle(grassBlue);
+    this.subheader = `Move the camera with your index,press your Mouse to Start`;
+    this.background = soulBackground;
+    this.gradient = purpleGradient;
+    this.ground = new GroundHallOfEverything(grassBlue);
     this.mountainRight = new MountainRight(grassPurple);
     this.mountainLeft = new MountainLeft(grassPurple);
     this.mountainCenter = new MountainCenter(grassPink);
@@ -18,7 +25,7 @@ class Title extends State {
     this.mountainRight.preload();
     this.mountainLeft.preload();
     this.mountainCenter.preload();
-    this.texture.preload();
+    this.background.preload();
     this.ground.preload();
   }
 
@@ -26,12 +33,30 @@ class Title extends State {
   draw() {
     super.draw();
     background(225, 175, 255);
+    //Displaying the background
     push();
-    texture(this.texture);
+    texture(this.background);
+    translate(3 * width, -height / 1.4, -1000);
+    rotateY(-90);
+    plane(4 * width, 2.6 * height);
+    pop();
+    push();
+    texture(this.background);
+    translate(-3 * width, -height / 1.4, -1000);
+    rotateY(90);
+    plane(4 * width, 2.6 * height);
+    pop();
+    push();
+    texture(this.background);
     translate(0, 0, -800);
     plane(4 * width, 2 * height);
     pop();
     push();
+    texture(this.gradient);
+    translate(0, -height, -1000);
+    rotateX(90);
+    plane(4 * width, 2 * height);
+    pop();
 
     push();
     //Displaying the ground
@@ -61,7 +86,6 @@ class Title extends State {
     push();
     textSize(50);
     text(this.subheader, 0, -height / 50);
-    pop();
     pop();
   }
 

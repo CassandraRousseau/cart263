@@ -36,7 +36,7 @@ class HallOfEverything extends State {
   }
   //Setting the environment
   draw() {
-    super.display();
+    super.draw();
     background(225, 175, 255);
 
     //Displaying the background
