@@ -3,10 +3,10 @@ Project 01:A Night at the Movies
 Cassandra Rousseau
 The 3D simulation will be about the Disney animated movie 'SOUL'. The reproduced scene
 is the moment mentors help the souls to find their spark. At the title screen, the user
-will see the landscape the Great Before(aka the You Seminar). At the start of the game,
+will see the landscape of the Great Before(aka the You Seminar). At the start of the game,
 the user will be introduced to the universe and his mission through a cutscene of the movie.
-The goal of the user will be to explore the universe of the Great Before and to find the
-spark of the soul!
+The goal of the user will be to explore the universe of the Great Before and to find their own
+spark!
 **************************************************/
 "use strict";
 
@@ -69,6 +69,9 @@ let shelvesData;
 
 //Creating JSON variable for bookcases in library
 let bookcasesData;
+
+//Creating JSON variable for white shelves in photo studio
+let whiteShelvesData;
 
 //Creating floor texture variable
 let floor;
@@ -245,6 +248,7 @@ let ceilingLibrary;
 //Creating variable for ceiling image in bakery
 let ceilingBakery;
 
+//Creating annyang! variable for careers
 let career;
 let careers;
 
@@ -275,7 +279,7 @@ let blackCarpet;
 
 let brushes;
 
-let whiteShelvesData;
+//Creating variable for manual
 let manual;
 
 //Setting preloaded elements
@@ -376,7 +380,7 @@ function preload() {
   canvas = loadModel("assets/obj/canvas.obj");
   brushes = loadModel("assets/obj/jar_with_brushes.obj");
 }
-// Farm_house
+
 //Setting parameters in simulation
 function setup() {
   //Creating WEBGL canvas
@@ -407,6 +411,8 @@ function setup() {
       "Go to *room": places,
       //Setting career choice command
       "I want to be *career": dream,
+
+      //Setting manual command
       "See manual": function (manual) {
         manual = new Manual(listPlaces, listCareers);
         console.log(manual);
@@ -419,6 +425,7 @@ function setup() {
     annyang.start();
   }
 
+  //Setting title state
   textStyle(BOLD);
   title = new HallOfYou(
     doughnut,
@@ -486,7 +493,7 @@ function places(room) {
   //   //     pitch: 5,
   //   //   });
   //   //   state = "wrong";
-
+  //Setting library state
   if (currentAnswer === "library") {
     currentState = new Library(
       floor,
@@ -506,11 +513,11 @@ function places(room) {
       ceilingLibrary
     );
 
-    //if the answer is wrong
+    //Setting basketball court state
   } else if (currentAnswer === "basketball court") {
     currentState = new BasketballCourt(floor, basketball, fence, sky);
 
-    //if the answer is wrong
+    //Setting art studio state
   } else if (currentAnswer === "art studio") {
     currentState = new ArtStudio(
       tissue,
@@ -523,7 +530,7 @@ function places(room) {
       ceilingArt
     );
 
-    //if the answer is wrong
+    //Setting photo studio state
   } else if (currentAnswer === "photo studio") {
     currentState = new new PhotoStudio(
       shelf,
@@ -536,7 +543,7 @@ function places(room) {
       blackCarpet
     )();
 
-    //if the answer is wrong
+    //Setting office state
   } else if (currentAnswer === "office") {
     currentState = new Office(
       desk,
@@ -553,7 +560,7 @@ function places(room) {
       ceilingOffice
     );
 
-    //if the answer is wrong
+    //Setting hall state
   } else if (currentAnswer === "hall") {
     currentState = new Hall(
       floor,
@@ -565,7 +572,9 @@ function places(room) {
       buildingData,
       gradient
     );
-  } else if (currentAnswer === "hall of everything") {
+  }
+  //Setting hall of everything state
+  else if (currentAnswer === "hall of everything") {
     currentState = new HallOfEverything(
       grassBlue,
       soulBackground,
@@ -574,7 +583,9 @@ function places(room) {
       wingsData,
       purpleGradient
     );
-  } else if (currentAnswer === "bakery") {
+  }
+  //Setting bakery state
+  else if (currentAnswer === "bakery") {
     currentState = new Bakery(
       chocolateCake,
       pie,
@@ -593,7 +604,9 @@ function places(room) {
       countersData,
       ceilingBakery
     );
-  } else if (currentAnswer === "hall of you") {
+  }
+  //Setting hall of you state
+  else if (currentAnswer === "hall of you") {
     currentState = new HallOfYou(
       doughnut,
       doughnut2,
@@ -612,6 +625,7 @@ function places(room) {
     );
   }
 }
+//Setting ending state through calling careers
 function dream(career) {
   currentAnswer = career.toLowerCase();
   if (currentAnswer === chosenCareer) {

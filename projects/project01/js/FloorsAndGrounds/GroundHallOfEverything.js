@@ -1,4 +1,5 @@
 class GroundHallOfEverything {
+  //Creating ground hall of everything parameters
   constructor(grassBlue) {
     this.translateX = 0;
     this.translateY = 250;
@@ -8,12 +9,15 @@ class GroundHallOfEverything {
     this.y = 175;
     this.z = 2000;
   }
+
+  //Preloading ground texture
   preload() {
     this.texture.preload();
   }
+
+  // Displaying ground hall of everything
   display() {
     push();
-    // A red bar passing through the box
     translate(this.translateX, this.translateY, this.translateZ);
     texture(this.texture);
     box(this.x, this.y, this.z);

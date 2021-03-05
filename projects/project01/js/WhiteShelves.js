@@ -1,5 +1,5 @@
 class WhiteShelves {
-  //Creating rows of books parameters
+  //Creating white shelves parameters
   constructor(x, rotateY, whiteWood, shelf) {
     this.whiteWood = whiteWood;
     this.shelf = shelf;
@@ -13,11 +13,12 @@ class WhiteShelves {
     this.scaleY = 10;
     this.scaleZ = 7;
   }
-  //Preloading obj model and textures of books
+  //Preloading obj model and textures of white shelves
   preload() {
     this.whiteWood.preload();
     this.shelf.preload();
   }
+  //Displaying white shelves
   display() {
     push();
     translate(this.x, this.y, this.z);
@@ -30,5 +31,3 @@ class WhiteShelves {
     pop();
   }
 }
-// push();
-// translate(0, height / 1.2, );

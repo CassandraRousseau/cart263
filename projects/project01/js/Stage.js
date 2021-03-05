@@ -1,4 +1,5 @@
 class Stage {
+  //Creating stage parameters
   constructor() {
     this.translateX = 0;
     this.translateY = 150;
@@ -7,13 +8,11 @@ class Stage {
     this.radiusX = 500;
     this.radiusY = 70;
   }
+  //Displaying stage
   display() {
     push();
-
-    // Our central cube is white
     translate(this.translateX, this.translateY, this.translateZ);
     fill(this.fill);
-
     ellipsoid(this.radiusX, this.radiusY);
     pop();
   }

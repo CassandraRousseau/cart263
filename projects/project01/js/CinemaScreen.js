@@ -1,4 +1,5 @@
 class CinemaScreen {
+  //Creating cinema screen parameters
   constructor() {
     this.translateX = 0;
     this.translateY = -175;
@@ -7,6 +8,8 @@ class CinemaScreen {
     this.height = 400;
     this.fill = 0;
   }
+
+  //Displaying cinema screen
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

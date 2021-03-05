@@ -1,5 +1,5 @@
 class HallOfYou extends State {
-  //Setting the parameters
+  //Setting hall of you parameters
   constructor(
     doughnut,
     doughnut2,
@@ -73,16 +73,14 @@ class HallOfYou extends State {
     background(0);
     angleMode(DEGREES);
     lights();
+
+    // Displaying the floor
     push();
-
-    // A red bar passing through the box
     translate(0, height / 4, 0);
-
-    // texture(this.carpet);
     fill(100);
     box(3 * width, 100, 3000);
-
     pop();
+
     //Displaying the doughnuts
     push();
     translate(width / 2, 40, 0);
@@ -148,8 +146,9 @@ class HallOfYou extends State {
     texture(this.doughnutTexture);
     model(this.doughnut8);
     pop();
+
+    //Display the comment
     push();
-    //Display the title
     textSize(30);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);

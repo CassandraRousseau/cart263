@@ -1,5 +1,5 @@
 class BookStacks {
-  //Creating rows of books parameters
+  //Creating rows of books stacks parameters
   constructor(x, rotateY, books, leather) {
     this.books = books;
     this.leather = leather;
@@ -11,11 +11,12 @@ class BookStacks {
     this.rotateZ = 180;
     this.scale = 7;
   }
-  //Preloading obj model and textures of books
+  //Preloading obj model and textures of books stacks
   preload() {
     this.books.preload();
     this.leather.preload();
   }
+  //Displaying book stacks
   display() {
     push();
     translate(this.x, this.y, this.z);

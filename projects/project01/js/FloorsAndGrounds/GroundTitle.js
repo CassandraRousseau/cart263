@@ -1,4 +1,5 @@
 class GroundTitle {
+  //Creating ground in title parameters
   constructor(grassBlue) {
     this.translateX = 0;
     this.translateY = 250;
@@ -8,11 +9,12 @@ class GroundTitle {
     this.y = 175;
     this.z = 800;
   }
+  //Preloading texture in title
   preload() {
     this.texture.preload();
   }
+  //Displaying ground in title
   display() {
-    // A red bar passing through the box
     translate(this.translateX, this.translateY, this.translateZ);
     texture(this.texture);
     box(this.x, this.y, this.z);

@@ -1,4 +1,5 @@
 class FloorLibrary {
+  //Creating floor in library parameters
   constructor(carpet) {
     this.translateX = 0;
     this.translateY = 570;
@@ -8,14 +9,14 @@ class FloorLibrary {
     this.height = 175;
     this.depth = 3000;
   }
+  //Preloading texture
   preload() {
     this.texture.preload();
   }
+  //Displaying floor in library
   display() {
     push();
-    // A red bar passing through the box
     translate(this.translateX, this.translateY, this.translateZ);
-
     texture(this.texture);
     box(this.width, this.height, this.depth);
     pop();

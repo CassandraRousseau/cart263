@@ -1,5 +1,5 @@
 class HallOfEverything extends State {
-  //Setting the parameters
+  //Setting hall of everything parameters
   constructor(
     grassBlue,
     soulBackground,
@@ -20,7 +20,6 @@ class HallOfEverything extends State {
     this.instructions = instructions;
     this.jerry = jerry;
     this.gradient = purpleGradient;
-    // this.subheader = `Press your Mouse to Start`;
     this.ground = new GroundHallOfEverything(grassBlue);
     this.wings = [];
     for (let i = 0; i < wingsData.wings.length; i++) {
@@ -29,6 +28,8 @@ class HallOfEverything extends State {
       this.wings.push(this.wing);
     }
   }
+
+  //Preloading obj file and texture
   preload() {
     this.texture.preload();
     this.ground.preload();
@@ -38,16 +39,14 @@ class HallOfEverything extends State {
     super.draw();
     background(225, 175, 255);
 
-    //Displaying the ground
+    //Displaying the background
     push();
-
     texture(this.texture);
     translate(3 * width, -height / 1.4, -1000);
     rotateY(-90);
     plane(4 * width, 2.6 * height);
     pop();
     push();
-
     texture(this.texture);
     translate(-3 * width, -height / 1.4, -1000);
     rotateY(90);
@@ -58,14 +57,16 @@ class HallOfEverything extends State {
     translate(0, -height / 1.5, -800);
     plane(4 * width, 2 * height);
     pop();
-    push();
 
+    //Displaying the sky
+    push();
     texture(this.gradient);
     translate(0, -height, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();
 
+    //Displaying the ground
     this.ground.display();
 
     //Displaying the building's wings
@@ -73,14 +74,16 @@ class HallOfEverything extends State {
     for (let i = 0; i < this.wings.length; i++) {
       this.wings[i].display();
     }
-
     pop();
+
+    //Displaying the jerry character
     push();
     translate(0, 0, 300);
     image(this.jerry, width / 12, -height / 7, 300, 300);
     pop();
     push();
-    //Display the title
+
+    //Display the instructions
     textSize(30);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);

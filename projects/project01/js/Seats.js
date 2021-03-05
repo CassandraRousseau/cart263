@@ -1,4 +1,5 @@
 class Seats {
+  //Creating seats parameters
   constructor(x, z) {
     this.x = x * width;
     this.y = 150;
@@ -12,14 +13,11 @@ class Seats {
       b: 75,
     };
   }
-
+  //Displaying seats
   display() {
     push();
-
-    // Our central cube is white
     translate(this.x, this.y, this.z);
     fill(this.fill.r, this.fill.g, this.fill.b);
-
     box(this.width, this.height, this.depth);
     pop();
   }

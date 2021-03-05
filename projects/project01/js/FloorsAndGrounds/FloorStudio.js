@@ -1,4 +1,5 @@
 class FloorStudio {
+  //Creating floor studio parameters
   constructor(tissue) {
     this.translateX = 0;
     this.translateY = 250;
@@ -8,14 +9,16 @@ class FloorStudio {
     this.height = 500;
     this.depth = 3000;
   }
+
+  //Preloading floor texture
   preload() {
     this.texture.preload();
   }
+
+  //Displaying floor studio
   display() {
     push();
-    // A red bar passing through the box
     translate(this.translateX, this.translateY, this.translateZ);
-
     texture(this.texture);
     box(this.width, this.height, this.depth);
     pop();

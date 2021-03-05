@@ -1,5 +1,5 @@
 class Shelves {
-  //Creating rows of books parameters
+  //Creating shelves parameters
   constructor(x, rotateY, wood, shelf) {
     this.wood = wood;
     this.shelf = shelf;
@@ -13,11 +13,13 @@ class Shelves {
     this.scaleY = 10;
     this.scaleZ = 7;
   }
-  //Preloading obj model and textures of books
+  //Preloading obj model and textures of shelves
   preload() {
     this.wood.preload();
     this.shelf.preload();
   }
+
+  //Displaying shelves
   display() {
     push();
     translate(this.x, this.y, this.z);

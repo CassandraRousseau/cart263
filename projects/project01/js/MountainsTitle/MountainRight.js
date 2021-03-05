@@ -1,4 +1,5 @@
 class MountainRight {
+  //Creating right side mountain parameters
   constructor(grassPurple) {
     this.translateX = width / 3;
     this.translateY = 75;
@@ -7,14 +8,16 @@ class MountainRight {
     this.radiusX = 550;
     this.radiusY = 230;
   }
+
+  //Preloading right side mountain
   preload() {
     this.texture.preload();
   }
+
+  //Displaying right side mountain
   display() {
     push();
-    // Our central cube is white
     translate(this.translateX, this.translateY, this.translateZ);
-
     push();
     texture(this.texture);
     ellipsoid(this.radiusX, this.radiusY);

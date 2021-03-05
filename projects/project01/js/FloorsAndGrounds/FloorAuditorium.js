@@ -1,4 +1,5 @@
 class FloorAuditorium {
+  //Creating floor in auditorium parameters
   constructor() {
     this.translateX = 0;
     this.translateY = 250;
@@ -8,9 +9,10 @@ class FloorAuditorium {
     this.height = 100;
     this.depth = 1500;
   }
+
+  // Displaying floor in auditorium
   display() {
     push();
-    // A red bar passing through the box
     translate(this.translateX, this.translateY, this.translateZ);
     fill(this.fill);
     box(this.width, this.height, this.depth);

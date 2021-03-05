@@ -1,4 +1,5 @@
 class Buildings {
+  //Creating buildings parameters
   constructor(x, y, z, w, h, d, windows) {
     this.x = x * width;
     this.y = y * height;
@@ -8,15 +9,16 @@ class Buildings {
     this.d = d;
     this.texture = windows;
   }
+
+  //Preloading buildings
   preload() {
     this.texture.preload();
   }
+
+  //Displaying buildings
   display() {
     push();
-
-    // Our central cube is white
     translate(this.x, this.y, this.z);
-
     texture(this.texture);
     box(this.w, this.h, this.d);
     pop();

@@ -1,5 +1,5 @@
 class Books {
-  //Creating rows of books parameters
+  //Creating books parameters
   constructor(x, y, bookRow, booksTexture) {
     this.bookRow = bookRow;
     this.booksTexture = booksTexture;

@@ -1,4 +1,5 @@
 class FloorBakery {
+  //Creating floor in bakery parameters
   constructor(wood) {
     this.translateX = 0;
     this.translateY = 250;
@@ -8,9 +9,10 @@ class FloorBakery {
     this.depth = 2000;
     this.texture = wood;
   }
+
+  //Displaying floor in bakery
   display() {
     push();
-    // A red bar passing through the box
     translate(this.translateX, this.translateY, this.translateZ);
     texture(this.texture);
     box(this.width, this.height, this.depth);

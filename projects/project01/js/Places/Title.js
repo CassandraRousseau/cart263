@@ -1,5 +1,5 @@
 class Title extends State {
-  //Added title screen parameters
+  //Creating title screen parameters
   constructor(grassBlue, grassPurple, grassPink, soulBackground) {
     super(grassBlue, grassPurple, grassPink, soulBackground);
     this.name = `title`;
@@ -76,21 +76,3 @@ class Title extends State {
     }
   }
 }
-//   chosenLocation() {
-//     super.chosenLocation();
-//   }
-//   chosenCareer() {
-//     super.chosenCareer();
-//   }
-// }
-//   running() {
-//     super.running();
-//   }
-//   cameraCursor() {
-//     super.cameraCursor();
-//   }
-//
-//   highlightHand(hand) {
-//     super.hightlight();
-//   }
-// }

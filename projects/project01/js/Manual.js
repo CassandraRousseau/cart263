@@ -1,4 +1,5 @@
 class Manual extends State {
+  //Setting manual parameters
   constructor(listPlaces, listCareers) {
     super(listPlaces, listCareers);
     this.listPlaces = listPlaces;
@@ -14,25 +15,27 @@ class Manual extends State {
     this.quit = `To quit the manual, say 'exit manual'.`;
     this.active = true;
   }
+
+  //Display lists
   display() {
     super.display();
     background(0);
     push();
-    //Display the title
+    //Display list of places
     textSize(30);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);
     text(this.listPlaces, 0, -height / 3);
     pop();
     push();
-    //Display the title
+    //Display list of careers
     textSize(30);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);
     text(this.listCareers, 0, -height / 3);
     pop();
     push();
-    //Display the title
+    //Display how to quit
     textSize(30);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);

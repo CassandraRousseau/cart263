@@ -1,4 +1,5 @@
 class MountainCenter {
+  //Creating centered mountain parameters
   constructor(grassPink) {
     this.translateX = width / 300;
     this.translateY = 100;
@@ -7,14 +8,16 @@ class MountainCenter {
     this.radiusX = 550;
     this.radiusY = 230;
   }
+
+  //Preloading centered mountain
   preload() {
     this.texture.preload();
   }
+
+  //Displaying centered mountain
   display() {
     push();
-    // Our central cube is white
     translate(this.translateX, this.translateY, this.translateZ);
-
     push();
     texture(this.texture);
     ellipsoid(this.radiusX, this.radiusY);
