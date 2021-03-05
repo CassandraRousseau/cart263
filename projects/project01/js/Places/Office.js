@@ -62,8 +62,8 @@ class Office extends State {
     background(255);
     angleMode(DEGREES);
 
+    //Displaying background
     push();
-
     texture(this.texture);
     translate(2 * width, -height / 3, -2000);
     rotateY(-90);
@@ -76,29 +76,29 @@ class Office extends State {
     rotateY(90);
     plane(4 * width, 2 * height);
     pop();
-    //Creating background
+
     push();
-    // image(this.image, 0, 0, 1000, 1000);
     texture(this.texture);
     translate(0, -height / 3, -1000);
     plane(4 * width, 2 * height);
     pop();
+
+    //Displaying ceiling
     push();
     texture(this.ceiling);
     translate(0, -height, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();
-    //Creating floor
+
+    //Displaying carpet
     push();
-
-    // A red bar passing through the box
     translate(0, height / 4, 0);
-
     texture(this.carpet);
     box(3 * width, 100, 3000);
-
     pop();
+
+    //Displaying desk
     push();
     translate(0, height / 5, -100);
     rotateX(180);
@@ -109,7 +109,7 @@ class Office extends State {
     model(this.desk);
     pop();
 
-    //Creating legal pad
+    //Displaying legal pad
     push();
     translate(0, 10, -10);
     scale(25, 25, 25);
@@ -117,19 +117,18 @@ class Office extends State {
     model(this.legalPad);
     pop();
 
-    //Creating paper punch
+    //Displaying paper punch
     push();
     translate(width / 4, 35, -1000);
     rotateX(180);
     rotateY(0);
     rotateZ(0);
     scale(15, 15, 15);
-
     texture(metal);
     model(this.paperPunch);
     pop();
 
-    //Creating pen
+    //Displaying pen
     push();
     translate(-width / 12, 5, 100);
     rotateX(180);
@@ -140,7 +139,7 @@ class Office extends State {
     model(this.pen);
     pop();
 
-    //Creating pencil holder
+    //Displaying pencil holder
     push();
     translate(-width / 20, -5, 0);
     rotateX(180);

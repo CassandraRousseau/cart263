@@ -250,7 +250,6 @@ let ceilingBakery;
 
 //Creating annyang! variable for careers
 let career;
-let careers;
 
 //Creating variable for ceiling image in hall of everything
 let purpleGradient;
@@ -285,7 +284,7 @@ let manual;
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
-  careers = loadJSON(`assets/data/occupations.json`);
+  career = loadJSON(`assets/data/careers.json`);
   room = loadJSON(`assets/data/rooms.json`);
   booksData = loadJSON(`assets/data/books.json`);
   buildingData = loadJSON(`assets/data/buildings.json`);
@@ -628,8 +627,16 @@ function places(room) {
 //Setting ending state through calling careers
 function dream(career) {
   currentAnswer = career.toLowerCase();
+  console.log(currentAnswer);
+  console.log(career);
   if (currentAnswer === chosenCareer) {
-    currentState = new Ending();
+    currentState = new Ending(
+      soulBackground,
+      purpleGradient,
+      jerry,
+      grassBlue,
+      farewell
+    );
   }
 }
 

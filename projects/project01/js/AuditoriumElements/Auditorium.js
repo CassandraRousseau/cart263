@@ -9,7 +9,6 @@ class Auditorium extends State {
     this.floor = new FloorAuditorium();
     this.screen = new CinemaScreen();
 
-    // this.seats = new Seats();
     this.video = new Video(video);
     this.stage = new Stage();
 
@@ -40,7 +39,6 @@ class Auditorium extends State {
     lights();
 
     // Displaying the floor
-
     this.floor.display();
 
     //Displaying the curtains
@@ -64,6 +62,8 @@ class Auditorium extends State {
     for (let i = 0; i < this.seats.length; i++) {
       this.seats[i].display();
     }
+
+    //Displaying the instructions
     push();
     textSize(50);
     text(this.subheader, -width / 2, height / 25);
@@ -72,7 +72,6 @@ class Auditorium extends State {
   //Video starts when mouse pressed
   mousePressed() {
     super.mousePressed();
-
     this.video.texture.play();
   }
 }

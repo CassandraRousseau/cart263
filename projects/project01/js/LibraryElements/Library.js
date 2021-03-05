@@ -1,5 +1,5 @@
 class Library extends State {
-  //Setting the parameters
+  //Setting library parameters
   constructor(
     floor,
     wood,
@@ -91,8 +91,8 @@ class Library extends State {
     background(65, 50, 50);
     angleMode(DEGREES);
 
+    //Displaying the background
     push();
-
     texture(this.texture);
     translate(2 * width, -height / 3, -2000);
     rotateY(-90);
@@ -111,8 +111,9 @@ class Library extends State {
     translate(0, -height / 4, -2500);
     plane(4 * width, 2 * height);
     pop();
-    push();
 
+    //Displaying the ceiling
+    push();
     texture(this.ceiling);
     translate(0, -height, -1000);
     rotateX(90);
@@ -124,23 +125,26 @@ class Library extends State {
     pop();
 
     //Displaying shelves
-
     for (let i = 0; i < this.shelves.length; i++) {
       this.shelves[i].display();
     }
+
+    //Displaying bookcases
     for (let i = 0; i < this.bookcases.length; i++) {
       this.bookcases[i].display();
     }
+    //Displaying book rows
     for (let i = 0; i < this.bookSeries.length; i++) {
       this.bookSeries[i].display();
     }
-    //
+    //Displaying book stacks
     for (let i = 0; i < this.bookStacks.length; i++) {
       this.bookStacks[i].display();
     }
+
+    //Displating counter
     push();
     translate(0, 100, 200);
-
     texture(this.wood);
     box(330, 110, 250);
     pop();

@@ -1,5 +1,5 @@
 class Books {
-  //Creating books parameters
+  //Creating rows of books parameters
   constructor(x, y, bookRow, booksTexture) {
     this.bookRow = bookRow;
     this.booksTexture = booksTexture;
@@ -14,6 +14,7 @@ class Books {
     this.bookRow.preload();
     this.booksTexture.preload();
   }
+  //Displaying rows of books
   display() {
     push();
     translate(this.x, this.y, this.z);

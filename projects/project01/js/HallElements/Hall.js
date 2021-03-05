@@ -1,5 +1,5 @@
 class Hall extends State {
-  //Setting the parameters
+  //Setting Hall parameters
   constructor(
     floor,
     windows,
@@ -59,6 +59,7 @@ class Hall extends State {
     angleMode(DEGREES);
     push();
 
+    //Dispalying the background
     texture(this.gradient);
     translate(2 * width, -height / 3, -2000);
     rotateY(-90);
@@ -119,11 +120,3 @@ class Hall extends State {
     pop();
   }
 }
-// new Hall(
-//  floor,
-//  windows,
-//  house,
-//  houseTexture,
-//  hotAirBalloon,
-//  balloonTexture
-// );

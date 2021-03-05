@@ -1,5 +1,5 @@
 {
-  "description": "Positions of rows of books in bookcases",
+  "description": "Positions of books stacks in library",
   "bookStacks": [
     {
       "x": -1.5,

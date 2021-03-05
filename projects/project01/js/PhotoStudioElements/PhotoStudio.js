@@ -1,5 +1,5 @@
 class PhotoStudio extends State {
-  //Setting the parameters
+  //Setting Photo Studio parameters
   constructor(
     shelf,
     floor,
@@ -52,46 +52,40 @@ class PhotoStudio extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
-    push();
 
+    //Displaying background
+    push();
     texture(this.background);
     translate(2 * width, -height / 3, -2000);
     rotateY(-90);
     plane(4 * width, 2 * height);
     pop();
     push();
-
     texture(this.background);
     translate(-2 * width, -height / 3, -2000);
     rotateY(90);
     plane(4 * width, 2 * height);
     pop();
     push();
-
     texture(this.background);
     translate(0, -height / 4, -2500);
     plane(4 * width, 2 * height);
     pop();
     push();
-
     texture(this.background);
     translate(0, -height, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();
 
-    //Creating floor
+    //Displaying carpet
     push();
-
-    // A red bar passing through the box
     translate(0, height / 4, 0);
-
     texture(this.carpet);
     box(3 * width, 100, 3000);
-
     pop();
-    //Displaying the shelves
 
+    //Displaying the white shelves
     for (let i = 0; i < this.whiteShelves.length; i++) {
       this.whiteShelves[i].display();
     }
@@ -107,4 +101,3 @@ class PhotoStudio extends State {
     pop();
   }
 }
-// new PhotoStudio(shelf, floor, whiteWood, camera, cameraTexture);

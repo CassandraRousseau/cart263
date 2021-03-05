@@ -1,7 +1,7 @@
 class Bakery extends State {
   //Setting bakery parameters
   constructor(
-    chocolateCake,
+    vanillaCake,
     pie,
     crust,
     frosting,
@@ -19,7 +19,7 @@ class Bakery extends State {
     ceilingBakery
   ) {
     super(
-      chocolateCake,
+      vanillaCake,
       pie,
       crust,
       frosting,
@@ -42,7 +42,7 @@ class Bakery extends State {
     this.texturePie = crust;
     this.textureCake = frosting;
     this.textureStrudel = crustStrudel;
-    this.chocolateCake = chocolateCake;
+    this.vanillaCake = vanillaCake;
     this.pie = pie;
     this.strudel = appleStrudel;
     this.ceiling = ceilingBakery;
@@ -52,7 +52,6 @@ class Bakery extends State {
     this.textureBun = cinnamonBun;
     this.texturePizza = pepperoni;
     this.textureDoughnut = doughnutTexture;
-    //Creating the right side rock
     for (let i = 0; i < countersData.counters.length; i++) {
       let data = countersData.counters[i];
       this.counter = new Counters(data.x, wood);
@@ -64,7 +63,7 @@ class Bakery extends State {
   preload() {
     super.preload();
     this.background.preload();
-    this.chocolateCake.preload();
+    this.vanillaCake.preload();
     this.texturePie.preload();
     this.textureCake.preload();
     this.textureBun.preload();
@@ -84,12 +83,11 @@ class Bakery extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
-
     noStroke();
     push();
 
+    //Displaying the background
     push();
-
     texture(this.background);
     translate(2 * width, -height / 3, -2000);
     rotateY(-90);
@@ -108,8 +106,9 @@ class Bakery extends State {
     translate(0, -height / 3, -2500);
     plane(4 * width, 2 * height);
     pop();
-    push();
 
+    //Creating the ceiling
+    push();
     texture(this.ceiling);
     translate(0, -height, -1000);
     rotateX(90);
@@ -141,7 +140,7 @@ class Bakery extends State {
     rotateZ(0);
     scale(1.25, 1.25, 1.25);
     texture(this.textureCake);
-    model(this.chocolateCake);
+    model(this.vanillaCake);
     pop();
 
     //Creating strudel

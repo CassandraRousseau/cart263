@@ -20,7 +20,7 @@ class ArtStudio extends State {
       studioWall,
       ceilingArt
     );
-    this.floor = new FloorHall(tissue);
+    this.floor = new FloorStudio(tissue);
     this.canvas = canvas;
     this.ceiling = ceilingArt;
     this.blueAbstractArt = blueAbstractArt;
@@ -47,8 +47,9 @@ class ArtStudio extends State {
     super.draw();
     background(0);
     angleMode(DEGREES);
-    push();
 
+    //Displaying background
+    push();
     texture(this.texture);
     translate(2 * width, -100, -2000);
     rotateY(-90);
@@ -61,18 +62,19 @@ class ArtStudio extends State {
     plane(4 * width, 2 * height);
     pop();
     push();
-    // image(this.image, 0, 0, 1000, 1000);
     texture(this.texture);
     translate(0, -100, -1000);
     plane(4 * width, 2 * height);
     pop();
-    push();
 
+    //Displaying ceiling
+    push();
     texture(this.ceiling);
     translate(0, -height, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();
+
     //Displaying the floor
     push();
     this.floor.display();
@@ -122,11 +124,3 @@ class ArtStudio extends State {
     // pop();
   }
 }
-// new ArtStudio(
-//  tissue,
-//  canvas,
-//  blueAbstractArt,
-//  pinkAbstractArt,
-//  whiteAbstractArt,
-//  brushes
-// );
