@@ -3,7 +3,7 @@ Project 01:A Night at the Movies
 Cassandra Rousseau
 The 3D simulation will be about the Disney animated movie 'SOUL'. The reproduced scene
 is the moment mentors help the souls to find their spark. At the title screen, the user
-will see the landscape of the Great Before(aka the You Seminar). At the start of the game,
+will see the landscape of the Great Before(aka the U Seminar). At the start of the game,
 the user will be introduced to the universe and his mission through a cutscene of the movie.
 The goal of the user will be to explore the universe of the Great Before and to find their own
 spark!
@@ -281,6 +281,7 @@ let brushes;
 //Creating variable for manual
 let manual;
 
+let music;
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -300,6 +301,7 @@ function preload() {
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
 
+  music = loadSound(`assets/sounds/hall-of-everything.mp3`);
   //Preloading images
   bakeryShop = loadImage(`assets/images/BakeryShop.jpg`);
   windows = loadImage(`assets/images/windows.png`);
@@ -511,11 +513,15 @@ function places(room) {
       bookcasesData,
       ceilingLibrary
     );
-
+    if (!music.isPlaying()) {
+      music.play();
+    }
     //Setting basketball court state
   } else if (currentAnswer === "basketball court") {
     currentState = new BasketballCourt(floor, basketball, fence, sky);
-
+    if (!music.isPlaying()) {
+      music.play();
+    }
     //Setting art studio state
   } else if (currentAnswer === "art studio") {
     currentState = new ArtStudio(
@@ -528,7 +534,9 @@ function places(room) {
       studioWall,
       ceilingArt
     );
-
+    if (!music.isPlaying()) {
+      music.play();
+    }
     //Setting photo studio state
   } else if (currentAnswer === "photo studio") {
     currentState = new new PhotoStudio(
@@ -541,7 +549,9 @@ function places(room) {
       whiteShelvesData,
       blackCarpet
     )();
-
+    if (!music.isPlaying()) {
+      music.play();
+    }
     //Setting office state
   } else if (currentAnswer === "office") {
     currentState = new Office(
@@ -558,7 +568,9 @@ function places(room) {
       blueCarpet,
       ceilingOffice
     );
-
+    if (!music.isPlaying()) {
+      music.play();
+    }
     //Setting hall state
   } else if (currentAnswer === "hall") {
     currentState = new Hall(
@@ -571,6 +583,9 @@ function places(room) {
       buildingData,
       gradient
     );
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
   //Setting hall of everything state
   else if (currentAnswer === "hall of everything") {
@@ -582,6 +597,9 @@ function places(room) {
       wingsData,
       purpleGradient
     );
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
   //Setting bakery state
   else if (currentAnswer === "bakery") {
@@ -603,6 +621,9 @@ function places(room) {
       countersData,
       ceilingBakery
     );
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
   //Setting hall of you state
   else if (currentAnswer === "hall of you") {
@@ -622,6 +643,9 @@ function places(room) {
       doughnutTexture7,
       comment
     );
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
 }
 //Setting ending state through calling careers
@@ -629,7 +653,7 @@ function dream(career) {
   currentAnswer = career.toLowerCase();
   console.log(currentAnswer);
   console.log(career);
-  if (currentAnswer === chosenCareer) {
+  if (checkCareer) {
     currentState = new Ending(
       soulBackground,
       purpleGradient,
@@ -637,10 +661,20 @@ function dream(career) {
       grassBlue,
       farewell
     );
-    console.log(ending);
+    if (!music.isPlaying()) {
+      music.play();
+    }
   }
 }
 
+//Checking if the named career is correctly pronounced
+function checkCareer(career) {
+  if (currentAnswer === chosenCareer) {
+    return true;
+  } else {
+    return false;
+  }
+}
 // if the answer is wrong
 // } else if (currentAnswer !== chosenCareer) {
 //   responsiveVoice.speak("I can't hear you...", "UK English Female", {

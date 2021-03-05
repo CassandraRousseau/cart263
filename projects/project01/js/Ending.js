@@ -18,7 +18,7 @@ class Ending extends State {
   }
   //Displaying the ending
   display() {
-    super.draw();
+    super.display();
     background(225, 175, 255);
     //Displaying the background
     push();
