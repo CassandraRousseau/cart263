@@ -17,8 +17,8 @@ let instructions = `Hello Soul J-3779, my name is Jerry and I will be your host 
 let farewell = `I'm really happy that you found your spark!\n I wish you the best during your human life!\n Enjoy!`;
 //Creating ending text
 let comment = `Yeah... I really liked donuts in my past life...(*And I still like them*)`;
-let listCareers = `artist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
-let listPlaces = `Art studio\nAuditorium\nBakery\nBasketball court\nHall\nHall of everything\nHall of you\nLibrary\nOffice\nPhoto studio`;
+let listCareers = `List of careers:\nartist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
+let listPlaces = `List of places:\nArt studio\nAuditorium\nBakery\nBasketball court\nHall\nHall of everything\nHall of you\nLibrary\nOffice\nPhoto studio`;
 //Creating font variable
 let font;
 
@@ -446,11 +446,7 @@ function draw() {
   cameraCursor();
   if (manual.active) {
     manual.display();
-    console.log(manual);
   }
-  // if (manual && manual.active) {
-  //   manual.display();
-  // }
 }
 //Setting all mouse inputs for each states
 function mousePressed() {
@@ -668,44 +664,15 @@ function checkCareer(career) {
 }
 
 //Setting manual display
-function seeManual(manual) {
+function seeManual() {
   // currentAnswer = `see manual`;
   manual.active = true;
-  console.log(manual.active);
-  // if (currentAnswer === `see manual`) {
-  //
-  //   //   // console.log(checkManual);
-  //   //   manual = new Manual(listPlaces, listCareers);
-  //   console.log(currentAnswer);
-  // }
 }
 //Setting how to exit the manual
-function exitManual(manual) {
+function exitManual() {
   manual.active = false;
-  // currentAnswer = `exit manual`;
-  // console.log(currentAnswer);
-  // if (checkExit) {
-  //   manual.active = false;
-  // }
 }
-//Checking if the command was called properly
-// function checkManual(manual) {
-//   if (currentAnswer === `see manual`) {
-//     console.log(currentAnswer);
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-// //Checking if the command was called properly
-// function checkExit(manual) {
-//   if (currentAnswer === `exit manual`) {
-//     console.log(currentAnswer);
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
+
 // if the answer is wrong
 // } else if (currentAnswer !== chosenCareer) {
 //   responsiveVoice.speak("I can't hear you...", "UK English Female", {
