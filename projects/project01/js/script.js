@@ -36,9 +36,9 @@ let grassBlue;
 //Creating intro video variable
 let video;
 
-//Creating annyang! variables for location and career
-let chosenLocation = "";
-let chosenCareer = "";
+// //Creating annyang! variables for location and career
+// let chosenLocation = "";
+// let chosenCareer = "";
 
 //Creating annyang! variable for user's answer
 let currentAnswer = "";
@@ -420,8 +420,7 @@ function setup() {
     annyang.addCommands(commands);
     annyang.start();
   }
-  manual = new Manual(listPlaces, listCareers);
-  manual.active = false;
+
   //Setting title state
   textStyle(BOLD);
   title = new Title(
@@ -431,9 +430,11 @@ function setup() {
     soulBackground,
     purpleGradient
   );
-
   currentState = title;
   console.log(currentState);
+  manual = new Manual(listPlaces, listCareers);
+  manual.active = false;
+  console.log(manual);
 }
 
 //Setting title state
@@ -444,7 +445,8 @@ function draw() {
   //Creating camera
   cameraCursor();
   if (manual.active) {
-    manual.draw();
+    manual.display();
+    console.log(manual);
   }
   // if (manual && manual.active) {
   //   manual.display();
@@ -667,13 +669,14 @@ function checkCareer(career) {
 
 //Setting manual display
 function seeManual(manual) {
-  manual.active = true;
   // currentAnswer = `see manual`;
-  // console.log(currentAnswer);
+  manual.active = true;
+  console.log(manual.active);
   // if (currentAnswer === `see manual`) {
-  //   // console.log(checkManual);
-  //   manual = new Manual(listPlaces, listCareers);
-  //   console.log(manual);
+  //
+  //   //   // console.log(checkManual);
+  //   //   manual = new Manual(listPlaces, listCareers);
+  //   console.log(currentAnswer);
   // }
 }
 //Setting how to exit the manual
@@ -686,23 +689,23 @@ function exitManual(manual) {
   // }
 }
 //Checking if the command was called properly
-function checkManual(manual) {
-  if (currentAnswer === `see manual`) {
-    console.log(currentAnswer);
-    return true;
-  } else {
-    return false;
-  }
-}
-//Checking if the command was called properly
-function checkExit(manual) {
-  if (currentAnswer === `exit manual`) {
-    console.log(currentAnswer);
-    return true;
-  } else {
-    return false;
-  }
-}
+// function checkManual(manual) {
+//   if (currentAnswer === `see manual`) {
+//     console.log(currentAnswer);
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// //Checking if the command was called properly
+// function checkExit(manual) {
+//   if (currentAnswer === `exit manual`) {
+//     console.log(currentAnswer);
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 // if the answer is wrong
 // } else if (currentAnswer !== chosenCareer) {
 //   responsiveVoice.speak("I can't hear you...", "UK English Female", {

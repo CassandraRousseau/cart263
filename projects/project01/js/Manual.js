@@ -1,7 +1,7 @@
-class Manual extends State {
+class Manual {
   //Setting manual parameters
   constructor(listPlaces, listCareers) {
-    super(listPlaces, listCareers);
+    // super(listPlaces, listCareers);
     this.listPlaces = listPlaces;
     this.listCareers = listCareers;
     // this.listPlaces = room.rooms;
@@ -13,12 +13,12 @@ class Manual extends State {
     //   this.shelves.push(this.shelf);
     // }
     this.quit = `To quit the manual, say 'exit manual'.`;
-    this.active = undefined;
+    this.active = true;
   }
 
   //Display lists
-  draw() {
-    super.draw();
+  display() {
+    // super.display();
     // background(0);
     push();
     //Display list of places
