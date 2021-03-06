@@ -1,7 +1,7 @@
-class Manual {
+class Manual extends State {
   //Setting manual parameters
   constructor(listPlaces, listCareers) {
-    // super(listPlaces, listCareers);
+    super(listPlaces, listCareers);
     this.listPlaces = listPlaces;
     this.listCareers = listCareers;
     // this.listPlaces = room.rooms;
@@ -13,19 +13,19 @@ class Manual {
     //   this.shelves.push(this.shelf);
     // }
     this.quit = `To quit the manual, say 'exit manual'.`;
-    this.active = true;
+    this.active = undefined;
   }
 
   //Display lists
-  display() {
-    // super.display();
+  draw() {
+    super.draw();
     // background(0);
     push();
     //Display list of places
     textSize(30);
     fill(255);
     textAlign(CENTER, CENTER);
-    translate(0, 0, 200);
+    translate(0, 0, 500);
     text(this.listPlaces, 0, -height / 3);
     pop();
     push();

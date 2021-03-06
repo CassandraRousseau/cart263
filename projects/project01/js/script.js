@@ -420,7 +420,8 @@ function setup() {
     annyang.addCommands(commands);
     annyang.start();
   }
-
+  manual = new Manual(listPlaces, listCareers);
+  manual.active = false;
   //Setting title state
   textStyle(BOLD);
   title = new Title(
@@ -440,9 +441,14 @@ function setup() {
 //Setting draw
 function draw() {
   currentState.draw();
-
   //Creating camera
   cameraCursor();
+  if (manual.active) {
+    manual.draw();
+  }
+  // if (manual && manual.active) {
+  //   manual.display();
+  // }
 }
 //Setting all mouse inputs for each states
 function mousePressed() {
@@ -660,16 +666,24 @@ function checkCareer(career) {
 }
 
 //Setting manual display
-function seeManual(manual, listPlaces, listCareers) {
-  if (checkManual) {
-    manual = new Manual(listPlaces, listCareers);
-  }
+function seeManual(manual) {
+  manual.active = true;
+  // currentAnswer = `see manual`;
+  // console.log(currentAnswer);
+  // if (currentAnswer === `see manual`) {
+  //   // console.log(checkManual);
+  //   manual = new Manual(listPlaces, listCareers);
+  //   console.log(manual);
+  // }
 }
 //Setting how to exit the manual
 function exitManual(manual) {
-  if (checkExit) {
-    manual.active = false;
-  }
+  manual.active = false;
+  // currentAnswer = `exit manual`;
+  // console.log(currentAnswer);
+  // if (checkExit) {
+  //   manual.active = false;
+  // }
 }
 //Checking if the command was called properly
 function checkManual(manual) {
