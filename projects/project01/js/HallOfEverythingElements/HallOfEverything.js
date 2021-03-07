@@ -16,12 +16,26 @@ class HallOfEverything extends State {
       wingsData,
       purpleGradient
     );
+
+    //Creating background
     this.texture = soulBackground;
+
+    //Creating instructions
     this.instructions = instructions;
+
+    //Creating jerry(character in Soul)
     this.jerry = jerry;
+
+    //Creating gradient(aka the sky)
     this.gradient = purpleGradient;
+
+    //Creating the ground
     this.ground = new GroundHallOfEverything(grassBlue);
+
+    //Creating wings array
     this.wings = [];
+
+    //Creating wings of hall of everything building
     for (let i = 0; i < wingsData.wings.length; i++) {
       let data = wingsData.wings[i];
       this.wing = new HallBuilding(data.x, data.y, data.z, data.w);

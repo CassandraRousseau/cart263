@@ -1,5 +1,5 @@
 class GroundHallOfEverything {
-  //Creating ground hall of everything parameters
+  //Creating ground in hall of everything parameters
   constructor(grassBlue) {
     this.translateX = 0;
     this.translateY = 250;
@@ -15,7 +15,7 @@ class GroundHallOfEverything {
     this.texture.preload();
   }
 
-  // Displaying ground hall of everything
+  // Displaying ground in  hall of everything
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

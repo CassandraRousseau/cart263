@@ -1,5 +1,5 @@
 class Stage {
-  //Creating stage parameters
+  //Creating stage parameters in auditorium
   constructor() {
     this.translateX = 0;
     this.translateY = 150;
@@ -8,7 +8,7 @@ class Stage {
     this.radiusX = 500;
     this.radiusY = 70;
   }
-  //Displaying stage
+  //Displaying stage in auditorium
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

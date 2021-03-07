@@ -20,13 +20,29 @@ class Hall extends State {
       buildingData,
       gradient
     );
+
+    //Creating floor
     this.floor = new FloorHall(floor);
+
+    //Creating house
     this.house = house;
-    this.gradient = gradient;
-    this.houseTexture = houseTexture;
+
+    //Creating hot air balloon
     this.hotAirBalloon = hotAirBalloon;
+
+    //Creating gradient(aka sky)
+    this.gradient = gradient;
+
+    //Creating house texture
+    this.houseTexture = houseTexture;
+
+    //Creating hot air balloon texture
     this.balloonTexture = balloonTexture;
+
+    //Creating buildings array
     this.buildings = [];
+
+    //Creating buildings
     for (let i = 0; i < buildingData.buildings.length; i++) {
       let data = buildingData.buildings[i];
       this.building = new Buildings(

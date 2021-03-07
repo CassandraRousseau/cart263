@@ -28,16 +28,38 @@ class Office extends State {
       blueCarpet,
       ceilingOffice
     );
+
+    //Creating the desk
     this.desk = desk;
+
+    //Creating the wood texture
     this.wood = wood;
+
+    //Creating the pen
     this.pen = pen;
+
+    //Creating the legal pad
     this.legalPad = legalPad;
+
+    //Creating metal texture
     this.metal = metal;
+
+    //Creating the paper punch
     this.paperPunch = paperPunch;
+
+    //Creating the notebook
     this.notebook = notebook;
+
+    //Creating the pencil holder
     this.pencilHolder = pencilHolder;
+
+    //Creating background
     this.texture = ovalOffice;
+
+    //Creating the carpet
     this.carpet = blueCarpet;
+
+    //Creating the ceiling
     this.ceiling = ceilingOffice;
   }
 

@@ -1,5 +1,5 @@
 class Buildings {
-  //Creating buildings parameters
+  //Creating buildings in hall parameters
   constructor(x, y, z, w, h, d, windows) {
     this.x = x * width;
     this.y = y * height;
@@ -10,12 +10,12 @@ class Buildings {
     this.texture = windows;
   }
 
-  //Preloading buildings
+  //Preloading buildings in hall
   preload() {
     this.texture.preload();
   }
 
-  //Displaying buildings
+  //Displaying buildings in hall
   display() {
     push();
     translate(this.x, this.y, this.z);

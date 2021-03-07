@@ -2,11 +2,23 @@ class Ending extends State {
   //Creating ending parameters
   constructor(soulBackground, purpleGradient, jerry, grassBlue, farewell) {
     super(soulBackground, purpleGradient, jerry, grassBlue, farewell);
+
+    //Creating background
     this.background = soulBackground;
+
+    //Creating gradient(aka the sky)
     this.gradient = purpleGradient;
+
+    //Creating Jerry( character in the movie Soul)
     this.jerry = jerry;
+
+    //Creating the ending dialog
     this.farewell = farewell;
+
+    //Creating a hole
     this.hole = new Hole();
+
+    //Creating the ground
     this.ground = new GroundHallOfEverything(grassBlue);
   }
   //Preloading textures and images
@@ -53,7 +65,7 @@ class Ending extends State {
     //Displaying the hole
     this.hole.display();
 
-    //Displaying the jerry character
+    //Displaying Jerry character
     push();
     translate(0, 0, 300);
     image(this.jerry, width / 12, -height / 7, 300, 300);

@@ -34,30 +34,47 @@ class Library extends State {
       bookcasesData,
       ceilingLibrary
     );
+
+    //Creating floor
     this.floor = new FloorLibrary(carpet);
+
+    //Creating wood texture
     this.wood = wood;
+
+    //Creating background
     this.texture = libraryBackground;
+
+    //Creating ceiling
     this.ceiling = ceilingLibrary;
+
+    //Creating objects arrays
     this.shelves = [];
     this.bookSeries = [];
     this.bookStacks = [];
     this.bookcases = [];
+
+    //Creating shelves
     for (let i = 0; i < shelvesData.shelves.length; i++) {
       let dataShelves = shelvesData.shelves[i];
       this.shelf = new Shelves(dataShelves.x, dataShelves.rotateY, wood, shelf);
       this.shelves.push(this.shelf);
     }
+
+    //Creating bookcases
     for (let i = 0; i < bookcasesData.bookcases.length; i++) {
       let dataBookcases = bookcasesData.bookcases[i];
       this.bookcase = new Bookcases(dataBookcases.x, bookcase, wood);
       this.bookcases.push(this.bookcase);
     }
+
+    //Creating rows of books
     for (let i = 0; i < booksData.bookSeries.length; i++) {
       let data = booksData.bookSeries[i];
       this.book = new Books(data.x, data.y, bookRow, booksTexture);
       this.bookSeries.push(this.book);
     }
 
+    //Creating book stacks
     for (let i = 0; i < booksStacksData.bookStacks.length; i++) {
       let dataStack = booksStacksData.bookStacks[i];
       this.bookStack = new BookStacks(

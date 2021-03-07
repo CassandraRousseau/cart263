@@ -1,5 +1,5 @@
 class Curtains {
-  //Creating curtains parameters
+  //Creating curtains parameters in auditorium
   constructor(x, curtains) {
     this.x = x * width;
     this.y = -200;
@@ -9,12 +9,12 @@ class Curtains {
     this.height = height;
   }
 
-  //Preloading curtains
+  //Preloading curtains in auditorium
   preload() {
     this.texture.preload();
   }
 
-  //Displaying curtains
+  //Displaying curtains in auditorium
   display() {
     push();
     translate(this.x, this.y, this.z);

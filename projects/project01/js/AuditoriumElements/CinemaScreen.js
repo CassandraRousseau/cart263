@@ -1,5 +1,5 @@
 class CinemaScreen {
-  //Creating cinema screen parameters
+  //Creating cinema screen parameters in auditorium
   constructor() {
     this.translateX = 0;
     this.translateY = -175;
@@ -9,7 +9,7 @@ class CinemaScreen {
     this.fill = 0;
   }
 
-  //Displaying cinema screen
+  //Displaying cinema screen in auditorium
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

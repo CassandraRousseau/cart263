@@ -1,5 +1,5 @@
 class MountainRight {
-  //Creating right side mountain parameters
+  //Creating right side mountain parameters in title screen
   constructor(grassPurple) {
     this.translateX = width / 3;
     this.translateY = 75;
@@ -14,7 +14,7 @@ class MountainRight {
     this.texture.preload();
   }
 
-  //Displaying right side mountain
+  //Displaying right side mountain in title screen
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

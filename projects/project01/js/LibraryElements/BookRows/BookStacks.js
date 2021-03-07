@@ -1,5 +1,5 @@
 class BookStacks {
-  //Creating rows of books stacks parameters
+  //Creating rows of books stacks parameters in library
   constructor(x, rotateY, books, leather) {
     this.books = books;
     this.leather = leather;
@@ -16,7 +16,7 @@ class BookStacks {
     this.books.preload();
     this.leather.preload();
   }
-  //Displaying book stacks
+  //Displaying book stacks in library
   display() {
     push();
     translate(this.x, this.y, this.z);
@@ -29,40 +29,3 @@ class BookStacks {
     pop();
   }
 }
-// -------
-//
-// let booksData;
-//
-// function preload() {
-//   booksData = loadJSON(`boooks.json`);
-// }
-//
-// class Library {
-//   constructor(booksData) {
-//     this.books = [];
-//     for (let i = 0; i < booksData.books.length; i++) {
-//       let data = booksData.books[i];
-//       let book = new Book(data.x, data.y);
-//     }
-//   }
-// }
-//
-// class Book {
-//   constructor(x, y) {
-//     this.x = x;
-//     this.y = y;
-//     this.model = bookRow;
-//     this.text = booksTexture;
-//     this.z = 0;
-//     this.scale = 500;
-//   }
-//
-//   display() {
-//     push();
-//     translate(this.x, this.y, this.z);
-//     scale(this.scale);
-//     text(this.texture);
-//     model(this.model);
-//     pop();
-//   }
-// }

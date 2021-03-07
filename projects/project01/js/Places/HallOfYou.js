@@ -11,9 +11,9 @@ class HallOfYou extends State {
     doughnut8,
     doughnutTexture,
     doughnutTexture2,
+    doughnutTexture3,
     doughnutTexture4,
-    doughnutTexture6,
-    doughnutTexture7,
+    doughnutTexture5,
     comment
   ) {
     super(
@@ -27,12 +27,16 @@ class HallOfYou extends State {
       doughnut8,
       doughnutTexture,
       doughnutTexture2,
+      doughnutTexture3,
       doughnutTexture4,
-      doughnutTexture6,
-      doughnutTexture7,
+      doughnutTexture5,
       comment
     );
+
+    //Creating the comment
     this.comment = comment;
+
+    //Creating the doughnuts
     this.doughnut = doughnut;
     this.doughnut2 = doughnut2;
     this.doughnut3 = doughnut3;
@@ -41,11 +45,13 @@ class HallOfYou extends State {
     this.doughnut6 = doughnut6;
     this.doughnut7 = doughnut7;
     this.doughnut8 = doughnut8;
+
+    //Creating the doughnuts texture
     this.doughnutTexture = doughnutTexture;
     this.doughnutTexture2 = doughnutTexture2;
+    this.doughnutTexture3 = doughnutTexture3;
     this.doughnutTexture4 = doughnutTexture4;
-    this.doughnutTexture6 = doughnutTexture6;
-    this.doughnutTexture7 = doughnutTexture7;
+    this.doughnutTexture5 = doughnutTexture5;
   }
 
   //Preloading images and obj files
@@ -62,9 +68,9 @@ class HallOfYou extends State {
     this.doughnut8.preload();
     this.doughnutTexture.preload();
     this.doughnutTexture2.preload();
+    this.doughnutTexture3.preload();
     this.doughnutTexture4.preload();
-    this.doughnutTexture6.preload();
-    this.doughnutTexture7.preload();
+    this.doughnutTexture5.preload();
   }
 
   //Setting the environment
@@ -111,7 +117,7 @@ class HallOfYou extends State {
     translate(-width / 2, 50, 400);
 
     scale(20, 20, 20);
-    texture(this.doughnutTexture4);
+    texture(this.doughnutTexture3);
     model(this.doughnut4);
     pop();
     push();
@@ -119,7 +125,7 @@ class HallOfYou extends State {
     rotateX(180);
 
     scale(20, 20, 20);
-    texture(this.doughnutTexture4);
+    texture(this.doughnutTexture3);
     model(this.doughnut5);
     pop();
     push();
@@ -127,7 +133,7 @@ class HallOfYou extends State {
     rotateX(180);
 
     scale(12, 12, 12);
-    texture(this.doughnutTexture6);
+    texture(this.doughnutTexture4);
     model(this.doughnut6);
     pop();
     push();
@@ -135,7 +141,7 @@ class HallOfYou extends State {
     rotateX(180);
 
     scale(25, 25, 25);
-    texture(this.doughnutTexture7);
+    texture(this.doughnutTexture5);
     model(this.doughnut7);
     pop();
     push();

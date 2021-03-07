@@ -36,22 +36,56 @@ class Bakery extends State {
       countersData,
       ceilingBakery
     );
+
+    //Creating background
     this.background = bakeryShop;
+
+    //Creating floor
     this.floor = new FloorBakery(wood);
+
+    //Creating object array
     this.counters = [];
+
+    //Creating pie texture
     this.texturePie = crust;
+
+    //Creating cake texture
     this.textureCake = frosting;
+
+    //Creating strudel texture
     this.textureStrudel = crustStrudel;
-    this.vanillaCake = vanillaCake;
-    this.pie = pie;
-    this.strudel = appleStrudel;
-    this.ceiling = ceilingBakery;
-    this.bun = bun;
-    this.pizza = pizza;
-    this.doughnut = doughnut;
+
+    //Creating bun texture
     this.textureBun = cinnamonBun;
+
+    //Creating pizza texture
     this.texturePizza = pepperoni;
+
+    //Creating doughnut texture
     this.textureDoughnut = doughnutTexture;
+
+    //Creating vanilla cake obj file
+    this.vanillaCake = vanillaCake;
+
+    //Creating pie obj file
+    this.pie = pie;
+
+    //Creating strudel obj file
+    this.strudel = appleStrudel;
+
+    //Creating ceiling
+    this.ceiling = ceilingBakery;
+
+    //Creating bun obj file
+    this.bun = bun;
+
+    //Creating pizza obj file
+    this.pizza = pizza;
+
+    //Creating doughnut obj file
+    this.doughnut = doughnut;
+
+    //Creating counters
     for (let i = 0; i < countersData.counters.length; i++) {
       let data = countersData.counters[i];
       this.counter = new Counters(data.x, wood);

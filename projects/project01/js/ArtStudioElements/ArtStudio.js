@@ -20,13 +20,24 @@ class ArtStudio extends State {
       studioWall,
       ceilingArt
     );
+
+    //Creating floor
     this.floor = new FloorStudio(tissue);
+
+    //Creating canvas
     this.canvas = canvas;
+
+    //Creating ceiling
     this.ceiling = ceilingArt;
+
+    //Creating abstract paintings
     this.blueAbstractArt = blueAbstractArt;
     this.pinkAbstractArt = pinkAbstractArt;
     this.whiteAbstractArt = whiteAbstractArt;
+
     this.brushes = brushes;
+
+    //Creating the displayed walls
     this.texture = studioWall;
   }
 

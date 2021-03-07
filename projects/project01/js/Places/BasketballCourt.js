@@ -2,9 +2,17 @@ class BasketballCourt extends State {
   //Setting basketball court parameters
   constructor(floor, basketball, fence, sky) {
     super(floor, basketball, fence, sky);
+
+    //Creating floor
     this.floor = new FloorHall(floor);
+
+    //Creating fence
     this.fence = fence;
+
+    //Creating sky
     this.sky = sky;
+
+    //Creating basketball ball
     this.basketball = basketball;
   }
 

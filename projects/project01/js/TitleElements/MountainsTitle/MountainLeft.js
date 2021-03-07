@@ -1,5 +1,5 @@
 class MountainLeft {
-  //Creating left side mountain parameters
+  //Creating left side mountain parameters in title screen
   constructor(grassPurple) {
     (this.translateX = -width / 3),
       (this.translateY = 75),
@@ -14,7 +14,7 @@ class MountainLeft {
     this.texture.preload();
   }
 
-  //Displaying left side mountain
+  //Displaying left side mountain the title screen
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

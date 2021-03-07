@@ -20,11 +20,23 @@ class PhotoStudio extends State {
       whiteShelvesData,
       blackCarpet
     );
+
+    //Creating camera
     this.camera = camera;
+
+    //Creating camera texture
     this.cameraTexture = cameraTexture;
+
+    //Creating background
     this.background = photoBackground;
+
+    //Creating carpet
     this.carpet = blackCarpet;
+
+    //Creating shelves array
     this.whiteShelves = [];
+
+    //Creating shelves
     for (let i = 0; i < whiteShelvesData.whiteShelves.length; i++) {
       let dataWhiteShelves = whiteShelvesData.whiteShelves[i];
       this.whiteshelf = new WhiteShelves(

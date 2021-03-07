@@ -17,8 +17,13 @@ let instructions = `Hello Soul J-3779, my name is Jerry and I will be your host 
 let farewell = `I'm really happy that you found your spark!\n I wish you the best during your human life!\n Enjoy!`;
 //Creating ending text
 let comment = `Yeah... I really liked donuts in my past life...(*And I still like them*)`;
+
+//Creating list of careers for the manual
 let listCareers = `List of careers:\nartist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
+
+//Creating list of places for the manual
 let listPlaces = `List of places:\nArt studio\nAuditorium\nBakery\nBasketball court\nHall\nHall of everything\nHall of you\nLibrary\nOffice\nPhoto studio`;
+
 //Creating font variable
 let font;
 
@@ -35,10 +40,6 @@ let grassBlue;
 
 //Creating intro video variable
 let video;
-
-// //Creating annyang! variables for location and career
-// let chosenLocation = "";
-// let chosenCareer = "";
 
 //Creating annyang! variable for user's answer
 let currentAnswer = "";
@@ -89,9 +90,9 @@ let doughnut8;
 //Creating doughnut textures variables
 let doughnutTexture;
 let doughnutTexture2;
+let doughnutTexture3;
 let doughnutTexture4;
-let doughnutTexture6;
-let doughnutTexture7;
+let doughnutTexture5;
 
 //Creating painting textures variables for art ArtStudio
 let blueAbstractArt;
@@ -236,9 +237,6 @@ let metal;
 //Creating room variable for rooms JSON file
 let room;
 
-//Creating variable fpr the number of counters in Bakery
-let numCounters = 1;
-
 //Creating variable for Jerry image(character in Soul movie)
 let jerry;
 
@@ -274,14 +272,14 @@ let photoBackground;
 
 //Creating variable for carpet in photo studio
 let blackCarpet;
-// let angle = 45;
-
-let brushes;
 
 //Creating variable for manual
 let manual;
 
+//Creating music variable
 let music;
+
+let brushes;
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -320,9 +318,9 @@ function preload() {
   pepperoni = loadImage("assets/images/pepperoni_pizza.jpg");
   doughnutTexture = loadImage("assets/images/doughnut_texture.jpg");
   doughnutTexture2 = loadImage("assets/images/boston_donut.png");
-  doughnutTexture4 = loadImage("assets/images/chocolate_doughnut.jpg");
-  doughnutTexture6 = loadImage("assets/images/plain_donut.jpg");
-  doughnutTexture7 = loadImage("assets/images/sprinkle_donut.jpg");
+  doughnutTexture3 = loadImage("assets/images/chocolate_doughnut.jpg");
+  doughnutTexture4 = loadImage("assets/images/plain_donut.jpg");
+  doughnutTexture5 = loadImage("assets/images/sprinkle_donut.jpg");
   metal = loadImage("assets/images/metal.jpg");
   wood = loadImage("assets/images/wood.jpg");
   cameraTexture = loadImage("assets/images/camera_texture.jpg");
@@ -392,11 +390,11 @@ function setup() {
   cursor.hide();
   handpose = ml5.handpose(cursor, { flipHorizontal: true }, function () {});
   handpose.on(`predict`, function (results) {
-    // console.log(results);
+    console.log(results);
     predictions = results;
   });
 
-  //Creaing video paramaeters
+  //Creating video parameters
   //Uploading video
   video = createVideo(`assets/videos/Intro.mp4`);
 
@@ -430,33 +428,38 @@ function setup() {
     soulBackground,
     purpleGradient
   );
+
   currentState = title;
   console.log(currentState);
+
+  //Setting the manual
   manual = new Manual(listPlaces, listCareers);
   manual.active = false;
   console.log(manual);
 }
 
-//Setting title state
-
 //Setting draw
 function draw() {
   currentState.draw();
+
   //Creating camera
   cameraCursor();
+
+  //Displaying manual if active
   if (manual.active) {
     manual.display();
   }
 }
+
 //Setting all mouse inputs for each states
 function mousePressed() {
   currentState.mousePressed();
 }
 
+//Creating the camera cursor using index
 function cameraCursor() {
   if (predictions.length > 0) {
     // Get the hand predicted
-
     hand = predictions[0];
 
     index = hand.annotations.indexFinger[3];
@@ -464,23 +467,18 @@ function cameraCursor() {
     indexY = index[1];
     indexX = map(indexX, 0, cursor.elt.videoWidth, -500, 500);
     indexY = map(indexY, 0, cursor.elt.videoHeight, -500, 500);
-    // Highlight it on the canvas
+
+    // Setting the camera on the canvas
     camera(0, 0, 800, indexX, indexY, 0, 0, 10, 0);
   }
 }
+
+//Setting the environments when they are called
 function places(room) {
-  //edit the art movements' names in lower cases
+  //edit the rooms' names in lower cases
   currentAnswer = room.toLowerCase();
   console.log(currentAnswer);
 
-  //   //if the answer is wrong
-  //   // } else if (currentAnswer !== currentMovement) {
-  //   //   //Added the artist response to the wrong answer
-  //   //   chosenReaction = random(reactions);
-  //   //   responsiveVoice.speak(chosenReaction, "UK English Female", {
-  //   //     pitch: 5,
-  //   //   });
-  //   //   state = "wrong";
   //Setting library state
   if (currentAnswer === "library") {
     currentState = new Library(
@@ -500,12 +498,16 @@ function places(room) {
       bookcasesData,
       ceilingLibrary
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
     //Setting basketball court state
   } else if (currentAnswer === "basketball court") {
     currentState = new BasketballCourt(floor, basketball, fence, sky);
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -521,6 +523,8 @@ function places(room) {
       studioWall,
       ceilingArt
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -536,6 +540,8 @@ function places(room) {
       whiteShelvesData,
       blackCarpet
     )();
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -555,6 +561,8 @@ function places(room) {
       blueCarpet,
       ceilingOffice
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -570,6 +578,8 @@ function places(room) {
       buildingData,
       gradient
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -584,6 +594,8 @@ function places(room) {
       wingsData,
       purpleGradient
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -608,6 +620,8 @@ function places(room) {
       countersData,
       ceilingBakery
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -625,16 +639,19 @@ function places(room) {
       doughnut8,
       doughnutTexture,
       doughnutTexture2,
+      doughnutTexture3,
       doughnutTexture4,
-      doughnutTexture6,
-      doughnutTexture7,
+      doughnutTexture5,
       comment
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
   }
 }
+
 //Setting ending state through calling careers
 function dream(career) {
   currentAnswer = career.toLowerCase();
@@ -648,6 +665,8 @@ function dream(career) {
       grassBlue,
       farewell
     );
+
+    //Setting music if not playing
     if (!music.isPlaying()) {
       music.play();
     }
@@ -665,17 +684,10 @@ function checkCareer(career) {
 
 //Setting manual display
 function seeManual() {
-  // currentAnswer = `see manual`;
   manual.active = true;
 }
+
 //Setting how to exit the manual
 function exitManual() {
   manual.active = false;
 }
-
-// if the answer is wrong
-// } else if (currentAnswer !== chosenCareer) {
-//   responsiveVoice.speak("I can't hear you...", "UK English Female", {
-//     pitch: 3,
-//   });
-// }

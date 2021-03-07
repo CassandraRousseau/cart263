@@ -1,17 +1,16 @@
 class Manual {
   //Setting manual parameters
   constructor(listPlaces, listCareers) {
+    //Creating list of places
     this.listPlaces = listPlaces;
+
+    //Creating list of careers
     this.listCareers = listCareers;
-    // this.listPlaces = room.rooms;
-    // this.listCareers = careers.occupations;
-    // room, careers
-    // for (let i = 0; i < shelvesData.shelves.length; i++) {
-    //   let dataShelves = shelvesData.shelves[i];
-    //   this.shelf = new Shelves(dataShelves.x, dataShelves.rotateY, wood, shelf);
-    //   this.shelves.push(this.shelf);
-    // }
+
+    //Creating instructions
     this.quit = `To quit the manual, say 'exit manual'.`;
+
+    //Creating active variable
     this.active = true;
   }
 
@@ -43,7 +42,3 @@ class Manual {
     pop();
   }
 }
-//
-// for (let i = 0; i < this.shelves.length; i++) {
-//   this.shelves[i].display();
-// }

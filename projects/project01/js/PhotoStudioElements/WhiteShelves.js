@@ -1,5 +1,5 @@
 class WhiteShelves {
-  //Creating white shelves parameters
+  //Creating white shelves parameters in photo studio
   constructor(x, rotateY, whiteWood, shelf) {
     this.whiteWood = whiteWood;
     this.shelf = shelf;
@@ -18,7 +18,7 @@ class WhiteShelves {
     this.whiteWood.preload();
     this.shelf.preload();
   }
-  //Displaying white shelves
+  //Displaying white shelves in photo studio
   display() {
     push();
     translate(this.x, this.y, this.z);

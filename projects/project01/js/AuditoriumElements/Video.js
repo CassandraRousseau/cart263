@@ -1,5 +1,5 @@
 class Video {
-  //Creating video parameters
+  //Creating video parameters in auditorium
   constructor(video) {
     this.translateX = -325;
     this.translateY = -375;
@@ -10,11 +10,11 @@ class Video {
     this.width = 700;
     this.height = 400;
   }
-  //Preloading video
+  //Preloading video in auditorium
   preload() {
     this.texture.preload();
   }
-  //Displaying video
+  //Displaying video in auditorium
   display() {
     push();
     noFill();

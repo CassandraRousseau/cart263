@@ -1,5 +1,5 @@
 class Books {
-  //Creating rows of books parameters
+  //Creating rows of books in library parameters
   constructor(x, y, bookRow, booksTexture) {
     this.bookRow = bookRow;
     this.booksTexture = booksTexture;
@@ -14,7 +14,7 @@ class Books {
     this.bookRow.preload();
     this.booksTexture.preload();
   }
-  //Displaying rows of books
+  //Displaying rows of books in library
   display() {
     push();
     translate(this.x, this.y, this.z);
@@ -25,40 +25,3 @@ class Books {
     pop();
   }
 }
-// -------
-//
-// let booksData;
-//
-// function preload() {
-//   booksData = loadJSON(`boooks.json`);
-// }
-//
-// class Library {
-//   constructor(booksData) {
-//     this.books = [];
-//     for (let i = 0; i < booksData.books.length; i++) {
-//       let data = booksData.books[i];
-//       let book = new Book(data.x, data.y);
-//     }
-//   }
-// }
-//
-// class Book {
-//   constructor(x, y) {
-//     this.x = x;
-//     this.y = y;
-//     this.model = bookRow;
-//     this.text = booksTexture;
-//     this.z = 0;
-//     this.scale = 500;
-//   }
-//
-//   display() {
-//     push();
-//     translate(this.x, this.y, this.z);
-//     scale(this.scale);
-//     text(this.texture);
-//     model(this.model);
-//     pop();
-//   }
-// }

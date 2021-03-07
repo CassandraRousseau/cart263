@@ -1,5 +1,5 @@
 class Shelves {
-  //Creating shelves parameters
+  //Creating shelves parameters in library and photo studio
   constructor(x, rotateY, wood, shelf) {
     this.wood = wood;
     this.shelf = shelf;
@@ -19,7 +19,7 @@ class Shelves {
     this.shelf.preload();
   }
 
-  //Displaying shelves
+  //Displaying shelves in library in photo studio
   display() {
     push();
     translate(this.x, this.y, this.z);

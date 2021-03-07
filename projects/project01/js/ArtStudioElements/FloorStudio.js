@@ -1,5 +1,5 @@
 class FloorStudio {
-  //Creating art studio parameters
+  //Creating floor in art studio parameters
   constructor(tissue) {
     this.translateX = 0;
     this.translateY = 250;

@@ -1,5 +1,5 @@
 class MountainCenter {
-  //Creating centered mountain parameters
+  //Creating centered mountain parameters in title screen
   constructor(grassPink) {
     this.translateX = width / 300;
     this.translateY = 100;
@@ -14,7 +14,7 @@ class MountainCenter {
     this.texture.preload();
   }
 
-  //Displaying centered mountain
+  //Displaying centered mountain in the title screen
   display() {
     push();
     translate(this.translateX, this.translateY, this.translateZ);

@@ -1,5 +1,5 @@
 class Bookcases {
-  //Creating bookcases parameters
+  //Creating bookcases parameters in library
   constructor(x, bookcase, wood) {
     this.wood = wood;
     this.bookcase = bookcase;
@@ -17,7 +17,7 @@ class Bookcases {
     this.wood.preload();
   }
 
-  //Displaying bookcases
+  //Displaying bookcases in library
   display() {
     push();
     translate(this.x, this.y, this.z);

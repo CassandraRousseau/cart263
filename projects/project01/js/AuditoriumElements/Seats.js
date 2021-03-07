@@ -1,5 +1,5 @@
 class Seats {
-  //Creating seats parameters
+  //Creating seats parameters in auditorium
   constructor(x, z) {
     this.x = x * width;
     this.y = 150;
@@ -13,7 +13,7 @@ class Seats {
       b: 75,
     };
   }
-  //Displaying seats
+  //Displaying seats in auditorium
   display() {
     push();
     translate(this.x, this.y, this.z);

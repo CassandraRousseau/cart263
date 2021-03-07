@@ -8,14 +8,32 @@ class Title extends State {
     purpleGradient
   ) {
     super(grassBlue, grassPurple, grassPink, soulBackground, purpleGradient);
+
+    //Creating state name
     this.name = `title`;
+
+    //Creating title
     this.titleString = "Find Your Spark!";
+
+    //Creating instructions
     this.subheader = `Move the camera with your index, press your Mouse to Start`;
+
+    //Creating background
     this.background = soulBackground;
+
+    //Creating gradient (aka the sky)
     this.gradient = purpleGradient;
+
+    //Creating the ground
     this.ground = new GroundHallOfEverything(grassBlue);
+
+    //Creating the right side mountain
     this.mountainRight = new MountainRight(grassPurple);
+
+    //Creating the left side mountain
     this.mountainLeft = new MountainLeft(grassPurple);
+
+    //Creating centered mountain
     this.mountainCenter = new MountainCenter(grassPink);
   }
 
@@ -93,6 +111,8 @@ class Title extends State {
   mousePressed() {
     super.mousePressed();
     console.log("auditorium");
+
+    //Setting auditorium state when mouse pressed
     if (currentState.name === `title`) {
       currentState = new Auditorium(video, curtainsData, curtains, seatsData);
 

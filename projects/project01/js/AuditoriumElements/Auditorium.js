@@ -2,29 +2,45 @@ class Auditorium extends State {
   //Setting auditorium parameters
   constructor(video, curtainsData, curtains, seatsData) {
     super(video, curtainsData, curtains, seatsData);
+
+    //Creating environment's name
     this.name = `auditorium`;
+
+    //Creating instructions
     this.subheader = `Press your Mouse to watch the video. Once it's done, say "Go to Hall of Everything"`;
+
+    //Creating object arrays
     this.curtains = [];
     this.seats = [];
+
+    //Creating floor
     this.floor = new FloorAuditorium();
+
+    //Creating cinema screen
     this.screen = new CinemaScreen();
 
+    //Creating video
     this.video = new Video(video);
+
+    //Creating stage
     this.stage = new Stage();
 
+    //Creating curtains
     for (let i = 0; i < curtainsData.curtains.length; i++) {
       let data = curtainsData.curtains[i];
       this.curtain = new Curtains(data.x, curtains);
       this.curtains.push(this.curtain);
     }
 
+    //Creating seats
     for (let i = 0; i < seatsData.seats.length; i++) {
       let seatData = seatsData.seats[i];
       this.seat = new Seats(seatData.x, seatData.z);
       this.seats.push(this.seat);
     }
   }
-  //Preloading the video and images
+
+  //Preloading the video and images in Auditorium
   preload() {
     super.preload();
     this.curtainLeft.preload();
@@ -32,7 +48,7 @@ class Auditorium extends State {
     this.video.preload();
   }
 
-  //Displaying the environment
+  //Displaying the Auditorium environment
   draw() {
     super.draw();
     background(0);
@@ -69,6 +85,7 @@ class Auditorium extends State {
     text(this.subheader, -width / 2, height / 25);
     pop();
   }
+
   //Video starts when mouse pressed
   mousePressed() {
     super.mousePressed();
