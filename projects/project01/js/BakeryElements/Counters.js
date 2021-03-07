@@ -1,5 +1,5 @@
 class Counters {
-  //Creating counters
+  //Creating counters in bakery
   constructor(x, wood) {
     this.x = x * width;
     this.y = 150;
@@ -10,7 +10,7 @@ class Counters {
     this.texture = wood;
   }
 
-  //Displaying counters
+  //Displaying counters in bakery
   display() {
     push();
     translate(this.x, this.y, this.z);

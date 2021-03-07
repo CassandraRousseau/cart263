@@ -8,6 +8,8 @@ the user will be introduced to the universe and his mission through a cutscene o
 The goal of the user will be to explore the universe of the Great Before and to find their own
 spark!
 **************************************************/
+//*Help from Pippin to convert variables in object classes into JSON files*
+
 "use strict";
 
 //Creating game instructions
@@ -22,7 +24,7 @@ let comment = `Yeah... I really liked donuts in my past life...(*And I still lik
 let listCareers = `List of careers:\nartist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
 
 //Creating list of places for the manual
-let listPlaces = `List of places:\nArt studio\nAuditorium\nBakery\nBasketball court\nHall\nHall of everything\nHall of you\nLibrary\nOffice\nPhoto studio`;
+let listPlaces = `List of places:\nArt studio\nBakery\nBasketball court\nHall\nHall of you\nLibrary\nOffice\nPhoto studio`;
 
 //Creating font variable
 let font;
@@ -56,6 +58,9 @@ let buildingData;
 //Creating JSON variable for counters in bakery
 let countersData;
 
+//Creating JSON variable for walls in bakery
+let bakeryBackgroundData;
+
 //Creating JSON variable for curtains in auditorium
 let curtainsData;
 
@@ -73,6 +78,21 @@ let bookcasesData;
 
 //Creating JSON variable for white shelves in photo studio
 let whiteShelvesData;
+
+//Creating JSON variable for background in title screen
+let titleBackgroundData;
+
+//Creating JSON variable for background in library
+let libraryBackgroundData;
+
+//Creating JSON variable for background in hall
+let hallBackgroundData;
+
+//Creating JSON variable for background in photo studio
+let photoStudioBackgroundData;
+
+//Creating JSON variable for background in basketball court
+let basketballCourtBackgroundData;
 
 //Creating floor texture variable
 let floor;
@@ -136,7 +156,7 @@ let books;
 let frosting;
 
 //Creating cake obj file variable for bakery
-let chocolateCake;
+let vanillaCake;
 
 //Creating wood texture for furnitures in office and Library
 let wood;
@@ -279,7 +299,6 @@ let manual;
 //Creating music variable
 let music;
 
-let brushes;
 //Setting preloaded elements
 function preload() {
   //Preloading JSON files
@@ -295,6 +314,16 @@ function preload() {
   shelvesData = loadJSON(`assets/data/shelvesLibrary.json`);
   bookcasesData = loadJSON(`assets/data/bookcases.json`);
   whiteShelvesData = loadJSON(`assets/data/shelvesPhotoStudio.json`);
+  bakeryBackgroundData = loadJSON(`assets/data/backgroundBakeryWalls.json`);
+  titleBackgroundData = loadJSON(`assets/data/backgroundTitle.json`);
+  libraryBackgroundData = loadJSON(`assets/data/backgroundLibrary.json`);
+  hallBackgroundData = loadJSON(`assets/data/backgroundHall.json`);
+  photoStudioBackgroundData = loadJSON(
+    `assets/data/backgroundPhotoStudio.json`
+  );
+  basketballCourtBackgroundData = loadJSON(
+    `assets/data/backgroundBasketballCourt.json`
+  );
 
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
@@ -353,7 +382,7 @@ function preload() {
   desk = loadModel(`assets/obj/desk.obj`);
   appleStrudel = loadModel(`assets/obj/AppleStrudel.obj`);
   pizza = loadModel(`assets/obj/PIZZA.obj`);
-  chocolateCake = loadModel(`assets/obj/Chocolate Cake.obj`);
+  vanillaCake = loadModel(`assets/obj/Chocolate Cake.obj`);
   pie = loadModel(`assets/obj/PieLowPoly.obj`);
   bun = loadModel(`assets/obj/sweet_bun.obj`);
   legalPad = loadModel(`assets/obj/LegalPad.obj`);
@@ -377,7 +406,6 @@ function preload() {
   house = loadModel("assets/obj/Farm_house.obj");
   hotAirBalloon = loadModel("assets/obj/hot_air_baloon_4.obj");
   canvas = loadModel("assets/obj/canvas.obj");
-  brushes = loadModel("assets/obj/jar_with_brushes.obj");
 }
 
 //Setting parameters in simulation
@@ -421,18 +449,19 @@ function setup() {
 
   //Setting title state
   textStyle(BOLD);
-  title = new Title(
-    grassBlue,
-    grassPurple,
-    grassPink,
-    soulBackground,
-    purpleGradient
-  );
+  title = new Title({
+    grassBlue: grassBlue,
+    grassPurple: grassPurple,
+    grassPink: grassPink,
+    soulBackground: soulBackground,
+    purpleGradient: purpleGradient,
+    titleBackgroundData: titleBackgroundData,
+  });
 
   currentState = title;
   console.log(currentState);
 
-  //Setting the manual
+  //Setting the manual *Help from Pippin to display the manual*
   manual = new Manual(listPlaces, listCareers);
   manual.active = false;
   console.log(manual);
@@ -456,7 +485,7 @@ function mousePressed() {
   currentState.mousePressed();
 }
 
-//Creating the camera cursor using index
+//Creating the camera cursor using index *Help from Sabine and Pippin to map the index with the camera*
 function cameraCursor() {
   if (predictions.length > 0) {
     // Get the hand predicted
@@ -481,23 +510,24 @@ function places(room) {
 
   //Setting library state
   if (currentAnswer === "library") {
-    currentState = new Library(
-      floor,
-      wood,
-      shelf,
-      bookcase,
-      books,
-      leather,
-      bookRow,
-      booksTexture,
-      libraryBackground,
-      carpet,
-      booksData,
-      booksStacksData,
-      shelvesData,
-      bookcasesData,
-      ceilingLibrary
-    );
+    currentState = new Library({
+      floor: floor,
+      wood: wood,
+      shelf: shelf,
+      bookcase: bookcase,
+      books: books,
+      leather: leather,
+      bookRow: bookRow,
+      booksTexture: booksTexture,
+      libraryBackground: libraryBackground,
+      carpet: carpet,
+      booksData: booksData,
+      booksStacksData: booksStacksData,
+      shelvesData: shelvesData,
+      bookcasesData: bookcasesData,
+      ceilingLibrary: ceilingLibrary,
+      libraryBackgroundData: libraryBackgroundData,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -505,7 +535,13 @@ function places(room) {
     }
     //Setting basketball court state
   } else if (currentAnswer === "basketball court") {
-    currentState = new BasketballCourt(floor, basketball, fence, sky);
+    currentState = new BasketballCourt({
+      floor: floor,
+      basketball: basketball,
+      fence: fence,
+      sky: sky,
+      basketballCourtBackgroundData: basketballCourtBackgroundData,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -513,16 +549,15 @@ function places(room) {
     }
     //Setting art studio state
   } else if (currentAnswer === "art studio") {
-    currentState = new ArtStudio(
-      tissue,
-      canvas,
-      blueAbstractArt,
-      pinkAbstractArt,
-      whiteAbstractArt,
-      brushes,
-      studioWall,
-      ceilingArt
-    );
+    currentState = new ArtStudio({
+      tissue: tissue,
+      canvas: canvas,
+      blueAbstractArt: blueAbstractArt,
+      pinkAbstractArt: pinkAbstractArt,
+      whiteAbstractArt: whiteAbstractArt,
+      studioWall: studioWall,
+      ceilingArt: ceilingArt,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -530,16 +565,17 @@ function places(room) {
     }
     //Setting photo studio state
   } else if (currentAnswer === "photo studio") {
-    currentState = new new PhotoStudio(
-      shelf,
-      floor,
-      whiteWood,
-      cam,
-      cameraTexture,
-      photoBackground,
-      whiteShelvesData,
-      blackCarpet
-    )();
+    currentState = new PhotoStudio({
+      shelf: shelf,
+      floor: floor,
+      whiteWood: whiteWood,
+      cam: cam,
+      cameraTexture: cameraTexture,
+      photoBackground: photoBackground,
+      whiteShelvesData: whiteShelvesData,
+      blackCarpet: blackCarpet,
+      photoStudioBackgroundData: photoStudioBackgroundData,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -547,20 +583,20 @@ function places(room) {
     }
     //Setting office state
   } else if (currentAnswer === "office") {
-    currentState = new Office(
-      desk,
-      floor,
-      wood,
-      legalPad,
-      paperPunch,
-      metal,
-      notebook,
-      pen,
-      pencilHolder,
-      ovalOffice,
-      blueCarpet,
-      ceilingOffice
-    );
+    currentState = new Office({
+      desk: desk,
+      floor: floor,
+      wood: wood,
+      legalPad: legalPad,
+      paperPunch: paperPunch,
+      metal: metal,
+      notebook: notebook,
+      pen: pen,
+      pencilHolder: pencilHolder,
+      ovalOffice: ovalOffice,
+      blueCarpet: blueCarpet,
+      ceilingOffice: ceilingOffice,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -568,16 +604,17 @@ function places(room) {
     }
     //Setting hall state
   } else if (currentAnswer === "hall") {
-    currentState = new Hall(
-      floor,
-      windows,
-      house,
-      houseTexture,
-      hotAirBalloon,
-      balloonTexture,
-      buildingData,
-      gradient
-    );
+    currentState = new Hall({
+      floor: floor,
+      windows: windows,
+      house: house,
+      houseTexture: houseTexture,
+      hotAirBalloon: hotAirBalloon,
+      balloonTexture: balloonTexture,
+      buildingData: buildingData,
+      gradient: gradient,
+      hallBackgroundData: hallBackgroundData,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -586,14 +623,15 @@ function places(room) {
   }
   //Setting hall of everything state
   else if (currentAnswer === "hall of everything") {
-    currentState = new HallOfEverything(
-      grassBlue,
-      soulBackground,
-      instructions,
-      jerry,
-      wingsData,
-      purpleGradient
-    );
+    currentState = new HallOfEverything({
+      grassBlue: grassBlue,
+      soulBackground: soulBackground,
+      instructions: instructions,
+      jerry: jerry,
+      wingsData: wingsData,
+      purpleGradient: purpleGradient,
+      titleBackgroundData: titleBackgroundData,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -602,24 +640,25 @@ function places(room) {
   }
   //Setting bakery state
   else if (currentAnswer === "bakery") {
-    currentState = new Bakery(
-      chocolateCake,
-      pie,
-      crust,
-      frosting,
-      appleStrudel,
-      crustStrudel,
-      bun,
-      cinnamonBun,
-      pizza,
-      pepperoni,
-      doughnut,
-      doughnutTexture,
-      bakeryShop,
-      wood,
-      countersData,
-      ceilingBakery
-    );
+    currentState = new Bakery({
+      vanillaCake: vanillaCake,
+      pie: pie,
+      crust: crust,
+      frosting: frosting,
+      appleStrudel: appleStrudel,
+      crustStrudel: crustStrudel,
+      bun: bun,
+      cinnamonBun: cinnamonBun,
+      pizza: pizza,
+      pepperoni: pepperoni,
+      doughnut: doughnut,
+      doughnutTexture: doughnutTexture,
+      bakeryShop: bakeryShop,
+      wood: wood,
+      countersData: countersData,
+      bakeryBackgroundData: bakeryBackgroundData,
+      ceilingBakery: ceilingBakery,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -628,22 +667,22 @@ function places(room) {
   }
   //Setting hall of you state
   else if (currentAnswer === "hall of you") {
-    currentState = new HallOfYou(
-      doughnut,
-      doughnut2,
-      doughnut3,
-      doughnut4,
-      doughnut5,
-      doughnut6,
-      doughnut7,
-      doughnut8,
-      doughnutTexture,
-      doughnutTexture2,
-      doughnutTexture3,
-      doughnutTexture4,
-      doughnutTexture5,
-      comment
-    );
+    currentState = new HallOfYou({
+      doughnut: doughnut,
+      doughnut2: doughnut2,
+      doughnut3: doughnut3,
+      doughnut4: doughnut4,
+      doughnut5: doughnut5,
+      doughnut6: doughnut6,
+      doughnut7: doughnut7,
+      doughnut8: doughnut8,
+      doughnutTexture: doughnutTexture,
+      doughnutTexture2: doughnutTexture2,
+      doughnutTexture3: doughnutTexture3,
+      doughnutTexture4: doughnutTexture4,
+      doughnutTexture5: doughnutTexture5,
+      comment: comment,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -656,15 +695,15 @@ function places(room) {
 function dream(career) {
   currentAnswer = career.toLowerCase();
   console.log(currentAnswer);
-  console.log(career);
   if (checkCareer) {
-    currentState = new Ending(
-      soulBackground,
-      purpleGradient,
-      jerry,
-      grassBlue,
-      farewell
-    );
+    currentState = new Ending({
+      soulBackground: soulBackground,
+      purpleGradient: purpleGradient,
+      jerry: jerry,
+      grassBlue: grassBlue,
+      farewell: farewell,
+      titleBackgroundData: titleBackgroundData,
+    });
 
     //Setting music if not playing
     if (!music.isPlaying()) {
@@ -691,3 +730,17 @@ function seeManual() {
 function exitManual() {
   manual.active = false;
 }
+
+//Resources:
+//Soul, directed by Pete Docter(2020; Walt Disney Pictures and Pixar Animation Studios; Walt Disney Studios Motion Pictures, 2020), Digital platform.
+//Trent Reznor and Atticus Ross, “Portal/The Hall of Everything(From "Soul"/Audio Only),” by Trent Reznor, December 18th,2020, WALT DISNEY RECORDS,13 on Soul, 2020, Digital platforms.
+// LEGOfan2916.Soul screenshot-30.png, 2020, Soul/Gallery, Disney Wiki-Fandom, accessed March 7, 2021, https://disney.fandom.com/wiki/Jerry_(Soul)?file=Soul_screenshot_-30.png.
+// LEGOfan2916.Soul screenshot-30.png, 2020, Soul/Gallery, Disney Wiki-Fandom, accessed March 7, 2021, https://disney.fandom.com/wiki/Jerry_(Soul)?file=Soul_screenshot_-30.png.
+//Shelby Heinrich. This Pixar's Soul Quiz Will Reveal Your Spark, 2021, BuzzFeed, accessed March 7, 2021, https://www.buzzfeed.com/shelbyheinrich/soul-pixar-spark.
+//Charlotte Grant. Starting a Bakery Business:Things You Need to Consider, 2020, Symbeo Health, accessed March 7, 2021, https://www.symbeohealth.com/starting-a-bakery-business-things-you-need-to-consider/.
+//Musicferret. Art studio wall after months of kids splatter painting, 2020, reddit, accessed March 7, 2021,https://www.reddit.com/r/mildlyinteresting/comments/coacpa/art_studio_wall_after_months_of_kids_splatter/.
+//Old Library Wallpapers,WallpaperAccess, accessed March 7, 2021,https://wallpaperaccess.com/old-library.
+//Harryt Fang.Oval office at the desk, 2020, reddit, accessed March 7, 2021, https://www.reddit.com/r/zoombackgrounds/comments/gpf75a/oval_office_at_the_desk/.
+//Elenas Art Studio.Abstract landscape print Large art landscape Moody sky abstract canvas Gray brown Horizontal line art Minimalist art 847 Long Floating frame, Pinterest, accessed March 7, 2021, https://www.pinterest.ca/pin/112941903127619320/.
+//Chloé Meyer Art. PINK GRAIN,Chloé Meyer original art 24"x 36", abstract oil painting on canvas, Pinterest, accessed March 7, 2021, https://www.pinterest.ca/pin/376402481354560168/.
+//Andrey Zhuralev.Background of the ceiling trim panels in the office. The texture of a standard panel ceiling in a building of flat squares, dreamstime, accessed March 7, 2021,https://www.dreamstime.com/background-ceiling-trim-panels-office-texture-standard-panel-ceiling-building-flat-squares-image198270727.

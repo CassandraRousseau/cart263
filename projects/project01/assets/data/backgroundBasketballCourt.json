@@ -1,0 +1,20 @@
+{
+  "description": "Positions of Basketball Court background",
+  "courtFences": [
+    {
+      "x": 1.5,
+      "z": -1000,
+      "rotateY": -90
+    },
+    {
+      "x": 0.0,
+      "z": -2500,
+      "rotateY": 0
+    },
+    {
+      "x": -1.5,
+      "z": -1000,
+      "rotateY": 90
+    }
+  ]
+}

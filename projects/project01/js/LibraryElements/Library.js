@@ -1,6 +1,6 @@
 class Library extends State {
   //Setting library parameters
-  constructor(
+  constructor({
     floor,
     wood,
     shelf,
@@ -15,9 +15,10 @@ class Library extends State {
     booksStacksData,
     shelvesData,
     bookcasesData,
-    ceilingLibrary
-  ) {
-    super(
+    ceilingLibrary,
+    libraryBackgroundData,
+  }) {
+    super({
       floor,
       wood,
       shelf,
@@ -32,17 +33,15 @@ class Library extends State {
       booksStacksData,
       shelvesData,
       bookcasesData,
-      ceilingLibrary
-    );
+      ceilingLibrary,
+      libraryBackgroundData,
+    });
 
     //Creating floor
     this.floor = new FloorLibrary(carpet);
 
     //Creating wood texture
     this.wood = wood;
-
-    //Creating background
-    this.texture = libraryBackground;
 
     //Creating ceiling
     this.ceiling = ceilingLibrary;
@@ -52,6 +51,20 @@ class Library extends State {
     this.bookSeries = [];
     this.bookStacks = [];
     this.bookcases = [];
+    this.libraryWalls = [];
+
+    //Creating background
+    for (let i = 0; i < libraryBackgroundData.libraryWalls.length; i++) {
+      let backgroundLibraryData = libraryBackgroundData.libraryWalls[i];
+      this.wall = new LibraryBackground(
+        backgroundLibraryData.x,
+        backgroundLibraryData.y,
+        backgroundLibraryData.z,
+        backgroundLibraryData.rotateY,
+        libraryBackground
+      );
+      this.libraryWalls.push(this.wall);
+    }
 
     //Creating shelves
     for (let i = 0; i < shelvesData.shelves.length; i++) {
@@ -109,25 +122,9 @@ class Library extends State {
     angleMode(DEGREES);
 
     //Displaying the background
-    push();
-    texture(this.texture);
-    translate(2 * width, -height / 3, -2000);
-    rotateY(-90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.texture);
-    translate(-2 * width, -height / 3, -2000);
-    rotateY(90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.texture);
-    translate(0, -height / 4, -2500);
-    plane(4 * width, 2 * height);
-    pop();
+    for (let i = 0; i < this.libraryWalls.length; i++) {
+      this.libraryWalls[i].display();
+    }
 
     //Displaying the ceiling
     push();

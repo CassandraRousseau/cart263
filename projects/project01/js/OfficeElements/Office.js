@@ -1,6 +1,6 @@
 class Office extends State {
   //Creating office parameters
-  constructor(
+  constructor({
     desk,
     floor,
     wood,
@@ -12,9 +12,9 @@ class Office extends State {
     pencilHolder,
     ovalOffice,
     blueCarpet,
-    ceilingOffice
-  ) {
-    super(
+    ceilingOffice,
+  }) {
+    super({
       desk,
       floor,
       wood,
@@ -26,8 +26,8 @@ class Office extends State {
       pencilHolder,
       ovalOffice,
       blueCarpet,
-      ceilingOffice
-    );
+      ceilingOffice,
+    });
 
     //Creating the desk
     this.desk = desk;

@@ -1,0 +1,33 @@
+{
+  "description": "Positions of Hall background",
+  "hallWalls": [
+    {
+      "x": 2.0,
+      "y": -0.3,
+      "z": -2000,
+      "rotateX": 0,
+      "rotateY": -90
+    },
+    {
+      "x": -0.001,
+      "y": -0.35,
+      "z": -2500,
+      "rotateX": 0,
+      "rotateY": 0
+    },
+    {
+      "x": -2.0,
+      "y": -0.3,
+      "z": -2000,
+      "rotateX": 0,
+      "rotateY": 90
+    },
+    {
+      "x": 0.0,
+      "y": -1.0,
+      "z": -1000,
+      "rotateX": 90,
+      "rotateY": 0
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 class Hall extends State {
   //Setting Hall parameters
-  constructor(
+  constructor({
     floor,
     windows,
     house,
@@ -8,9 +8,10 @@ class Hall extends State {
     hotAirBalloon,
     balloonTexture,
     buildingData,
-    gradient
-  ) {
-    super(
+    gradient,
+    hallBackgroundData,
+  }) {
+    super({
       floor,
       windows,
       house,
@@ -18,8 +19,9 @@ class Hall extends State {
       hotAirBalloon,
       balloonTexture,
       buildingData,
-      gradient
-    );
+      gradient,
+      hallBackgroundData,
+    });
 
     //Creating floor
     this.floor = new FloorHall(floor);
@@ -30,18 +32,29 @@ class Hall extends State {
     //Creating hot air balloon
     this.hotAirBalloon = hotAirBalloon;
 
-    //Creating gradient(aka sky)
-    this.gradient = gradient;
-
     //Creating house texture
     this.houseTexture = houseTexture;
 
     //Creating hot air balloon texture
     this.balloonTexture = balloonTexture;
 
-    //Creating buildings array
+    //Creating objects arrays
     this.buildings = [];
+    this.hallWalls = [];
 
+    //Creating background
+    for (let i = 0; i < hallBackgroundData.hallWalls.length; i++) {
+      let backgroundHallData = hallBackgroundData.hallWalls[i];
+      this.wall = new HallBackground(
+        backgroundHallData.x,
+        backgroundHallData.y,
+        backgroundHallData.z,
+        backgroundHallData.rotateX,
+        backgroundHallData.rotateY,
+        gradient
+      );
+      this.hallWalls.push(this.wall);
+    }
     //Creating buildings
     for (let i = 0; i < buildingData.buildings.length; i++) {
       let data = buildingData.buildings[i];
@@ -74,33 +87,11 @@ class Hall extends State {
     background(255);
     angleMode(DEGREES);
     push();
+    //Displaying the background
+    for (let i = 0; i < this.hallWalls.length; i++) {
+      this.hallWalls[i].display();
+    }
 
-    //Dispalying the background
-    texture(this.gradient);
-    translate(2 * width, -height / 3, -2000);
-    rotateY(-90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.gradient);
-    translate(-2 * width, -height / 3, -2000);
-    rotateY(90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.gradient);
-    translate(-100, -height / 3.5, -2500);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.gradient);
-    translate(0, -height, -1000);
-    rotateX(90);
-    plane(4 * width, 2 * height);
-    pop();
     //Displaying the floor
     push();
     this.floor.display();

@@ -1,40 +1,59 @@
 class PhotoStudio extends State {
   //Setting Photo Studio parameters
-  constructor(
+  constructor({
     shelf,
     floor,
     whiteWood,
-    camera,
+    cam,
     cameraTexture,
     photoBackground,
     whiteShelvesData,
-    blackCarpet
-  ) {
-    super(
+    blackCarpet,
+    photoStudioBackgroundData,
+  }) {
+    super({
       shelf,
       floor,
       whiteWood,
-      camera,
+      cam,
       cameraTexture,
       photoBackground,
       whiteShelvesData,
-      blackCarpet
-    );
+      blackCarpet,
+      photoStudioBackgroundData,
+    });
 
     //Creating camera
-    this.camera = camera;
+    this.cam = cam;
 
     //Creating camera texture
     this.cameraTexture = cameraTexture;
-
-    //Creating background
-    this.background = photoBackground;
 
     //Creating carpet
     this.carpet = blackCarpet;
 
     //Creating shelves array
     this.whiteShelves = [];
+    this.photoStudioWalls = [];
+
+    //Creating background
+    for (
+      let i = 0;
+      i < photoStudioBackgroundData.photoStudioWalls.length;
+      i++
+    ) {
+      let backgroundPhotoStudioData =
+        photoStudioBackgroundData.photoStudioWalls[i];
+      this.wall = new PhotoStudioBackground(
+        backgroundPhotoStudioData.x,
+        backgroundPhotoStudioData.y,
+        backgroundPhotoStudioData.z,
+        backgroundPhotoStudioData.rotateX,
+        backgroundPhotoStudioData.rotateY,
+        photoBackground
+      );
+      this.photoStudioWalls.push(this.wall);
+    }
 
     //Creating shelves
     for (let i = 0; i < whiteShelvesData.whiteShelves.length; i++) {
@@ -64,31 +83,10 @@ class PhotoStudio extends State {
     super.draw();
     background(255);
     angleMode(DEGREES);
-
-    //Displaying background
-    push();
-    texture(this.background);
-    translate(2 * width, -height / 3, -2000);
-    rotateY(-90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-    texture(this.background);
-    translate(-2 * width, -height / 3, -2000);
-    rotateY(90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-    texture(this.background);
-    translate(0, -height / 4, -2500);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-    texture(this.background);
-    translate(0, -height, -1000);
-    rotateX(90);
-    plane(4 * width, 2 * height);
-    pop();
+    //Displaying the background
+    for (let i = 0; i < this.photoStudioWalls.length; i++) {
+      this.photoStudioWalls[i].display();
+    }
 
     //Displaying carpet
     push();
@@ -109,7 +107,7 @@ class PhotoStudio extends State {
     rotateZ(180);
     scale(0.35, 0.35, 0.35);
     texture(this.cameraTexture);
-    model(this.camera);
+    model(this.cam);
     pop();
   }
 }

@@ -1,21 +1,23 @@
 class HallOfEverything extends State {
   //Setting hall of everything parameters
-  constructor(
+  constructor({
     grassBlue,
     soulBackground,
     instructions,
     jerry,
     wingsData,
-    purpleGradient
-  ) {
-    super(
+    purpleGradient,
+    titleBackgroundData,
+  }) {
+    super({
       grassBlue,
       soulBackground,
       instructions,
       jerry,
       wingsData,
-      purpleGradient
-    );
+      purpleGradient,
+      titleBackgroundData,
+    });
 
     //Creating background
     this.texture = soulBackground;
@@ -32,8 +34,23 @@ class HallOfEverything extends State {
     //Creating the ground
     this.ground = new GroundHallOfEverything(grassBlue);
 
-    //Creating wings array
+    //Creating objects arrays
+    this.titleWalls = [];
     this.wings = [];
+
+    //Creating background
+    for (let i = 0; i < titleBackgroundData.titleWalls.length; i++) {
+      let backgroundTitleData = titleBackgroundData.titleWalls[i];
+      this.wall = new TitleBackground(
+        backgroundTitleData.x,
+        backgroundTitleData.y,
+        backgroundTitleData.z,
+        backgroundTitleData.h,
+        backgroundTitleData.rotateY,
+        soulBackground
+      );
+      this.titleWalls.push(this.wall);
+    }
 
     //Creating wings of hall of everything building
     for (let i = 0; i < wingsData.wings.length; i++) {
@@ -54,23 +71,9 @@ class HallOfEverything extends State {
     background(225, 175, 255);
 
     //Displaying the background
-    push();
-    texture(this.texture);
-    translate(3 * width, -height / 1.4, -1000);
-    rotateY(-90);
-    plane(4 * width, 2.6 * height);
-    pop();
-    push();
-    texture(this.texture);
-    translate(-3 * width, -height / 1.4, -1000);
-    rotateY(90);
-    plane(4 * width, 2.6 * height);
-    pop();
-    push();
-    texture(this.texture);
-    translate(0, -height / 1.5, -800);
-    plane(4 * width, 2 * height);
-    pop();
+    for (let i = 0; i < this.titleWalls.length; i++) {
+      this.titleWalls[i].display();
+    }
 
     //Displaying the sky
     push();

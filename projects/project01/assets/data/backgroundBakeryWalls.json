@@ -1,0 +1,23 @@
+{
+  "description": "Positions of walls of bakery",
+  "walls": [
+    {
+      "x": 2.0,
+      "z": -2000,
+      "w": 5.0,
+      "rotateY": -90
+    },
+    {
+      "x": 0.0,
+      "z": -2500,
+      "w": 4.0,
+      "rotateY": 0
+    },
+    {
+      "x": -2.0,
+      "z": -2000,
+      "w": 5.0,
+      "rotateY": 90
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 class Auditorium extends State {
   //Setting auditorium parameters
-  constructor(video, curtainsData, curtains, seatsData) {
-    super(video, curtainsData, curtains, seatsData);
+  constructor({ video, curtainsData, curtains, seatsData }) {
+    super({ video, curtainsData, curtains, seatsData });
 
     //Creating environment's name
     this.name = `auditorium`;

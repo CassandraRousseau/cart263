@@ -1,25 +1,23 @@
 class ArtStudio extends State {
   //Setting art studio parameters
-  constructor(
+  constructor({
     tissue,
     canvas,
     blueAbstractArt,
     pinkAbstractArt,
     whiteAbstractArt,
-    brushes,
     studioWall,
-    ceilingArt
-  ) {
-    super(
+    ceilingArt,
+  }) {
+    super({
       tissue,
       canvas,
       blueAbstractArt,
       pinkAbstractArt,
       whiteAbstractArt,
-      brushes,
       studioWall,
-      ceilingArt
-    );
+      ceilingArt,
+    });
 
     //Creating floor
     this.floor = new FloorStudio(tissue);
@@ -35,8 +33,6 @@ class ArtStudio extends State {
     this.pinkAbstractArt = pinkAbstractArt;
     this.whiteAbstractArt = whiteAbstractArt;
 
-    this.brushes = brushes;
-
     //Creating the displayed walls
     this.texture = studioWall;
   }
@@ -49,7 +45,6 @@ class ArtStudio extends State {
     this.blueAbstractArt.preload();
     this.pinkAbstractArt.preload();
     this.whiteAbstractArt.preload();
-    this.brushes.preload();
     this.texture.preload();
   }
 
@@ -123,15 +118,5 @@ class ArtStudio extends State {
     texture(this.whiteAbstractArt);
     model(this.canvas);
     pop();
-    // push();
-    // translate(0, -200, -400);
-    // // rotateX(360);
-    // // rotateY(90);
-    // // rotateZ(100);
-    // scale(500000, 50000, 50000);
-    // // texture(this.whiteAbstractArt);
-    // fill(0);
-    // model(this.brushes);
-    // pop();
   }
 }

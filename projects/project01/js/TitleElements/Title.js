@@ -1,16 +1,27 @@
 class Title extends State {
   //Creating title screen parameters
-  constructor(
+  constructor({
     grassBlue,
     grassPurple,
     grassPink,
     soulBackground,
-    purpleGradient
-  ) {
-    super(grassBlue, grassPurple, grassPink, soulBackground, purpleGradient);
+    purpleGradient,
+    titleBackgroundData,
+  }) {
+    super(
+      grassBlue,
+      grassPurple,
+      grassPink,
+      soulBackground,
+      purpleGradient,
+      titleBackgroundData
+    );
 
     //Creating state name
     this.name = `title`;
+
+    //Creating object array
+    this.titleWalls = [];
 
     //Creating title
     this.titleString = "Find Your Spark!";
@@ -19,8 +30,18 @@ class Title extends State {
     this.subheader = `Move the camera with your index, press your Mouse to Start`;
 
     //Creating background
-    this.background = soulBackground;
-
+    for (let i = 0; i < titleBackgroundData.titleWalls.length; i++) {
+      let backgroundTitleData = titleBackgroundData.titleWalls[i];
+      this.wall = new TitleBackground(
+        backgroundTitleData.x,
+        backgroundTitleData.y,
+        backgroundTitleData.z,
+        backgroundTitleData.h,
+        backgroundTitleData.rotateY,
+        soulBackground
+      );
+      this.titleWalls.push(this.wall);
+    }
     //Creating gradient (aka the sky)
     this.gradient = purpleGradient;
 
@@ -51,24 +72,12 @@ class Title extends State {
   draw() {
     super.draw();
     background(225, 175, 255);
-    // //Displaying the background
-    push();
-    texture(this.background);
-    translate(3 * width, -height / 1.4, -1000);
-    rotateY(-90);
-    plane(4 * width, 2.6 * height);
-    pop();
-    push();
-    texture(this.background);
-    translate(-3 * width, -height / 1.4, -1000);
-    rotateY(90);
-    plane(4 * width, 2.6 * height);
-    pop();
-    push();
-    texture(this.background);
-    translate(0, 0, -800);
-    plane(4 * width, 2 * height);
-    pop();
+    //Displaying the background
+
+    //Displaying the background
+    for (let i = 0; i < this.titleWalls.length; i++) {
+      this.titleWalls[i].display();
+    }
     push();
     texture(this.gradient);
     translate(0, -height, -1000);
@@ -114,7 +123,12 @@ class Title extends State {
 
     //Setting auditorium state when mouse pressed
     if (currentState.name === `title`) {
-      currentState = new Auditorium(video, curtainsData, curtains, seatsData);
+      currentState = new Auditorium({
+        video: video,
+        curtainsData: curtainsData,
+        curtains: curtains,
+        seatsData: seatsData,
+      });
 
       console.log(currentState);
     }

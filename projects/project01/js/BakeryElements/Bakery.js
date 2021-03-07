@@ -1,6 +1,6 @@
 class Bakery extends State {
   //Setting bakery parameters
-  constructor(
+  constructor({
     vanillaCake,
     pie,
     crust,
@@ -16,9 +16,10 @@ class Bakery extends State {
     bakeryShop,
     wood,
     countersData,
-    ceilingBakery
-  ) {
-    super(
+    bakeryBackgroundData,
+    ceilingBakery,
+  }) {
+    super({
       vanillaCake,
       pie,
       crust,
@@ -34,17 +35,16 @@ class Bakery extends State {
       bakeryShop,
       wood,
       countersData,
-      ceilingBakery
-    );
-
-    //Creating background
-    this.background = bakeryShop;
+      bakeryBackgroundData,
+      ceilingBakery,
+    });
 
     //Creating floor
     this.floor = new FloorBakery(wood);
 
-    //Creating object array
+    //Creating objects arrays
     this.counters = [];
+    this.walls = [];
 
     //Creating pie texture
     this.texturePie = crust;
@@ -91,12 +91,24 @@ class Bakery extends State {
       this.counter = new Counters(data.x, wood);
       this.counters.push(this.counter);
     }
+
+    //Creating background
+    for (let i = 0; i < bakeryBackgroundData.walls.length; i++) {
+      let backgroundData = bakeryBackgroundData.walls[i];
+      this.wall = new BakeryBackground(
+        backgroundData.x,
+        backgroundData.z,
+        backgroundData.w,
+        backgroundData.rotateY,
+        bakeryShop
+      );
+      this.walls.push(this.wall);
+    }
   }
 
   //Preloading images and obj files
   preload() {
     super.preload();
-    this.background.preload();
     this.vanillaCake.preload();
     this.texturePie.preload();
     this.textureCake.preload();
@@ -121,25 +133,9 @@ class Bakery extends State {
     push();
 
     //Displaying the background
-    push();
-    texture(this.background);
-    translate(2 * width, -height / 3, -2000);
-    rotateY(-90);
-    plane(5 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.background);
-    translate(-2 * width, -height / 3, -2000);
-    rotateY(90);
-    plane(5 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.background);
-    translate(0, -height / 3, -2500);
-    plane(4 * width, 2 * height);
-    pop();
+    for (let i = 0; i < this.walls.length; i++) {
+      this.walls[i].display();
+    }
 
     //Creating the ceiling
     push();

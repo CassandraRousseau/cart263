@@ -1,6 +1,6 @@
 class HallOfYou extends State {
   //Setting hall of you parameters
-  constructor(
+  constructor({
     doughnut,
     doughnut2,
     doughnut3,
@@ -14,9 +14,9 @@ class HallOfYou extends State {
     doughnutTexture3,
     doughnutTexture4,
     doughnutTexture5,
-    comment
-  ) {
-    super(
+    comment,
+  }) {
+    super({
       doughnut,
       doughnut2,
       doughnut3,
@@ -30,8 +30,8 @@ class HallOfYou extends State {
       doughnutTexture3,
       doughnutTexture4,
       doughnutTexture5,
-      comment
-    );
+      comment,
+    });
 
     //Creating the comment
     this.comment = comment;

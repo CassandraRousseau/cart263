@@ -1,13 +1,31 @@
 class BasketballCourt extends State {
   //Setting basketball court parameters
-  constructor(floor, basketball, fence, sky) {
-    super(floor, basketball, fence, sky);
+  constructor({
+    floor,
+    basketball,
+    fence,
+    sky,
+    basketballCourtBackgroundData,
+  }) {
+    super({ floor, basketball, fence, sky, basketballCourtBackgroundData });
+    //Creating objects arrays
+    this.courtFences = [];
+    //Creating background
+    for (let i = 0; i < basketballCourtBackgroundData.courtFences.length; i++) {
+      let backgroundBasketballCourtData =
+        basketballCourtBackgroundData.courtFences[i];
+      this.wall = new BakeryBackground(
+        backgroundBasketballCourtData.x,
+        backgroundBasketballCourtData.z,
+        backgroundBasketballCourtData.w,
+        backgroundBasketballCourtData.rotateY,
+        bakeryShop
+      );
+      this.courtFences.push(this.wall);
+    }
 
     //Creating floor
     this.floor = new FloorHall(floor);
-
-    //Creating fence
-    this.fence = fence;
 
     //Creating sky
     this.sky = sky;
@@ -30,26 +48,10 @@ class BasketballCourt extends State {
     angleMode(DEGREES);
 
     //Displaying the fence
-    push();
-    texture(this.fence);
-    translate(1.5 * width, -height / 3, -1000);
-    rotateY(-90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.fence);
-    translate(-1.5 * width, -height / 3, -1000);
-    rotateY(90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
-
-    texture(this.fence);
-    translate(0, -height / 3, -2500);
-    plane(4 * width, 2 * height);
-    pop();
-
+    //Displaying the background
+    for (let i = 0; i < this.courtFences.length; i++) {
+      this.courtFences[i].display();
+    }
     //Displaying the sky
     push();
     texture(this.sky);
