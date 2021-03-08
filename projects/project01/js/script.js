@@ -393,7 +393,7 @@ function preload() {
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
   appleStrudel = loadModel(`assets/obj/AppleStrudel.obj`);
-  pizza = loadModel(`assets/obj/pizza.obj`);
+  pizza = loadModel(`assets/obj/Pizza.obj`);
   vanillaCake = loadModel(`assets/obj/Cake.obj`);
   pie = loadModel(`assets/obj/Pie.obj`);
   bun = loadModel(`assets/obj/sweet_bun.obj`);
