@@ -82,6 +82,8 @@ class Office extends State {
       );
       this.officeWalls.push(this.wall);
     }
+
+    //Creating seats
     for (let i = 0; i < officeSeatsData.officeSeats.length; i++) {
       let data = officeSeatsData.officeSeats[i];
       this.seat = new SeatsOffice(data.x, data.rotateX, doughnut8, cushion);
