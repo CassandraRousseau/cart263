@@ -1,6 +1,6 @@
 {
   "description": "Positions of Photo Studio background",
-  "titleWalls": [
+  "photoStudioWalls": [
     {
       "x": 0.0,
       "y": -0.4,
