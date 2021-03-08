@@ -1,4 +1,4 @@
-$(`#range-slider`).on(`change`, function (event) {
-  let input = $(this).val();
-  alert(input);
+$(`.header`).on(`click`, function (event) {
+  $(this).css(`color`, `red`);
+  $(`.header`).off(`click`);
 });
