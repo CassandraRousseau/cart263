@@ -14,14 +14,13 @@ class BasketballCourt extends State {
     for (let i = 0; i < basketballCourtBackgroundData.courtFences.length; i++) {
       let backgroundBasketballCourtData =
         basketballCourtBackgroundData.courtFences[i];
-      this.wall = new BakeryBackground(
+      this.fence = new BasketballCourtBackground(
         backgroundBasketballCourtData.x,
         backgroundBasketballCourtData.z,
-        backgroundBasketballCourtData.w,
         backgroundBasketballCourtData.rotateY,
-        bakeryShop
+        fence
       );
-      this.courtFences.push(this.wall);
+      this.courtFences.push(this.fence);
     }
 
     //Creating floor
@@ -47,11 +46,12 @@ class BasketballCourt extends State {
     background(255);
     angleMode(DEGREES);
 
-    //Displaying the fence
-    //Displaying the background
+    push();
+    //Displaying the fences
     for (let i = 0; i < this.courtFences.length; i++) {
       this.courtFences[i].display();
     }
+    pop();
     //Displaying the sky
     push();
     texture(this.sky);

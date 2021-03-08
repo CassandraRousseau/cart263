@@ -1,19 +1,19 @@
-class BasketballCourtBackground {
-  //Creating basketball court background parameters
-  constructor(x, z, rotateY, fence) {
+class OfficeBackground {
+  //Creating office background parameters
+  constructor(x, z, rotateY, ovalOffice) {
     this.x = x * width;
     this.y = -height / 3;
     this.z = z;
     this.rotateY = rotateY;
     this.w = 4 * width;
     this.h = 2 * height;
-    this.fence = fence;
+    this.background = ovalOffice;
   }
 
   display() {
-    //Displaying basketball court background
+    //Displaying office background
     push();
-    texture(this.fence);
+    texture(this.background);
     translate(this.x, this.y, this.z);
     rotateY(this.rotateY);
     plane(this.w, this.h);

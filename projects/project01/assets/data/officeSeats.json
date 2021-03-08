@@ -1,0 +1,13 @@
+{
+  "description": "Positions of Office seats",
+  "officeSeats": [
+    {
+      "x": 1.0,
+      "rotateX": 180
+    },
+    {
+      "x": 0.0,
+      "rotateX": -180
+    }
+  ]
+}

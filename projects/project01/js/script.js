@@ -94,6 +94,12 @@ let photoStudioBackgroundData;
 //Creating JSON variable for background in basketball court
 let basketballCourtBackgroundData;
 
+//Creating JSON variable for background in office
+let officeBackgroundData;
+
+//Creating JSON variable for seats in office
+let officeSeatsData;
+
 //Creating floor texture variable
 let floor;
 
@@ -293,6 +299,9 @@ let photoBackground;
 //Creating variable for carpet in photo studio
 let blackCarpet;
 
+//Creating variable for seats texture in office
+let cushion;
+
 //Creating variable for manual
 let manual;
 
@@ -324,6 +333,8 @@ function preload() {
   basketballCourtBackgroundData = loadJSON(
     `assets/data/backgroundBasketballCourt.json`
   );
+  officeBackgroundData = loadJSON(`assets/data/backgroundOffice.json`);
+  officeSeatsData = loadJSON(`assets/data/officeSeats.json`);
 
   //Preloading font
   font = loadFont(`assets/fonts/Sriracha/Sriracha-Regular.ttf`);
@@ -377,6 +388,7 @@ function preload() {
   sky = loadImage("assets/images/sky.jpg");
   photoBackground = loadImage("assets/images/photoBackground.jpg");
   blackCarpet = loadImage("assets/images/blackCarpet.jpg");
+  cushion = loadImage("assets/images/cushion.jpg");
 
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
@@ -596,6 +608,10 @@ function places(room) {
       ovalOffice: ovalOffice,
       blueCarpet: blueCarpet,
       ceilingOffice: ceilingOffice,
+      officeBackgroundData: officeBackgroundData,
+      doughnut8: doughnut8,
+      officeSeatsData: officeSeatsData,
+      cushion: cushion,
     });
 
     //Setting music if not playing

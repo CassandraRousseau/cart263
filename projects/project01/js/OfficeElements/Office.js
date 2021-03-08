@@ -13,6 +13,10 @@ class Office extends State {
     ovalOffice,
     blueCarpet,
     ceilingOffice,
+    officeBackgroundData,
+    doughnut8,
+    officeSeatsData,
+    cushion,
   }) {
     super({
       desk,
@@ -27,6 +31,10 @@ class Office extends State {
       ovalOffice,
       blueCarpet,
       ceilingOffice,
+      officeBackgroundData,
+      doughnut8,
+      officeSeatsData,
+      cushion,
     });
 
     //Creating the desk
@@ -53,14 +61,32 @@ class Office extends State {
     //Creating the pencil holder
     this.pencilHolder = pencilHolder;
 
-    //Creating background
-    this.texture = ovalOffice;
-
     //Creating the carpet
     this.carpet = blueCarpet;
 
     //Creating the ceiling
     this.ceiling = ceilingOffice;
+
+    //Creating objects arrays
+    this.officeWalls = [];
+    this.officeSeats = [];
+
+    //Creating background
+    for (let i = 0; i < officeBackgroundData.officeWalls.length; i++) {
+      let backgroundData = officeBackgroundData.officeWalls[i];
+      this.wall = new OfficeBackground(
+        backgroundData.x,
+        backgroundData.z,
+        backgroundData.rotateY,
+        ovalOffice
+      );
+      this.officeWalls.push(this.wall);
+    }
+    for (let i = 0; i < officeSeatsData.officeSeats.length; i++) {
+      let data = officeSeatsData.officeSeats[i];
+      this.seat = new SeatsOffice(data.x, data.rotateX, doughnut8, cushion);
+      this.officeSeats.push(this.seat);
+    }
   }
 
   //Preloading images and obj files
@@ -85,25 +111,11 @@ class Office extends State {
     angleMode(DEGREES);
 
     //Displaying background
-    push();
-    texture(this.texture);
-    translate(2 * width, -height / 3, -2000);
-    rotateY(-90);
-    plane(4 * width, 2 * height);
-    pop();
-    push();
 
-    texture(this.texture);
-    translate(-2 * width, -height / 3, -2000);
-    rotateY(90);
-    plane(4 * width, 2 * height);
-    pop();
-
-    push();
-    texture(this.texture);
-    translate(0, -height / 3, -1000);
-    plane(4 * width, 2 * height);
-    pop();
+    //Displaying the background
+    for (let i = 0; i < this.officeWalls.length; i++) {
+      this.officeWalls[i].display();
+    }
 
     //Displaying ceiling
     push();
@@ -171,5 +183,10 @@ class Office extends State {
     fill(150);
     model(this.pencilHolder);
     pop();
+
+    //Displaying seats
+    for (let i = 0; i < this.officeSeats.length; i++) {
+      this.officeSeats[i].display();
+    }
   }
 }
