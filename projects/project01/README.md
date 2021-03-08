@@ -1,6 +1,6 @@
 # Project 01: A Night at the Movies
 
-##Find your Spark!-Cassandra Rousseau
+**Find your Spark!-Cassandra Rousseau**
 
 This project is based on Disney’s animated movie _Soul_. The sequence I focused on in this simulation is where and how the baby souls in the _Great Before_ find their reason to live, which is also called “finding your spark.” To realize this sequence, I choose to create a simulation of “finding your spark”. The users explore a recreated WEBGL environment of the _Great Before_ and its places. They follow the same process as the souls to find their passion before becoming human. To make some links between my simulation and the movie itself, I added a video of a sequence of the movie at the beginning of the simulation to introduce the users to the universe and used the movie soundtrack made for the _Hall of Everything_ during the simulation.
 
