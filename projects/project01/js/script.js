@@ -393,9 +393,9 @@ function preload() {
   //Preloading obj models
   desk = loadModel(`assets/obj/desk.obj`);
   appleStrudel = loadModel(`assets/obj/AppleStrudel.obj`);
-  pizza = loadModel(`assets/obj/PIZZA.obj`);
-  vanillaCake = loadModel(`assets/obj/Chocolate Cake.obj`);
-  pie = loadModel(`assets/obj/PieLowPoly.obj`);
+  pizza = loadModel(`assets/obj/pizza.obj`);
+  vanillaCake = loadModel(`assets/obj/Cake.obj`);
+  pie = loadModel(`assets/obj/Pie.obj`);
   bun = loadModel(`assets/obj/sweet_bun.obj`);
   legalPad = loadModel(`assets/obj/LegalPad.obj`);
   doughnut = loadModel(`assets/obj/Donut1.obj`);
@@ -407,16 +407,16 @@ function preload() {
   doughnut7 = loadModel(`assets/obj/Doughnut_2.obj`);
   doughnut8 = loadModel(`assets/obj/Doughnut_3.obj`);
   paperPunch = loadModel(`assets/obj/PaperPunch.obj`);
-  pen = loadModel(`assets/obj/as_creative_kit.obj`);
+  pen = loadModel(`assets/obj/creative_kit.obj`);
   notebook = loadModel(`assets/obj/notebook.obj`);
-  shelf = loadModel("assets/obj/SHELF OBJ.obj");
-  pencilHolder = loadModel("assets/obj/wacom.obj");
+  shelf = loadModel("assets/obj/shelf.obj");
+  pencilHolder = loadModel("assets/obj/pencilHolder.obj");
   bookcase = loadModel("assets/obj/Bibliotheque.obj");
-  books = loadModel("assets/obj/BOOKS OBJ.obj");
-  bookRow = loadModel("assets/obj/1book.obj");
+  books = loadModel("assets/obj/books.obj");
+  bookRow = loadModel("assets/obj/book.obj");
   cam = loadModel("assets/obj/cam.obj");
-  house = loadModel("assets/obj/Farm_house.obj");
-  hotAirBalloon = loadModel("assets/obj/hot_air_baloon_4.obj");
+  house = loadModel("assets/obj/house.obj");
+  hotAirBalloon = loadModel("assets/obj/hot_air_balloon.obj");
   canvas = loadModel("assets/obj/canvas.obj");
 }
 
