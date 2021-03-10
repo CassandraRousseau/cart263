@@ -6,7 +6,7 @@ from a set of possibilities. If the user clicks on a line it will fade out and f
 back in as a new randomly selected line.
 **************************************************/
 //ON
-let fiveSyllableLines = [
+let on = [
   `With each step then again grows the shadow`,
   `Is it the shadow that's shaking`,
   `Or is it my feet that are trembling`,
@@ -18,7 +18,7 @@ let fiveSyllableLines = [
   `As long as they don't get buried`,
 ];
 //Spring day
-let sevenSyllableLines = [
+let springDay = [
   `It's all winter here, even in August`,
   `How much longing should we see snowing down`,
   `To have the days of spring, Friend`,
@@ -42,7 +42,7 @@ let sevenSyllableLines = [
   `Until the days of flower blossoms`,
 ];
 //Fake love
-let fiveSyllableLines = [
+let fakeLove = [
   `For you, I could pretend like I was happy when I was sad`,
   `For you, I could pretend like I was strong when I was hurt`,
   `I wish love was perfect as love itself`,
@@ -61,7 +61,7 @@ let fiveSyllableLines = [
   `You say I'm unfamiliar, changed into the one you used to like`,
 ];
 //Singularity
-let sevenSyllableLines = [
+let singularity = [
   `A sound of something breaking`,
   `I awake from sleep`,
   `A sound full of unfamiliarity`,
@@ -91,7 +91,7 @@ let sevenSyllableLines = [
   `What I was supposed to do back then`,
 ];
 //The Truth Untold
-let fiveSyllableLines = [
+let theTruthUntold = [
   `Full of loneliness`,
   `This garden bloomed`,
   `Full of thorns`,
@@ -118,7 +118,7 @@ let fiveSyllableLines = [
   `Looking at this broken mask`,
 ];
 //Blue and Grey
-let fiveSyllableLines = [
+let blueAndGrey = [
   `Where is my angel?`,
   `The end of a tiring day`,
   `Someone come and save me, please`,
@@ -170,7 +170,7 @@ let fiveSyllableLines = [
   `I now fall asleep at dawn, good night`,
 ];
 //Butterfly
-let fiveSyllableLines = [
+let butterfly = [
   `Don't think of anything`,
   `Don't say anything, not even a word`,
   `Just give me a smile`,
@@ -188,7 +188,7 @@ let fiveSyllableLines = [
   `Your light touches, I forget the reality at once`,
   `It's like a wind that gently strokes me`,
   `It's like a dust that gently drifts along`,
-  `You're there but for some reaason, I can't reach you, stop`,
+  `You're there but for some reason, I can't reach you, stop`,
   `You, who's like a dream is a butterfly high to me`,
   `The small pieces guttered down darkly`,
   `From my heart, a barren noise`,
@@ -198,22 +198,91 @@ let fiveSyllableLines = [
   `My heart is still shattering on you`,
   `I just wanted to vaporize like this`,
 ];
-let line1 = random(fiveSyllableLines);
-let line2 = random(sevenSyllableLines);
-let line3 = random(fiveSyllableLines);
+let intro = random(singularity);
+let verseSingularity = random(singularity);
+let verseSpringDay = random(springDay);
+let verseBlueAndGrey = random(blueAndGrey);
+let preChorus = random(on);
+let chorus = random(butterfly);
+let bridgeFakeLove = random(fakeLove);
+let bridgeTheTruthUntold = random(theTruthUntold);
+let outro = random(blueAndGrey);
 
-let line1P = document.getElementById(`line-1`);
-let line2P = document.getElementById(`line-2`);
-let line3P = document.getElementById(`line-3`);
+let introSingularity = document
+  .getElementById(`intro`)
+  .getElementsByClassName(`lineSingularity`);
+console.log(introSingularity);
+let verseLineSingularity = document.getElementsByClassName(
+  `verse lineSingularity`
+);
+let verseLineSpringDay = document.getElementsByClassName(`verse lineSpringDay`);
+let verseLineBlueAndGrey = document.getElementsByClassName(
+  `verse lineBlueAndGrey`
+);
+let preChorusSong = document.getElementsByClassName(`preChorus lineOn`);
+let chorusSong = document.getElementsByClassName(`chorus lineButterfly`);
+let bridgeLineFakeLove = document
+  .getElementById(`bridge`)
+  .getElementsByClassName(`lineFakeLove`);
+let bridgeLineTheTruthUntold = document
+  .getElementById(`bridge`)
+  .getElementsByClassName(`lineTheTruthUntold`);
+let outroSong = document
+  .getElementById(`outro`)
+  .getElementsByClassName(`lineBlueAndGrey`);
 
-line1P.innerText = line1;
-line2P.innerText = line2;
-line3P.innerText = line3;
+introSingularity.innerText = intro;
+verseLineSingularity.innerText = verseSingularity;
+verseLineSpringDay.innerText = verseSpringDay;
+verseLineBlueAndGrey.innerText = verseBlueAndGrey;
+preChorusSong.innerText = preChorus;
+chorusSong.innerText = chorus;
+bridgeLineFakeLove.innerText = bridgeFakeLove;
+bridgeLineTheTruthUntold.innerText = bridgeTheTruthUntold;
+outroSong.innerText = outro;
 
-line1P.addEventListener(`click`, lineClicked);
-line2P.addEventListener(`click`, lineClicked);
-line3P.addEventListener(`click`, lineClicked);
+// introSong.addEventListener(`online`, opacityNull);
+// verseSong.addEventListener(`load`, opacityNull);
+// preChorusSong.addEventListener(`load`, opacityNull);
+// chorusSong.addEventListener(`load`, opacityNull);
+// bridgeSong.addEventListener(`load`, opacityNull);
+// outroSong.addEventListener(`load`, opacityNull);
+//
+for (var i = 0; i < introSingularity.length; i++) {
+  introSingularity.addEventListener(`click`, lineClicked);
+  console.log(introSingularity);
+}
+for (var i = 0; i < verseLineSingularity.length; i++) {
+  verseLineSingularity.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < verseLineSpringDay.length; i++) {
+  verseLineSpringDay.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < verseLineBlueAndGrey.length; i++) {
+  verseLineBlueAndGrey.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < preChorusSong.length; i++) {
+  preChorusSong.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < chorusSong.length; i++) {
+  chorusSong.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < bridgeLineFakeLove.length; i++) {
+  bridgeLineFakeLove.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < bridgeLineTheTruthUntold.length; i++) {
+  bridgeLineTheTruthUntold.addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < outroSong.length; i++) {
+  outroSong.addEventListener(`click`, lineClicked);
+}
 
+// introSong.addEventListener(`animationend`, lineClicked);
+// verseSong.addEventListener(`animationend`, lineClicked);
+// preChorusSong.addEventListener(`animationend`, lineClicked);
+// chorusSong.addEventListener(`animationend`, lineClicked);
+// bridgeSong.addEventListener(`animationend`, lineClicked);
+// outroSong.addEventListener(`animationend`, lineClicked);
 function random(array) {
   let index = Math.floor(Math.random() * array.length);
   return array[index];
@@ -246,9 +315,23 @@ function fadeIn(element, opacity) {
   }
 }
 function setNewLine(element) {
-  if (element === line1P || element === line3P) {
-    element.innerText = random(fiveSyllableLines);
-  } else if (element === line2P) {
-    element.innerText = random(sevenSyllableLines);
+  if (element === introSingularity) {
+    element.innerText = random(singularity);
+  } else if (element === verseLineSingularity) {
+    element.innerText = random(singularity);
+  } else if (element === verseLineSpringDay) {
+    element.innerText = random(springDay);
+  } else if (element === verseLineBlueAndGrey) {
+    element.innerText = random(blueAndGrey);
+  } else if (element === preChorusSong) {
+    element.innerText = random(on);
+  } else if (element === chorusSong) {
+    element.innerText = random(butterfly);
+  } else if (element === bridgeLineFakeLove) {
+    element.innerText = random(fakeLove);
+  } else if (element === bridgeLineTheTruthUntold) {
+    element.innerText = random(theTruthUntold);
+  } else if (element === outroSong) {
+    element.innerText = random(blueAndGrey);
   }
 }

@@ -1,15 +1,18 @@
-#haiku {
-  font-family: fantasy;
-  font-size: 4rem;
-  font-weight: bold;
-  width: 10vw;
-  margin: auto;
-  color: white;
+body {
+  background-image: url("https://i.pinimg.com/originals/b1/86/49/b18649ca503076b888587f30ce0d65d8.jpg");
+  padding: 0;
+  width: 2vw;
+  margin: 15;
 }
 
-body {
-  background-color: rgb(100, 100, 220);
-  padding: 0;
-  width: 10vw;
-  margin: 15;
+.song {
+  font-family: serif;
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: lighter;
+  text-align: left;
+  line-height: 1.5;
+  width: 100vw;
+  margin: auto;
+  color: white;
 }
