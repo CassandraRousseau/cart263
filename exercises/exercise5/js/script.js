@@ -1,11 +1,11 @@
 /**************************************************
 Exercise 05: Haiku Generator++
 Cassandra Rousseau
-We will create a webpage that displays a haiku where each line is chosen at random
+We will create a webpage that displays a song where each line is chosen at random
 from a set of possibilities. If the user clicks on a line it will fade out and fade
 back in as a new randomly selected line.
 **************************************************/
-//ON
+//Lyrics of the song ON
 let on = [
   `With each step then again grows the shadow`,
   `Is it the shadow that's shaking`,
@@ -17,7 +17,7 @@ let on = [
   `Even if my knees drop to the ground`,
   `As long as they don't get buried`,
 ];
-//Spring day
+//Lyrics of the song Spring day
 let springDay = [
   `It's all winter here, even in August`,
   `How much longing should we see snowing down`,
@@ -41,7 +41,7 @@ let springDay = [
   `Until the days of spring`,
   `Until the days of flower blossoms`,
 ];
-//Fake love
+//Lyrics of the song Fake love
 let fakeLove = [
   `For you, I could pretend like I was happy when I was sad`,
   `For you, I could pretend like I was strong when I was hurt`,
@@ -60,7 +60,7 @@ let fakeLove = [
   `Look at me, even I gave up on myself`,
   `You say I'm unfamiliar, changed into the one you used to like`,
 ];
-//Singularity
+//Lyrics of the song Singularity
 let singularity = [
   `A sound of something breaking`,
   `I awake from sleep`,
@@ -90,7 +90,7 @@ let singularity = [
   `Tell me if even this pain isn't real`,
   `What I was supposed to do back then`,
 ];
-//The Truth Untold
+//Lyrics of the song The Truth Untold
 let theTruthUntold = [
   `Full of loneliness`,
   `This garden bloomed`,
@@ -117,7 +117,7 @@ let theTruthUntold = [
   `Left alone in this sandcastle`,
   `Looking at this broken mask`,
 ];
-//Blue and Grey
+//Lyrics of the song Blue and Grey
 let blueAndGrey = [
   `Where is my angel?`,
   `The end of a tiring day`,
@@ -169,7 +169,7 @@ let blueAndGrey = [
   `After secretly taking back words floating in the air`,
   `I now fall asleep at dawn, good night`,
 ];
-//Butterfly
+//Lyrics of the song Butterfly
 let butterfly = [
   `Don't think of anything`,
   `Don't say anything, not even a word`,
@@ -198,6 +198,8 @@ let butterfly = [
   `My heart is still shattering on you`,
   `I just wanted to vaporize like this`,
 ];
+
+//Creating variables for the songs lyrics
 let intro = random(singularity);
 let verseSingularity = random(singularity);
 let verseSpringDay = random(springDay);
@@ -208,6 +210,7 @@ let bridgeFakeLove = random(fakeLove);
 let bridgeTheTruthUntold = random(theTruthUntold);
 let outro = random(blueAndGrey);
 
+//Creating variables for the lyrics in their respective position in the HTML webpage
 let introSingularity = document
   .getElementById(`intro`)
   .getElementsByClassName(`lineSingularity`);
@@ -231,6 +234,7 @@ let outroSong = document
   .getElementById(`outro`)
   .getElementsByClassName(`lineBlueAndGrey`);
 
+//Assign lyrics to their respective position in the HTML webpage
 introSingularity.innerText = intro;
 verseLineSingularity.innerText = verseSingularity;
 verseLineSpringDay.innerText = verseSpringDay;
@@ -247,7 +251,8 @@ outroSong.innerText = outro;
 // chorusSong.addEventListener(`load`, opacityNull);
 // bridgeSong.addEventListener(`load`, opacityNull);
 // outroSong.addEventListener(`load`, opacityNull);
-//
+
+//Assigning the lyrics to the fading effect
 for (var i = 0; i < introSingularity.length; i++) {
   introSingularity.addEventListener(`click`, lineClicked);
   console.log(introSingularity);
@@ -283,28 +288,37 @@ for (var i = 0; i < outroSong.length; i++) {
 // chorusSong.addEventListener(`animationend`, lineClicked);
 // bridgeSong.addEventListener(`animationend`, lineClicked);
 // outroSong.addEventListener(`animationend`, lineClicked);
+
+//Calling randomly the lyrics
 function random(array) {
   let index = Math.floor(Math.random() * array.length);
   return array[index];
 }
 
+//Lyrics fade out once their line is clicked
 function lineClicked(event) {
   fadeOut(event.target, 1);
 }
 
+//Setting fading effect
 function fadeOut(element, opacity) {
+  //Fades out
   opacity -= 0.01;
   element.style[`opacity`] = opacity;
   if (opacity > 0) {
     requestAnimationFrame(function () {
       fadeOut(element, opacity);
     });
-  } else {
+  }
+
+  //A new line fades in
+  else {
     setNewLine(element);
     fadeIn(element, 0);
   }
 }
 
+//Setting the apparition of a new line
 function fadeIn(element, opacity) {
   opacity += 0.01;
   element.style[`opacity`] = opacity;
@@ -314,6 +328,8 @@ function fadeIn(element, opacity) {
     });
   }
 }
+
+//Creating a new line to their respective position in the song
 function setNewLine(element) {
   if (element === introSingularity) {
     element.innerText = random(singularity);
