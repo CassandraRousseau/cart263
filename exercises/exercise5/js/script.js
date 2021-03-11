@@ -1,9 +1,9 @@
 /**************************************************
 Exercise 05: Haiku Generator++
 Cassandra Rousseau
-We will create a webpage that displays a song where each line is chosen at random
-from a set of possibilities. If the user clicks on a line it will fade out and fade
-back in as a new randomly selected line.
+It is a song generator webpage that displays a generated song where each line is chosen at random
+from a set of possibilities. The user has to found the lyrics by clicking on the screen.
+ Once found, a randomly selected line will fade in. All accompanied with a landscape background and instrumental music.
 **************************************************/
 //Lyrics of the song ON
 let on = [
@@ -184,7 +184,7 @@ let butterfly = [
   `As though it hadn't happened`,
   `I'm scared scared scared I'll lose you`,
   `From afar, I steel glances; if we touch hands, will I lose you?`,
-  `You shine in this pitch darkness thst is the butterfly effect`,
+  `You shine in this pitch darkness that is the butterfly effect`,
   `Your light touches, I forget the reality at once`,
   `It's like a wind that gently strokes me`,
   `It's like a dust that gently drifts along`,
@@ -211,83 +211,76 @@ let bridgeTheTruthUntold = random(theTruthUntold);
 let outro = random(blueAndGrey);
 
 //Creating variables for the lyrics in their respective position in the HTML webpage
-let introSingularity = document
-  .getElementById(`intro`)
-  .getElementsByClassName(`lineSingularity`);
-console.log(introSingularity);
-let verseLineSingularity = document.getElementsByClassName(
-  `verse lineSingularity`
+let introSingularity = document.getElementsByClassName(`lineSingularity`);
+let verseLineSingularity = document.getElementsByClassName(`lineSingularity`);
+let verseLineSpringDay = document.getElementsByClassName(`lineSpringDay`);
+let verseLineBlueAndGrey = document.getElementsByClassName(`lineBlueAndGrey`);
+let preChorusSong = document.getElementsByClassName(`lineOn`);
+let chorusSong = document.getElementsByClassName(`lineButterfly`);
+let bridgeLineFakeLove = document.getElementsByClassName(`lineFakeLove`);
+let bridgeLineTheTruthUntold = document.getElementsByClassName(
+  `lineTheTruthUntold`
 );
-let verseLineSpringDay = document.getElementsByClassName(`verse lineSpringDay`);
-let verseLineBlueAndGrey = document.getElementsByClassName(
-  `verse lineBlueAndGrey`
-);
-let preChorusSong = document.getElementsByClassName(`preChorus lineOn`);
-let chorusSong = document.getElementsByClassName(`chorus lineButterfly`);
-let bridgeLineFakeLove = document
-  .getElementById(`bridge`)
-  .getElementsByClassName(`lineFakeLove`);
-let bridgeLineTheTruthUntold = document
-  .getElementById(`bridge`)
-  .getElementsByClassName(`lineTheTruthUntold`);
-let outroSong = document
-  .getElementById(`outro`)
-  .getElementsByClassName(`lineBlueAndGrey`);
+let outroSong = document.getElementsByClassName(`lineBlueAndGrey`);
 
-//Assign lyrics to their respective position in the HTML webpage
-introSingularity.innerText = intro;
-verseLineSingularity.innerText = verseSingularity;
-verseLineSpringDay.innerText = verseSpringDay;
-verseLineBlueAndGrey.innerText = verseBlueAndGrey;
-preChorusSong.innerText = preChorus;
-chorusSong.innerText = chorus;
-bridgeLineFakeLove.innerText = bridgeFakeLove;
-bridgeLineTheTruthUntold.innerText = bridgeTheTruthUntold;
-outroSong.innerText = outro;
+//Assigning lyrics to their respective position in the HTML webpage and adding a fading effect
 
-// introSong.addEventListener(`online`, opacityNull);
-// verseSong.addEventListener(`load`, opacityNull);
-// preChorusSong.addEventListener(`load`, opacityNull);
-// chorusSong.addEventListener(`load`, opacityNull);
-// bridgeSong.addEventListener(`load`, opacityNull);
-// outroSong.addEventListener(`load`, opacityNull);
-
-//Assigning the lyrics to the fading effect
+//Setting the intro
 for (var i = 0; i < introSingularity.length; i++) {
-  introSingularity.addEventListener(`click`, lineClicked);
-  console.log(introSingularity);
+  introSingularity[i].innerText = intro;
+  intro = random(singularity);
+  introSingularity[i].addEventListener(`click`, lineClicked);
 }
+
+//Setting the chrous
 for (var i = 0; i < verseLineSingularity.length; i++) {
-  verseLineSingularity.addEventListener(`click`, lineClicked);
+  verseLineSingularity[i].innerText = verseSingularity;
+  verseSingularity = random(singularity);
+  verseLineSingularity[i].addEventListener(`click`, lineClicked);
 }
 for (var i = 0; i < verseLineSpringDay.length; i++) {
-  verseLineSpringDay.addEventListener(`click`, lineClicked);
+  verseLineSpringDay[i].innerText = verseSpringDay;
+  verseSpringDay = random(springDay);
+  verseLineSpringDay[i].addEventListener(`click`, lineClicked);
 }
 for (var i = 0; i < verseLineBlueAndGrey.length; i++) {
-  verseLineBlueAndGrey.addEventListener(`click`, lineClicked);
-}
-for (var i = 0; i < preChorusSong.length; i++) {
-  preChorusSong.addEventListener(`click`, lineClicked);
-}
-for (var i = 0; i < chorusSong.length; i++) {
-  chorusSong.addEventListener(`click`, lineClicked);
-}
-for (var i = 0; i < bridgeLineFakeLove.length; i++) {
-  bridgeLineFakeLove.addEventListener(`click`, lineClicked);
-}
-for (var i = 0; i < bridgeLineTheTruthUntold.length; i++) {
-  bridgeLineTheTruthUntold.addEventListener(`click`, lineClicked);
-}
-for (var i = 0; i < outroSong.length; i++) {
-  outroSong.addEventListener(`click`, lineClicked);
+  verseLineBlueAndGrey[i].innerText = verseBlueAndGrey;
+  verseBlueAndGrey = random(blueAndGrey);
+  verseLineBlueAndGrey[i].addEventListener(`click`, lineClicked);
 }
 
-// introSong.addEventListener(`animationend`, lineClicked);
-// verseSong.addEventListener(`animationend`, lineClicked);
-// preChorusSong.addEventListener(`animationend`, lineClicked);
-// chorusSong.addEventListener(`animationend`, lineClicked);
-// bridgeSong.addEventListener(`animationend`, lineClicked);
-// outroSong.addEventListener(`animationend`, lineClicked);
+//Setting the prechorus
+for (var i = 0; i < preChorusSong.length; i++) {
+  preChorusSong[i].innerText = preChorus;
+  preChorus = random(on);
+  preChorusSong[i].addEventListener(`click`, lineClicked);
+}
+
+//Setting the chorus
+for (var i = 0; i < chorusSong.length; i++) {
+  chorusSong[i].innerText = chorus;
+  chorus = random(butterfly);
+  chorusSong[i].addEventListener(`click`, lineClicked);
+}
+
+//Setting the bridge
+for (var i = 0; i < bridgeLineFakeLove.length; i++) {
+  bridgeLineFakeLove[i].innerText = bridgeFakeLove;
+  bridgeFakeLove = random(fakeLove);
+  bridgeLineFakeLove[i].addEventListener(`click`, lineClicked);
+}
+for (var i = 0; i < bridgeLineTheTruthUntold.length; i++) {
+  bridgeLineTheTruthUntold[i].innerText = bridgeTheTruthUntold;
+  bridgeTheTruthUntold = random(theTruthUntold);
+  bridgeLineTheTruthUntold[i].addEventListener(`click`, lineClicked);
+}
+
+//Setting the outro
+for (var i = 0; i < outroSong.length; i++) {
+  outroSong[i].innerText = outro;
+  outro = random(blueAndGrey);
+  outroSong[i].addEventListener(`click`, lineClicked);
+}
 
 //Calling randomly the lyrics
 function random(array) {
@@ -297,57 +290,17 @@ function random(array) {
 
 //Lyrics fade out once their line is clicked
 function lineClicked(event) {
-  fadeOut(event.target, 1);
-}
-
-//Setting fading effect
-function fadeOut(element, opacity) {
-  //Fades out
-  opacity -= 0.01;
-  element.style[`opacity`] = opacity;
-  if (opacity > 0) {
-    requestAnimationFrame(function () {
-      fadeOut(element, opacity);
-    });
-  }
-
-  //A new line fades in
-  else {
-    setNewLine(element);
-    fadeIn(element, 0);
-  }
+  fadeIn(event.target, 0);
 }
 
 //Setting the apparition of a new line
 function fadeIn(element, opacity) {
   opacity += 0.01;
   element.style[`opacity`] = opacity;
+  console.log(opacity);
   if (opacity < 1) {
     requestAnimationFrame(function () {
       fadeIn(element, opacity);
     });
-  }
-}
-
-//Creating a new line to their respective position in the song
-function setNewLine(element) {
-  if (element === introSingularity) {
-    element.innerText = random(singularity);
-  } else if (element === verseLineSingularity) {
-    element.innerText = random(singularity);
-  } else if (element === verseLineSpringDay) {
-    element.innerText = random(springDay);
-  } else if (element === verseLineBlueAndGrey) {
-    element.innerText = random(blueAndGrey);
-  } else if (element === preChorusSong) {
-    element.innerText = random(on);
-  } else if (element === chorusSong) {
-    element.innerText = random(butterfly);
-  } else if (element === bridgeLineFakeLove) {
-    element.innerText = random(fakeLove);
-  } else if (element === bridgeLineTheTruthUntold) {
-    element.innerText = random(theTruthUntold);
-  } else if (element === outroSong) {
-    element.innerText = random(blueAndGrey);
   }
 }
