@@ -1,15 +1,27 @@
+/* Setting properties of secret document */
 #secret-document {
-  padding: 0;
-  margin: auto;
   font-family: monospace;
   font-size: 15;
+  color: green;
 }
-.redacted {
-  background-color: black;
-  user-select: none;
+
+/* Setting properties of video */
+#video {
+  display: block;
+  margin: auto;
+  margin-top: 6rem;
+  max-width: 40rem;
+  max-height: 20rem;
 }
+
+/* Setting revelead text properties */
 .revealed {
   color: red;
-  text-decoration: underline;
   user-select: text;
+}
+/* Setting body properties */
+body {
+  background-color: black;
+  padding: 0;
+  margin: 0;
 }

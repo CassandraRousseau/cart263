@@ -2,27 +2,32 @@
 Activity 05: Raving Redactionist
 Cassandra Rousseau
 
-We will create a webpage of text with some passages “redacted” (covered in black bars).
-Over time the redactions will disappear, revealing the shocking secret text beneath them.
-The user is in charge of keeping the information secret, so they click the secret text to restore the redaction
+This is a webpage of text with some passages. If the user moves his mouse over
+certain letters, it will reveal a secret code. The user has to enter the secret
+password to reveal the secret item.
 **************************************************/
 "use strict";
 
-$(`.top-secret`).on(`click`, redact);
+//Hide the secret video
+$(`#video`).hide();
+
+//Create the mouse over effect
+$(`.top-secret`).mouseover(`mouseover`, function (event) {
+  // Reveal the secret message
+  $(this).addClass(`revealed`);
+});
+
+// Reveal the secret message after a certain time
 setInterval(revelation, 500);
 
-function redact(event) {
-  $(this).removeClass(`revealed`);
-  $(this).addClass(`redacted`);
-}
-
-function revelation() {
-  $(`.redacted`).each(attemptReveal);
-}
-function attemptReveal() {
-  let r = Math.random();
-  if (r < 0.1) {
-    $(this).removeClass(`redacted`);
-    $(this).addClass(`revealed`);
+//Reveals the secret element
+$(`#button`).on(`click`, function (event) {
+  let input = $(`#text-input`).val();
+  if (input === `cheesecake`) {
+    $(`#secret-document`).hide();
+    $(`#button`).hide();
+    $(`#text-input`).hide();
+    $(`#video`).show();
   }
-}
+});
+// Reference: Emojoie, “The Best New York Cheesecake Recipe|Emojoie Cuisine,” YouTube, 2017, video, 6:16, https://www.youtube.com/watch?v=tspdJ6hxqnc&t=10s&ab_channel=Emojoie%E3%81%88%E3%82%82%E3%81%98%E3%82%87%E3%82%8F.
