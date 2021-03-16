@@ -1,0 +1,15 @@
+#secret-document {
+  padding: 0;
+  margin: auto;
+  font-family: monospace;
+  font-size: 15;
+}
+.redacted {
+  background-color: black;
+  user-select: none;
+}
+.revealed {
+  color: red;
+  text-decoration: underline;
+  user-select: text;
+}
