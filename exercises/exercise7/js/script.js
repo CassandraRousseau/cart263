@@ -19,10 +19,10 @@ $(`.secret`).one(`mouseover`, function (event) {
   $(this).addClass(`found`, 500);
   $(this).draggable({ helper: `clone` });
 });
-$(`#answer`).droppable({
+$(`.answer`).droppable({
   drop: function (event, ui) {
-    let letter = ui.draggable.text();
-    $(this).append(letter);
+    let word = ui.draggable.text();
+    $(this).append(word);
     ui.draggable.draggable(`disable`);
     ui.draggable.removeClass(`found`);
     if ($(this).text() === `Theremin`) {

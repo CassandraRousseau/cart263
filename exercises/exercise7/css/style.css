@@ -1,10 +1,10 @@
-#poem {
-  font-size: 2.5rem;
-  font-family: "Vivaldi", serif;
-}
-#answer {
+#box {
   width: 8rem;
-  height: 3rem;
+  height: 8rem;
+}
+.answer {
+  width: 3rem;
+  height: 8rem;
   border: 2px black;
 }
 .found {
@@ -12,4 +12,6 @@
 }
 body {
   background-image: url("https://i.pinimg.com/originals/6f/c8/46/6fc8468e18ce80a62d3bc163f8e7cb38.jpg");
+  font-size: 2.5rem;
+  font-family: "Vivaldi", serif;
 }
