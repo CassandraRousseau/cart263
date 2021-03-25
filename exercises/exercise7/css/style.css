@@ -7,8 +7,8 @@
 /* Style the answers */
 .answer {
   border: solid;
-  width: 8rem;
-  height: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 /* Style the used words */
 .found {
