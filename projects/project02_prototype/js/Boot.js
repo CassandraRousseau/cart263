@@ -5,10 +5,11 @@ class Boot extends Phaser.Scene {
     });
   }
 
+  // Preloading spritesheets
   preload() {
     this.load.spritesheet(`enemy`, `assets/images/enemy.png`, {
-      frameWidth: 190,
-      frameHeight: 190,
+      frameWidth: 140,
+      frameHeight: 140,
       endFrame: 7,
     });
     this.load.spritesheet(`avatar`, `assets/images/avatar.png`, {
@@ -16,6 +17,8 @@ class Boot extends Phaser.Scene {
       frameHeight: 140,
       endFrame: 9,
     });
+
+    // Preloading images
     this.load.image(`background`, `assets/images/Background.png`);
     this.load.image(`flower`, `assets/images/flower.png`);
     this.load.image(`ground`, `assets/images/Ground.png`);
@@ -23,6 +26,8 @@ class Boot extends Phaser.Scene {
       this.scene.start(`play`);
     });
   }
+
+  // Setting loading screen
   create() {
     let style = {
       fontFamily: "sans-serif",

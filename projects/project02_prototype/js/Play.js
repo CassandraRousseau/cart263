@@ -3,72 +3,132 @@ class Play extends Phaser.Scene {
     super({
       key: `play`,
     });
+    this.moveCam = false;
   }
   create() {
-    this.add.image(0, 0, `background`).setOrigin(0, 0);
-    this.platforms = this.physics.add.group({
-      key: `ground`,
-      immovable: true,
-      quantity: 4,
-    });
-    this.platforms.children.each(function (platform) {
-      let x = Math.random() * this.sys.canvas.width;
-      let y = Math.random() * this.sys.canvas.height;
-      platform.setPosition(x, y);
-    }, this);
+    // Setting camera
+    this.cameras.main.setBounds(0, 0, 720 * 8, 176);
 
-    this.enemies = this.physics.add.group({
-      key: `enemy`,
-      quantity: 4,
-    });
-    this.enemies.children.each(function (enemy) {
-      let x = Math.random() * this.sys.canvas.width;
-      let y = Math.random() * this.sys.canvas.height;
-      enemy.setPosition(x, y);
-    }, this);
+    //Setting background
+    for (let x = 0; x < 8; x++) {
+      this.add.image(720 * x, 0, `background`).setOrigin(0, 0);
+    }
 
-    this.flowers = this.physics.add.group({
-      key: `flower`,
-      immovable: true,
-      quantity: 10,
-    });
-    this.flowers.children.each(function (flower) {
-      let x = Math.random() * this.sys.canvas.width;
-      let y = Math.random() * this.sys.canvas.height;
-      flower.setPosition(x, y);
-    }, this);
-    // this.platforms.create(400, 568, "ground").setScale(2).refreshBody();
+    // Creating platforms
+    this.platforms = this.physics.add.staticGroup();
 
-    // this.platforms.create(600, 400, "ground");
-    // this.platforms.create(50, 250, "ground");
-    // this.platforms.create(750, 220, "ground");
+    // Setting platform positions
+    this.platforms.create(600, 400, "ground");
+    this.platforms.create(550 * 2, 600, "ground");
+    this.platforms.create(750, 220, "ground");
 
-    //
-    //
-    //     stars = this.physics.add.group({
-    //     key: 'star',
-    //     repeat: 11,
-    //     setXY: { x: 12, y: 0, stepX: 70 }
-    // });
-    //
-    // stars.children.iterate(function (child) {
-    //
-    //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-    //
-    // });
-    this.avatar = this.physics.add.sprite(200, 200, `avatar`);
-    this.enemies = this.physics.add.sprite(200, 200, `enemy`);
-    this.createAnimations();
-    // this.avatar.body.setGravityY(100);
-    this.avatar.setVelocityX(100);
-    this.avatar.play(`avatar-moving`);
+    this.platforms.create(600 * 2, 300, "ground");
+    this.platforms.create(500 * 2, 100, "ground");
+    this.platforms.create(750 * 2, 400, "ground");
 
-    this.enemies.setVelocityX(100);
-    this.enemies.play(`enemy-moving`);
-    this.avatar.setCollideWorldBounds(true);
-    this.enemies.setCollideWorldBounds(true);
+    this.platforms.create(600 * 3, 350, "ground");
+    this.platforms.create(50 * 3, 550, "ground");
+    this.platforms.create(750 * 3, 200, "ground");
 
+    this.platforms.create(600 * 4, 400, "ground");
+    this.platforms.create(50 * 4, 250, "ground");
+    this.platforms.create(750 * 4, 220, "ground");
+
+    this.platforms.create(600 * 5, 400, "ground");
+    this.platforms.create(50 * 5, 250, "ground");
+    this.platforms.create(750 * 5, 220, "ground");
+
+    this.platforms.create(600 * 6, 400, "ground");
+    this.platforms.create(650 * 6, 220, "ground");
+    this.platforms.create(50 * 6, 250, "ground");
+    this.platforms.create(750 * 6, 220, "ground");
+
+    this.platforms.create(600 * 7, 400, "ground");
+    this.platforms.create(50 * 7, 250, "ground");
+    this.platforms.create(750 * 7, 220, "ground");
+
+    this.platforms.create(600 * 8, 400, "ground");
+    this.platforms.create(50 * 8, 250, "ground");
+    this.platforms.create(750 * 8, 220, "ground");
+
+    // Creating flowers
+    this.flowers = this.physics.add.staticGroup();
+
+    // Setting flower positions
+    this.flowers.create(50 * 5, 150, "flower");
+    this.flowers.create(750, 120, "flower");
+    this.flowers.create(750 * 2, 300, "flower");
+    this.flowers.create(750 * 3, 100, "flower");
+    this.flowers.create(600 * 6, 300, "flower");
+    this.flowers.create(650 * 6, 125, "flower");
+    this.flowers.create(750 * 7, 125, "flower");
+
+    this.flowers.create(750 * 6, 125, "flower");
+
+    {
+      // Creating enemies
+      this.enemies = this.physics.add.group({
+        key: `enemy`,
+        quantity: 4,
+      });
+
+      // Position randomly enemies
+      this.enemies.children.each(function (enemy) {
+        let x = Math.random() * this.sys.canvas.width;
+        let y = Math.random() * this.sys.canvas.height;
+        enemy.setPosition(x, y);
+      }, this);
+
+      // Creating main platform/ground
+      this.platformsGround = this.physics.add.staticGroup({
+        key: `ground`,
+        repeat: 88,
+        setXY: { x: 0, y: 550, stepX: 70 },
+      });
+
+      // Creating avatar sprite
+      this.avatar = this.physics.add.sprite(100, 450, `avatar`);
+
+      // Creating avatar animation
+      this.createAnimations();
+      this.avatar.body.setGravityY(100);
+      this.avatar.setVelocityX(100);
+      this.avatar.play(`avatar-moving`);
+      this.avatar.setBounce(0, 1);
+
+      // Creating anemies animation
+      for (var i = 0; i < 4; i++) {
+        this.enemies = this.physics.add.sprite(`enemy`);
+        this.enemies.setVelocityX(100);
+        this.enemies.play(`enemy-moving`);
+      }
+
+      // Setting camera following avatar
+      this.cameras.main.startFollow(this.avatar, true);
+    }
+
+    // Setting collision between avatar and platforms
     this.physics.add.collider(this.avatar, this.platforms);
+    console.log(this.physics.add.collider);
+    // Setting collision between flowers and platforms
+    this.physics.add.collider(this.flowers, this.platforms);
+    // Setting collision between avatar main platform
+    this.physics.add.collider(this.avatar, this.platformsGround);
+    // Setting collision between enemies and main platform
+    this.physics.add.collider(this.enemies, this.platformsGround);
+    // Setting collision between platforms and main platform
+    this.physics.add.collider(this.platforms, this.platformsGround);
+
+    // Setting collision between avatar and enemies
+    this.physics.add.collider(
+      this.avatar,
+      this.enemies,
+      this.hitEnemy,
+      null,
+      this
+    );
+
+    // Setting collision between avatar and flowers
     this.physics.add.overlap(
       this.avatar,
       this.flowers,
@@ -77,35 +137,65 @@ class Play extends Phaser.Scene {
       this
     );
 
+    // Setting keyboard outputs
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.spacebar = this.input.keyboard.createCursorKeys();
   }
 
+  // Setting avatar color when collision with an enemy
+  hitEnemy(avatar, enemy) {
+    this.physics.pause();
+    avatar.setTint(0xff0000);
+    console.log(hitEnemy);
+  }
+
+  // Avatar collecting flowers
   collectItem(avatar, flower) {
     flower.destroy();
   }
-  update() {
-    this.avatar.setVelocity(0);
-    if (this.cursors.left.isDown) {
-      this.avatar.setVelocityX(-300);
-    } else if (this.cursors.right.isDown) {
-      this.avatar.setVelocityX(300);
-    }
-    if (this.cursors.up.isDown) {
-      this.avatar.setVelocityY(-300);
-    } else if (this.cursors.down.isDown) {
-      this.avatar.setVelocityY(300);
-    }
 
-    if (
-      this.avatar.body.velocity.x !== 0 ||
-      this.avatar.body.velocity.y !== 0
-    ) {
-      this.avatar.play(`avatar-moving`, true);
+  update() {
+    // Setting avatar velocity
+    this.avatar.setVelocity(0);
+
+    // Setting camera movements
+    const cam = this.cameras.main;
+    if (this.moveCam) {
+      if (this.cursors.left.isDown) {
+        cam.scrollX -= 4;
+      } else if (this.cursors.right.isDown) {
+        cam.scrollX += 4;
+      }
+
+      if (this.cursors.up.isDown) {
+        cam.scrollY -= 4;
+      } else if (this.cursors.down.isDown) {
+        cam.scrollY += 4;
+      }
     } else {
-      this.avatar.play(`avatar-idle`, true);
+      // Setting keybord inputs on avatar
+      if (this.cursors.left.isDown) {
+        this.avatar.setVelocityX(-300);
+      } else if (this.cursors.right.isDown) {
+        this.avatar.setVelocityX(300);
+      }
+      if (this.cursors.space.isDown) {
+        this.avatar.setVelocityY(-330);
+      }
+
+      // Starting avatar animation if moving
+      if (
+        this.avatar.body.velocity.x !== 0 ||
+        this.avatar.body.velocity.y !== 0
+      ) {
+        this.avatar.play(`avatar-moving`, true);
+      } else {
+        this.avatar.play(`avatar-idle`, true);
+      }
     }
   }
 
+  // Setting avatar and enemies animations
   createAnimations() {
     this.anims.create({
       key: `avatar-moving`,
