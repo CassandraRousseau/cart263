@@ -6,13 +6,19 @@ class Boot extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image(`enemy`, `assets/images/enemy.png`);
+    this.load.spritesheet(`enemy`, `assets/images/enemy.png`, {
+      frameWidth: 190,
+      frameHeight: 190,
+      endFrame: 7,
+    });
     this.load.spritesheet(`avatar`, `assets/images/avatar.png`, {
       frameWidth: 140,
       frameHeight: 140,
       endFrame: 9,
     });
-
+    this.load.image(`background`, `assets/images/Background.png`);
+    this.load.image(`flower`, `assets/images/flower.png`);
+    this.load.image(`ground`, `assets/images/Ground.png`);
     this.load.on(`complete`, () => {
       this.scene.start(`play`);
     });

@@ -5,40 +5,73 @@ class Play extends Phaser.Scene {
     });
   }
   create() {
-    this.walls = this.physics.add.group({
-      key: `enemy`,
+    this.add.image(0, 0, `background`).setOrigin(0, 0);
+    this.platforms = this.physics.add.group({
+      key: `ground`,
       immovable: true,
-      quantity: 24,
+      quantity: 4,
     });
-    this.walls.children.each(function (wall) {
+    this.platforms.children.each(function (platform) {
       let x = Math.random() * this.sys.canvas.width;
       let y = Math.random() * this.sys.canvas.height;
-      wall.setPosition(x, y);
-      wall.setTint(0xdd3333);
+      platform.setPosition(x, y);
     }, this);
 
-    this.collectables = this.physics.add.group({
+    this.enemies = this.physics.add.group({
       key: `enemy`,
-      immovable: true,
-      quantity: 100,
+      quantity: 4,
     });
-    this.collectables.children.each(function (collectable) {
+    this.enemies.children.each(function (enemy) {
       let x = Math.random() * this.sys.canvas.width;
       let y = Math.random() * this.sys.canvas.height;
-      collectable.setPosition(x, y);
-      collectable.setTint(0x33dd33);
+      enemy.setPosition(x, y);
     }, this);
 
+    this.flowers = this.physics.add.group({
+      key: `flower`,
+      immovable: true,
+      quantity: 10,
+    });
+    this.flowers.children.each(function (flower) {
+      let x = Math.random() * this.sys.canvas.width;
+      let y = Math.random() * this.sys.canvas.height;
+      flower.setPosition(x, y);
+    }, this);
+    // this.platforms.create(400, 568, "ground").setScale(2).refreshBody();
+
+    // this.platforms.create(600, 400, "ground");
+    // this.platforms.create(50, 250, "ground");
+    // this.platforms.create(750, 220, "ground");
+
+    //
+    //
+    //     stars = this.physics.add.group({
+    //     key: 'star',
+    //     repeat: 11,
+    //     setXY: { x: 12, y: 0, stepX: 70 }
+    // });
+    //
+    // stars.children.iterate(function (child) {
+    //
+    //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    //
+    // });
     this.avatar = this.physics.add.sprite(200, 200, `avatar`);
+    this.enemies = this.physics.add.sprite(200, 200, `enemy`);
     this.createAnimations();
-
+    // this.avatar.body.setGravityY(100);
     this.avatar.setVelocityX(100);
     this.avatar.play(`avatar-moving`);
+
+    this.enemies.setVelocityX(100);
+    this.enemies.play(`enemy-moving`);
     this.avatar.setCollideWorldBounds(true);
-    this.physics.add.collider(this.avatar, this.walls);
+    this.enemies.setCollideWorldBounds(true);
+
+    this.physics.add.collider(this.avatar, this.platforms);
     this.physics.add.overlap(
       this.avatar,
-      this.collectables,
+      this.flowers,
       this.collectItem,
       null,
       this
@@ -47,8 +80,8 @@ class Play extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
-  collectItem(avatar, collectable) {
-    collectable.destroy();
+  collectItem(avatar, flower) {
+    flower.destroy();
   }
   update() {
     this.avatar.setVelocity(0);
@@ -78,7 +111,7 @@ class Play extends Phaser.Scene {
       key: `avatar-moving`,
       frames: this.anims.generateFrameNumbers(`avatar`, {
         start: 0,
-        end: 5,
+        end: 9,
       }),
       frameRate: 24,
       repeat: -1,
@@ -92,6 +125,15 @@ class Play extends Phaser.Scene {
       }),
       frameRate: 24,
       repeat: 0,
+    });
+    this.anims.create({
+      key: `enemy-moving`,
+      frames: this.anims.generateFrameNumbers(`enemy`, {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 24,
+      repeat: -1,
     });
   }
 }
