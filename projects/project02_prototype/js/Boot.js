@@ -17,7 +17,11 @@ class Boot extends Phaser.Scene {
       frameHeight: 140,
       endFrame: 9,
     });
-
+    this.load.spritesheet(`mini-cloud`, `assets/images/mini-cloud.png`, {
+      frameWidth: 100,
+      frameHeight: 100,
+      endFrame: 7,
+    });
     // Preloading images
     this.load.image(`background`, `assets/images/Background.png`);
     this.load.image(`flower`, `assets/images/flower.png`);

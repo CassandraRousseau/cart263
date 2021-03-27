@@ -96,9 +96,14 @@ class Play extends Phaser.Scene {
       this.avatar.play(`avatar-moving`);
       this.avatar.setBounce(0, 1);
 
+      // Creating avatar animation
+      this.cloud = this.physics.add.sprite(700 * 8, 450, `mini-cloud`);
+      this.cloud.body.setGravityY(100);
+      this.cloud.play(`cloud-moving`);
       // Creating anemies animation
       for (var i = 0; i < 4; i++) {
         this.enemies = this.physics.add.sprite(`enemy`);
+        this.avatar.body.setGravityY(100);
         this.enemies.setVelocityX(100);
         this.enemies.play(`enemy-moving`);
       }
@@ -114,6 +119,8 @@ class Play extends Phaser.Scene {
     this.physics.add.collider(this.flowers, this.platforms);
     // Setting collision between avatar main platform
     this.physics.add.collider(this.avatar, this.platformsGround);
+
+    this.physics.add.collider(this.cloud, this.platformsGround);
     // Setting collision between enemies and main platform
     this.physics.add.collider(this.enemies, this.platformsGround);
     // Setting collision between platforms and main platform
@@ -144,7 +151,7 @@ class Play extends Phaser.Scene {
 
   // Setting avatar color when collision with an enemy
   hitEnemy(avatar, enemy) {
-    this.physics.pause();
+    // this.physics.pause();
     avatar.setTint(0xff0000);
     console.log(hitEnemy);
   }
@@ -216,6 +223,16 @@ class Play extends Phaser.Scene {
       frameRate: 24,
       repeat: 0,
     });
+    this.anims.create({
+      key: `cloud-moving`,
+      frames: this.anims.generateFrameNumbers(`mini-cloud`, {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 24,
+      repeat: -1,
+    });
+
     this.anims.create({
       key: `enemy-moving`,
       frames: this.anims.generateFrameNumbers(`enemy`, {
