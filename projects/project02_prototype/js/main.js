@@ -1,7 +1,11 @@
 /**************************************************
-Template p5 project
+Project 02(prototype):Anything
 Cassandra Rousseau
-Here is a description of this template p5 project.
+
+This is a platform game where player's avatar needs to fight the enemies, collect the flowers to
+regenerate and find the baby cloud in order to finish the level.
+Players move the character through keyboard.The arrows to move left and right and the spacebar
+to float in the air.
 **************************************************/
 "use strict";
 

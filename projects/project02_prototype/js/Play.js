@@ -117,9 +117,9 @@ class Play extends Phaser.Scene {
     console.log(this.physics.add.collider);
     // Setting collision between flowers and platforms
     this.physics.add.collider(this.flowers, this.platforms);
-    // Setting collision between avatar main platform
+    // Setting collision between avatar and main platform
     this.physics.add.collider(this.avatar, this.platformsGround);
-
+    // Setting collision between baby cloud and main platform
     this.physics.add.collider(this.cloud, this.platformsGround);
     // Setting collision between enemies and main platform
     this.physics.add.collider(this.enemies, this.platformsGround);
