@@ -65,18 +65,12 @@ class Play extends Phaser.Scene {
 
     this.flowers.create(750 * 6, 125, "flower");
 
-    // Creating enemies
-    this.enemies = this.physics.add.group({
-      key: `enemy`,
-      quantity: 4,
-    });
-
-    // Position randomly enemies
-    this.enemies.children.each(function (enemy) {
-      let x = Math.random() * this.sys.canvas.width;
-      let y = Math.random() * this.sys.canvas.height;
-      enemy.setPosition(x, y);
-    }, this);
+    // // Position randomly enemies
+    // this.enemies.children.each(function (enemy) {
+    //   let x = Math.random() * this.sys.canvas.width;
+    //   let y = Math.random() * this.sys.canvas.height;
+    //   enemy.setPosition(x, y);
+    // }, this);
 
     // Creating main platform/ground
     this.platformsGround = this.physics.add.staticGroup({
@@ -86,26 +80,60 @@ class Play extends Phaser.Scene {
     });
 
     // Creating avatar sprite
-    this.avatar = this.physics.add.sprite(100, 450, `avatar`);
+    this.avatar = this.physics.add.sprite(100, 400, `avatar`);
 
     // Creating avatar animation
     this.createAnimations();
-    // this.avatar.body.setGravityY(-500);
     this.avatar.setVelocityX(-330);
-    this.avatar.play(`avatar-moving`);
-    this.avatar.setBounce(0, 1);
+    this.avatar.body.setGravityY(4000);
 
     // Creating avatar animation
-    this.cloud = this.physics.add.sprite(700 * 8, 450, `mini-cloud`);
+    this.cloud = this.physics.add.sprite(700 * 8, 400, `mini-cloud`);
     this.cloud.body.setGravityY(100);
     this.cloud.play(`cloud-moving`);
-    // Creating anemies animation
+    // // Creating enemies animation
+    // for (var i = 0; i < 4; i++) {
+    //   this.enemies = this.physics.add.sprite(`enemy`);
+    //   // this.enemies.body.setGravityY(100);
+    //   this.enemies.setVelocityX(100);
+    //   this.enemies.play(`enemy-moving`);
+    // }
+    // this.enemy1 = this.enemies.create(200, 100, `enemy`).setVelocity(100, 0);
+    // this.enemies.play(`enemy-moving`);
+    // // var block2 = group.create(500, 200, "block").setVelocity(-100, -100);
+    // // var block3 = group.create(300, 400, "block").setVelocity(60, 100);
+    // // var block4 = group.create(600, 300, "block").setVelocity(-30, -50);
+    // //  Here we create our coins group
+
+    // Creating enemies
+    this.enemies = this.physics.add.group({
+      key: `enemy`,
+      quantity: 4,
+    });
+
+    //  Now let's add 50 coins into it
     for (var i = 0; i < 4; i++) {
-      this.enemies = this.physics.add.sprite(`enemy`);
-      this.enemies.body.setGravityY(100);
-      this.enemies.setVelocityX(100);
-      this.enemies.play(`enemy-moving`);
+      this.enemies.create(
+        this.physics.world.randomX,
+        this.physics.world.randomY,
+        `enemy`,
+        0
+      );
     }
+    this.enemies.playAnimation(`enemy-moving`);
+    //
+    // //  Now using the power of callAll we can add the same animation to all coins in the group:
+    // this.enemies.callAll(
+    //   "animations.add",
+    //   "animations",
+    //   "spin",
+    //   [0, 1, 2, 3, 4, 5],
+    //   10,
+    //   true
+    // );
+    //
+    // //  And play them
+    // this.enemies.callAll("animations.play", "animations", "spin");
 
     // Setting camera following avatar
     this.cameras.main.startFollow(this.avatar, true);
@@ -123,15 +151,16 @@ class Play extends Phaser.Scene {
     this.physics.add.collider(this.enemies, this.platformsGround);
     // Setting collision between platforms and main platform
     this.physics.add.collider(this.platforms, this.platformsGround);
-
-    // Setting collision between avatar and enemies
-    this.physics.add.collider(
-      this.avatar,
-      this.enemies,
-      this.hitEnemy,
-      null,
-      this
-    );
+    //
+    // // Setting collision between avatar and enemies
+    // this.physics.add.collider(
+    //   this.avatar,
+    //   this.enemies,
+    //   this.hitEnemy,
+    //   null,
+    //   this
+    // );
+    this.physics.add.collider(this.avatar, this.cloud);
     console.log(this.physics.add.collider);
     // Setting collision between avatar and flowers
     this.physics.add.overlap(
@@ -144,15 +173,14 @@ class Play extends Phaser.Scene {
 
     // Setting keyboard outputs
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.spacebar = this.input.keyboard.createCursorKeys();
   }
 
-  // Setting avatar color when collision with an enemy
-  hitEnemy(avatar, enemy) {
-    // this.physics.pause();
-    avatar.setTint(0xff0000);
-    console.log(hitEnemy);
-  }
+  // // Setting avatar color when collision with an enemy
+  // hitEnemy(avatar, enemy) {
+  //   // this.physics.pause();
+  //   avatar.setTint(0xff0000);
+  //   console.log(hitEnemy);
+  // }
 
   // Avatar collecting flowers
   collectItem(avatar, flower) {
@@ -172,7 +200,7 @@ class Play extends Phaser.Scene {
         cam.scrollX += 4;
       }
 
-      if (this.cursors.up.isDown) {
+      if (this.cursors.space.isDown) {
         cam.scrollY -= 4;
       } else if (this.cursors.down.isDown) {
         cam.scrollY += 4;
@@ -183,9 +211,8 @@ class Play extends Phaser.Scene {
         this.avatar.setVelocityX(-300);
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
-      }
-      if (this.cursors.space.isDown && this.avatar.body.touching.down) {
-        this.avatar.setVelocityY(-330);
+      } else if (this.cursors.space.isDown) {
+        this.avatar.setVelocityY(-200);
       }
     }
     // Starting avatar animation if moving

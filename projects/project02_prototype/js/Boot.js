@@ -14,7 +14,7 @@ class Boot extends Phaser.Scene {
     });
     this.load.spritesheet(`avatar`, `assets/images/avatar.png`, {
       frameWidth: 140,
-      frameHeight: 140,
+      frameHeight: 128,
       endFrame: 9,
     });
     this.load.spritesheet(`mini-cloud`, `assets/images/mini-cloud.png`, {
