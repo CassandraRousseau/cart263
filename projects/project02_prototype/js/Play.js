@@ -90,8 +90,8 @@ class Play extends Phaser.Scene {
 
     // Creating avatar animation
     this.createAnimations();
-    this.avatar.body.setGravityY(100);
-    this.avatar.setVelocityX(100);
+    // this.avatar.body.setGravityY(-500);
+    this.avatar.setVelocityX(-330);
     this.avatar.play(`avatar-moving`);
     this.avatar.setBounce(0, 1);
 
@@ -102,7 +102,7 @@ class Play extends Phaser.Scene {
     // Creating anemies animation
     for (var i = 0; i < 4; i++) {
       this.enemies = this.physics.add.sprite(`enemy`);
-      this.avatar.body.setGravityY(100);
+      this.enemies.body.setGravityY(100);
       this.enemies.setVelocityX(100);
       this.enemies.play(`enemy-moving`);
     }
@@ -184,7 +184,7 @@ class Play extends Phaser.Scene {
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
       }
-      if (this.cursors.space.isDown) {
+      if (this.cursors.space.isDown && this.avatar.body.touching.down) {
         this.avatar.setVelocityY(-330);
       }
     }
