@@ -65,52 +65,50 @@ class Play extends Phaser.Scene {
 
     this.flowers.create(750 * 6, 125, "flower");
 
-    {
-      // Creating enemies
-      this.enemies = this.physics.add.group({
-        key: `enemy`,
-        quantity: 4,
-      });
+    // Creating enemies
+    this.enemies = this.physics.add.group({
+      key: `enemy`,
+      quantity: 4,
+    });
 
-      // Position randomly enemies
-      this.enemies.children.each(function (enemy) {
-        let x = Math.random() * this.sys.canvas.width;
-        let y = Math.random() * this.sys.canvas.height;
-        enemy.setPosition(x, y);
-      }, this);
+    // Position randomly enemies
+    this.enemies.children.each(function (enemy) {
+      let x = Math.random() * this.sys.canvas.width;
+      let y = Math.random() * this.sys.canvas.height;
+      enemy.setPosition(x, y);
+    }, this);
 
-      // Creating main platform/ground
-      this.platformsGround = this.physics.add.staticGroup({
-        key: `ground`,
-        repeat: 88,
-        setXY: { x: 0, y: 550, stepX: 70 },
-      });
+    // Creating main platform/ground
+    this.platformsGround = this.physics.add.staticGroup({
+      key: `ground`,
+      repeat: 88,
+      setXY: { x: 0, y: 550, stepX: 70 },
+    });
 
-      // Creating avatar sprite
-      this.avatar = this.physics.add.sprite(100, 450, `avatar`);
+    // Creating avatar sprite
+    this.avatar = this.physics.add.sprite(100, 450, `avatar`);
 
-      // Creating avatar animation
-      this.createAnimations();
+    // Creating avatar animation
+    this.createAnimations();
+    this.avatar.body.setGravityY(100);
+    this.avatar.setVelocityX(100);
+    this.avatar.play(`avatar-moving`);
+    this.avatar.setBounce(0, 1);
+
+    // Creating avatar animation
+    this.cloud = this.physics.add.sprite(700 * 8, 450, `mini-cloud`);
+    this.cloud.body.setGravityY(100);
+    this.cloud.play(`cloud-moving`);
+    // Creating anemies animation
+    for (var i = 0; i < 4; i++) {
+      this.enemies = this.physics.add.sprite(`enemy`);
       this.avatar.body.setGravityY(100);
-      this.avatar.setVelocityX(100);
-      this.avatar.play(`avatar-moving`);
-      this.avatar.setBounce(0, 1);
-
-      // Creating avatar animation
-      this.cloud = this.physics.add.sprite(700 * 8, 450, `mini-cloud`);
-      this.cloud.body.setGravityY(100);
-      this.cloud.play(`cloud-moving`);
-      // Creating anemies animation
-      for (var i = 0; i < 4; i++) {
-        this.enemies = this.physics.add.sprite(`enemy`);
-        this.avatar.body.setGravityY(100);
-        this.enemies.setVelocityX(100);
-        this.enemies.play(`enemy-moving`);
-      }
-
-      // Setting camera following avatar
-      this.cameras.main.startFollow(this.avatar, true);
+      this.enemies.setVelocityX(100);
+      this.enemies.play(`enemy-moving`);
     }
+
+    // Setting camera following avatar
+    this.cameras.main.startFollow(this.avatar, true);
 
     // Setting collision between avatar and platforms
     this.physics.add.collider(this.avatar, this.platforms);
@@ -189,16 +187,15 @@ class Play extends Phaser.Scene {
       if (this.cursors.space.isDown) {
         this.avatar.setVelocityY(-330);
       }
-
-      // Starting avatar animation if moving
-      if (
-        this.avatar.body.velocity.x !== 0 ||
-        this.avatar.body.velocity.y !== 0
-      ) {
-        this.avatar.play(`avatar-moving`, true);
-      } else {
-        this.avatar.play(`avatar-idle`, true);
-      }
+    }
+    // Starting avatar animation if moving
+    if (
+      this.avatar.body.velocity.x !== 0 ||
+      this.avatar.body.velocity.y !== 0
+    ) {
+      this.avatar.play(`avatar-moving`, true);
+    } else {
+      this.avatar.play(`avatar-idle`, true);
     }
   }
 
