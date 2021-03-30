@@ -132,7 +132,7 @@ class Play extends Phaser.Scene {
       null,
       this
     );
-
+    console.log(this.physics.add.collider);
     // Setting collision between avatar and flowers
     this.physics.add.overlap(
       this.avatar,
