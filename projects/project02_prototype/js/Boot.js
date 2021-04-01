@@ -7,6 +7,11 @@ class Boot extends Phaser.Scene {
 
   // Preloading spritesheets
   preload() {
+    this.load.bitmapFont(
+      "pressStart",
+      "assets/fonts/Press_Start_2P.png",
+      "assets/fonts/Press_Start_2P.xml"
+    );
     this.load.spritesheet(`enemy`, `assets/images/enemy.png`, {
       frameWidth: 140,
       frameHeight: 140,

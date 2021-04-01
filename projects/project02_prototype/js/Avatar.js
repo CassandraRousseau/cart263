@@ -1,79 +1,44 @@
 class Avatar extends Phaser.GameObjects.Sprite {
-  constructor(scene, color, x, y) {
-    super(scene, x, y);
-
-    this.color = color;
-
-    this.setTexture("avatar");
+  constructor(config) {
+    super(config.scene, config.x, config.y, `avatar`);
+    config.scene.add.existing(this);
+    this.setTexture(`avatar`);
     this.setPosition(x, y);
 
-    this.play(this.color + "Idle");
-
-    scene.add.existing(this);
-
-    this.on("animationcomplete", this.animComplete, this);
+    this.play(`avatar-idle`);
 
     this.alive = true;
 
-    var hx = this.color === "blue" ? 110 : -40;
-
-    this.hp = new HealthBar(scene, x - hx, y - 110);
-
-    this.timer = scene.time.addEvent({
-      delay: Phaser.Math.Between(1000, 3000),
-      callback: this.fire,
-      callbackScope: this,
-    });
+    this.hp = new HealthBar(scene, x, y - 110);
   }
-
-  preUpdate(time, delta) {
-    super.preUpdate(time, delta);
-  }
-
-  animComplete(animation) {
-    if (animation.key === this.color + "Attack") {
-      this.play(this.color + "Idle");
-    }
-  }
-
   damage(amount) {
     if (this.hp.decrease(amount)) {
       this.alive = false;
-
-      this.play(this.color + "Dead");
-
-      this.color === "blue" ? bluesAlive-- : greensAlive--;
+    } else if (this.hp.increase(amount)) {
+      this.alive = true;
     }
   }
 
-  fire() {
-    var target = this.color === "blue" ? getGreen() : getBlue();
+  movements() {
+    // Setting keyboard outputs
+    this.cursors = this.input.keyboard.createCursorKeys();
+    // Setting keybord inputs on avatar
+    if (this.cursors.left.isDown) {
+      this.avatar.setVelocityX(-300);
+    } else if (this.cursors.right.isDown) {
+      this.avatar.setVelocityX(300);
+    } else if (this.cursors.space.isDown) {
+      this.avatar.setVelocityY(-200);
+    }
 
-    if (target && this.alive) {
-      this.play(this.color + "Attack");
-
-      var offset = this.color === "blue" ? 20 : -20;
-      var targetX = this.color === "blue" ? target.x + 30 : target.x - 30;
-
-      this.missile.setPosition(this.x + offset, this.y + 20).setVisible(true);
-
-      this.scene.tweens.add({
-        targets: this.missile,
-        x: targetX,
-        ease: "Linear",
-        duration: 500,
-        onComplete: function (tween, targets) {
-          targets[0].setVisible(false);
-        },
-      });
-
-      target.damage(Phaser.Math.Between(2, 8));
-
-      this.timer = this.scene.time.addEvent({
-        delay: Phaser.Math.Between(1000, 3000),
-        callback: this.fire,
-        callbackScope: this,
-      });
+    // Starting avatar animation if moving
+    if (
+      this.avatar.body.velocity.x !== 0 ||
+      this.avatar.body.velocity.y !== 0
+    ) {
+      this.avatar.play(`avatar-moving`, true);
+    } else {
+      this.avatar.play(`avatar-idle`, true);
     }
   }
 }

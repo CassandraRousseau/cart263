@@ -23,6 +23,17 @@ class HealthBar {
 
     return this.value === 0;
   }
+  increase(amount) {
+    this.value += amount;
+
+    if (this.value < 0) {
+      this.value = 0;
+    }
+
+    this.draw();
+
+    return this.value === 0;
+  }
   draw() {
     this.bar.clear();
 
@@ -41,7 +52,7 @@ class HealthBar {
       this.bar.fillStyle(0x00ff00);
     }
 
-    var d = Math.floor(this.p * this.value);
+    let d = Math.floor(this.p * this.value);
 
     this.bar.fillRect(this.x + 2, this.y + 2, d, 12);
   }
