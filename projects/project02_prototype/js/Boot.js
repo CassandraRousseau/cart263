@@ -5,7 +5,7 @@ class Boot extends Phaser.Scene {
     });
   }
 
-  // Preloading spritesheets
+  // Preloading spritesheets, images, and bitmap font
   preload() {
     this.load.bitmapFont(
       "pressStart",
@@ -39,7 +39,6 @@ class Boot extends Phaser.Scene {
   // Setting loading screen
   create() {
     let style = {
-      fontFamily: "sans-serif",
       fontSize: `40px`,
       color: "#ffffff",
     };

@@ -1,20 +1,22 @@
 class Play extends Phaser.Scene {
+  // Setting parameters of the level
   constructor() {
     super({
       key: `play`,
     });
     this.moveCam = false;
-    // this.enemies = [];
   }
+  // Creating properties of level
   create() {
     // Setting camera
     this.cameras.main.setBounds(0, 0, 720 * 16, 176);
-    // let data = this.cache.text.get("story");
+
     //Setting background
     for (let x = 0; x < 16; x++) {
       this.add.image(720 * x, 0, `background`).setOrigin(0, 0);
     }
 
+    // Setting tutorial text
     let text1 = this.add
       .bitmapText(
         400,
@@ -26,6 +28,7 @@ class Play extends Phaser.Scene {
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
+
     let text2 = this.add
       .bitmapText(
         550 * 2,
@@ -37,6 +40,7 @@ class Play extends Phaser.Scene {
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
+
     let text3 = this.add
       .bitmapText(
         550 * 3,
@@ -48,11 +52,13 @@ class Play extends Phaser.Scene {
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
+
     let text4 = this.add
       .bitmapText(550 * 4, 250, "pressStart", `Watch out! Enemy ahead!`, 20)
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
+
     let text5 = this.add
       .bitmapText(
         550 * 6,
@@ -64,6 +70,7 @@ class Play extends Phaser.Scene {
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
+
     let text6 = this.add
       .bitmapText(
         675 * 6,
@@ -76,13 +83,19 @@ class Play extends Phaser.Scene {
       .setCenterAlign()
       .setAngle(-180);
 
-    this.add.text(100 * 16, 300 * 16, `Look! A missed baby!`);
+    let text7 = this.add
+      .bitmapText(800 * 14, 250, "pressStart", `Look! A missing baby!`, 20)
+      .setOrigin(0)
+      .setCenterAlign()
+      .setAngle(-180);
+
     // Creating main platform/ground
     this.platformsGround = this.physics.add.staticGroup({
       key: `ground`,
       repeat: 88,
       setXY: { x: 0, y: 550, stepX: 190 },
     });
+
     // Creating platforms
     this.platforms = this.physics.add.staticGroup();
 
@@ -103,41 +116,37 @@ class Play extends Phaser.Scene {
     this.platforms.create(770 * 8, 350, "ground");
     this.platforms.create(770 * 8, 450, "ground");
 
-    this.platforms.create(800 * 16, 200, "ground");
-    // this.platforms.create(50 * 9, 250, "ground");
-    this.platforms.create(800 * 16, 600, "ground");
-    // this.platforms.create(750, 220, "ground");
+    this.platforms.create(800 * 8.3, 100, "ground");
+    this.platforms.create(800 * 8.3, 400, "ground");
+    this.platforms.create(800 * 8.5, 400, "ground");
+    this.platforms.create(800 * 8.7, 400, "ground");
+    this.platforms.create(800 * 8.9, 400, "ground");
+    this.platforms.create(800 * 9.1, 400, "ground");
+    this.platforms.create(800 * 9.3, 400, "ground");
+    this.platforms.create(800 * 9.5, 400, "ground");
 
-    this.platforms.create(800 * 16, 300, "ground");
-    // this.platforms.create(500 * 2, 100, "ground");
-    this.platforms.create(800 * 16, 400, "ground");
+    this.platforms.create(800 * 9.5, 100, "ground");
+    this.platforms.create(800 * 10, 200, "ground");
 
-    this.platforms.create(800 * 16, 350, "ground");
-    // this.platforms.create(50 * 3, 550, "ground");
-    this.platforms.create(800 * 16, 200, "ground");
+    this.platforms.create(800 * 10.5, 300, "ground");
+    this.platforms.create(800 * 11, 220, "ground");
 
-    this.platforms.create(800 * 16, 400, "ground");
-    // this.platforms.create(50 * 4, 250, "ground");
-    this.platforms.create(800 * 16, 220, "ground");
+    this.platforms.create(800 * 11.5, 350, "ground");
+    this.platforms.create(800 * 11.7, 350, "ground");
+    this.platforms.create(800 * 11.9, 350, "ground");
+    this.platforms.create(800 * 12.1, 350, "ground");
 
-    this.platforms.create(800 * 16, 400, "ground");
-    // this.platforms.create(50 * 5, 250, "ground");
-    this.platforms.create(800 * 16, 220, "ground");
+    this.platforms.create(800 * 13, 300, "ground");
+    this.platforms.create(800 * 13, 100, "ground");
+    this.platforms.create(800 * 13.2, 100, "ground");
 
     // Creating flowers
     this.flowers = this.physics.add.staticGroup();
+    // Setting flower positions
     this.flowers.create(550 * 6, 300, "flower");
     this.flowers.create(750 * 7, 0, "flower");
-    // Setting flower positions
-
-    // this.flowers.create(750, 120, "flower");
-    // this.flowers.create(750 * 2, 300, "flower");
-    // this.flowers.create(750 * 3, 100, "flower");
-
-    // this.flowers.create(650 * 6, 125, "flower");
-    // this.flowers.create(750 * 7, 125, "flower");
-    //
-    // this.flowers.create(750 * 6, 125, "flower");
+    this.flowers.create(800 * 8.3, 0, "flower");
+    this.flowers.create(800 * 13, 200, "flower");
 
     // Creating avatar sprite
     this.avatar = this.physics.add.sprite(100, 400, `avatar`);
@@ -147,49 +156,79 @@ class Play extends Phaser.Scene {
     this.avatar.setVelocityX(-330);
     this.avatar.body.setGravityY(4000);
 
-    // Creating avatar animation
+    // Creating baby cloud sprite
     this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloud`);
+
+    // Creating baby cloud animation
     this.cloud.body.setGravityY(100);
     this.cloud.play(`cloud-moving`);
 
     // Creating enemies
     this.enemies = this.physics.add.group();
-    console.log(this.enemies);
 
+    //Setting enemies position
     this.enemies.create(700 * 3, 100, `enemy`, 0);
     this.enemies.create(700 * 3.5, 100, `enemy`, 0);
     this.enemies.create(750 * 6, 100, `enemy`, 0);
     this.enemies.create(700 * 8, 100, `enemy`, 0);
     this.enemies.create(725 * 8, 100, `enemy`, 0);
-    // this.enemies.create(300, 100, `enemy`, 0);
-    // this.enemies.create(300, 100, `enemy`, 0);
+    this.enemies.create(800 * 9.3, 200, `enemy`, 0);
+    this.enemies.create(800 * 10, 100, `enemy`, 0);
+    this.enemies.create(800 * 10.5, 100, `enemy`, 0);
+    this.enemies.create(800 * 11, 100, `enemy`, 0);
+    this.enemies.create(800 * 10, 400, `enemy`, 0);
+    this.enemies.create(800 * 10.5, 400, `enemy`, 0);
+    this.enemies.create(800 * 11, 400, `enemy`, 0);
+    this.enemies.create(800 * 13, -100, `enemy`, 0);
 
+    // Animating enemies
     this.enemies.playAnimation(`enemy-moving`);
+
+    // Creating health bar
     this.debug = this.add.graphics();
+
     // Setting camera following avatar
     this.cameras.main.startFollow(this.avatar, true);
 
     // Setting collision between avatar and platforms
     this.physics.add.collider(this.avatar, this.platforms);
-    console.log(this.physics.add.collider);
+
     // Setting collision between flowers and platforms
     this.physics.add.collider(this.flowers, this.platforms);
+
     // Setting collision between avatar and main platform
     this.physics.add.collider(this.avatar, this.platformsGround);
+
     // Setting collision between baby cloud and main platform
     this.physics.add.collider(this.cloud, this.platformsGround);
+
     // Setting collision between enemies and main platform
     this.physics.add.collider(this.enemies, this.platformsGround);
 
+    // Setting collision between enemies and platforms
     this.physics.add.collider(this.enemies, this.platforms);
 
     // Setting collision between platforms and main platform
     this.physics.add.collider(this.platforms, this.platformsGround);
 
     // Setting collision between avatar and enemies
-    this.physics.add.collider(this.avatar, this.enemies);
+    this.physics.add.collider(
+      this.avatar,
+      this.enemies,
+      this.hitEnemy,
+      null,
+      this
+    );
+    console.log(this.hitEnemy);
 
-    this.physics.add.collider(this.avatar, this.cloud);
+    // Setting collision between avatar and baby cloud
+    this.physics.add.collider(
+      this.avatar,
+      this.cloud,
+      this.reachGoal,
+      null,
+      this
+    );
 
     // Setting collision between avatar and flowers
     this.physics.add.overlap(
@@ -204,38 +243,83 @@ class Play extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
-  // // Setting avatar color when collision with an enemy
-  // hitEnemy(avatar, enemy) {
-  //   // this.physics.pause();
-  //   avatar.setTint(0xff0000);
-  //   console.log(hitEnemy);
-  // }
+  // Setting how avatar eliminates the enemy
+  hitEnemy(avatar, enemies) {
+    if (avatar.body.velocity.y > 0 || enemies.body.blocked.up) {
+      enemies.destroy();
+    } else {
+      // Setting avatar color when collision with an enemy
+      avatar.setTint(0xff0000);
+    }
+
+    console.log(hitEnemy);
+  }
 
   // Avatar collecting flowers
   collectItem(avatar, flower) {
     flower.destroy();
   }
 
-  update() {
+  // Creating ending level screen
+  reachGoal() {
+    let rect = this.add.rectangle(800 * 11, 400, 400, 300, 0xff0000);
+    console.log(rect);
+
+    let text8 = this.add
+      .bitmapText(
+        800 * 14,
+        250,
+        "pressStart",
+        `Level 1 Completed\nGood Job! You found a baby cloud!`,
+        20
+      )
+      .setOrigin(0)
+      .setCenterAlign()
+      .setAngle(-180);
+  }
+
+  // Updating properties of the game
+  update(collectItem) {
     // Setting avatar velocity
     this.avatar.setVelocity(0);
+
+    //Setting baby cloud velocity
+    this.cloud.setVelocity(0);
+    // this.enemies.setVelocity(0);
+
+    // Resetting health bar filling
     this.debug.clear();
 
+    // Creating health bar properties
     const size = 200;
-
     this.debug.fillStyle(0x2dff2d);
     this.debug.fillRect(50, this.avatar.y - 100, size, 20);
 
-    this.debug.fillStyle(0x2d2d2d);
-    this.debug.fillRect(50, this.avatar.y - 100, size, 20);
-    this.debug.startFollow(this.avatar);
-    // this.avatar.setVelocity(2);
-    // //
+    // Filling bar if collecting flowers
+    if (collectItem) {
+      this.debug.fillRect(50, this.avatar.y - 100, size + 1, 20);
+    }
+    // Shrinking heatlh bar if colliding with an enemy
+    // else if (hitEnemy) {
+    //   this.debug.fillStyle(0x2d2d2d);
+    //   this.debug.fillRect(50, this.avatar.y - 100, size - 1, 20);
+    // }
+
+    // Stopping game if health bar empty
+    if (size === 0) {
+      gameOver();
+    }
+
+    // Health bar following the avatar
+    // this.debug.startFollow(this.avatar);
+
+    //Automated movement for enemies
     // if (this.enemies.x > x + 50) {
     //   this.enemies.x += 2;
     // } else if (this.enemies.x < x + 50) {
     //   this.enemies.x += 2;
     // }
+
     // Setting camera movements
     const cam = this.cameras.main;
     if (this.moveCam) {
@@ -260,6 +344,7 @@ class Play extends Phaser.Scene {
         this.avatar.setVelocityY(-200);
       }
     }
+
     // Starting avatar animation if moving
     if (
       this.avatar.body.velocity.x !== 0 ||
@@ -271,7 +356,25 @@ class Play extends Phaser.Scene {
     }
   }
   moveEnemy() {}
-  // Setting avatar and enemies animations
+  healthBar() {}
+
+  // Setting game over screen
+  gameOver() {
+    this.cameras.main.setBackgroundColor("#000000");
+    let text9 = this.add
+      .bitmapText(
+        800 * 14,
+        250,
+        "pressStart",
+        `GAME OVER\nDon't give up Flufluf! The babies are waiting for you!`,
+        20
+      )
+      .setOrigin(0)
+      .setCenterAlign()
+      .setAngle(-180);
+  }
+
+  // Setting avatar, baby cloud, and enemies animations
   createAnimations() {
     this.anims.create({
       key: `avatar-moving`,
