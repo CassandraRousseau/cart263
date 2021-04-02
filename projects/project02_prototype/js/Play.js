@@ -21,6 +21,7 @@ class Play extends Phaser.Scene {
 
     // Setting soundtrack
     this.music = this.sound.add("theme");
+    this.music.loop = true;
     this.music.play();
 
     // Setting tutorial text
