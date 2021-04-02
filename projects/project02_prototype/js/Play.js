@@ -4,10 +4,13 @@ class Play extends Phaser.Scene {
     super({
       key: `play`,
     });
+    this.size = 100;
     this.moveCam = false;
+    this.over = false;
   }
   // Creating properties of level
   create() {
+    this.backgroundColor = "0xff0000";
     // Setting camera
     this.cameras.main.setBounds(0, 0, 720 * 16, 176);
 
@@ -16,8 +19,12 @@ class Play extends Phaser.Scene {
       this.add.image(720 * x, 0, `background`).setOrigin(0, 0);
     }
 
+    // Setting soundtrack
+    this.music = this.sound.add("theme");
+    this.music.play();
+
     // Setting tutorial text
-    let text1 = this.add
+    this.text1 = this.add
       .bitmapText(
         400,
         250,
@@ -29,7 +36,7 @@ class Play extends Phaser.Scene {
       .setCenterAlign()
       .setAngle(-180);
 
-    let text2 = this.add
+    this.text2 = this.add
       .bitmapText(
         550 * 2,
         250,
@@ -41,7 +48,7 @@ class Play extends Phaser.Scene {
       .setCenterAlign()
       .setAngle(-180);
 
-    let text3 = this.add
+    this.text3 = this.add
       .bitmapText(
         550 * 3,
         250,
@@ -53,13 +60,13 @@ class Play extends Phaser.Scene {
       .setCenterAlign()
       .setAngle(-180);
 
-    let text4 = this.add
+    this.text4 = this.add
       .bitmapText(550 * 4, 250, "pressStart", `Watch out! Enemy ahead!`, 20)
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
 
-    let text5 = this.add
+    this.text5 = this.add
       .bitmapText(
         550 * 6,
         250,
@@ -71,7 +78,7 @@ class Play extends Phaser.Scene {
       .setCenterAlign()
       .setAngle(-180);
 
-    let text6 = this.add
+    this.text6 = this.add
       .bitmapText(
         675 * 6,
         250,
@@ -83,13 +90,13 @@ class Play extends Phaser.Scene {
       .setCenterAlign()
       .setAngle(-180);
 
-    let text7 = this.add
+    this.text7 = this.add
       .bitmapText(800 * 14, 250, "pressStart", `Look! A missing baby!`, 20)
       .setOrigin(0)
       .setCenterAlign()
       .setAngle(-180);
 
-    // Creating main platform/ground
+    //Creating main platform/ground
     this.platformsGround = this.physics.add.staticGroup({
       key: `ground`,
       repeat: 88,
@@ -102,20 +109,14 @@ class Play extends Phaser.Scene {
     // // Setting platform positions
     this.platforms.create(550 * 2, 400, "ground");
     this.platforms.create(550 * 6, 400, "ground");
-
     this.platforms.create(750 * 6, 200, "ground");
-
     this.platforms.create(600 * 7, 400, "ground");
-
     this.platforms.create(750 * 7, 100, "ground");
-
     this.platforms.create(600 * 8, 400, "ground");
-
     this.platforms.create(750 * 8, 200, "ground");
     this.platforms.create(770 * 8, 200, "ground");
     this.platforms.create(770 * 8, 350, "ground");
     this.platforms.create(770 * 8, 450, "ground");
-
     this.platforms.create(800 * 8.3, 100, "ground");
     this.platforms.create(800 * 8.3, 400, "ground");
     this.platforms.create(800 * 8.5, 400, "ground");
@@ -124,24 +125,21 @@ class Play extends Phaser.Scene {
     this.platforms.create(800 * 9.1, 400, "ground");
     this.platforms.create(800 * 9.3, 400, "ground");
     this.platforms.create(800 * 9.5, 400, "ground");
-
     this.platforms.create(800 * 9.5, 100, "ground");
     this.platforms.create(800 * 10, 200, "ground");
-
     this.platforms.create(800 * 10.5, 300, "ground");
     this.platforms.create(800 * 11, 220, "ground");
-
     this.platforms.create(800 * 11.5, 350, "ground");
     this.platforms.create(800 * 11.7, 350, "ground");
     this.platforms.create(800 * 11.9, 350, "ground");
     this.platforms.create(800 * 12.1, 350, "ground");
-
     this.platforms.create(800 * 13, 300, "ground");
     this.platforms.create(800 * 13, 100, "ground");
     this.platforms.create(800 * 13.2, 100, "ground");
 
     // Creating flowers
     this.flowers = this.physics.add.staticGroup();
+
     // Setting flower positions
     this.flowers.create(550 * 6, 300, "flower");
     this.flowers.create(750 * 7, 0, "flower");
@@ -167,25 +165,36 @@ class Play extends Phaser.Scene {
     this.enemies = this.physics.add.group();
 
     //Setting enemies position
-    this.enemies.create(700 * 3, 100, `enemy`, 0);
+    this.enemies.create(700 * 2.5, 100, `enemy`, 0);
     this.enemies.create(700 * 3.5, 100, `enemy`, 0);
     this.enemies.create(750 * 6, 100, `enemy`, 0);
     this.enemies.create(700 * 8, 100, `enemy`, 0);
     this.enemies.create(725 * 8, 100, `enemy`, 0);
     this.enemies.create(800 * 9.3, 200, `enemy`, 0);
-    this.enemies.create(800 * 10, 100, `enemy`, 0);
-    this.enemies.create(800 * 10.5, 100, `enemy`, 0);
-    this.enemies.create(800 * 11, 100, `enemy`, 0);
+    this.enemies.create(800 * 10.4, 100, `enemy`, 0);
+    this.enemies.create(800 * 10.9, 100, `enemy`, 0);
     this.enemies.create(800 * 10, 400, `enemy`, 0);
     this.enemies.create(800 * 10.5, 400, `enemy`, 0);
     this.enemies.create(800 * 11, 400, `enemy`, 0);
     this.enemies.create(800 * 13, -100, `enemy`, 0);
 
+    //Setting enemies movements
+    this.enemies.children.each((enemy) => {
+      this.tweens.add({
+        targets: enemy,
+        x: enemy.x + 100,
+        duration: 3000,
+        ease: "Power2",
+        yoyo: true,
+        loop: -1,
+      });
+    });
+
     // Animating enemies
     this.enemies.playAnimation(`enemy-moving`);
 
     // Creating health bar
-    this.debug = this.add.graphics();
+    this.healthBar = this.add.graphics();
 
     // Setting camera following avatar
     this.cameras.main.startFollow(this.avatar, true);
@@ -219,7 +228,6 @@ class Play extends Phaser.Scene {
       null,
       this
     );
-    console.log(this.hitEnemy);
 
     // Setting collision between avatar and baby cloud
     this.physics.add.collider(
@@ -245,37 +253,48 @@ class Play extends Phaser.Scene {
 
   // Setting how avatar eliminates the enemy
   hitEnemy(avatar, enemies) {
-    if (avatar.body.velocity.y > 0 || enemies.body.blocked.up) {
+    if (avatar.body.y < enemies.body.y) {
       enemies.destroy();
+      console.log(avatar, enemies);
     } else {
       // Setting avatar color when collision with an enemy
       avatar.setTint(0xff0000);
+      this.size -= 1;
     }
-
-    console.log(hitEnemy);
   }
 
   // Avatar collecting flowers
   collectItem(avatar, flower) {
     flower.destroy();
+    avatar.clearTint();
+    this.size += 10;
   }
 
   // Creating ending level screen
   reachGoal() {
-    let rect = this.add.rectangle(800 * 11, 400, 400, 300, 0xff0000);
-    console.log(rect);
+    if (this.over === false) {
+      this.cameras.main.stopFollow(this.avatar, true);
+      this.rectangle = this.add.rectangle(
+        this.avatar.x,
+        this.avatar.y,
+        720 * 16,
+        2 * 600,
+        0x000000
+      );
 
-    let text8 = this.add
-      .bitmapText(
-        800 * 14,
-        250,
-        "pressStart",
-        `Level 1 Completed\nGood Job! You found a baby cloud!`,
-        20
-      )
-      .setOrigin(0)
-      .setCenterAlign()
-      .setAngle(-180);
+      this.text8 = this.add
+        .bitmapText(
+          this.avatar.x,
+          this.avatar.y - 300,
+          "pressStart",
+          `Level 1 Completed\nGood Job! You found a baby cloud!`,
+          20
+        )
+        .setOrigin(0)
+        .setCenterAlign()
+        .setAngle(-180);
+    }
+    this.over = true;
   }
 
   // Updating properties of the game
@@ -285,54 +304,20 @@ class Play extends Phaser.Scene {
 
     //Setting baby cloud velocity
     this.cloud.setVelocity(0);
-    // this.enemies.setVelocity(0);
-
-    // Resetting health bar filling
-    this.debug.clear();
-
-    // Creating health bar properties
-    const size = 200;
-    this.debug.fillStyle(0x2dff2d);
-    this.debug.fillRect(50, this.avatar.y - 100, size, 20);
-
-    // Filling bar if collecting flowers
-    if (collectItem) {
-      this.debug.fillRect(50, this.avatar.y - 100, size + 1, 20);
-    }
-    // Shrinking heatlh bar if colliding with an enemy
-    // else if (hitEnemy) {
-    //   this.debug.fillStyle(0x2d2d2d);
-    //   this.debug.fillRect(50, this.avatar.y - 100, size - 1, 20);
-    // }
-
-    // Stopping game if health bar empty
-    if (size === 0) {
-      gameOver();
-    }
-
-    // Health bar following the avatar
-    // this.debug.startFollow(this.avatar);
-
-    //Automated movement for enemies
-    // if (this.enemies.x > x + 50) {
-    //   this.enemies.x += 2;
-    // } else if (this.enemies.x < x + 50) {
-    //   this.enemies.x += 2;
-    // }
 
     // Setting camera movements
-    const cam = this.cameras.main;
+    this.cam = this.cameras.main;
     if (this.moveCam) {
       if (this.cursors.left.isDown) {
-        cam.scrollX -= 4;
+        this.cam.scrollX -= 4;
       } else if (this.cursors.right.isDown) {
-        cam.scrollX += 4;
+        this.cam.scrollX += 4;
       }
 
       if (this.cursors.space.isDown) {
-        cam.scrollY -= 4;
+        this.cam.scrollY -= 4;
       } else if (this.cursors.down.isDown) {
-        cam.scrollY += 4;
+        this.cam.scrollY += 4;
       }
     } else {
       // Setting keybord inputs on avatar
@@ -354,24 +339,71 @@ class Play extends Phaser.Scene {
     } else {
       this.avatar.play(`avatar-idle`, true);
     }
+
+    // Resetting health bar filling
+    this.healthBar.clear();
+
+    // Creating health bar properties
+    this.healthBar.fillStyle(0x2dff2d);
+    this.healthBar.fillRect(
+      this.avatar.x - 50,
+      this.avatar.y - 100,
+      this.size,
+      20
+    );
+
+    // Filling bar if collecting flowers
+    if (collectItem) {
+      this.healthBar.fillRect(
+        this.avatar.x - 50,
+        this.avatar.y - 100,
+        this.size,
+        20
+      );
+    }
+    // Shrinking heatlh bar if colliding with an enemy
+    else if (hitEnemy) {
+      this.healthBar.fillStyle(0x2d2d2d);
+      this.healthBar.fillRect(
+        this.avatar.x - 50,
+        this.avatar.y - 100,
+        this.size,
+        20
+      );
+    }
+
+    // Stopping game if health bar empty
+    if (this.size <= 0) {
+      this.gameOver();
+      console.log(this.gameOver);
+    }
   }
-  moveEnemy() {}
-  healthBar() {}
 
   // Setting game over screen
   gameOver() {
-    this.cameras.main.setBackgroundColor("#000000");
-    let text9 = this.add
-      .bitmapText(
-        800 * 14,
-        250,
-        "pressStart",
-        `GAME OVER\nDon't give up Flufluf! The babies are waiting for you!`,
-        20
-      )
-      .setOrigin(0)
-      .setCenterAlign()
-      .setAngle(-180);
+    if (this.over === false) {
+      this.cameras.main.stopFollow(this.avatar, true);
+      this.music.stop();
+      this.rectangle = this.add.rectangle(
+        this.avatar.x,
+        this.avatar.y,
+        720 * 16,
+        2 * 600,
+        0x000000
+      );
+      this.text9 = this.add
+        .bitmapText(
+          this.avatar.x,
+          this.avatar.y - 300,
+          "pressStart",
+          `GAME OVER\nDon't give up Flufluf!\n The babies are waiting for you!`,
+          20
+        )
+        .setOrigin(0)
+        .setCenterAlign()
+        .setAngle(-180);
+    }
+    this.over = true;
   }
 
   // Setting avatar, baby cloud, and enemies animations

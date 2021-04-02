@@ -5,13 +5,14 @@ class Boot extends Phaser.Scene {
     });
   }
 
-  // Preloading spritesheets, images, and bitmap font
+  // Preloading spritesheets, images,music, and bitmap font
   preload() {
     this.load.bitmapFont(
       "pressStart",
       "assets/fonts/Press_Start_2P.png",
       "assets/fonts/Press_Start_2P.xml"
     );
+    this.load.audio(`theme`, `assets/sounds/Bike_Rides_The_Green_Orbs.mp3`);
     this.load.spritesheet(`enemy`, `assets/images/enemy.png`, {
       frameWidth: 140,
       frameHeight: 140,
