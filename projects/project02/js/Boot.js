@@ -13,12 +13,7 @@ class Boot extends Phaser.Scene {
       "assets/fonts/Press_Start_2P.xml"
     );
     this.load.audio(`theme`, `assets/sounds/Bike_Rides_The_Green_Orbs.mp3`);
-    this.load.tilemap(
-      "level1",
-      "assets/tilemaps/level1.json",
-      null,
-      Phaser.Tilemap.TILED_JSON
-    );
+    this.load.tilemapTiledJSON("level1", "assets/tilemaps/level1.json");
     this.load.spritesheet(`enemy`, `assets/images/enemy.png`, {
       frameWidth: 140,
       frameHeight: 140,
@@ -35,10 +30,10 @@ class Boot extends Phaser.Scene {
       endFrame: 7,
     });
     // Preloading images
-    this.load.image(`background`, `assets/tilemaps/Background_Level1.tsx`);
+    this.load.image(`background`, `assets/images/Background.png`);
     // this.load.image(`flower`, `assets/images/flower.png`);
-    this.load.image(`ground`, `assets/tilemaps/Ground_level1.tsx`);
-    this.load.image(`enemies`, `assets/tilemaps/enemy.tsx`);
+    this.load.image(`ground`, `assets/images/Ground.png`);
+    this.load.image(`enemies`, `assets/images/enemy.png`);
     this.load.on(`complete`, () => {
       this.scene.start(`play`);
     });
