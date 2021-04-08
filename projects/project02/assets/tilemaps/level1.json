@@ -114,16 +114,65 @@
                 }]
         }, 
         {
+         "columns":0,
          "firstgid":3,
-         "source":"Level1_background.tsx"
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Level1",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":600,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/images\/Background.png",
+                 "imageheight":600,
+                 "imagewidth":800
+                }],
+         "tilewidth":800
         }, 
         {
+         "columns":5,
          "firstgid":4,
-         "source":"mini-cloud.tsx"
+         "grid":
+            {
+             "height":64,
+             "orientation":"orthogonal",
+             "width":64
+            },
+         "image":"..\/images\/mini-cloud.png",
+         "imageheight":300,
+         "imagewidth":300,
+         "margin":0,
+         "name":"mini-cloud",
+         "spacing":0,
+         "tilecount":36,
+         "tileheight":60,
+         "tilewidth":60
         }, 
         {
+         "columns":7,
          "firstgid":40,
-         "source":"enemy.tsx"
+         "grid":
+            {
+             "height":64,
+             "orientation":"orthogonal",
+             "width":64
+            },
+         "image":"..\/images\/enemy.png",
+         "imageheight":420,
+         "imagewidth":420,
+         "margin":0,
+         "name":"enemy",
+         "spacing":0,
+         "tilecount":49,
+         "tileheight":60,
+         "tilewidth":60
         }],
  "tilewidth":64,
  "type":"map",
