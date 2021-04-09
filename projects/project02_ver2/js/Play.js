@@ -22,7 +22,7 @@ class Play extends Phaser.Scene {
       "Background_Level1",
       "background"
     );
-
+    console.log("Background_Level1");
     let groundTiles = this.map.addTilesetImage("Ground_level1", "ground");
     let platformsTiles = this.map.addTilesetImage("Platforms", "ground");
     let enemiesTiles = this.map.addTilesetImage("Enemies", "enemies");

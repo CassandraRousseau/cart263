@@ -76,7 +76,7 @@
     {
       "columns": 2,
       "firstgid": 1,
-      "image": "../../../project02/assets/images/Ground_level1.png",
+      "image": "../images/Ground_level1.png",
       "imageheight": 64,
       "imagewidth": 128,
       "margin": 0,
@@ -132,7 +132,7 @@
       "tiles": [
         {
           "id": 0,
-          "image": "Background_Level1.png",
+          "image": "../images/Background_Level1.png",
           "imageheight": 600,
           "imagewidth": 800
         }
