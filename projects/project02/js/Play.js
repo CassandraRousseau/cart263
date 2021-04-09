@@ -16,20 +16,23 @@ class Play extends Phaser.Scene {
   // Creating properties of level
   create() {
     this.backgroundColor = "0xff0000";
-    this.map = this.add.tilemap("level1");
-    this.map.addTilesetImage("Background_Level1", "background");
+    this.map = this.make.tilemap({ key: "level1" });
+    console.log(this.map);
+    this.map.addTilesetImage("Background", "background");
+    console.log(`Background`);
     this.map.addTilesetImage("Ground_level1", "ground");
-    this.map.addTilesetImage("enemy", "enemies");
+    this.map.addTilesetImage("Platforms", "ground");
+    this.map.addTilesetImage("Enemies", "enemies");
     // this.map.addTilesetImage("SuperMarioBros-World1-1", "tiles");
-    this.layerBackground = this.map.createLayer("Background_Level1");
+    this.layerBackground = this.map.createLayer("Background");
     this.layerGround = this.map.createLayer("Ground_level1");
     this.layerPlatforms = this.map.createLayer("Platforms");
     this.layerEnemies = this.map.createLayer("Enemies");
-    // layer = map.createLayer("Enemies");
-    this.layerBackground.resizeWorld();
-    this.layerGround.resizeWorld();
-    this.layerPlatforms.resizeWorld();
-    this.layerEnemies.resizeWorld();
+    // // layer = map.createLayer("Enemies");
+    // this.layerBackground.resizeWorld();
+    // this.layerGround.resizeWorld();
+    // this.layerPlatforms.resizeWorld();
+    // this.layerEnemies.resizeWorld();
   }
 
   //   // Setting camera

@@ -32,7 +32,7 @@ class Boot extends Phaser.Scene {
     // Preloading images
     this.load.image(`background`, `assets/images/Background.png`);
     // this.load.image(`flower`, `assets/images/flower.png`);
-    this.load.image(`ground`, `assets/images/Ground.png`);
+    this.load.image(`ground`, `assets/images/Ground_level1.png`);
     this.load.image(`enemies`, `assets/images/enemy.png`);
     this.load.on(`complete`, () => {
       this.scene.start(`play`);
