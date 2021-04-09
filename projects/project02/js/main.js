@@ -1,5 +1,5 @@
 /**************************************************
-Project 02(prototype):Anything
+Project 02:Anything
 Cassandra Rousseau
 
 This is a platform game where player's avatar needs to fight the enemies, collect the flowers to
