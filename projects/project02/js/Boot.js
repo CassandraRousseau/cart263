@@ -30,6 +30,11 @@ class Boot extends Phaser.Scene {
       endFrame: 7,
     });
     // Preloading images
+    this.load.image(`introPart1`, `assets/images/Intro_Part1.png`);
+    this.load.image(`introPart2`, `assets/images/Intro_Part2.png`);
+    this.load.image(`introPart3`, `assets/images/Intro_Part3.png`);
+    this.load.image(`introPart4`, `assets/images/Intro_Part4.png`);
+    this.load.image(`introPart5`, `assets/images/Intro_Part5.png`);
     this.load.image(`background`, `assets/images/Background_Level1.png`);
     this.load.image(`flower`, `assets/images/Flowers.png`);
     this.load.image(`ground`, `assets/images/Ground_level1.png`);

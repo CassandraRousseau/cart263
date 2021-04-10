@@ -1,4 +1,4 @@
-class Play extends Phaser.Scene {
+class Level3 extends Phaser.Scene {
   // Setting parameters of the level
   constructor() {
     super({
@@ -10,8 +10,9 @@ class Play extends Phaser.Scene {
     this.map;
     this.layerGround;
     this.layerEnemies;
-    this.enemy;
+    this.enemies;
     this.flower;
+    let enemy;
   }
   // Creating properties of level
   create() {
@@ -24,7 +25,7 @@ class Play extends Phaser.Scene {
       this.add.image(720 * x, 0, `background`).setOrigin(0, 0);
     }
     this.map = this.make.tilemap({ key: "level1" });
-    console.log(this.map);
+
     let groundTiles = this.map.addTilesetImage("Ground_level1", "ground");
     let enemiesTiles = this.map.addTilesetImage("Enemies", "enemies");
 
@@ -97,7 +98,7 @@ class Play extends Phaser.Scene {
     }
 
     // Creating enemies
-    let enemies = [
+    let enemyPositions = [
       {
         x: 700 * 2.5,
         y: 100,
@@ -147,13 +148,19 @@ class Play extends Phaser.Scene {
         y: -100,
       },
     ];
-    for (let i = 0; i < enemies.length; i++) {
-      this.enemy = this.physics.add.sprite(enemies[i].x, enemies[i].y, `enemy`);
-      // this.enemy.create(enemies[i].x, enemies[i].y, `enemy`, 0);
+
+    this.enemies = this.physics.add.group();
+
+    for (let i = 0; i < enemyPositions.length; i++) {
+      let enemy = this.enemies.create(
+        enemyPositions[i].x,
+        enemyPositions[i].y,
+        `enemy`
+      );
 
       this.tweens.add({
-        targets: this.enemy,
-        x: this.enemy.x + 100,
+        targets: enemy,
+        x: enemy.x + 100,
         duration: 3000,
         ease: "Power2",
         yoyo: true,
@@ -177,7 +184,7 @@ class Play extends Phaser.Scene {
     this.cloud.play(`cloud-moving`);
 
     // Created enemies animation
-    this.enemy.play(`enemy-moving`);
+    this.enemies.playAnimation("enemy-moving");
 
     // Creating health bar
     this.healthBar = this.add.graphics();
@@ -195,12 +202,12 @@ class Play extends Phaser.Scene {
     this.physics.add.collider(this.cloud, this.layerGround);
 
     // Setting collision between enemies and main platform
-    this.physics.add.collider(this.enemy, this.layerGround);
+    this.physics.add.collider(this.enemies, this.layerGround);
 
     // Setting collision between avatar and enemies
     this.physics.add.collider(
       this.avatar,
-      this.enemy,
+      this.enemies,
       this.hitEnemy,
       null,
       this
@@ -229,10 +236,9 @@ class Play extends Phaser.Scene {
   }
   //
   // Setting how avatar eliminates the enemy
-  hitEnemy(avatar, enemies) {
-    if (avatar.body.y < enemies.body.y) {
-      enemies.destroy();
-      console.log(avatar, enemies);
+  hitEnemy(avatar, enemy) {
+    if (avatar.body.y < enemy[i].body.y) {
+      enemy.destroy();
     } else {
       // Setting avatar color when collision with an enemy
       avatar.setTint(0xff0000);

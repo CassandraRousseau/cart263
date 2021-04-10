@@ -21,7 +21,7 @@ let config = {
       debug: false,
     },
   },
-  scene: [Boot, Play],
+  scene: [Boot, Intro, Level1, Level2, Level3],
 };
 
 //Setting game engine
