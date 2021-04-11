@@ -23,6 +23,5 @@ let config = {
   },
   scene: [Boot, Intro, Level1, Level2, Level3],
 };
-
 //Setting game engine
 let game = new Phaser.Game(config);

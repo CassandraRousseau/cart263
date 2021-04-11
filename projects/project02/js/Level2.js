@@ -2,7 +2,7 @@ class Level2 extends Phaser.Scene {
   // Setting parameters of the level
   constructor() {
     super({
-      key: `play`,
+      key: `level2`,
     });
     this.size = 100;
     this.moveCam = false;
