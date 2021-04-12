@@ -14,17 +14,38 @@ class Boot extends Phaser.Scene {
     );
     this.load.audio(`theme`, `assets/sounds/Bike_Rides_The_Green_Orbs.mp3`);
     this.load.tilemapTiledJSON("level1", "assets/tilemaps/level1.json");
-    this.load.spritesheet(`enemy`, `assets/images/Enemies.png`, {
-      frameWidth: 140,
-      frameHeight: 140,
-      endFrame: 7,
-    });
+
     this.load.spritesheet(`avatar`, `assets/images/avatar.png`, {
       frameWidth: 140,
       frameHeight: 128,
       endFrame: 9,
     });
-    this.load.spritesheet(`mini-cloud`, `assets/images/mini-cloud.png`, {
+    this.load.spritesheet(`enemy`, `assets/images/Enemies.png`, {
+      frameWidth: 140,
+      frameHeight: 140,
+      endFrame: 7,
+    });
+    this.load.spritesheet(`enemyLevel2`, `assets/images/Enemy_level2.png`, {
+      frameWidth: 140,
+      frameHeight: 140,
+      endFrame: 7,
+    });
+    this.load.spritesheet(`enemyLevel3`, `assets/images/Enemy_level3.png`, {
+      frameWidth: 140,
+      frameHeight: 140,
+      endFrame: 7,
+    });
+    this.load.spritesheet(`mini-cloudLevel1`, `assets/images/mini-cloud.png`, {
+      frameWidth: 100,
+      frameHeight: 100,
+      endFrame: 7,
+    });
+    this.load.spritesheet(`mini-cloudLevel2`, `assets/images/Mini-cloud2.png`, {
+      frameWidth: 100,
+      frameHeight: 100,
+      endFrame: 7,
+    });
+    this.load.spritesheet(`mini-cloudLevel3`, `assets/images/Mini-cloud3.png`, {
       frameWidth: 100,
       frameHeight: 100,
       endFrame: 7,
@@ -35,12 +56,22 @@ class Boot extends Phaser.Scene {
     this.load.image(`introPart3`, `assets/images/Intro_Part3.png`);
     this.load.image(`introPart4`, `assets/images/Intro_Part4.png`);
     this.load.image(`introPart5`, `assets/images/Intro_Part5.png`);
-    this.load.image(`background`, `assets/images/Background_Level1.png`);
-    this.load.image(`flower`, `assets/images/Flowers.png`);
-    this.load.image(`ground`, `assets/images/Ground_level1.png`);
-    this.load.image(`enemies`, `assets/images/Enemies.png`);
+
+    this.load.image(`backgroundLevel1`, `assets/images/Background_Level1.png`);
+    this.load.image(`flowerLevel1`, `assets/images/Flowers.png`);
+    this.load.image(`groundLevel1`, `assets/images/Ground_level1.png`);
+    this.load.image(`enemiesLevel1`, `assets/images/Enemies.png`);
+
+    this.load.image(`backgroundLevel2`, `assets/images/Level2_background.png`);
+    this.load.image(`flowerLevel2`, `assets/images/Flower_level2.png`);
+    this.load.image(`groundLevel2`, `assets/images/Ground_level2.png`);
+
+    this.load.image(`backgroundLevel3`, `assets/images/Level3_background.png`);
+    this.load.image(`flowerLevel3`, `assets/images/Flower_level3.png`);
+    this.load.image(`groundLevel3`, `assets/images/GroundLevel3.png`);
+
     this.load.on(`complete`, () => {
-      this.scene.start(`play`);
+      this.scene.start(`intro`);
     });
   }
 

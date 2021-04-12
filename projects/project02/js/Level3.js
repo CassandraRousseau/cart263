@@ -22,7 +22,7 @@ class Level3 extends Phaser.Scene {
 
     //Setting background
     for (let x = 0; x < 16; x++) {
-      this.add.image(720 * x, 0, `background`).setOrigin(0, 0);
+      this.add.image(720 * x, 0, `backgroundLevel3`).setOrigin(0, 0);
     }
     this.map = this.make.tilemap({ key: "level1" });
 
@@ -39,40 +39,7 @@ class Level3 extends Phaser.Scene {
     //   this.music.loop = true;
     //   this.music.play();
     //
-    //   // Setting tutorial text
-    let texts = [
-      {
-        x: 400,
-        string: `Let's save the clouds!\n To move, press left and right arrows`,
-      },
-      {
-        x: 550 * 2,
-        string: `Jump over the platform!\n Press Spacebar!`,
-      },
-      {
-        x: 550 * 3,
-        string: `Oh no! An enemy!\nJump on it!`,
-      },
-      {
-        x: 550 * 6,
-        string: `If you're hurt,\n collect the flowers to heal!`,
-      },
-      {
-        x: 675 * 6,
-        string: `You should be able to continue\n by yourself from now on!\n Good Luck! `,
-      },
-      {
-        x: 800 * 14,
-        string: `Look! A missing baby!`,
-      },
-    ];
-    for (let i = 0; i < texts.length; i++) {
-      this.text = this.add
-        .bitmapText(texts[i].x, 250, `pressStart`, texts[i].string, 20)
-        .setOrigin(0)
-        .setCenterAlign()
-        .setAngle(-180);
-    }
+
     // Creating flowers
     let flowers = [
       {
@@ -94,7 +61,7 @@ class Level3 extends Phaser.Scene {
     ];
     for (let i = 0; i < flowers.length; i++) {
       this.flower = this.physics.add.staticGroup();
-      this.flower.create(flowers[i].x, flowers[i].y, `flower`);
+      this.flower.create(flowers[i].x, flowers[i].y, `flowerLevel3`);
     }
 
     // Creating enemies

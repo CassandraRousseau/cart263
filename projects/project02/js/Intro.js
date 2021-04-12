@@ -1,27 +1,32 @@
 class Intro extends Phaser.Scene {
   constructor() {
-    super();
+    super({
+      key: `intro`,
+    });
     this.image;
   }
   create() {
-    this.image = this.add.image(0, 0, "introPart1");
-    this.input.on(
-      "pointerdown",
-      () => {
-        if (this.image === "introPart1") {
-          this.add.image(0, 0, "introPart2");
-        } else if (this.image === "introPart2") {
-          this.add.image(0, 0, "introPart3");
-        } else if (this.image === "introPart3") {
-          this.add.image(0, 0, "introPart4");
-        } else if (this.image === "introPart4") {
-          this.add.image(0, 0, "introPart5");
-        } else if (this.image === "introPart5") {
-          this.scene.add("level1", Level1, true);
-        }
-      },
-      this
-    );
-    console.log(`introPart1`);
+    this.intro1 = this.add.image(400, 300, "introPart1").setInteractive();
+    this.intro1.on("pointerdown", this.createB, this);
+  }
+
+  createB() {
+    this.intro2 = this.add.image(400, 300, "introPart2").setInteractive();
+    this.intro2.on("pointerdown", this.createC, this);
+  }
+  createC() {
+    this.intro3 = this.add.image(400, 300, "introPart3").setInteractive();
+    this.intro3.on("pointerdown", this.createD, this);
+  }
+  createD() {
+    this.intro4 = this.add.image(400, 300, "introPart4").setInteractive();
+    this.intro4.on("pointerdown", this.createE, this);
+  }
+  createE() {
+    this.intro5 = this.add.image(400, 300, "introPart5").setInteractive();
+    this.intro5.on("pointerdown", this.createF, this);
+  }
+  createF() {
+    this.scene.start("level1");
   }
 }

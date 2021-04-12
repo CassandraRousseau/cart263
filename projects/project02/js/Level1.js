@@ -22,12 +22,12 @@ class Level1 extends Phaser.Scene {
 
     //Setting background
     for (let x = 0; x < 16; x++) {
-      this.add.image(720 * x, 0, `background`).setOrigin(0, 0);
+      this.add.image(720 * x, 0, `backgroundLevel1`).setOrigin(0, 0);
     }
     this.map = this.make.tilemap({ key: "level1" });
 
-    let groundTiles = this.map.addTilesetImage("Ground_level1", "ground");
-    let enemiesTiles = this.map.addTilesetImage("Enemies", "enemies");
+    let groundTiles = this.map.addTilesetImage("Ground_level1", "groundLevel1");
+    let enemiesTiles = this.map.addTilesetImage("Enemies", "enemy");
 
     this.layerGround = this.map.createLayer("Ground_level1", groundTiles);
     this.layerGround.setCollisionByExclusion(-1, true);
@@ -94,7 +94,7 @@ class Level1 extends Phaser.Scene {
     ];
     for (let i = 0; i < flowers.length; i++) {
       this.flower = this.physics.add.staticGroup();
-      this.flower.create(flowers[i].x, flowers[i].y, `flower`);
+      this.flower.create(flowers[i].x, flowers[i].y, `flowerLevel1`);
     }
 
     // Creating enemies
@@ -177,7 +177,7 @@ class Level1 extends Phaser.Scene {
     this.avatar.body.setGravityY(4000);
 
     // Creating baby cloud sprite
-    this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloud`);
+    this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloudLevel1`);
 
     // Creating baby cloud animation
     this.cloud.body.setGravityY(100);
@@ -411,7 +411,7 @@ class Level1 extends Phaser.Scene {
     });
     this.anims.create({
       key: `cloud-moving`,
-      frames: this.anims.generateFrameNumbers(`mini-cloud`, {
+      frames: this.anims.generateFrameNumbers(`mini-cloudLevel1`, {
         start: 0,
         end: 7,
       }),
