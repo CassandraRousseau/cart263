@@ -157,7 +157,7 @@ class Level1 extends Phaser.Scene {
         enemyPositions[i].y,
         `enemy`
       );
-
+      console.log(enemy);
       this.tweens.add({
         targets: enemy,
         x: enemy.x + 100,
@@ -166,6 +166,7 @@ class Level1 extends Phaser.Scene {
         yoyo: true,
         loop: -1,
       });
+      console.log(this.tweens);
     }
 
     // Creating avatar sprite
@@ -185,7 +186,7 @@ class Level1 extends Phaser.Scene {
 
     // Created enemies animation
     this.enemies.playAnimation("enemy-moving");
-
+    console.log(`enemy-moving`);
     // Creating health bar
     this.healthBar = this.add.graphics();
 
