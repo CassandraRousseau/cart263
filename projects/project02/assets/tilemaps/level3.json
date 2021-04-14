@@ -70,24 +70,79 @@
  "tileheight":64,
  "tilesets":[
         {
+         "columns":0,
          "firstgid":1,
-         "source":"background_level3.tsx"
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Background_Level3",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":600,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"..\/images\/Level3_background.png",
+                 "imageheight":600,
+                 "imagewidth":800
+                }],
+         "tilewidth":800
         }, 
         {
+         "columns":2,
          "firstgid":2,
-         "source":"GroundLevel3.tsx"
+         "image":"..\/images\/GroundLevel3.png",
+         "imageheight":71,
+         "imagewidth":190,
+         "margin":0,
+         "name":"Platforms_Level3",
+         "spacing":0,
+         "tilecount":2,
+         "tileheight":64,
+         "tilewidth":64
         }, 
         {
+         "columns":6,
          "firstgid":4,
-         "source":"Enemies_Level3.tsx"
+         "image":"..\/images\/Enemies.png",
+         "imageheight":420,
+         "imagewidth":420,
+         "margin":0,
+         "name":"Enemies_Level3",
+         "spacing":0,
+         "tilecount":36,
+         "tileheight":64,
+         "tilewidth":64
         }, 
         {
+         "columns":1,
          "firstgid":40,
-         "source":"Flowers_Level3.tsx"
+         "image":"..\/images\/Flowers.png",
+         "imageheight":110,
+         "imagewidth":110,
+         "margin":0,
+         "name":"Flowers_Level3",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":64,
+         "tilewidth":64
         }, 
         {
+         "columns":4,
          "firstgid":41,
-         "source":"Mini-cloud3.tsx"
+         "image":"..\/images\/Mini-cloud3.png",
+         "imageheight":300,
+         "imagewidth":300,
+         "margin":0,
+         "name":"Mini-cloud3",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":64,
+         "tilewidth":64
         }],
  "tilewidth":64,
  "type":"map",

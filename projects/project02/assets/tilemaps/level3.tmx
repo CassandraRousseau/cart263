@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="180" height="9" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="1">
- <tileset firstgid="1" source="background_level3.tsx"/>
- <tileset firstgid="2" source="GroundLevel3.tsx"/>
- <tileset firstgid="4" source="Enemies_Level3.tsx"/>
- <tileset firstgid="40" source="Flowers_Level3.tsx"/>
- <tileset firstgid="41" source="Mini-cloud3.tsx"/>
+ <tileset firstgid="1" name="Background_Level3" tilewidth="800" tileheight="600" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="800" height="600" source="../images/Level3_background.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="Platforms_Level3" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+  <image source="../images/GroundLevel3.png" width="190" height="71"/>
+ </tileset>
+ <tileset firstgid="4" name="Enemies_Level3" tilewidth="64" tileheight="64" tilecount="36" columns="6">
+  <image source="../images/Enemies.png" width="420" height="420"/>
+ </tileset>
+ <tileset firstgid="40" name="Flowers_Level3" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../images/Flowers.png" width="110" height="110"/>
+ </tileset>
+ <tileset firstgid="41" name="Mini-cloud3" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="../images/Mini-cloud3.png" width="300" height="300"/>
+ </tileset>
  <layer id="1" name="Background_Level3" width="180" height="9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="right-down" width="180" height="9" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="3">
+ <editorsettings>
+  <export target="level2.json" format="json"/>
+ </editorsettings>
  <tileset firstgid="1" name="Background_Level2" tilewidth="800" tileheight="600" tilecount="1" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0">
    <image width="800" height="600" source="../images/Level2_background.png"/>
   </tile>
  </tileset>
- <tileset firstgid="2" name="Ground_level2" tilewidth="64" tileheight="64" tilecount="2" columns="2">
+ <tileset firstgid="2" name="Platforms_Level2" tilewidth="64" tileheight="64" tilecount="2" columns="2">
   <image source="../images/Ground_level2.png" width="190" height="71"/>
  </tileset>
- <tileset firstgid="4" source="Flowers_Level2.tsx"/>
- <tileset firstgid="5" source="Enemies_Level2.tsx"/>
- <tileset firstgid="41" source="Mini-cloud2.tsx"/>
+ <tileset firstgid="4" name="Flowers_Level2" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="../images/Flowers.png" width="110" height="110"/>
+ </tileset>
+ <tileset firstgid="5" name="Enemies_Level2" tilewidth="64" tileheight="64" tilecount="36" columns="6">
+  <image source="../images/Enemies.png" width="420" height="420"/>
+ </tileset>
+ <tileset firstgid="41" name="Mini-Cloud2" tilewidth="64" tileheight="64" tilecount="16" columns="4">
+  <image source="../images/Mini-cloud2.png" width="300" height="300"/>
+ </tileset>
  <layer id="1" name="Background_Level2" width="180" height="9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

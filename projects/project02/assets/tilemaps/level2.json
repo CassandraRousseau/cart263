@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"level2.json"
+        }
+    },
  "height":9,
  "infinite":false,
  "layers":[
@@ -99,23 +107,50 @@
          "imageheight":71,
          "imagewidth":190,
          "margin":0,
-         "name":"Ground_level2",
+         "name":"Platforms_Level2",
          "spacing":0,
          "tilecount":2,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
+         "columns":1,
          "firstgid":4,
-         "source":"Flowers_Level2.tsx"
+         "image":"..\/images\/Flowers.png",
+         "imageheight":110,
+         "imagewidth":110,
+         "margin":0,
+         "name":"Flowers_Level2",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":64,
+         "tilewidth":64
         }, 
         {
+         "columns":6,
          "firstgid":5,
-         "source":"Enemies_Level2.tsx"
+         "image":"..\/images\/Enemies.png",
+         "imageheight":420,
+         "imagewidth":420,
+         "margin":0,
+         "name":"Enemies_Level2",
+         "spacing":0,
+         "tilecount":36,
+         "tileheight":64,
+         "tilewidth":64
         }, 
         {
+         "columns":4,
          "firstgid":41,
-         "source":"Mini-cloud2.tsx"
+         "image":"..\/images\/Mini-cloud2.png",
+         "imageheight":300,
+         "imagewidth":300,
+         "margin":0,
+         "name":"Mini-Cloud2",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":64,
+         "tilewidth":64
         }],
  "tilewidth":64,
  "type":"map",

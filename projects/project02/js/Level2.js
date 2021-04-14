@@ -24,14 +24,16 @@ class Level2 extends Phaser.Scene {
     for (let x = 0; x < 16; x++) {
       this.add.image(720 * x, 0, `backgroundLevel2`).setOrigin(0, 0);
     }
-    this.map = this.make.tilemap({ key: "level1" });
+    this.map = this.make.tilemap({ key: "level2" });
 
-    let groundTiles = this.map.addTilesetImage("Ground_level1", "ground");
-    let enemiesTiles = this.map.addTilesetImage("Enemies", "enemies");
+    let groundTiles = this.map.addTilesetImage(
+      "Platforms_Level2",
+      "groundLevel2"
+    );
 
-    this.layerGround = this.map.createLayer("Ground_level1", groundTiles);
+    this.layerCloud = this.map.createLayer("Mini-Cloud2", `mini-cloud2`);
+    this.layerGround = this.map.createLayer("Platforms_Level2", groundTiles);
     this.layerGround.setCollisionByExclusion(-1, true);
-    this.layerEnemies = this.map.createLayer("Enemies", enemiesTiles);
 
     //
     //   // Setting soundtrack
@@ -39,80 +41,139 @@ class Level2 extends Phaser.Scene {
     //   this.music.loop = true;
     //   this.music.play();
     //
+    //   // Setting tutorial text
 
     // Creating flowers
-    let flowers = [
+
+    let flowersPositions = [
       {
-        x: 575 * 6,
-        y: 265,
+        x: 400 * 6.5,
+        y: 75,
       },
       {
-        x: 800 * 7,
+        x: 400 * 10.5,
+        y: 140,
+      },
+      {
+        x: 400 * 14,
+        y: 75,
+      },
+      {
+        x: 400 * 18.6,
         y: 10,
       },
       {
-        x: 835 * 8.3,
-        y: 10,
-      },
-      {
-        x: 775 * 13,
+        x: 400 * 22.5,
         y: 200,
       },
+      {
+        x: 400 * 22.5,
+        y: 200,
+      },
+      {
+        x: 400 * 26.5,
+        y: 460,
+      },
     ];
-    for (let i = 0; i < flowers.length; i++) {
-      this.flower = this.physics.add.staticGroup();
-      this.flower.create(flowers[i].x, flowers[i].y, `flowerLevel2`);
+    this.flowers = this.physics.add.staticGroup();
+    for (let i = 0; i < flowersPositions.length; i++) {
+      this.flowers.create(
+        flowersPositions[i].x,
+        flowersPositions[i].y,
+        `flowerLevel2`
+      );
     }
 
     // Creating enemies
     let enemyPositions = [
       {
-        x: 700 * 2.5,
+        x: 200 * 2.5,
+        y: 250,
+      },
+      {
+        x: 200 * 1.2,
+        y: 425,
+      },
+      {
+        x: 400 * 2.9,
+        y: 425,
+      },
+      {
+        x: 400 * 4.5,
+        y: 425,
+      },
+      {
+        x: 400 * 5.5,
+        y: 425,
+      },
+      {
+        x: 400 * 6,
+        y: 425,
+      },
+      {
+        x: 400 * 9.3,
+        y: 425,
+      },
+      {
+        x: 400 * 10.5,
+        y: 425,
+      },
+      {
+        x: 400 * 11.4,
+        y: 425,
+      },
+
+      {
+        x: 400 * 13,
+        y: 425,
+      },
+      {
+        x: 400 * 14,
+        y: 425,
+      },
+      {
+        x: 400 * 16,
+        y: 425,
+      },
+      {
+        x: 400 * 15.5,
+        y: 125,
+      },
+      {
+        x: 400 * 17,
+        y: 425,
+      },
+      {
+        x: 400 * 18.7,
         y: 100,
       },
       {
-        x: 700 * 3.5,
-        y: 100,
+        x: 400 * 18,
+        y: 425,
       },
       {
-        x: 750 * 6,
-        y: 100,
+        x: 400 * 19.5,
+        y: 425,
       },
       {
-        x: 700 * 8,
-        y: 100,
+        x: 400 * 21,
+        y: 425,
       },
       {
-        x: 725 * 8,
-        y: 100,
+        x: 400 * 24,
+        y: 425,
       },
       {
-        x: 800 * 9.3,
-        y: 200,
+        x: 400 * 27,
+        y: 425,
       },
       {
-        x: 800 * 10.4,
-        y: 100,
+        x: 400 * 28,
+        y: 425,
       },
       {
-        x: 800 * 10.9,
-        y: 100,
-      },
-      {
-        x: 800 * 10,
-        y: 400,
-      },
-      {
-        x: 800 * 10.5,
-        y: 400,
-      },
-      {
-        x: 800 * 11,
-        y: 400,
-      },
-      {
-        x: 800 * 13,
-        y: -100,
+        x: 400 * 28.5,
+        y: 425,
       },
     ];
 
@@ -144,7 +205,7 @@ class Level2 extends Phaser.Scene {
     this.avatar.body.setGravityY(4000);
 
     // Creating baby cloud sprite
-    this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloud`);
+    this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloudLevel2`);
 
     // Creating baby cloud animation
     this.cloud.body.setGravityY(100);
@@ -159,12 +220,12 @@ class Level2 extends Phaser.Scene {
     // Setting camera following avatar
     this.cameras.main.startFollow(this.avatar, true);
 
-    // // Setting collision between avatar and platforms
+    // // // Setting collision between avatar and platforms
     this.physics.add.collider(this.avatar, this.layerGround);
-
-    // Setting collision between flowers and platforms
-    this.physics.add.collider(this.flowers, this.layerGround);
     //
+    // // Setting collision between flowers and platforms
+    this.physics.add.collider(this.flowers, this.layerGround);
+
     // Setting collision between baby cloud and main platform
     this.physics.add.collider(this.cloud, this.layerGround);
 
@@ -192,7 +253,7 @@ class Level2 extends Phaser.Scene {
     // Setting collision between avatar and flowers
     this.physics.add.overlap(
       this.avatar,
-      this.flower,
+      this.flowers,
       this.collectItem,
       null,
       this
@@ -204,7 +265,7 @@ class Level2 extends Phaser.Scene {
   //
   // Setting how avatar eliminates the enemy
   hitEnemy(avatar, enemy) {
-    if (avatar.body.y < enemy[i].body.y) {
+    if (avatar.body.y < enemy.body.y) {
       enemy.destroy();
     } else {
       // Setting avatar color when collision with an enemy
@@ -224,13 +285,9 @@ class Level2 extends Phaser.Scene {
   reachGoal() {
     if (this.over === false) {
       this.cameras.main.stopFollow(this.avatar, true);
-      this.rectangle = this.add.rectangle(
-        this.avatar.x,
-        this.avatar.y,
-        720 * 16,
-        2 * 600,
-        0x000000
-      );
+      this.rectangle = this.add
+        .rectangle(this.avatar.x, this.avatar.y, 720 * 16, 2 * 600, 0x000000)
+        .setInteractive();
 
       this.textEnding = this.add
         .bitmapText(
@@ -245,8 +302,11 @@ class Level2 extends Phaser.Scene {
         .setAngle(-180);
     }
     this.over = true;
+    this.rectangle.on("pointerdown", this.nextLevel, this);
   }
-
+  nextLevel() {
+    this.scene.start("level3");
+  }
   // // Updating properties of the game
   update(collectItem) {
     // Setting avatar velocity
@@ -378,7 +438,7 @@ class Level2 extends Phaser.Scene {
     });
     this.anims.create({
       key: `cloud-moving`,
-      frames: this.anims.generateFrameNumbers(`mini-cloud`, {
+      frames: this.anims.generateFrameNumbers(`mini-cloudLevel2`, {
         start: 0,
         end: 7,
       }),
@@ -388,7 +448,7 @@ class Level2 extends Phaser.Scene {
 
     this.anims.create({
       key: `enemy-moving`,
-      frames: this.anims.generateFrameNumbers(`enemy`, {
+      frames: this.anims.generateFrameNumbers(`enemyLevel2`, {
         start: 0,
         end: 7,
       }),

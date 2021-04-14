@@ -4,7 +4,7 @@
   <export target="level1.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="Ground_level1" tilewidth="64" tileheight="64" tilecount="2" columns="2">
-  <image source="../images/Ground_level1.png" width="190" height="71"/>
+  <image source="../images/Ground_level1.png" width="128" height="64"/>
   <wangsets>
    <wangset name="Part1" type="mixed" tile="0">
     <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>

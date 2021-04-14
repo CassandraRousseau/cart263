@@ -27,11 +27,9 @@ class Level1 extends Phaser.Scene {
     this.map = this.make.tilemap({ key: "level1" });
 
     let groundTiles = this.map.addTilesetImage("Ground_level1", "groundLevel1");
-    let enemiesTiles = this.map.addTilesetImage("Enemies", "enemy");
 
     this.layerGround = this.map.createLayer("Ground_level1", groundTiles);
     this.layerGround.setCollisionByExclusion(-1, true);
-    this.layerEnemies = this.map.createLayer("Enemies", enemiesTiles);
 
     //
     //   // Setting soundtrack
@@ -73,8 +71,10 @@ class Level1 extends Phaser.Scene {
         .setCenterAlign()
         .setAngle(-180);
     }
+
     // Creating flowers
-    let flowers = [
+
+    let flowersPositions = [
       {
         x: 575 * 6,
         y: 265,
@@ -92,9 +92,13 @@ class Level1 extends Phaser.Scene {
         y: 200,
       },
     ];
-    for (let i = 0; i < flowers.length; i++) {
-      this.flower = this.physics.add.staticGroup();
-      this.flower.create(flowers[i].x, flowers[i].y, `flowerLevel1`);
+    this.flowers = this.physics.add.staticGroup();
+    for (let i = 0; i < flowersPositions.length; i++) {
+      this.flowers.create(
+        flowersPositions[i].x,
+        flowersPositions[i].y,
+        `flowerLevel1`
+      );
     }
 
     // Creating enemies
@@ -108,7 +112,7 @@ class Level1 extends Phaser.Scene {
         y: 100,
       },
       {
-        x: 750 * 6,
+        x: 775 * 6,
         y: 100,
       },
       {
@@ -116,7 +120,7 @@ class Level1 extends Phaser.Scene {
         y: 100,
       },
       {
-        x: 725 * 8,
+        x: 775 * 8,
         y: 100,
       },
       {
@@ -124,11 +128,11 @@ class Level1 extends Phaser.Scene {
         y: 200,
       },
       {
-        x: 800 * 10.4,
+        x: 800 * 10.6,
         y: 100,
       },
       {
-        x: 800 * 10.9,
+        x: 800 * 11,
         y: 100,
       },
       {
@@ -144,7 +148,7 @@ class Level1 extends Phaser.Scene {
         y: 400,
       },
       {
-        x: 800 * 13,
+        x: 800 * 12.5,
         y: -100,
       },
     ];
@@ -157,7 +161,7 @@ class Level1 extends Phaser.Scene {
         enemyPositions[i].y,
         `enemy`
       );
-      console.log(enemy);
+
       this.tweens.add({
         targets: enemy,
         x: enemy.x + 100,
@@ -166,7 +170,6 @@ class Level1 extends Phaser.Scene {
         yoyo: true,
         loop: -1,
       });
-      console.log(this.tweens);
     }
 
     // Creating avatar sprite
@@ -186,19 +189,19 @@ class Level1 extends Phaser.Scene {
 
     // Created enemies animation
     this.enemies.playAnimation("enemy-moving");
-    console.log(`enemy-moving`);
+
     // Creating health bar
     this.healthBar = this.add.graphics();
 
     // Setting camera following avatar
     this.cameras.main.startFollow(this.avatar, true);
 
-    // // Setting collision between avatar and platforms
+    // // // Setting collision between avatar and platforms
     this.physics.add.collider(this.avatar, this.layerGround);
-
-    // Setting collision between flowers and platforms
-    this.physics.add.collider(this.flowers, this.layerGround);
     //
+    // // Setting collision between flowers and platforms
+    this.physics.add.collider(this.flowers, this.layerGround);
+
     // Setting collision between baby cloud and main platform
     this.physics.add.collider(this.cloud, this.layerGround);
 
@@ -226,7 +229,7 @@ class Level1 extends Phaser.Scene {
     // Setting collision between avatar and flowers
     this.physics.add.overlap(
       this.avatar,
-      this.flower,
+      this.flowers,
       this.collectItem,
       null,
       this
@@ -238,7 +241,7 @@ class Level1 extends Phaser.Scene {
   //
   // Setting how avatar eliminates the enemy
   hitEnemy(avatar, enemy) {
-    if (avatar.body.y < enemy[i].body.y) {
+    if (avatar.body.y < enemy.body.y) {
       enemy.destroy();
     } else {
       // Setting avatar color when collision with an enemy
@@ -258,13 +261,9 @@ class Level1 extends Phaser.Scene {
   reachGoal() {
     if (this.over === false) {
       this.cameras.main.stopFollow(this.avatar, true);
-      this.rectangle = this.add.rectangle(
-        this.avatar.x,
-        this.avatar.y,
-        720 * 16,
-        2 * 600,
-        0x000000
-      );
+      this.rectangle = this.add
+        .rectangle(this.avatar.x, this.avatar.y, 720 * 16, 2 * 600, 0x000000)
+        .setInteractive();
 
       this.textEnding = this.add
         .bitmapText(
@@ -279,8 +278,11 @@ class Level1 extends Phaser.Scene {
         .setAngle(-180);
     }
     this.over = true;
+    this.rectangle.on("pointerdown", this.nextLevel, this);
   }
-
+  nextLevel() {
+    this.scene.start("level2");
+  }
   // // Updating properties of the game
   update(collectItem) {
     // Setting avatar velocity
