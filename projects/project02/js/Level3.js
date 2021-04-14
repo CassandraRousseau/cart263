@@ -45,7 +45,6 @@ class Level3 extends Phaser.Scene {
     //   this.music.loop = true;
     //   this.music.play();
     //
-    //   // Setting tutorial text
 
     // Creating flowers
 
@@ -56,26 +55,18 @@ class Level3 extends Phaser.Scene {
       },
       {
         x: 400 * 11.2,
-        y: 450,
+        y: 460,
       },
       {
-        x: 400 * 14,
-        y: 75,
+        x: 400 * 12.2,
+        y: 460,
       },
       {
-        x: 400 * 18.6,
-        y: 10,
+        x: 400 * 19.7,
+        y: 460,
       },
       {
-        x: 400 * 22.5,
-        y: 200,
-      },
-      {
-        x: 400 * 22.5,
-        y: 200,
-      },
-      {
-        x: 400 * 26.5,
+        x: 400 * 24,
         y: 460,
       },
     ];
@@ -294,7 +285,7 @@ class Level3 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 1 Completed\nGood Job! You found a baby cloud!`,
+          `Level 3 Completed\nGood Job! You found a baby cloud!`,
           20
         )
         .setOrigin(0)

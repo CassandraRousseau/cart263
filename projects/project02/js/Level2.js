@@ -41,7 +41,6 @@ class Level2 extends Phaser.Scene {
     //   this.music.loop = true;
     //   this.music.play();
     //
-    //   // Setting tutorial text
 
     // Creating flowers
 
@@ -294,7 +293,7 @@ class Level2 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 1 Completed\nGood Job! You found a baby cloud!`,
+          `Level 2 Completed\nGood Job! You found a baby cloud!`,
           20
         )
         .setOrigin(0)
