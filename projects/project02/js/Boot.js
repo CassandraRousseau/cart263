@@ -61,7 +61,6 @@ class Boot extends Phaser.Scene {
     this.load.image(`backgroundLevel1`, `assets/images/Background_Level1.png`);
     this.load.image(`flowerLevel1`, `assets/images/Flowers.png`);
     this.load.image(`groundLevel1`, `assets/images/Ground_level1.png`);
-    this.load.image(`enemiesLevel1`, `assets/images/Enemies.png`);
 
     this.load.image(`backgroundLevel2`, `assets/images/Level2_background.png`);
     this.load.image(`flowerLevel2`, `assets/images/Flower_level2.png`);

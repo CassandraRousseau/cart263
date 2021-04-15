@@ -10,12 +10,14 @@ class Level3 extends Phaser.Scene {
     this.map;
     this.layerGround;
     this.layerEnemies;
-    this.enemies;
+    this.enemiesLevel3;
     this.flower;
-    let enemy;
+    let enemyLevel3;
   }
   // Creating properties of level
   create() {
+    this.currentInputVolume = 0;
+    this.accessMicrophone();
     this.backgroundColor = "0xff0000";
     // Setting camera
     this.cameras.main.setBounds(0, 0, 720 * 16, 176);
@@ -30,13 +32,10 @@ class Level3 extends Phaser.Scene {
       "Platforms_Level3",
       "groundLevel3"
     );
-    let flowersTiles = this.map.addTilesetImage(
-      "Flowers_Level3",
-      "flowerLevel3"
-    );
+
     this.layerCloud = this.map.createLayer("Mini-Cloud3", `mini-cloud3`);
     this.layerGround = this.map.createLayer("Platforms_Level3", groundTiles);
-    this.layerFlowers = this.map.createLayer("Flowers_Level3", flowersTiles);
+
     this.layerGround.setCollisionByExclusion(-1, true);
 
     //
@@ -168,18 +167,18 @@ class Level3 extends Phaser.Scene {
       },
     ];
 
-    this.enemies = this.physics.add.group();
+    this.enemiesLevel3 = this.physics.add.group();
 
     for (let i = 0; i < enemyPositions.length; i++) {
-      let enemy = this.enemies.create(
+      let enemyLevel3 = this.enemiesLevel3.create(
         enemyPositions[i].x,
         enemyPositions[i].y,
         `enemyLevel3`
       );
 
       this.tweens.add({
-        targets: enemy,
-        x: enemy.x + 100,
+        targets: enemyLevel3,
+        x: enemyLevel3.x + 100,
         duration: 3000,
         ease: "Power2",
         yoyo: true,
@@ -196,14 +195,18 @@ class Level3 extends Phaser.Scene {
     this.avatar.body.setGravityY(4000);
 
     // Creating baby cloud sprite
-    this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloudLevel3`);
+    this.cloudLevel3 = this.physics.add.sprite(
+      700 * 16,
+      400,
+      `mini-cloudLevel3`
+    );
 
     // Creating baby cloud animation
-    this.cloud.body.setGravityY(100);
-    this.cloud.play(`cloud-moving`);
+    this.cloudLevel3.body.setGravityY(100);
+    this.cloudLevel3.play(`cloudLevel3-moving`);
 
     // Created enemies animation
-    this.enemies.playAnimation("enemy-moving");
+    this.enemiesLevel3.playAnimation("enemyLevel3-moving");
 
     // Creating health bar
     this.healthBar = this.add.graphics();
@@ -218,15 +221,15 @@ class Level3 extends Phaser.Scene {
     this.physics.add.collider(this.flowers, this.layerGround);
 
     // Setting collision between baby cloud and main platform
-    this.physics.add.collider(this.cloud, this.layerGround);
+    this.physics.add.collider(this.cloudLevel3, this.layerGround);
 
     // Setting collision between enemies and main platform
-    this.physics.add.collider(this.enemies, this.layerGround);
+    this.physics.add.collider(this.enemiesLevel3, this.layerGround);
 
     // Setting collision between avatar and enemies
     this.physics.add.collider(
       this.avatar,
-      this.enemies,
+      this.enemiesLevel3,
       this.hitEnemy,
       null,
       this
@@ -235,7 +238,7 @@ class Level3 extends Phaser.Scene {
     // Setting collision between avatar and baby cloud
     this.physics.add.collider(
       this.avatar,
-      this.cloud,
+      this.cloudLevel3,
       this.reachGoal,
       null,
       this
@@ -255,9 +258,9 @@ class Level3 extends Phaser.Scene {
   }
   //
   // Setting how avatar eliminates the enemy
-  hitEnemy(avatar, enemy) {
-    if (avatar.body.y < enemy.body.y) {
-      enemy.destroy();
+  hitEnemy(avatar, enemyLevel3) {
+    if (avatar.body.y < enemyLevel3.body.y) {
+      enemyLevel3.destroy();
     } else {
       // Setting avatar color when collision with an enemy
       avatar.setTint(0xff0000);
@@ -300,11 +303,13 @@ class Level3 extends Phaser.Scene {
   }
   // // Updating properties of the game
   update(collectItem) {
+    console.log(this.currentInputVolume);
+
     // Setting avatar velocity
     this.avatar.setVelocity(0);
 
     //Setting baby cloud velocity
-    this.cloud.setVelocity(0);
+    this.cloudLevel3.setVelocity(0);
 
     // Setting camera movements
     this.cam = this.cameras.main;
@@ -326,11 +331,13 @@ class Level3 extends Phaser.Scene {
         this.avatar.setVelocityX(-300);
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
-      } else if (this.cursors.space.isDown) {
+      }
+      if (this.currentInputVolume >= 60) {
         this.avatar.setVelocityY(-200);
+      } else {
+        this.avatar.setVelocityY(0);
       }
     }
-
     // Starting avatar animation if moving
     if (
       this.avatar.body.velocity.x !== 0 ||
@@ -428,7 +435,7 @@ class Level3 extends Phaser.Scene {
       repeat: 0,
     });
     this.anims.create({
-      key: `cloud-moving`,
+      key: `cloudLevel3-moving`,
       frames: this.anims.generateFrameNumbers(`mini-cloudLevel3`, {
         start: 0,
         end: 7,
@@ -438,7 +445,7 @@ class Level3 extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: `enemy-moving`,
+      key: `enemyLevel3-moving`,
       frames: this.anims.generateFrameNumbers(`enemyLevel3`, {
         start: 0,
         end: 7,
@@ -446,5 +453,62 @@ class Level3 extends Phaser.Scene {
       frameRate: 24,
       repeat: -1,
     });
+  }
+
+  accessMicrophone() {
+    // This is working out how to access the browser's input (the microphone in this case)
+    navigator.getUserMedia =
+      navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia;
+    // This is making sure it's even possible
+    if (navigator.getUserMedia) {
+      // This is asking the browser for access to the microphone
+      navigator.getUserMedia(
+        {
+          audio: true,
+        },
+        // This is the function that will be called when there's input
+        (stream) => {
+          // These are all parts of the browser's audio system being used
+          // to figure out the volume from the microphone
+          let audioContext = new AudioContext();
+          let analyser = audioContext.createAnalyser();
+          let microphone = audioContext.createMediaStreamSource(stream);
+          let javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+          // Aparrently there is some other fancy stuff happening
+          analyser.smoothingTimeConstant = 0.8;
+          analyser.fftSize = 1024;
+
+          // Audio programming always involves connecting various things to each other!
+          microphone.connect(analyser);
+          analyser.connect(javascriptNode);
+          javascriptNode.connect(audioContext.destination);
+
+          // This is the part that will actually analyse the data itself
+          javascriptNode.onaudioprocess = () => {
+            // This is it figuring out the different values in the current sample of audio
+            let array = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(array);
+            let values = 0;
+            let length = array.length;
+            for (var i = 0; i < length; i++) {
+              values += array[i];
+            }
+            // This is it averaging the amplitude across the value (getting the volume)
+            let average = values / length;
+            // And here we set out special property to record the current volume for
+            // use elsewhere
+            this.currentInputVolume = average;
+          }; // end fn stream
+        },
+        function (err) {
+          console.error("The following error occured: " + err.name);
+        }
+      );
+    } else {
+      console.error("getUserMedia not supported");
+    }
   }
 }

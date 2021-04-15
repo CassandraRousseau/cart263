@@ -27,6 +27,6 @@ class Intro extends Phaser.Scene {
     this.intro5.on("pointerdown", this.createF, this);
   }
   createF() {
-    this.scene.start("level3");
+    this.scene.start("level1");
   }
 }
