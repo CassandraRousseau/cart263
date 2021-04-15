@@ -4,8 +4,10 @@ class Boot extends Phaser.Scene {
       key: `boot`,
     });
   }
+
+  // Preloading audio and images
   preload() {
-    // Load assets here!
+    this.load.audio(`collision`, `assets/sounds/MetallicClank.mp3`);
     this.load.image(`background`, `assets/images/background.jpg`);
     this.load.image(`lion`, `assets/images/lion.png`);
     this.load.image(`tiger`, `assets/images/tiger.png`);

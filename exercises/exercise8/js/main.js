@@ -1,12 +1,12 @@
 /**************************************************
-Activity 08: Desesperately Seeking Sadness
+Exercise 08: Desesperately Seeking Sadness++
 Cassandra Rousseau
 
-We will create metaphor for how we seek out or are drawn to negative emotions.
+The goal of the game is the lion catching its prey, a zebra.
 This will be in the form of a spaceship in a kind of asteroid field! Obvi!
-The user will fly around as an emoji, seeking out the single “thumbs down” in
-a sea of “thumbs ups”. When they find it, another one will appear somewhere else
-and the sad saga continues.
+The user will fly around as a lion emoji, seeking out the single zebra in
+the jungle, surrounded by tigers. When they find it, another one will appear somewhere else
+and the saga continues.
 **************************************************/
 "use strict";
 
