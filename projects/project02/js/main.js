@@ -8,7 +8,7 @@ Players move the character through keyboard.The left and right arrows move the a
 make the character floats in the air.
 **************************************************/
 "use strict";
-
+let currentInputVolume;
 // Setting setup of game
 let config = {
   type: Phaser.AUTO,

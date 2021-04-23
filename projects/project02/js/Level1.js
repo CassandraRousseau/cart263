@@ -18,8 +18,7 @@ class Level1 extends Phaser.Scene {
   create() {
     // A property to store the current input volume
     // Will always be kept updated
-    this.currentInputVolume = 0;
-    this.accessMicrophone();
+    currentInputVolume = 0;
     this.backgroundColor = "0xff0000";
     // Setting camera
     this.cameras.main.setBounds(0, 0, 720 * 16, 176);
@@ -35,11 +34,10 @@ class Level1 extends Phaser.Scene {
     this.layerGround = this.map.createLayer("Ground_level1", groundTiles);
     this.layerGround.setCollisionByExclusion(-1, true);
 
-    //
-    //   // Setting soundtrack
-    //   this.music = this.sound.add("theme");
-    //   this.music.loop = true;
-    //   this.music.play();
+    // Setting soundtrack
+    this.musicLevel1 = this.sound.add("themeLevel1");
+    this.musicLevel1.loop = true;
+    this.musicLevel1.play();
     //
     //   // Setting tutorial text
     let texts = [
@@ -285,12 +283,13 @@ class Level1 extends Phaser.Scene {
     this.rectangle.on("pointerdown", this.nextLevel, this);
   }
   nextLevel() {
+    this.musicLevel1.stop();
     this.scene.start("level2");
   }
   // // Updating properties of the game
   update(collectItem) {
     //     // Prove that we're getting a volume!
-    console.log(this.currentInputVolume);
+    console.log(currentInputVolume);
     // Setting avatar velocity
     this.avatar.setVelocity(0);
 
@@ -319,7 +318,7 @@ class Level1 extends Phaser.Scene {
         this.avatar.setVelocityX(300);
       }
     }
-    if (this.currentInputVolume >= 60) {
+    if (currentInputVolume >= 60) {
       this.avatar.setVelocityY(-200);
     } else {
       this.avatar.setVelocityY(0);
@@ -377,7 +376,7 @@ class Level1 extends Phaser.Scene {
   gameOver() {
     if (this.over === false) {
       this.cameras.main.stopFollow(this.avatar, true);
-      this.music.stop();
+      this.musicLevel1.stop();
       this.rectangle = this.add.rectangle(
         this.avatar.x,
         this.avatar.y,
@@ -440,62 +439,5 @@ class Level1 extends Phaser.Scene {
       frameRate: 24,
       repeat: -1,
     });
-  }
-
-  accessMicrophone() {
-    // This is working out how to access the browser's input (the microphone in this case)
-    navigator.getUserMedia =
-      navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia;
-    // This is making sure it's even possible
-    if (navigator.getUserMedia) {
-      // This is asking the browser for access to the microphone
-      navigator.getUserMedia(
-        {
-          audio: true,
-        },
-        // This is the function that will be called when there's input
-        (stream) => {
-          // These are all parts of the browser's audio system being used
-          // to figure out the volume from the microphone
-          let audioContext = new AudioContext();
-          let analyser = audioContext.createAnalyser();
-          let microphone = audioContext.createMediaStreamSource(stream);
-          let javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
-
-          // Aparrently there is some other fancy stuff happening
-          analyser.smoothingTimeConstant = 0.8;
-          analyser.fftSize = 1024;
-
-          // Audio programming always involves connecting various things to each other!
-          microphone.connect(analyser);
-          analyser.connect(javascriptNode);
-          javascriptNode.connect(audioContext.destination);
-
-          // This is the part that will actually analyse the data itself
-          javascriptNode.onaudioprocess = () => {
-            // This is it figuring out the different values in the current sample of audio
-            let array = new Uint8Array(analyser.frequencyBinCount);
-            analyser.getByteFrequencyData(array);
-            let values = 0;
-            let length = array.length;
-            for (var i = 0; i < length; i++) {
-              values += array[i];
-            }
-            // This is it averaging the amplitude across the value (getting the volume)
-            let average = values / length;
-            // And here we set out special property to record the current volume for
-            // use elsewhere
-            this.currentInputVolume = average;
-          }; // end fn stream
-        },
-        function (err) {
-          console.error("The following error occured: " + err.name);
-        }
-      );
-    } else {
-      console.error("getUserMedia not supported");
-    }
   }
 }

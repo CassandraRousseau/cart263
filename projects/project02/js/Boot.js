@@ -5,14 +5,19 @@ class Boot extends Phaser.Scene {
     });
   }
 
-  // Preloading spritesheets, images,music, and bitmap font
+  // Preloading spritesheets, images,musicLevel1, and bitmap font
   preload() {
     this.load.bitmapFont(
       "pressStart",
       "assets/fonts/Press_Start_2P.png",
       "assets/fonts/Press_Start_2P.xml"
     );
-    this.load.audio(`theme`, `assets/sounds/Bike_Rides_The_Green_Orbs.mp3`);
+    this.load.audio(
+      `themeLevel1`,
+      `assets/sounds/Bike_Rides_The_Green_Orbs.mp3`
+    );
+    this.load.audio(`themeLevel2`, `assets/sounds/This_Snow_Doesnt.mp3`);
+    this.load.audio(`themeLevel3`, `assets/sounds/19th_Floor.mp3`);
     this.load.tilemapTiledJSON("level1", "assets/tilemaps/level1.json");
     this.load.tilemapTiledJSON("level2", "assets/tilemaps/level2.json");
     this.load.tilemapTiledJSON("level3", "assets/tilemaps/level3.json");
@@ -84,6 +89,65 @@ class Boot extends Phaser.Scene {
     };
     let loadingString = `Loading...`;
     this.add.text(100, 100, loadingString, style);
+
+    this.accessMicrophone();
+    console.log(this.accessMicrophone);
   }
   update() {}
+  accessMicrophone() {
+    // This is working out how to access the browser's input (the microphone in this case)
+    navigator.getUserMedia =
+      navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia;
+    // This is making sure it's even possible
+    if (navigator.getUserMedia) {
+      // This is asking the browser for access to the microphone
+      navigator.getUserMedia(
+        {
+          audio: true,
+        },
+        // This is the function that will be called when there's input
+        (stream) => {
+          // These are all parts of the browser's audio system being used
+          // to figure out the volume from the microphone
+          let audioContext = new AudioContext();
+          let analyser = audioContext.createAnalyser();
+          let microphone = audioContext.createMediaStreamSource(stream);
+          let javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+          // Aparrently there is some other fancy stuff happening
+          analyser.smoothingTimeConstant = 0.8;
+          analyser.fftSize = 1024;
+
+          // Audio programming always involves connecting various things to each other!
+          microphone.connect(analyser);
+          analyser.connect(javascriptNode);
+          javascriptNode.connect(audioContext.destination);
+
+          // This is the part that will actually analyse the data itself
+          javascriptNode.onaudioprocess = () => {
+            // This is it figuring out the different values in the current sample of audio
+            let array = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(array);
+            let values = 0;
+            let length = array.length;
+            for (var i = 0; i < length; i++) {
+              values += array[i];
+            }
+            // This is it averaging the amplitude across the value (getting the volume)
+            let average = values / length;
+            // And here we set out special property to record the current volume for
+            // use elsewhere
+            currentInputVolume = average;
+          }; // end fn stream
+        },
+        function (err) {
+          console.error("The following error occured: " + err.name);
+        }
+      );
+    } else {
+      console.error("getUserMedia not supported");
+    }
+  }
 }
