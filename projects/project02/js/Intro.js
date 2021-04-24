@@ -8,6 +8,9 @@ class Intro extends Phaser.Scene {
   create() {
     this.intro1 = this.add.image(400, 300, "introPart1").setInteractive();
     this.intro1.on("pointerdown", this.createB, this);
+    this.musicIntro = this.sound.add("themeIntro");
+    this.musicIntro.loop = true;
+    this.musicIntro.play();
   }
 
   createB() {
@@ -27,6 +30,7 @@ class Intro extends Phaser.Scene {
     this.intro5.on("pointerdown", this.createF, this);
   }
   createF() {
+    this.musicIntro.stop();
     this.scene.start("level1");
   }
 }

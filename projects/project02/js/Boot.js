@@ -12,6 +12,7 @@ class Boot extends Phaser.Scene {
       "assets/fonts/Press_Start_2P.png",
       "assets/fonts/Press_Start_2P.xml"
     );
+    this.load.audio(`themeIntro`, `assets/sounds/Sand_Castle.mp3`);
     this.load.audio(
       `themeLevel1`,
       `assets/sounds/Bike_Rides_The_Green_Orbs.mp3`

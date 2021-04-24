@@ -191,7 +191,7 @@ class Level3 extends Phaser.Scene {
     // Creating avatar animation
     this.createAnimations();
     this.avatar.setVelocityX(-330);
-    this.avatar.body.setGravityY(4000);
+    this.avatar.body.setGravityY(8000);
 
     // Creating baby cloud sprite
     this.cloudLevel3 = this.physics.add.sprite(
@@ -336,6 +336,9 @@ class Level3 extends Phaser.Scene {
         this.avatar.setVelocityY(-200);
       } else {
         this.avatar.setVelocityY(0);
+      }
+      if (this.avatar.y >= 600) {
+        this.avatar.setVelocityY(200);
       }
     }
     // Starting avatar animation if moving

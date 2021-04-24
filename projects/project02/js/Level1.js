@@ -7,6 +7,7 @@ class Level1 extends Phaser.Scene {
     this.size = 100;
     this.moveCam = false;
     this.over = false;
+    this.height = 600;
     this.map;
     this.layerGround;
     this.layerEnemies;
@@ -47,7 +48,7 @@ class Level1 extends Phaser.Scene {
       },
       {
         x: 550 * 2,
-        string: `Jump over the platform!\n Press Spacebar!`,
+        string: `Jump over the platform!\n Blow some air into your microphone!`,
       },
       {
         x: 550 * 3,
@@ -180,7 +181,7 @@ class Level1 extends Phaser.Scene {
     // Creating avatar animation
     this.createAnimations();
     this.avatar.setVelocityX(-330);
-    this.avatar.body.setGravityY(4000);
+    this.avatar.body.setGravityY(8000);
 
     // Creating baby cloud sprite
     this.cloud = this.physics.add.sprite(700 * 16, 400, `mini-cloudLevel1`);
@@ -323,7 +324,9 @@ class Level1 extends Phaser.Scene {
     } else {
       this.avatar.setVelocityY(0);
     }
-
+    if (this.avatar.y >= 600) {
+      this.avatar.setVelocityY(200);
+    }
     // Starting avatar animation if moving
     if (
       this.avatar.body.velocity.x !== 0 ||

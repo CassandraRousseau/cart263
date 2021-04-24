@@ -201,7 +201,7 @@ class Level2 extends Phaser.Scene {
     // Creating avatar animation
     this.createAnimations();
     this.avatar.setVelocityX(-330);
-    this.avatar.body.setGravityY(4000);
+    this.avatar.body.setGravityY(8000);
 
     // Creating baby cloud sprite
     this.cloudLevel2 = this.physics.add.sprite(
@@ -347,18 +347,19 @@ class Level2 extends Phaser.Scene {
       } else {
         this.avatar.setVelocityY(0);
       }
+      if (this.avatar.y >= 600) {
+        this.avatar.setVelocityY(200);
+      }
+      // Starting avatar animation if moving
+      if (
+        this.avatar.body.velocity.x !== 0 ||
+        this.avatar.body.velocity.y !== 0
+      ) {
+        this.avatar.play(`avatar-moving`, true);
+      } else {
+        this.avatar.play(`avatar-idle`, true);
+      }
     }
-
-    // Starting avatar animation if moving
-    if (
-      this.avatar.body.velocity.x !== 0 ||
-      this.avatar.body.velocity.y !== 0
-    ) {
-      this.avatar.play(`avatar-moving`, true);
-    } else {
-      this.avatar.play(`avatar-idle`, true);
-    }
-
     // Resetting health bar filling
     this.healthBar.clear();
 
