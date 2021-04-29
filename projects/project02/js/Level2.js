@@ -215,7 +215,9 @@ class Level2 extends Phaser.Scene {
     this.cloudLevel2.play(`cloudLevel2-moving`);
 
     // Created enemies animation
+
     this.enemiesLevel2.playAnimation("enemyLevel2-moving");
+    this.attackEnemies;
 
     // Creating health bar
     this.healthBar = this.add.graphics();
@@ -266,10 +268,17 @@ class Level2 extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
   //
+  attackEnemies(enemyLevel2) {
+    if (this.avatar.x <= enemyLevel2.body.x - 100) {
+      if (enemyLevel2.x.anims.getName() === "enemyLevel2-moving") {
+        enemyLevel2.x.playAnimation("enemyLevel2-attack");
+      }
+    }
+  }
   // Setting how avatar eliminates the enemy
-  hitEnemy(avatar, enemyLevel2Level2) {
-    if (avatar.body.y < enemyLevel2Level2.body.y) {
-      enemyLevel2Level2.destroy();
+  hitEnemy(avatar, enemyLevel2) {
+    if (avatar.body.y < enemyLevel2.body.y) {
+      enemyLevel2.destroy();
     } else {
       // Setting avatar color when collision with an enemy
       avatar.setTint(0xff0000);
@@ -461,6 +470,15 @@ class Level2 extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers(`enemyLevel2`, {
         start: 0,
         end: 7,
+      }),
+      frameRate: 24,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: `enemyLevel2-attack`,
+      frames: this.anims.generateFrameNumbers(`enemyLevel2Attack`, {
+        start: 0,
+        end: 16,
       }),
       frameRate: 24,
       repeat: -1,

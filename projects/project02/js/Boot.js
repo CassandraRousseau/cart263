@@ -37,11 +37,29 @@ class Boot extends Phaser.Scene {
       frameHeight: 140,
       endFrame: 7,
     });
+    this.load.spritesheet(
+      `enemyLevel2Attack`,
+      `assets/images/Enemy_level2_Attack.png`,
+      {
+        frameWidth: 280,
+        frameHeight: 140,
+        endFrame: 16,
+      }
+    );
     this.load.spritesheet(`enemyLevel3`, `assets/images/Enemy_level3.png`, {
       frameWidth: 140,
       frameHeight: 140,
       endFrame: 7,
     });
+    this.load.spritesheet(
+      `enemyLevel3Attack`,
+      `assets/images/Enemy_level3_Attack.png`,
+      {
+        frameWidth: 240,
+        frameHeight: 140,
+        endFrame: 27,
+      }
+    );
     this.load.spritesheet(`mini-cloudLevel1`, `assets/images/mini-cloud.png`, {
       frameWidth: 100,
       frameHeight: 100,
@@ -58,6 +76,7 @@ class Boot extends Phaser.Scene {
       endFrame: 7,
     });
     // Preloading images
+    this.load.image(`gameMenu`, `assets/images/Menu_Flufluf.png`);
     this.load.image(`introPart1`, `assets/images/Intro_Part1.png`);
     this.load.image(`introPart2`, `assets/images/Intro_Part2.png`);
     this.load.image(`introPart3`, `assets/images/Intro_Part3.png`);

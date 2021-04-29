@@ -6,13 +6,16 @@ class Intro extends Phaser.Scene {
     this.image;
   }
   create() {
-    this.intro1 = this.add.image(400, 300, "introPart1").setInteractive();
-    this.intro1.on("pointerdown", this.createB, this);
+    this.menu = this.add.image(400, 300, "gameMenu").setInteractive();
+    this.menu.on("pointerdown", this.createA, this);
     this.musicIntro = this.sound.add("themeIntro");
     this.musicIntro.loop = true;
     this.musicIntro.play();
   }
-
+  createA() {
+    this.intro1 = this.add.image(400, 300, "introPart1").setInteractive();
+    this.intro1.on("pointerdown", this.createB, this);
+  }
   createB() {
     this.intro2 = this.add.image(400, 300, "introPart2").setInteractive();
     this.intro2.on("pointerdown", this.createC, this);
@@ -31,6 +34,6 @@ class Intro extends Phaser.Scene {
   }
   createF() {
     this.musicIntro.stop();
-    this.scene.start("level1");
+    this.scene.start("level2");
   }
 }
