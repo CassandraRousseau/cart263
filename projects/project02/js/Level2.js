@@ -217,7 +217,7 @@ class Level2 extends Phaser.Scene {
     // Created enemies animation
 
     this.enemiesLevel2.playAnimation("enemyLevel2-moving");
-    this.attackEnemies;
+    this.attackEnemies();
 
     // Creating health bar
     this.healthBar = this.add.graphics();
@@ -278,9 +278,7 @@ class Level2 extends Phaser.Scene {
       ) <= 100
     ) {
       if (enemyLevel2.anims.getName() === "enemyLevel2-moving") {
-        console.log("enemyLevel2-moving");
-        enemyLevel2.playAnimation("enemyLevel2-attack");
-        console.log("enemyLevel2-attack");
+        enemyLevel2.play("enemyLevel2-attack");
       }
     }
   }
