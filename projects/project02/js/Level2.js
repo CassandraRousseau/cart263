@@ -217,7 +217,6 @@ class Level2 extends Phaser.Scene {
     // Created enemies animation
 
     this.enemiesLevel2.playAnimation("enemyLevel2-moving");
-    this.attackEnemies();
 
     // Creating health bar
     this.healthBar = this.add.graphics();
@@ -267,21 +266,7 @@ class Level2 extends Phaser.Scene {
     //   // Setting keyboard outputs
     this.cursors = this.input.keyboard.createCursorKeys();
   }
-  //
-  attackEnemies(enemyLevel2) {
-    if (
-      Phaser.Math.Distance.Between(
-        this.avatar.x,
-        this.avatar.y,
-        enemyLevel2.x,
-        enemyLevel2.y
-      ) <= 100
-    ) {
-      if (enemyLevel2.anims.getName() === "enemyLevel2-moving") {
-        enemyLevel2.play("enemyLevel2-attack");
-      }
-    }
-  }
+
   // Setting how avatar eliminates the enemy
   hitEnemy(avatar, enemyLevel2) {
     if (avatar.body.y < enemyLevel2.body.y) {
@@ -329,7 +314,7 @@ class Level2 extends Phaser.Scene {
   }
   // // Updating properties of the game
   update(collectItem) {
-    console.log(currentInputVolume);
+    // console.log(currentInputVolume);
 
     // Setting avatar velocity
     this.avatar.setVelocity(0);
@@ -376,6 +361,9 @@ class Level2 extends Phaser.Scene {
         this.avatar.play(`avatar-idle`, true);
       }
     }
+    this.enemiesLevel2.children.each((enemyLevel2) => {
+      this.attackEnemies(enemyLevel2);
+    });
     // Resetting health bar filling
     this.healthBar.clear();
 
@@ -412,6 +400,21 @@ class Level2 extends Phaser.Scene {
     if (this.size <= 0) {
       this.gameOver();
     }
+  }
+  attackEnemies(enemyLevel2) {
+    if (
+      Phaser.Math.Distance.Between(
+        this.avatar.x,
+        this.avatar.y,
+        enemyLevel2.x,
+        enemyLevel2.y
+      ) <= 100
+    ) {
+      if (enemyLevel2.anims.getName() === "enemyLevel2-moving") {
+        enemyLevel2.play("enemyLevel2-attack");
+      }
+    }
+    console.log(Phaser.Math.Distance.Between, this.avatar.x, enemyLevel2.x);
   }
 
   // Setting game over screen
