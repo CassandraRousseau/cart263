@@ -269,9 +269,18 @@ class Level2 extends Phaser.Scene {
   }
   //
   attackEnemies(enemyLevel2) {
-    if (this.avatar.x <= enemyLevel2.body.x - 100) {
-      if (enemyLevel2.x.anims.getName() === "enemyLevel2-moving") {
-        enemyLevel2.x.playAnimation("enemyLevel2-attack");
+    if (
+      Phaser.Math.Distance.Between(
+        this.avatar.x,
+        this.avatar.y,
+        enemyLevel2.x,
+        enemyLevel2.y
+      ) <= 100
+    ) {
+      if (enemyLevel2.anims.getName() === "enemyLevel2-moving") {
+        console.log("enemyLevel2-moving");
+        enemyLevel2.playAnimation("enemyLevel2-attack");
+        console.log("enemyLevel2-attack");
       }
     }
   }
