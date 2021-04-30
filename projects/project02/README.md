@@ -1,6 +1,6 @@
 # Project 2-Anything
 
-Flufluf-Cassandra Rousseau
+_Flufluf_-Cassandra Rousseau
 
 _Flufluf_ is a platform game made with Phaser 3. The storyline is about Flufluf, the player's avatar, who saves the baby clouds kidnapped by an evil squad of clouds. The main character, Flufluf, will rescue the baby clouds from the enemies by collecting them through each level. The player has to get through each level and fight the enemies to complete the game.
 
