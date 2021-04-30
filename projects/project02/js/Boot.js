@@ -1,17 +1,21 @@
 class Boot extends Phaser.Scene {
+  //
   constructor() {
     super({
       key: `boot`,
     });
   }
 
-  // Preloading spritesheets, images,musicLevel1, and bitmap font
+  // Preloading spritesheets,tilemaps,images,music, and bitmap font
   preload() {
+    // Loading bitmap font
     this.load.bitmapFont(
       "pressStart",
       "assets/fonts/Press_Start_2P.png",
       "assets/fonts/Press_Start_2P.xml"
     );
+
+    // loading music
     this.load.audio(`themeIntro`, `assets/sounds/Sand_Castle.mp3`);
     this.load.audio(
       `themeLevel1`,
@@ -19,9 +23,13 @@ class Boot extends Phaser.Scene {
     );
     this.load.audio(`themeLevel2`, `assets/sounds/This_Snow_Doesnt.mp3`);
     this.load.audio(`themeLevel3`, `assets/sounds/19th_Floor.mp3`);
+
+    // loading tilemaps
     this.load.tilemapTiledJSON("level1", "assets/tilemaps/level1.json");
     this.load.tilemapTiledJSON("level2", "assets/tilemaps/level2.json");
     this.load.tilemapTiledJSON("level3", "assets/tilemaps/level3.json");
+
+    // loading spritesheets
     this.load.spritesheet(`avatar`, `assets/images/avatar.png`, {
       frameWidth: 140,
       frameHeight: 128,
@@ -75,7 +83,10 @@ class Boot extends Phaser.Scene {
       frameHeight: 100,
       endFrame: 7,
     });
+
     // Preloading images
+
+    // Introduction's images
     this.load.image(`gameMenu`, `assets/images/Menu_Flufluf.png`);
     this.load.image(`introPart1`, `assets/images/Intro_Part1.png`);
     this.load.image(`introPart2`, `assets/images/Intro_Part2.png`);
@@ -83,18 +94,30 @@ class Boot extends Phaser.Scene {
     this.load.image(`introPart4`, `assets/images/Intro_Part4.png`);
     this.load.image(`introPart5`, `assets/images/Intro_Part5.png`);
 
+    // First level's images
     this.load.image(`backgroundLevel1`, `assets/images/Background_Level1.png`);
     this.load.image(`flowerLevel1`, `assets/images/Flowers.png`);
     this.load.image(`groundLevel1`, `assets/images/Ground_level1.png`);
 
+    //Second level's images
     this.load.image(`backgroundLevel2`, `assets/images/Level2_background.png`);
     this.load.image(`flowerLevel2`, `assets/images/Flower_level2.png`);
     this.load.image(`groundLevel2`, `assets/images/Ground_level2.png`);
 
+    // Third level's images
     this.load.image(`backgroundLevel3`, `assets/images/Level3_background.png`);
     this.load.image(`flowerLevel3`, `assets/images/Flower_level3.png`);
     this.load.image(`groundLevel3`, `assets/images/GroundLevel3.png`);
 
+    // Ending's images
+
+    this.load.image(`endingPart1`, `assets/images/Ending_Part1.png`);
+    this.load.image(`endingPart2`, `assets/images/Ending_Part2.png`);
+    this.load.image(`endingPart3`, `assets/images/Ending_Part3.png`);
+    this.load.image(`endingPart4`, `assets/images/Ending_Part4.png`);
+    this.load.image(`endingPart5`, `assets/images/Ending_Part5.png`);
+    this.load.image(`endingPart6`, `assets/images/Ending_Part6.png`);
+    // loading game
     this.load.on(`complete`, () => {
       this.scene.start(`intro`);
     });
@@ -112,41 +135,42 @@ class Boot extends Phaser.Scene {
     this.accessMicrophone();
     console.log(this.accessMicrophone);
   }
+
   update() {}
+
+  // Loading microphone input
   accessMicrophone() {
-    // This is working out how to access the browser's input (the microphone in this case)
+    // Load how to access the browser's microphone input
     navigator.getUserMedia =
       navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia;
-    // This is making sure it's even possible
+
+    // Verifies microphone input in the browser
     if (navigator.getUserMedia) {
-      // This is asking the browser for access to the microphone
+      // Asking the browser for access to the microphone
       navigator.getUserMedia(
         {
           audio: true,
         },
-        // This is the function that will be called when there's input
+
         (stream) => {
-          // These are all parts of the browser's audio system being used
-          // to figure out the volume from the microphone
+          // Check the volume from the microphone
           let audioContext = new AudioContext();
           let analyser = audioContext.createAnalyser();
           let microphone = audioContext.createMediaStreamSource(stream);
           let javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-          // Aparrently there is some other fancy stuff happening
           analyser.smoothingTimeConstant = 0.8;
           analyser.fftSize = 1024;
 
-          // Audio programming always involves connecting various things to each other!
           microphone.connect(analyser);
           analyser.connect(javascriptNode);
           javascriptNode.connect(audioContext.destination);
 
-          // This is the part that will actually analyse the data itself
+          // Analysis of the data
           javascriptNode.onaudioprocess = () => {
-            // This is it figuring out the different values in the current sample of audio
+            //Figures out different values in the current sample of audio
             let array = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(array);
             let values = 0;
@@ -154,13 +178,18 @@ class Boot extends Phaser.Scene {
             for (var i = 0; i < length; i++) {
               values += array[i];
             }
-            // This is it averaging the amplitude across the value (getting the volume)
+
+            // Averaging the amplitude across the value (getting the volume)
             let average = values / length;
-            // And here we set out special property to record the current volume for
+
+            //Set out special property to record the current volume for
             // use elsewhere
             currentInputVolume = average;
-          }; // end fn stream
+          };
+
+          // end fn stream
         },
+
         function (err) {
           console.error("The following error occured: " + err.name);
         }

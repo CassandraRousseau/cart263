@@ -18,9 +18,11 @@ class Level1 extends Phaser.Scene {
   // Creating properties of level
   create() {
     // A property to store the current input volume
-    // Will always be kept updated
     currentInputVolume = 0;
+
+    // Sets background colour
     this.backgroundColor = "0xff0000";
+
     // Setting camera
     this.cameras.main.setBounds(0, 0, 720 * 16, 176);
 
@@ -28,6 +30,8 @@ class Level1 extends Phaser.Scene {
     for (let x = 0; x < 16; x++) {
       this.add.image(720 * x, 0, `backgroundLevel1`).setOrigin(0, 0);
     }
+
+    // Setting tilemap
     this.map = this.make.tilemap({ key: "level1" });
 
     let groundTiles = this.map.addTilesetImage("Ground_level1", "groundLevel1");
@@ -39,8 +43,8 @@ class Level1 extends Phaser.Scene {
     this.musicLevel1 = this.sound.add("themeLevel1");
     this.musicLevel1.loop = true;
     this.musicLevel1.play();
-    //
-    //   // Setting tutorial text
+
+    // Setting tutorial text
     let texts = [
       {
         x: 400,
@@ -238,10 +242,10 @@ class Level1 extends Phaser.Scene {
       this
     );
 
-    //   // Setting keyboard outputs
+    // Setting keyboard outputs
     this.cursors = this.input.keyboard.createCursorKeys();
   }
-  //
+
   // Setting how avatar eliminates the enemy
   hitEnemy(avatar, enemy) {
     if (avatar.body.y < enemy.body.y) {
@@ -268,6 +272,7 @@ class Level1 extends Phaser.Scene {
         .rectangle(this.avatar.x, this.avatar.y, 720 * 16, 2 * 600, 0x000000)
         .setInteractive();
 
+      // Sets ending level text
       this.textEnding = this.add
         .bitmapText(
           this.avatar.x,
@@ -283,14 +288,18 @@ class Level1 extends Phaser.Scene {
     this.over = true;
     this.rectangle.on("pointerdown", this.nextLevel, this);
   }
+
+  // Makes transition to the next level
   nextLevel() {
     this.musicLevel1.stop();
     this.scene.start("level2");
   }
-  // // Updating properties of the game
+
+  // Updating properties of the game
   update(collectItem) {
-    //     // Prove that we're getting a volume!
+    // Prove that we're getting a volume
     console.log(currentInputVolume);
+
     // Setting avatar velocity
     this.avatar.setVelocity(0);
 
@@ -319,6 +328,8 @@ class Level1 extends Phaser.Scene {
         this.avatar.setVelocityX(300);
       }
     }
+
+    // Setting the volume required to make the avatar  fly
     if (currentInputVolume >= 60) {
       this.avatar.setVelocityY(-200);
     } else {
@@ -327,6 +338,7 @@ class Level1 extends Phaser.Scene {
     if (this.avatar.y >= 600) {
       this.avatar.setVelocityY(200);
     }
+
     // Starting avatar animation if moving
     if (
       this.avatar.body.velocity.x !== 0 ||
@@ -358,6 +370,7 @@ class Level1 extends Phaser.Scene {
         20
       );
     }
+
     // Shrinking heatlh bar if colliding with an enemy
     else if (hitEnemy) {
       this.healthBar.fillStyle(0x2d2d2d);
@@ -387,6 +400,8 @@ class Level1 extends Phaser.Scene {
         2 * 600,
         0x000000
       );
+
+      // Sets game over text
       this.textGameOver = this.add
         .bitmapText(
           this.avatar.x,
@@ -401,7 +416,7 @@ class Level1 extends Phaser.Scene {
     }
     this.over = true;
   }
-  //
+
   // Setting avatar, baby cloud, and enemies animations
   createAnimations() {
     this.anims.create({

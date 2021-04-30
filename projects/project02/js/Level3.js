@@ -16,9 +16,12 @@ class Level3 extends Phaser.Scene {
   }
   // Creating properties of level
   create() {
+    // A property to store the current input volume
     currentInputVolume = 0;
 
+    // Sets background colour
     this.backgroundColor = "0xff0000";
+
     // Setting camera
     this.cameras.main.setBounds(0, 0, 720 * 16, 176);
 
@@ -26,6 +29,8 @@ class Level3 extends Phaser.Scene {
     for (let x = 0; x < 16; x++) {
       this.add.image(720 * x, 0, `backgroundLevel3`).setOrigin(0, 0);
     }
+
+    // Setting tilemap
     this.map = this.make.tilemap({ key: "level3" });
 
     let groundTiles = this.map.addTilesetImage(
@@ -38,8 +43,7 @@ class Level3 extends Phaser.Scene {
 
     this.layerGround.setCollisionByExclusion(-1, true);
 
-    //
-    //   // Setting soundtrack
+    // Setting soundtrack
     this.musicLevel3 = this.sound.add("themeLevel3");
     this.musicLevel3.loop = true;
     this.musicLevel3.play();
@@ -213,10 +217,10 @@ class Level3 extends Phaser.Scene {
     // Setting camera following avatar
     this.cameras.main.startFollow(this.avatar, true);
 
-    // // // Setting collision between avatar and platforms
+    // Setting collision between avatar and platforms
     this.physics.add.collider(this.avatar, this.layerGround);
-    //
-    // // Setting collision between flowers and platforms
+
+    // Setting collision between flowers and platforms
     this.physics.add.collider(this.flowers, this.layerGround);
 
     // Setting collision between baby cloud and main platform
@@ -252,10 +256,10 @@ class Level3 extends Phaser.Scene {
       this
     );
 
-    //   // Setting keyboard outputs
+    // Setting keyboard outputs
     this.cursors = this.input.keyboard.createCursorKeys();
   }
-  //
+
   // Setting how avatar eliminates the enemy
   hitEnemy(avatar, enemyLevel3) {
     if (avatar.body.y < enemyLevel3.body.y) {
@@ -282,6 +286,7 @@ class Level3 extends Phaser.Scene {
         .rectangle(this.avatar.x, this.avatar.y, 720 * 16, 2 * 600, 0x000000)
         .setInteractive();
 
+      // Sets ending level text
       this.textEnding = this.add
         .bitmapText(
           this.avatar.x,
@@ -297,11 +302,14 @@ class Level3 extends Phaser.Scene {
     this.over = true;
     this.rectangle.on("pointerdown", this.nextLevel, this);
   }
+
+  // Makes transition to the next level
   nextLevel() {
     this.musicLevel3.stop();
-    this.scene.start("level3");
+    this.scene.start("ending");
   }
-  // // Updating properties of the game
+
+  // Updating properties of the game
   update(collectItem) {
     console.log(currentInputVolume);
 
@@ -332,6 +340,8 @@ class Level3 extends Phaser.Scene {
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
       }
+
+      // Setting the volume required to make the avatar  fly
       if (currentInputVolume >= 60) {
         this.avatar.setVelocityY(-200);
       } else {
@@ -341,6 +351,7 @@ class Level3 extends Phaser.Scene {
         this.avatar.setVelocityY(200);
       }
     }
+
     // Starting avatar animation if moving
     if (
       this.avatar.body.velocity.x !== 0 ||
@@ -350,6 +361,11 @@ class Level3 extends Phaser.Scene {
     } else {
       this.avatar.play(`avatar-idle`, true);
     }
+
+    // Sets the enemies attacks
+    this.enemiesLevel3.children.each((enemyLevel3) => {
+      this.attackEnemies(enemyLevel3);
+    });
 
     // Resetting health bar filling
     this.healthBar.clear();
@@ -389,6 +405,23 @@ class Level3 extends Phaser.Scene {
     }
   }
 
+  // Creates the enemies attacks
+  attackEnemies(enemyLevel3) {
+    if (
+      Phaser.Math.Distance.Between(
+        this.avatar.x,
+        this.avatar.y,
+        enemyLevel3.x,
+        enemyLevel3.y
+      ) <= 300
+    ) {
+      // Makes a transition to the animation of enemy's attack
+      if (enemyLevel3.anims.getName() === "enemyLevel3-moving") {
+        enemyLevel3.play("enemyLevel3-attack");
+      }
+    }
+  }
+
   // Setting game over screen
   gameOver() {
     if (this.over === false) {
@@ -401,6 +434,8 @@ class Level3 extends Phaser.Scene {
         2 * 600,
         0x000000
       );
+
+      // Sets game over text
       this.textGameOver = this.add
         .bitmapText(
           this.avatar.x,
@@ -415,7 +450,7 @@ class Level3 extends Phaser.Scene {
     }
     this.over = true;
   }
-  //
+
   // Setting avatar, baby cloud, and enemies animations
   createAnimations() {
     this.anims.create({
@@ -454,6 +489,15 @@ class Level3 extends Phaser.Scene {
         end: 7,
       }),
       frameRate: 24,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: `enemyLevel3-attack`,
+      frames: this.anims.generateFrameNumbers(`enemyLevel3Attack`, {
+        start: 0,
+        end: 27,
+      }),
+      frameRate: 12,
       repeat: -1,
     });
   }
