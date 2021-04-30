@@ -23,6 +23,7 @@ class Boot extends Phaser.Scene {
     );
     this.load.audio(`themeLevel2`, `assets/sounds/This_Snow_Doesnt.mp3`);
     this.load.audio(`themeLevel3`, `assets/sounds/19th_Floor.mp3`);
+    this.load.audio(`themeEnding`, `assets/sounds/Animal_Beast.mp3`);
 
     // loading tilemaps
     this.load.tilemapTiledJSON("level1", "assets/tilemaps/level1.json");

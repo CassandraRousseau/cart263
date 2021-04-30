@@ -52,7 +52,7 @@ class Level1 extends Phaser.Scene {
       },
       {
         x: 550 * 2,
-        string: `Jump over the platform!\n Blow some air into your microphone!`,
+        string: `Jump over the platform!\n Blow air into your microphone!`,
       },
       {
         x: 550 * 3,
@@ -278,7 +278,7 @@ class Level1 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 1 Completed\nGood Job! You found a baby cloud!`,
+          `Level 1 Completed\nGood Job! You found Yellow cloud!\nYellow cloud tells you\n to go to SnowLand!\n Let's go (Press your mouse)!`,
           20
         )
         .setOrigin(0)
@@ -330,7 +330,7 @@ class Level1 extends Phaser.Scene {
     }
 
     // Setting the volume required to make the avatar  fly
-    if (currentInputVolume >= 60) {
+    if (currentInputVolume >= 40) {
       this.avatar.setVelocityY(-200);
     } else {
       this.avatar.setVelocityY(0);

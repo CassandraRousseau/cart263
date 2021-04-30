@@ -292,7 +292,7 @@ class Level3 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 3 Completed\nGood Job! You found a baby cloud!`,
+          `Level 3 Completed\nGood Job! You found a Orange cloud!\nOrange cloud claims you almost reached\n the headquarter!\nLet's save the captured clouds\n(Press your mouse)!`,
           20
         )
         .setOrigin(0)
@@ -342,7 +342,7 @@ class Level3 extends Phaser.Scene {
       }
 
       // Setting the volume required to make the avatar  fly
-      if (currentInputVolume >= 60) {
+      if (currentInputVolume >= 40) {
         this.avatar.setVelocityY(-200);
       } else {
         this.avatar.setVelocityY(0);

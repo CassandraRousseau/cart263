@@ -11,9 +11,9 @@ class Ending extends Phaser.Scene {
   create() {
     this.ending = this.add.image(400, 300, "endingPart1").setInteractive();
     this.ending.on("pointerdown", this.createA, this);
-    this.musicIntro = this.sound.add("themeIntro");
-    this.musicIntro.loop = true;
-    this.musicIntro.play();
+    this.musicEnding = this.sound.add("themeEnding");
+    this.musicEnding.loop = true;
+    this.musicEnding.play();
   }
 
   // Sets the second scene of the cutscene
