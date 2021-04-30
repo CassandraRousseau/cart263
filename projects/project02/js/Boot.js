@@ -89,11 +89,11 @@ class Boot extends Phaser.Scene {
 
     // Introduction's images
     this.load.image(`gameMenu`, `assets/images/Menu_Flufluf.png`);
-    this.load.image(`introPart1`, `assets/images/Intro_Part1.png`);
-    this.load.image(`introPart2`, `assets/images/Intro_Part2.png`);
-    this.load.image(`introPart3`, `assets/images/Intro_Part3.png`);
-    this.load.image(`introPart4`, `assets/images/Intro_Part4.png`);
-    this.load.image(`introPart5`, `assets/images/Intro_Part5.png`);
+    this.load.image(`introPart1`, `assets/images/Intro_part1.png`);
+    this.load.image(`introPart2`, `assets/images/Intro_part2.png`);
+    this.load.image(`introPart3`, `assets/images/Intro_part3.png`);
+    this.load.image(`introPart4`, `assets/images/Intro_part4.png`);
+    this.load.image(`introPart5`, `assets/images/Intro_part5.png`);
 
     // First level's images
     this.load.image(`backgroundLevel1`, `assets/images/Background_Level1.png`);
