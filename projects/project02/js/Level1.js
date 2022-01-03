@@ -17,6 +17,7 @@ class Level1 extends Phaser.Scene {
   }
   // Creating properties of level
   create() {
+
     // A property to store the current input volume
     currentInputVolume = 0;
 
@@ -43,6 +44,9 @@ class Level1 extends Phaser.Scene {
     this.musicLevel1 = this.sound.add("themeLevel1");
     this.musicLevel1.loop = true;
     this.musicLevel1.play();
+
+    //debug level skip cheat
+
 
     // Setting tutorial text
     let texts = [
@@ -299,7 +303,7 @@ class Level1 extends Phaser.Scene {
   // Updating properties of the game
   update(collectItem) {
     // Prove that we're getting a volume
-    console.log(currentInputVolume);
+    //console.log(currentInputVolume)
 
     // Setting avatar velocity
     this.avatar.setVelocity(0);
@@ -325,8 +329,12 @@ class Level1 extends Phaser.Scene {
       // Setting keybord inputs on avatar
       if (this.cursors.left.isDown) {
         this.avatar.setVelocityX(-300);
+
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
+      }else if (this.cursors.down.isDown) {
+
+        this.nextLevel();
       }
     }
 
