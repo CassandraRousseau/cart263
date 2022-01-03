@@ -306,6 +306,7 @@ class Level3 extends Phaser.Scene {
   // Makes transition to the next level
   nextLevel() {
     this.musicLevel3.stop();
+    this.musicLevel3.loop = false;
     this.scene.start("ending");
   }
 
@@ -342,13 +343,13 @@ class Level3 extends Phaser.Scene {
       }
 
       // Setting the volume required to make the avatar  fly
-      if (currentInputVolume >= 40) {
-        this.avatar.setVelocityY(-200);
+      if (currentInputVolume >= 8) {
+        this.avatar.setVelocityY(-225);
       } else {
         this.avatar.setVelocityY(0);
       }
       if (this.avatar.y >= 600) {
-        this.avatar.setVelocityY(200);
+        this.avatar.setVelocityY(100);
       }
     }
 
