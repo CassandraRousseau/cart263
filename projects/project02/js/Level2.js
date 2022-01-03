@@ -354,6 +354,9 @@ class Level2 extends Phaser.Scene {
         this.avatar.setVelocityX(-300);
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
+      } else if (this.cursors.down.isDown) {
+
+        this.nextLevel();
       }
 
       // Setting the volume required to make the avatar  fly
