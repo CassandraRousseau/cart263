@@ -304,7 +304,7 @@ class Level2 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 2 Completed\nGood Job! You found Purple cloud!\n Purple cloud claims their headquarter\n is near a volcano!\n Let's go (Press your mouse)!`,
+          `Level 2 Completed\nGood Job! You found Purple cloud!\n Purple cloud claims their headquarter\n is near a volcano!\n Let's go (Press your down key)!`,
           20
         )
         .setOrigin(0)
@@ -312,7 +312,6 @@ class Level2 extends Phaser.Scene {
         .setAngle(-180);
     }
     this.over = true;
-    this.rectangle.on("pointerdown", this.nextLevel, this);
   }
 
   // Makes transition to the next level
@@ -355,7 +354,6 @@ class Level2 extends Phaser.Scene {
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
       } else if (this.cursors.down.isDown) {
-
         this.nextLevel();
       }
 

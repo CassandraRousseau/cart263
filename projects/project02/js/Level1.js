@@ -17,7 +17,6 @@ class Level1 extends Phaser.Scene {
   }
   // Creating properties of level
   create() {
-
     // A property to store the current input volume
     currentInputVolume = 0;
 
@@ -46,7 +45,6 @@ class Level1 extends Phaser.Scene {
     this.musicLevel1.play();
 
     //debug level skip cheat
-
 
     // Setting tutorial text
     let texts = [
@@ -282,7 +280,7 @@ class Level1 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 1 Completed\nGood Job! You found Yellow cloud!\nYellow cloud tells you\n to go to SnowLand!\n Let's go (Press your mouse)!`,
+          `Level 1 Completed\nGood Job! You found Yellow cloud!\nYellow cloud tells you\n to go to SnowLand!\n Let's go (Press your down key)!`,
           20
         )
         .setOrigin(0)
@@ -290,7 +288,6 @@ class Level1 extends Phaser.Scene {
         .setAngle(-180);
     }
     this.over = true;
-    this.rectangle.on("pointerdown", this.nextLevel, this);
   }
 
   // Makes transition to the next level
@@ -329,11 +326,9 @@ class Level1 extends Phaser.Scene {
       // Setting keybord inputs on avatar
       if (this.cursors.left.isDown) {
         this.avatar.setVelocityX(-300);
-
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
-      }else if (this.cursors.down.isDown) {
-
+      } else if (this.cursors.down.isDown) {
         this.nextLevel();
       }
     }

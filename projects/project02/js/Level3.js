@@ -292,7 +292,7 @@ class Level3 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 3 Completed\nGood Job! You found a Orange cloud!\nOrange cloud claims you almost reached\n the headquarter!\nLet's save the captured clouds\n(Press your mouse)!`,
+          `Level 3 Completed\nGood Job! You found a Orange cloud!\nOrange cloud claims you almost reached\n the headquarter!\nLet's save the captured clouds\n(Press your down key)!`,
           20
         )
         .setOrigin(0)
@@ -300,7 +300,6 @@ class Level3 extends Phaser.Scene {
         .setAngle(-180);
     }
     this.over = true;
-    this.rectangle.on("pointerdown", this.nextLevel, this);
   }
 
   // Makes transition to the next level
@@ -340,6 +339,8 @@ class Level3 extends Phaser.Scene {
         this.avatar.setVelocityX(-300);
       } else if (this.cursors.right.isDown) {
         this.avatar.setVelocityX(300);
+      } else if (this.cursors.down.isDown) {
+        this.nextLevel();
       }
 
       // Setting the volume required to make the avatar  fly
