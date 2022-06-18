@@ -104,7 +104,7 @@ class HallOfEverything extends State {
     textSize(30);
     textAlign(CENTER, CENTER);
     translate(0, 0, 200);
-    text(this.instructions, 0, -height / 3);
+    text(this.instructions, 0, -height / 2.75);
     pop();
   }
 }

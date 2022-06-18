@@ -304,7 +304,7 @@ class Level2 extends Phaser.Scene {
           this.avatar.x,
           this.avatar.y - 300,
           "pressStart",
-          `Level 2 Completed\nGood Job! You found Purple cloud!\n Purple cloud claims their headquarter\n is near a volcano!\n Let's go (Press your down key)!`,
+          `Level 2 Completed\nGood Job! You found Purple cloud!\n Purple cloud says their headquarter\n is near a volcano!\n Let's go (Press your down arrow)!`,
           20
         )
         .setOrigin(0)
@@ -358,7 +358,7 @@ class Level2 extends Phaser.Scene {
       }
 
       // Setting the volume required to make the avatar  fly
-      if (currentInputVolume >= 8) {
+      if (currentInputVolume >= 15) {
         this.avatar.setVelocityY(-225);
       } else {
         this.avatar.setVelocityY(0);

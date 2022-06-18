@@ -21,10 +21,10 @@ let farewell = `I'm really happy that you found your spark!\n I wish you the bes
 let comment = `Yeah... I really liked donuts in my past life...(*And I still like them*)`;
 
 //Creating list of careers for the manual
-let listCareers = `List of careers:\nartist\nbaker\nbasketball player\nlibrarian\nphotographer\npresident`;
+let listCareers = `List of careers:\nArtist\nBaker\nBasketball player\nLibrarian\nOffice worker\nPhotographer`;
 
 //Creating list of places for the manual
-let listPlaces = `List of places:\nArt studio\nBakery\nBasketball court\nHall\nHall of you\nLibrary\nOffice\nPhoto studio`;
+let listPlaces = `List of places:\nArt studio\nBakery\nBasketball court\nLibrary\nOffice\nPhoto studio\n Main Hall\nHall of you`;
 
 //Creating font variable
 let font;
@@ -424,7 +424,7 @@ function preload() {
 function setup() {
   //Creating WEBGL canvas
   createCanvas(1000, 1000, WEBGL);
-  camera(0, 0, 20, 0, 0, 0, 0, 1, 0);
+  camera(0, 0, 40, 0, 0, 0, 0, 1, 0);
 
   cursor = createCapture(VIDEO);
   cursor.hide();
@@ -510,7 +510,7 @@ function cameraCursor() {
     indexY = map(indexY, 0, cursor.elt.videoHeight, -500, 500);
 
     // Setting the camera on the canvas
-    camera(0, 0, 800, indexX, indexY, 0, 0, 10, 0);
+    camera(0, 0, 1300, indexX, indexY, 0, 0, 10, 0);
   }
 }
 
@@ -619,7 +619,7 @@ function places(room) {
       music.play();
     }
     //Setting hall state
-  } else if (currentAnswer === "hall") {
+  } else if (currentAnswer === "main hall") {
     currentState = new Hall({
       floor: floor,
       windows: windows,

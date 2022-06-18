@@ -82,7 +82,8 @@ class Auditorium extends State {
     //Displaying the instructions
     push();
     textSize(50);
-    text(this.subheader, -width / 2, height / 25);
+    text(this.subheader, -width / 20
+      , height / 25);
     pop();
   }
 
