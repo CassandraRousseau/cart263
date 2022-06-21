@@ -153,7 +153,7 @@ class Bakery extends State {
     }
     //Creating pie
     push();
-    translate(-width / 7, height / 30, 510);
+    translate(-width / 7, height / 30, 900);
     rotateX(100);
     rotateY(360);
     rotateZ(-50);
@@ -164,7 +164,7 @@ class Bakery extends State {
 
     //Creating cake
     push();
-    translate(width / 8, height / 30, 630);
+    translate(width / 8, height / 30, 970);
     rotateX(175);
     rotateY(360);
     rotateZ(0);
@@ -175,7 +175,7 @@ class Bakery extends State {
 
     //Creating strudel
     push();
-    translate(width / 10, height / 50, 650);
+    translate(width / 10, height / 40, 950);
     texture(this.textureStrudel);
     scale(50, 50, 50);
     model(this.strudel);
@@ -183,14 +183,14 @@ class Bakery extends State {
 
     //Creating bun
     push();
-    translate(-width / 12, height / 49, 660);
+    translate(-width / 12, height / 41, 975);
     texture(this.textureBun);
     model(this.bun);
     pop();
 
     //Creating pizza
     push();
-    translate(width / 9, height / 45, 620);
+    translate(width / 9, height / 35, 960);
     rotateX(175);
     rotateY(360);
     rotateZ(0);
@@ -201,7 +201,7 @@ class Bakery extends State {
 
     //Creating doughnut
     push();
-    translate(-width / 7, height / 30, 600);
+    translate(-width / 7, height / 25, 810);
     rotateX(175);
     rotateY(360);
     rotateZ(0);

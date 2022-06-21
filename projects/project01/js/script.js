@@ -638,7 +638,7 @@ function places(room) {
     }
   }
   //Setting hall of everything state
-  else if (currentAnswer === "hall of everything") {
+  else if (currentAnswer === "entrance") {
     currentState = new HallOfEverything({
       grassBlue: grassBlue,
       soulBackground: soulBackground,

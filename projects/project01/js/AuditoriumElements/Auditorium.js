@@ -7,7 +7,7 @@ class Auditorium extends State {
     this.name = `auditorium`;
 
     //Creating instructions
-    this.subheader = `Press your Mouse to watch the video. Once it's done, say "Go to Hall of Everything"`;
+    this.subheader = `Press your Mouse to watch the video. Once it's done, say "Go to Entrance"`;
 
     //Creating object arrays
     this.curtains = [];

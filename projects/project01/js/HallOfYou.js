@@ -82,14 +82,14 @@ class HallOfYou extends State {
 
     // Displaying the floor
     push();
-    translate(0, height / 4, 0);
+    translate(0, height / 5, 0);
     fill(100);
     box(3 * width, 100, 3000);
     pop();
 
     //Displaying the doughnuts
     push();
-    translate(width / 2, 40, 0);
+    translate(width / 2, 50, 0);
     rotateX(180);
     rotateY(0);
     rotateZ(0);
@@ -98,7 +98,7 @@ class HallOfYou extends State {
     model(this.doughnut);
     pop();
     push();
-    translate(-width / 4, 60, 0);
+    translate(-width / 4, 70, 0);
     rotateX(180);
 
     scale(10, 10, 10);
@@ -106,7 +106,7 @@ class HallOfYou extends State {
     model(this.doughnut2);
     pop();
     push();
-    translate(width / 3, 50, 350);
+    translate(width / 3, 60, 350);
     rotateX(-80);
 
     scale(5, 5, 5);
@@ -114,14 +114,14 @@ class HallOfYou extends State {
     model(this.doughnut3);
     pop();
     push();
-    translate(-width / 2, 50, 400);
+    translate(-width / 2, 60, 400);
 
     scale(20, 20, 20);
     texture(this.doughnutTexture3);
     model(this.doughnut4);
     pop();
     push();
-    translate(width / 2, 40, 450);
+    translate(width / 2, 50, 450);
     rotateX(180);
 
     scale(20, 20, 20);
@@ -129,7 +129,7 @@ class HallOfYou extends State {
     model(this.doughnut5);
     pop();
     push();
-    translate(-width / 5, 120, -300);
+    translate(-width / 5, 130, -300);
     rotateX(180);
 
     scale(12, 12, 12);
@@ -137,7 +137,7 @@ class HallOfYou extends State {
     model(this.doughnut6);
     pop();
     push();
-    translate(-width / 2, height / 10, -100);
+    translate(-width / 2, height / 7, -100);
     rotateX(180);
 
     scale(25, 25, 25);
@@ -145,7 +145,7 @@ class HallOfYou extends State {
     model(this.doughnut7);
     pop();
     push();
-    translate(width / 2, height / 8, 350);
+    translate(width / 2, height / 9, 350);
     rotateX(180);
 
     scale(5, 5, 5);
