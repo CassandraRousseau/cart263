@@ -78,7 +78,7 @@ class HallOfEverything extends State {
     //Displaying the sky
     push();
     texture(this.gradient);
-    translate(0, -height, -1000);
+        translate(0, -height/1.1, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();
