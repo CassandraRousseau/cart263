@@ -55,7 +55,7 @@ class BasketballCourt extends State {
     //Displaying the sky
     push();
     texture(this.sky);
-    translate(0, -height, -1000);
+    translate(0, -height/0.88, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();

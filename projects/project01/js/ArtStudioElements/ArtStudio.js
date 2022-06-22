@@ -99,7 +99,7 @@ class ArtStudio extends State {
 
     //Displaying the abstract pink painting
     push();
-    translate(0, -height / 2, -1000);
+    translate(0, -height / 3, -1000);
     rotateX(90);
     rotateY(0);
     rotateZ(0);
@@ -110,7 +110,7 @@ class ArtStudio extends State {
 
     //Displaying the abstract white painting
     push();
-    translate(2 * width, -height / 2, -1000);
+    translate(2 * width, -height / 4, -1000);
     rotateX(-360);
     rotateY(0);
     rotateZ(-270);

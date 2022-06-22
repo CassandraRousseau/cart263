@@ -129,7 +129,7 @@ class Library extends State {
     //Displaying the ceiling
     push();
     texture(this.ceiling);
-    translate(0, -height, -1000);
+    translate(0, -height/0.88, -1000);
     rotateX(90);
     plane(4 * width, 2 * height);
     pop();
@@ -158,7 +158,7 @@ class Library extends State {
 
     //Displating counter
     push();
-    translate(0, 100, 200);
+    translate(0, 200, 200);
     texture(this.wood);
     box(330, 110, 250);
     pop();
